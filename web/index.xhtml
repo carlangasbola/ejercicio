@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    <h:head>
+        <meta charset="UTF-8" />
+        <title> Prácticas </title>  
+    </h:head>
+    
+    
+   <!-- Cuerpo de la página -->
+    <h:body>
+        
+        <!-- Barra de navegación -->
+        <h:form>
+            
+            <p:menubar >
+                <p:menuitem  value="Inicio" />
+                <p:menuitem value="Directorio Telefónico" style="margin-left:750px" />
+                <p:submenu label="Notificaciones">
+                    <p:menuitem value="No hay notificaciones" />
+                </p:submenu>
+                <f:facet name="options">
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+                
+            </p:menubar>
+        </h:form>
+        
+        <!-- Título -->
+        <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
+        <h2 style="text-align: center"><p:outputLabel value="LLene los campos que se muestran a continuación" /></h2>
+        <p:separator />
+        
+        
+        <!--  Práctica -->
+        <div class="ui-g">
+            <div class="ui-g-1"></div>
+            <div class="ui-g-4">
+                <p><strong><p:outputLabel value="Laboratorio de biotecnología" /></strong></p>
+                <p:outputLabel value="Práctica número : " />
+                <p:inputNumber id="input1" size="1" />
+                <br /><br />
+                <p:outputLabel value="Título práctica : " for="nprac"/> 
+                <p:inputText placeholder="ejem: Práctica de química"  id="nprac"/>
+                <br /> <br />
+                <p:outputLabel value="Competencias a adquirir : " for="area1"/>
+                <p:inputTextarea rows="3" cols="33" id='area1' autoResize="false"/>
+            </div>
+            <div class="ui-g-2"></div>
+            <div class="ui-g-4">
+                <br />
+                <p:outputLabel value="Semestre : " for="semes"/> 
+                <p:inputText placeholder="ejem: semestre 16/2" size="14" id="semes"/>
+                <br /><br />
+                <p:outputLabel value="Fecha : " for="calendario" /> 
+                <p:calendar size="4" id="calendario"/>
+            </div>
+            <div class="ui-g-1"></div>
+        </div>
+
+
+        <!-- Seleccion de materiale -->
+        <h3 style="text-align: center"><p:outputLabel value="Selección de materiales" /></h3>
+
+        <!-- Seleccion de materiales -->    
+        <h:form>
+            <div class="ui-g">
+                <div class="ui-g-4"></div>
+                <p:pickList id="pickList" value="#{managedBean.sustancias}" var="sus" itemLabel="#{sus}" itemValue="#{sus}" />
+            </div>
+            <br /> <br />
+            <div class="ui-g">
+                <div class="ui-g-5"></div>
+                <p:commandButton value="Enviar" action="#{managedBean.enviarParam()}" />
+            </div>  
+        </h:form>
+
+    </h:body>
+
+
+</html>
+
