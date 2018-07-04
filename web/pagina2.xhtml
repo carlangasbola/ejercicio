@@ -8,6 +8,9 @@
     </h:head>
     <h:body>
         
+        #{managedBean.numeropractica}
+        #{managedBean.titulopractica}
+        
         <h3> Target </h3>
         <ui:repeat value="#{managedBean.sustancias.target}" var="a">
             #{a} <br />

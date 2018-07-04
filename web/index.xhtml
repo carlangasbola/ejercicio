@@ -31,44 +31,46 @@
             </p:menubar>
         </h:form>
         
+        
         <!-- Título -->
-        <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
-        <h2 style="text-align: center"><p:outputLabel value="LLene los campos que se muestran a continuación" /></h2>
-        <p:separator />
-        
-        
-        <!--  Práctica -->
-        <div class="ui-g">
-            <div class="ui-g-1"></div>
-            <div class="ui-g-4">
-                <p><strong><p:outputLabel value="Laboratorio de biotecnología" /></strong></p>
-                <p:outputLabel value="Práctica número : " />
-                <p:inputNumber id="input1" size="1" />
-                <br /><br />
-                <p:outputLabel value="Título práctica : " for="nprac"/> 
-                <p:inputText placeholder="ejem: Práctica de química"  id="nprac"/>
-                <br /> <br />
-                <p:outputLabel value="Competencias a adquirir : " for="area1"/>
-                <p:inputTextarea rows="3" cols="33" id='area1' autoResize="false"/>
-            </div>
-            <div class="ui-g-2"></div>
-            <div class="ui-g-4">
-                <br />
-                <p:outputLabel value="Semestre : " for="semes"/> 
-                <p:inputText placeholder="ejem: semestre 16/2" size="14" id="semes"/>
-                <br /><br />
-                <p:outputLabel value="Fecha : " for="calendario" /> 
-                <p:calendar size="4" id="calendario"/>
-            </div>
-            <div class="ui-g-1"></div>
-        </div>
-
-
-        <!-- Seleccion de materiale -->
-        <h3 style="text-align: center"><p:outputLabel value="Selección de materiales" /></h3>
-
-        <!-- Seleccion de materiales -->    
         <h:form>
+            <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
+            <h2 style="text-align: center"><p:outputLabel value="LLene los campos que se muestran a continuación" /></h2>
+            <p:separator />
+
+
+            <!--  Práctica -->
+            <div class="ui-g">
+                <div class="ui-g-1"></div>
+                <div class="ui-g-4">
+                    <p><strong><p:outputLabel value="Laboratorio de biotecnología" /></strong></p>
+                    <p:outputLabel value="Práctica número : " />
+                    <p:inputNumber id="input1" size="1" value="#{managedBean.numeropractica}" />
+                    <br /><br />
+                    <p:outputLabel value="Título práctica : " for="nprac"/> 
+                    <p:inputText placeholder="ejem: Práctica de química"  id="nprac" value="#{managedBean.titulopractica}"/>
+                    <br /> <br />
+                    <p:outputLabel value="Competencias a adquirir : " for="area1"/>
+                    <p:inputTextarea rows="3" cols="33" id='area1' autoResize="false" value="#{managedBean.competencias}"/>
+                </div>
+                <div class="ui-g-2"></div>
+                <div class="ui-g-4">
+                    <br />
+                    <p:outputLabel value="Semestre : " for="semes"/> 
+                    <p:inputText placeholder="ejem: semestre 16/2" size="14" id="semes" value="#{managedBean.semestre}"/>
+                    <br /><br />
+                    <p:outputLabel value="Creador : " for="idcreador" /> 
+                    <p:inputText id="idcreador" size="15" value="#{managedBean.creador}" />
+                </div>
+                <div class="ui-g-1"></div>
+            </div>
+
+
+            <!-- Seleccion de materiale -->
+            <h3 style="text-align: center"><p:outputLabel value="Selección de materiales" /></h3>
+
+            <!-- Seleccion de materiales -->    
+
             <div class="ui-g">
                 <div class="ui-g-4"></div>
                 <p:pickList id="pickList" value="#{managedBean.sustancias}" var="sus" itemLabel="#{sus}" itemValue="#{sus}" />
