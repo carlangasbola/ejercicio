@@ -8,8 +8,12 @@
     </h:head>
     <h:body>
         
-        #{managedBean.numeropractica}
-        #{managedBean.titulopractica}
+        <p> Variables Recuperadas </p>
+        <p> Numero práctica:  #{managedBean.numeropractica}</p>
+        <p> titulo práctica:  #{managedBean.titulopractica}</p>
+        <p> competencias práctica:  #{managedBean.competencias}</p>
+        <p> semestre práctica:  #{managedBean.semestre}</p>
+        <p> creador práctica:  #{managedBean.creador}</p>
         
         <h3> Target </h3>
         <ui:repeat value="#{managedBean.sustancias.target}" var="a">
