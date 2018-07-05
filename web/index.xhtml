@@ -64,7 +64,8 @@
                     <p:outputLabel value="Semestre : " for="semes"/> 
                     <p:inputText placeholder="ejem: semestre 16/2" size="14" id="semes" value="#{managedBean.semestre}"/>
                     <br /><br />
-                    <p:outputLabel value="Creador : " for="idcreador" /> 
+                    <!-- Modificar este campo -->
+                    <p:outputLabel value=" *** : " for="idcreador" /> 
                     <p:inputText id="idcreador" size="15" value="#{managedBean.creador}" />
                 </div>
                 <div class="ui-g-1"></div>
@@ -106,7 +107,8 @@
             <p:commandButton value="Eliminar" action="#{managedBean.remove}" ajax="false"/>
             <p:commandButton value="Enviar Todo" action="#{managedBean.enviarParam}" />
         </h:form>
-
+        
+        <!-- Agregar las fechas y las horas -->
     </h:body>
 
 
