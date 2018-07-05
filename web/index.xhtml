@@ -8,7 +8,12 @@
     
     <h:head>
         <meta charset="UTF-8" />
-        <title> Prácticas </title>  
+        <title> Prácticas </title>
+        <style>
+            .myTable td:nth-child(1) {
+                width: 20px;
+            }
+        </style>
     </h:head>
     
     
@@ -64,22 +69,41 @@
                 </div>
                 <div class="ui-g-1"></div>
             </div>
+            <br />
+            <br />
+        
+            <!-- Seleccion de materiales -->
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <p:dataTable value="#{managedBean.list}" var="item" styleClass="myTable">
+
+                <p:column >
+                    <!-- column header -->
+                    <f:facet name="header">Cantidad</f:facet>
+                    <p:inputText value="#{item.cantidad}" />
+                </p:column>
+
+                <p:column >
+                    <!-- column header -->
+                    <f:facet name="header">Sustancia</f:facet>
+                    <p:selectOneMenu  value="#{item.nombre}" >
+                        <f:selectItem itemLabel="Selecciona una sustancia" />
+                        <f:selectItem itemLabel="Ácido clorhidrico" itemValue="Ácido clorhidrico" />
+                        <f:selectItem itemLabel="Glicerina" itemValue="Glicerina" />
+                        <f:selectItem itemLabel="Metanol" itemValue="Metanol" />
+                        <f:selectItem itemLabel="Etanol" itemValue="Etanol" />
+                        <f:selectItem itemLabel="Acetona" itemValue="Acetona" />
+                    </p:selectOneMenu>
+                </p:column>
 
 
-            <!-- Seleccion de materiale -->
-            <h3 style="text-align: center"><p:outputLabel value="Selección de materiales" /></h3>
+            </p:dataTable>
 
-            <!-- Seleccion de materiales -->    
-
-            <div class="ui-g">
-                <div class="ui-g-4"></div>
-                <p:pickList id="pickList" value="#{managedBean.sustancias}" var="sus" itemLabel="#{sus}" itemValue="#{sus}" />
-            </div>
             <br /> <br />
-            <div class="ui-g">
-                <div class="ui-g-5"></div>
-                <p:commandButton value="Enviar" action="#{managedBean.enviarParam()}" />
-            </div>  
+            <p:commandButton value="Agregar" action="#{managedBean.add}" ajax="false"/>
+            <p:commandButton value="Eliminar" action="#{managedBean.remove}" ajax="false"/>
+            <p:commandButton value="Enviar Todo" action="#{managedBean.enviarParam}" />
         </h:form>
 
     </h:body>

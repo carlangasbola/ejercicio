@@ -1,63 +1,54 @@
 package paquete1;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import org.primefaces.model.DualListModel;
+
 
 @Named(value = "managedBean")
-@RequestScoped
-public class ManagedBean {
+@SessionScoped
+public class ManagedBean implements Serializable {
 
     //Definicion de variales
-    private DualListModel<String> sustancias;
     private int numeropractica;
     private String titulopractica;
     private String competencias;
     private String semestre;
     private String creador;
+    private final List<paquete1.Item> list;
 
-    // Constructor por defecto
-    public void Managedbean() {
+    // Constructor 
+    public ManagedBean() {
+        list = new ArrayList<>();
     }
 
-    // Valores iniciados antes del constructor
-    @PostConstruct
-    public void init() {
-        //Sustancias
-        List<String> sustanciasSource = new ArrayList<>();
-        List<String> sustanciasTarget = new ArrayList<>();
-
-        sustanciasSource.add("Acido clorhidrico");
-        sustanciasSource.add("Hidroxido de sodio");
-        sustanciasSource.add("Glicerina");
-        sustanciasSource.add("Metanol");
-        sustanciasSource.add("Etanol");
-        sustanciasSource.add("Acetona");
-
-        sustancias = new DualListModel<>(sustanciasSource, sustanciasTarget);
+    public void add() {
+        list.add(new Item());
+    }
+    
+    public void remove(){
+        if (list.size() > 0) {
+            list.remove(list.size() - 1);
+        } else {
+            FacesContext.getCurrentInstance()
+                    .addMessage(null,
+                            new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                    "Cuidado", "No existen valores para eliminar"));
+        }
     }
 
     public String enviarParam() {
-
-        for (String str : sustancias.getTarget()) {
-            System.out.println(" Materiales " + str);
-        }
 
         return "pagina2";
     }
 
     //Getters y Setters
-    public DualListModel<String> getSustancias() {
-        return sustancias;
-    }
-
-    public void setSustancias(DualListModel<String> sustancias) {
-        this.sustancias = sustancias;
-    }
-
+    
     public int getNumeropractica() {
         return numeropractica;
     }
@@ -96,6 +87,10 @@ public class ManagedBean {
 
     public void setCreador(String creador) {
         this.creador = creador;
+    }
+    
+    public List<Item> getList() {
+        return list;
     }
 
 }

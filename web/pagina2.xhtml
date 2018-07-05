@@ -15,19 +15,14 @@
         <p> semestre práctica:  #{managedBean.semestre}</p>
         <p> creador práctica:  #{managedBean.creador}</p>
         
-        <h3> Target </h3>
-        <ui:repeat value="#{managedBean.sustancias.target}" var="a">
-            #{a} <br />
-        </ui:repeat>
-        
-        <h3> Source </h3>
-        <ui:repeat value="#{managedBean.sustancias.source}" var="b">
-            #{b} <br />
-        </ui:repeat>
-        
-        <h:form>
-            <h:commandButton action = "index" value = "Regresar" immediate="true" />
-        </h:form>
+        <h:dataTable value="#{managedBean.list}" var="item">
+            <h:column>
+                #{item.cantidad}
+            </h:column>
+            <h:column>
+                #{item.nombre}
+            </h:column>
+        </h:dataTable>
         
     </h:body>
 </html>
