@@ -40,7 +40,7 @@
         <!-- Título -->
         <h:form>
             <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
-            <h2 style="text-align: center"><p:outputLabel value="LLene los campos que se muestran a continuación" /></h2>
+            <h2 style="text-align: center"><p:outputLabel value="Llene los campos que se muestran a continuación" /></h2>
             <p:separator />
 
 
@@ -49,8 +49,8 @@
                 <div class="ui-g-1"></div>
                 <div class="ui-g-4">
                     <p><strong><p:outputLabel value="Laboratorio de biotecnología" /></strong></p>
-                    <p:outputLabel value="Práctica número : " />
-                    <p:inputNumber id="input1" size="1" value="#{managedBean.numeropractica}" />
+                    <p:outputLabel value="Número de práctica : " for="practicanumero" />
+                    <p:spinner id="practicanumero" value="#{managedBean.numeropractica}" size="1" min="1"/>
                     <br /><br />
                     <p:outputLabel value="Título práctica : " for="nprac"/> 
                     <p:inputText placeholder="ejem: Práctica de química"  id="nprac" value="#{managedBean.titulopractica}"/>

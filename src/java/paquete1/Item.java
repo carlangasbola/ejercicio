@@ -6,7 +6,6 @@ public class Item {
 
     }
     
-    String var;
     private String nombre;
     private String cantidad;
     private String riesgo;
