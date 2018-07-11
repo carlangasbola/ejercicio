@@ -4,8 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
-    
+
+
     <h:head>
         <meta charset="UTF-8" />
         <title> Prácticas </title>
@@ -15,14 +15,14 @@
             }
         </style>
     </h:head>
-    
+
     <!--hhhh -->
-   <!-- Cuerpo de la página -->
+    <!-- Cuerpo de la página -->
     <h:body>
-        
+
         <!-- Barra de navegación -->
         <h:form>
-            
+
             <p:menubar >
                 <p:menuitem  value="Inicio" />
                 <p:menuitem value="Directorio Telefónico" style="margin-left:750px" />
@@ -32,11 +32,11 @@
                 <f:facet name="options">
                     <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
                 </f:facet>
-                
+
             </p:menubar>
         </h:form>
-        
-        
+
+
         <!-- Título -->
         <h:form>
             <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
@@ -50,64 +50,162 @@
                 <div class="ui-g-4">
                     <p><strong><p:outputLabel value="Laboratorio de biotecnología" /></strong></p>
                     <p:outputLabel value="Número de práctica : " for="practicanumero" />
-                    <p:spinner id="practicanumero" value="#{managedBean.numeropractica}" size="1" min="1"/>
+                    <p:spinner id="practicanumero" value="#{managedBeanPractica.numeropractica}" size="1" min="1"/>
                     <br /><br />
                     <p:outputLabel value="Título práctica : " for="nprac"/> 
-                    <p:inputText placeholder="ejem: Práctica de química"  id="nprac" value="#{managedBean.titulopractica}"/>
+                    <p:inputText placeholder="ejem: Práctica de química"  id="nprac" value="#{managedBeanPractica.titulopractica}"/>
                     <br /> <br />
                     <p:outputLabel value="Competencias a adquirir : " for="area1"/>
-                    <p:inputTextarea rows="3" cols="33" id='area1' autoResize="false" value="#{managedBean.competencias}"/>
+                    <p:inputTextarea rows="3" cols="33" id='area1' autoResize="false" value="#{managedBeanPractica.competencias}"/>
                 </div>
                 <div class="ui-g-2"></div>
                 <div class="ui-g-4">
                     <br />
                     <p:outputLabel value="Semestre : " for="semes"/> 
-                    <p:inputText placeholder="ejem: semestre 16/2" size="14" id="semes" value="#{managedBean.semestre}"/>
+                    <p:inputText placeholder="ejem: semestre 16/2" size="14" id="semes" value="#{managedBeanPractica.semestre}"/>
                     <br /><br />
                     <!-- Modificar este campo -->
-                    <p:outputLabel value=" *** : " for="idcreador" /> 
-                    <p:inputText id="idcreador" size="15" value="#{managedBean.creador}" />
+                    <p:outputLabel value="Autor : " for="idcreador" /> 
+                    <p:inputText id="idcreador" size="15" value="#{managedBeanPractica.creador}" />
                 </div>
                 <div class="ui-g-1"></div>
             </div>
             <br />
-            <br />
-        
+
             <!-- Seleccion de materiales -->
-            <p:messages id="messages" showDetail="true" closable="true">
-                <p:autoUpdate />
-            </p:messages>
-            <p:dataTable value="#{managedBean.list}" var="item" styleClass="myTable">
+            <p:growl id="growl" sticky="true" showDetail="true"/>
 
-                <p:column >
-                    <!-- column header -->
-                    <f:facet name="header">Cantidad</f:facet>
-                    <p:inputText value="#{item.cantidad}" />
-                </p:column>
+            <div class="ui-g">
+                <div class="ui-g-1"></div>
+                <div class="ui-g-10">
+                    <p:wizard flowListener="#{managedBeanMaterial.onFlowProcess}">
+                        <!--  Tabla 1 ** Panel de Materiales ** -->
+                        <p:tab id="tabla1" title="Materiales" >
+                            <!-- Panel de Materiales --> 
+                            <p:panel header="Materiales a utilizar" >
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <p:dataTable value="#{managedBeanMaterial.list}" var="item" emptyMessage="No hay registros" >
+                                        <p:column >
+                                            <!-- column header -->
+                                            <f:facet name="header"> Cantidad </f:facet>
+                                            <p:inputText value="#{item.cantidad}" />
+                                        </p:column>
+                                        <p:column>
+                                            <!-- column header -->
+                                            <f:facet name="header"> Nombre del material </f:facet>
+                                            <p:inputText value="#{item.nombre}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:panelGrid>
+                                <br /> <br />
+                                <p:commandButton value="Agregar" action="#{managedBeanMaterial.add}" ajax="false"/>
+                                <p:commandButton value="Eliminar" action="#{managedBeanMaterial.remove}" ajax="false"/>
+                            </p:panel>
+                        </p:tab>
 
-                <p:column >
-                    <!-- column header -->
-                    <f:facet name="header">Sustancia</f:facet>
-                    <p:selectOneMenu  value="#{item.nombre}" >
-                        <f:selectItem itemLabel="Selecciona una sustancia" />
-                        <f:selectItem itemLabel="Ácido clorhidrico" itemValue="Ácido clorhidrico" />
-                        <f:selectItem itemLabel="Glicerina" itemValue="Glicerina" />
-                        <f:selectItem itemLabel="Metanol" itemValue="Metanol" />
-                        <f:selectItem itemLabel="Etanol" itemValue="Etanol" />
-                        <f:selectItem itemLabel="Acetona" itemValue="Acetona" />
-                        <f:selectItem itemLabel="Hidróxido de sodio" itemValue="Hidróxido de sodio" />
-                    </p:selectOneMenu>
-                </p:column>
+                        <!--  Tabla 2 ** Panel de Equipo ** -->
+                        <p:tab id="tabla2" title="Equipo" >
+                            <!-- Panel de Reactivos --> 
+                            <p:panel header="Equipo a utilizar" >
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <p:dataTable value="#{managedBeanEquipo.lista}" var="item" emptyMessage="No hay registros" >
+                                        <p:column >
+                                            <!-- column header -->
+                                            <f:facet name="header"> Cantidad </f:facet>
+                                            <p:inputText value="#{item.cantidad}" />
+                                        </p:column>
+                                        <p:column>
+                                            <!-- column header -->
+                                            <f:facet name="header"> Nombre del equipo </f:facet>
+                                            <p:inputText value="#{item.nombre}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:panelGrid>
+                                <br /> <br />
+                                <p:commandButton value="Agregar" action="#{managedBeanEquipo.add}" ajax="false"/>
+                                <p:commandButton value="Eliminar" action="#{managedBeanEquipo.remove}" ajax="false"/>
+                            </p:panel>
+                        </p:tab>
+
+                        <!-- Tabla 3 Reactivos -->
+                        <p:tab id="tabla3" title="Reactivo" >
+                            <!-- Panel de Reactivos --> 
+                            <p:panel header="Reactivos a utilizar" >
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <p:dataTable value="#{managedBeanReactivos.lista}" var="item" emptyMessage="No hay registros" >
+                                        <p:column >
+                                            <!-- column header -->
+                                            <f:facet name="header">Cantidad (mililitros) </f:facet>
+                                            <p:inputText value="#{item.cantidad}" />
+                                        </p:column>
+                                        <p:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Sustancia</f:facet>
+                                            <p:selectOneMenu  value="#{item.nombre}"   >
+                                                <f:selectItem itemLabel="selecciona uno" />
+                                                <f:selectItems value="#{managedBeanReactivos.list}" />
+                                            </p:selectOneMenu>
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:panelGrid>
+                                <br /> <br />
+                                <p:commandButton value="Agregar" action="#{managedBeanReactivos.add}" ajax="false"/>
+                                <p:commandButton value="Eliminar" action="#{managedBeanReactivos.remove}" ajax="false"/>
+                            </p:panel>
+                        </p:tab>
+
+                        <!-- Tabla de confirmacion -->
+                        <p:tab id="confirm" title=" Confirmacion ">
+                            <p:panel header=" Esto es lo que utilizarás ">
+                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid"> 
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h3> Materiales </h3>
+                                        <p:repeat value="#{managedBeanMaterial.list}" var="material">
+                                            <h:outputText value="Cantidad: " />
+                                            <h:outputText value="#{material.cantidad}" styleClass="outputLabel"/>
+                                            <br />
+                                            <h:outputText value="Nombre: " />
+                                            <h:outputText value="#{material.nombre}" styleClass="outputLabel"/>
+                                            <br /><br />
+                                        </p:repeat>
+                                    </h:panelGrid>
+                                    
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h3> Equipo </h3>
+                                        <p:repeat value="#{managedBeanEquipo.lista}" var="equipo">
+                                            <h:outputText value="Cantidad: " />
+                                            <h:outputText value="#{equipo.cantidad}" styleClass="outputLabel"/>
+                                            <br />
+                                            <h:outputText value="Nombre: " />
+                                            <h:outputText value="#{equipo.nombre}" styleClass="outputLabel"/>
+                                            <br /><br />
+                                        </p:repeat>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h3> Reactivos </h3>
+                                        <p:repeat value="#{managedBeanReactivos.lista}" var="reactivo">
+                                            <h:outputText value="Cantidad: " />
+                                            <h:outputText value="#{reactivo.cantidad}" styleClass="outputLabel"/>
+                                            <br />
+                                            <h:outputText value="Nombre: " />
+                                            <h:outputText value="#{reactivo.nombre}" styleClass="outputLabel"/>
+                                            <br /><br />
+                                        </p:repeat>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                                <p:commandButton value="Submit"  update="growl" process="@this"/>
+                            </p:panel>
+                        </p:tab>
+
+                    </p:wizard>
+                </div>
+                <div class="ui-g-1"></div>
+            </div>
 
 
-            </p:dataTable>
-
-            <br /> <br />
-            <p:commandButton value="Agregar" action="#{managedBean.add}" ajax="false"/>
-            <p:commandButton value="Eliminar" action="#{managedBean.remove}" ajax="false"/>
-            <p:commandButton value="Enviar Todo" action="#{managedBean.enviarParam}" />
         </h:form>
-        
+
         <!-- Agregar las fechas y las horas -->
         <!-- Estandar de las sustancias -->
     </h:body>

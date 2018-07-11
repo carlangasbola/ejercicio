@@ -1,14 +1,12 @@
-package paquete1;
+package modelo;
 
-public class Item {
+public class Material {
 
-    public Item() {
-
+    public Material() {
     }
     
     private String nombre;
     private String cantidad;
-    private String riesgo;
 
     public String getNombre() {
         return nombre;
@@ -25,12 +23,5 @@ public class Item {
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
-
-    public String getRiesgo() {
-        return riesgo;
-    }
-
-    public void setRiesgo(String riesgo) {
-        this.riesgo = riesgo;
-    }
+    
 }
