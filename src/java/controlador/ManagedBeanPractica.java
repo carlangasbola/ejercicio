@@ -3,6 +3,8 @@ package controlador;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -22,6 +24,12 @@ public class ManagedBeanPractica implements Serializable {
     private String competencias;
     private String semestre;
     private String creador;
+    
+    // Metodos 
+    public void guardar() {        
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", " Datos guardados exitosamente ");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
     
     // Getters y Setters
     public int getNumeropractica() {

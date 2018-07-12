@@ -7,6 +7,10 @@
 
 
     <h:head>
+        <link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="bootstrap\mis estilos css\estilos.css" />
+	<script type="text/javascript" src="bootstrap\js\bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap\jquery-3.3.1.min.js"></script>
         <meta charset="UTF-8" />
         <title> Prácticas </title>
         <style>
@@ -16,14 +20,39 @@
         </style>
     </h:head>
 
-    <!--hhhh -->
+
     <!-- Cuerpo de la página -->
     <h:body>
 
         <!-- Barra de navegación -->
+        <header>
+            <nav class="navbar navbar-expand-md bg-faded justify-content-center" style="background-color: rgb(108,29,69);">
+                <img src="imagenes/ipn.png" alt="IPN" style="width: 35px; height: 45px;" />
+                <img src="imagenes/upibi.png" alt="UPIBI" style="width: 80px; height: 45px;" />
+                &nbsp;&nbsp;
+                <a href="/" class="navbar-brand d-flex w-50 mr-auto" style="color: white;">Instituto Politécnico Nacional</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+                    <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Notificaciones</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Búzon de sugerencias</u></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!--
         <h:form>
 
-            <p:menubar >
+            <p:menubar>
                 <p:menuitem  value="Inicio" />
                 <p:menuitem value="Directorio Telefónico" style="margin-left:750px" />
                 <p:submenu label="Notificaciones">
@@ -35,12 +64,13 @@
 
             </p:menubar>
         </h:form>
-
+        -->
 
         <!-- Título -->
         <h:form>
+            <br /> <br />
             <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
-            <h2 style="text-align: center"><p:outputLabel value="Llene los campos que se muestran a continuación" /></h2>
+            <h3 style="text-align: center"><p:outputLabel value="Llene los campos que se muestran a continuación" /></h3>
             <p:separator />
 
 
@@ -169,7 +199,7 @@
                                             <br /><br />
                                         </p:repeat>
                                     </h:panelGrid>
-                                    
+
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h3> Equipo </h3>
                                         <p:repeat value="#{managedBeanEquipo.lista}" var="equipo">
@@ -194,7 +224,7 @@
                                         </p:repeat>
                                     </h:panelGrid>
                                 </h:panelGrid>
-                                <p:commandButton value="Submit"  update="growl" process="@this"/>
+                                <p:commandButton value="Guardar" actionListener="#{managedBeanPractica.guardar}"  update="growl" process="@this"/>
                             </p:panel>
                         </p:tab>
 
