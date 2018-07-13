@@ -19,7 +19,7 @@ public class ManagedBeanPractica implements Serializable {
     }
     
     // Declaracion de variables
-    private int numeropractica;
+    private int numeropractica ;
     private String titulopractica;
     private String competencias;
     private String semestre;

@@ -7,15 +7,14 @@
 
 
     <h:head>
-        <link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="bootstrap\mis estilos css\estilos.css" />
-	<script type="text/javascript" src="bootstrap\js\bootstrap.min.js"></script>
-	<script type="text/javascript" src="bootstrap\jquery-3.3.1.min.js"></script>
         <meta charset="UTF-8" />
         <title> Prácticas </title>
         <style>
             .myTable td:nth-child(1) {
                 width: 20px;
+            }
+            .clase{
+                background-color: red;
             }
         </style>
     </h:head>
@@ -23,33 +22,6 @@
 
     <!-- Cuerpo de la página -->
     <h:body>
-
-        <!-- Barra de navegación -->
-        <header>
-            <nav class="navbar navbar-expand-md bg-faded justify-content-center" style="background-color: rgb(108,29,69);">
-                <img src="imagenes/ipn.png" alt="IPN" style="width: 35px; height: 45px;" />
-                <img src="imagenes/upibi.png" alt="UPIBI" style="width: 80px; height: 45px;" />
-                &nbsp;&nbsp;
-                <a href="/" class="navbar-brand d-flex w-50 mr-auto" style="color: white;">Instituto Politécnico Nacional</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-                    <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Notificaciones</u></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Búzon de sugerencias</u></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!--
         <h:form>
 
             <p:menubar>
@@ -64,13 +36,14 @@
 
             </p:menubar>
         </h:form>
-        -->
 
         <!-- Título -->
+
+
         <h:form>
-            <br /> <br />
+            <br />
             <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
-            <h3 style="text-align: center"><p:outputLabel value="Llene los campos que se muestran a continuación" /></h3>
+            <h3 style="text-align: center"><p:outputLabel value="Llene todos los campos que se muestran a continuación" /></h3>
             <p:separator />
 
 
@@ -78,15 +51,19 @@
             <div class="ui-g">
                 <div class="ui-g-1"></div>
                 <div class="ui-g-4">
-                    <p><strong><p:outputLabel value="Laboratorio de biotecnología" /></strong></p>
+                    <p>
+                        <strong>
+                            <p:outputLabel value="Laboratorio de biotecnología" />
+                        </strong>
+                    </p>
                     <p:outputLabel value="Número de práctica : " for="practicanumero" />
                     <p:spinner id="practicanumero" value="#{managedBeanPractica.numeropractica}" size="1" min="1"/>
                     <br /><br />
-                    <p:outputLabel value="Título práctica : " for="nprac"/> 
-                    <p:inputText placeholder="ejem: Práctica de química"  id="nprac" value="#{managedBeanPractica.titulopractica}"/>
+                    <p:outputLabel value="Título práctica : " for="nprac"/>
+                    <p:inputText  id="nprac" value="#{managedBeanPractica.titulopractica}" />                  
                     <br /> <br />
                     <p:outputLabel value="Competencias a adquirir : " for="area1"/>
-                    <p:inputTextarea rows="3" cols="33" id='area1' autoResize="false" value="#{managedBeanPractica.competencias}"/>
+                    <p:inputTextarea rows="3" cols="50" id='area1' autoResize="false" value="#{managedBeanPractica.competencias}"/>
                 </div>
                 <div class="ui-g-2"></div>
                 <div class="ui-g-4">
