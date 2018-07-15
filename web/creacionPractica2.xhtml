@@ -4,25 +4,15 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
-
+    
     <h:head>
-        <meta charset="UTF-8" />
+         <meta charset="UTF-8" />
         <title> Prácticas </title>
-        <style>
-            .myTable td:nth-child(1) {
-                width: 20px;
-            }
-            .clase{
-                background-color: red;
-            }
-        </style>
     </h:head>
-
-    <!-- Cuerpo de la página -->
     <h:body>
+        
+        <!-- Cuerpo de la página -->
         <h:form>
-
             <p:menubar>
                 <p:menuitem  value="Inicio" />
                 <p:menuitem value="Directorio Telefónico" style="margin-left:750px" />
@@ -35,59 +25,11 @@
 
             </p:menubar>
         </h:form>
-
-        <!-- Título -->
         
+        
+        <!-- Selección de materiales -->
         <h:form>
-            <br />
-            <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
-            <p:separator />
-             <h3 style="text-align: center"><p:outputLabel value="Llene todos los campos que se muestran a continuación" /></h3>
-
-            <!--  Práctica -->
-            <div class="ui-g">
-                <div class="ui-g-2"></div>
-                <div class="ui-g-4">
-                    <p:outputLabel value="Número de práctica : " for="practicanumero" />
-                    <p:spinner id="practicanumero" value="#{managedBeanPractica.numeropractica}" size="1" min="1"/>
-                    <br /><br />
-                    <p:outputLabel value="Título de la práctica : " for="nprac"/>
-                    <p:inputText  id="nprac" value="#{managedBeanPractica.titulopractica}" placeholder="Práctica de ..."/>                  
-                    <br /> <br />
-                    <p:outputLabel value="Objetivos : " for="objetivo"/>
-                    <p:inputTextarea rows="3" cols="40" id='objetivo' autoResize="false" placeholder="1.- objetivo ..." />
-                </div>
-                <div class="ui-g-1"></div>
-                <div class="ui-g-4">
-                    
-                    <p:outputLabel value="Semestre : " for="semes"/> 
-                    <p:inputText placeholder="Semestre 16/2" size="14" id="semes" value="#{managedBeanPractica.semestre}"/>
-                    <br /><br />
-                    <!-- Modificar este campo -->
-                    <p:outputLabel value="Autor : " for="idcreador" /> 
-                    <p:inputText id="idcreador" size="15" value="#{managedBeanPractica.creador}" />
-                    <br /><br />
-                    <p:outputLabel value="Competencias a adquirir : " for="area1"/>
-                    <p:inputTextarea rows="3" cols="40" id='area1' autoResize="false" value="#{managedBeanPractica.competencias}" placeholder="1.- competencia ..."/>                
-                </div>
-                <div class="ui-g-1"></div>
-            </div>
-            <br />
-            
-            
-            <!-- Introducción -->
-            <div class="ui-g">
-                <div class="ui-g-1"></div>
-                <div class="ui-g-10">
-                    <h4> <p:outputLabel value="Introducción de la práctica" /> </h4>
-                    <p:textEditor widgetVar="editor1"  height="300" style="margin-bottom:10px"/>
-                </div>
-                <div class="ui-g-1"></div>
-            </div>
-
-            <!-- Seleccion de materiales -->
             <p:growl id="growl" sticky="true" showDetail="true"/>
-
             <div class="ui-g">
                 <div class="ui-g-1"></div>
                 <div class="ui-g-10">
@@ -215,14 +157,10 @@
                 </div>
                 <div class="ui-g-1"></div>
             </div>
-
-
+            <p:commandButton value="Regresar" id="regresar" action="#{managedBeanPractica.regresar}" ajax="false" />
         </h:form>
-
-        <!-- Agregar las fechas y las horas -->
-        <!-- Estandar de las sustancias -->
+        
+        
     </h:body>
-
-
 </html>
 

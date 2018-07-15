@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/07/2018 10:59:14 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.ReportePractica" table="reporte_practica" catalog="sgr" optimistic-lock="version">
+        <id name="idReportePractica" type="int">
+            <column name="idReporte_practica" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuarios" class="model.Usuarios" fetch="select">
+            <column name="idAlumno" not-null="true" />
+        </many-to-one>
+        <property name="documentoPractica" type="binary">
+            <column name="Documento_practica" not-null="true" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="Fecha" length="19" not-null="true" />
+        </property>
+        <property name="calificacion" type="double">
+            <column name="calificacion" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="Observaciones" length="450" />
+        </property>
+        <property name="grupo" type="string">
+            <column name="Grupo" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

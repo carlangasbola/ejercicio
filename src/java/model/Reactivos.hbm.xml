@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/07/2018 10:59:14 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Reactivos" table="reactivos" catalog="sgr" optimistic-lock="version">
+        <id name="idReactivo" type="int">
+            <column name="idReactivo" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="Tipo" length="45" not-null="true" />
+        </property>
+        <property name="cantidad" type="double">
+            <column name="Cantidad" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="riesgo" type="string">
+            <column name="Riesgo" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

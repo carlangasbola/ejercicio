@@ -24,11 +24,21 @@ public class ManagedBeanPractica implements Serializable {
     private String competencias;
     private String semestre;
     private String creador;
+    private String editor;
+    private String objetivos;
     
     // Metodos 
     public void guardar() {        
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", " Datos guardados exitosamente ");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public String enviar(){
+        return "creacionPractica2";
+    }
+    
+    public String regresar(){
+        return "creacionPractica1";
     }
     
     // Getters y Setters
@@ -70,6 +80,22 @@ public class ManagedBeanPractica implements Serializable {
 
     public void setCreador(String creador) {
         this.creador = creador;
+    }
+    
+    public String getEditor() {
+        return editor;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+    
+    public String getObjetivos() {
+        return objetivos;
+    }
+
+    public void setObjetivos(String objetivos) {
+        this.objetivos = objetivos;
     }
     
     

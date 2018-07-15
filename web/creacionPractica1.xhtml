@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <meta charset="UTF-8" />
+        <title> Prácticas </title>
+        <style>
+            .myTable td:nth-child(1) {
+                width: 20px;
+            }
+            .clase{
+                background-color: red;
+            }
+        </style>
+    </h:head>
+
+    <!-- Cuerpo de la página -->
+    <h:body>
+        <h:form>
+
+            <p:menubar>
+                <p:menuitem  value="Inicio" />
+                <p:menuitem value="Directorio Telefónico" style="margin-left:750px" />
+                <p:submenu label="Notificaciones">
+                    <p:menuitem value="No hay notificaciones" />
+                </p:submenu>
+                <f:facet name="options">
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+
+            </p:menubar>
+        </h:form>
+
+        <!-- Título -->
+
+        <h:form>
+            <p:growl id="growl" sticky="true" showDetail="true"/>
+            <br />
+            <h1 style="text-align: center"><p:outputLabel value="Creación de prácticas" /></h1>
+            <hr width="75%" style="color: #6C1D45" />
+            <h3 style="text-align: center">
+                <p:outputLabel value="Llene todos los campos que se muestran a continuación y después de click en continuar" />
+            </h3>
+            <br />
+            <!--  Práctica -->
+            <div class="ui-g">
+                <div class="ui-g-2"></div>
+                <div class="ui-g-4">
+                    <p:outputLabel value="Número de práctica : " for="practicanumero" />
+                    <p:spinner id="practicanumero" value="#{managedBeanPractica.numeropractica}" size="1" min="1"/>
+                    <br /><br />
+                    <p:outputLabel value="Título de la práctica : " for="nprac"/>
+                    <p:inputText  id="nprac" value="#{managedBeanPractica.titulopractica}" placeholder="Práctica de ..."/>                  
+                    <br /> <br />
+                    <p:outputLabel value="Objetivos : " for="objetivo"/>
+                    <p:inputTextarea rows="3" cols="40" id='objetivo' autoResize="false" placeholder="1.- objetivo ..." value="#{managedBeanPractica.objetivos}" />
+                </div>
+                <div class="ui-g-1"></div>
+                <div class="ui-g-4">
+
+                    <p:outputLabel value="Semestre : " for="semes"/> 
+                    <p:inputText placeholder="Semestre 16/2" size="14" id="semes" value="#{managedBeanPractica.semestre}"/>
+                    <br /><br />
+                    <!-- Modificar este campo -->
+                    <p:outputLabel value="Autor : " for="idcreador" /> 
+                    <p:inputText id="idcreador" size="15" value="#{managedBeanPractica.creador}" />
+                    <br /><br />
+                    <p:outputLabel value="Competencias a adquirir : " for="area1"/>
+                    <p:inputTextarea rows="3" cols="40" id='area1' autoResize="false" value="#{managedBeanPractica.competencias}" placeholder="1.- competencia ..."/>                
+                </div>
+                <div class="ui-g-1"></div>
+            </div>
+            <br />
+
+
+            <!-- Introducción -->
+            <div class="ui-g">
+                <div class="ui-g-1"></div>
+                <div class="ui-g-10">
+                    <h4> <p:outputLabel value="Introducción de la práctica" /> </h4>
+                    <p:textEditor widgetVar="editor1"  height="300" style="margin-bottom:10px" value="#{managedBeanPractica.editor}"/>
+                    <p:tooltip id="toolTipFade" for="continuar" value="Continuar a la siguiente sección" position="top"/>
+                    <p:commandButton value="Continuar" id="continuar" action="#{managedBeanPractica.enviar}" ajax="false" />
+                </div>
+                <div class="ui-g-1"></div>
+            </div>
+        </h:form>
+
+        <!-- Agregar las fechas y las horas -->
+        <!-- Estandar de las sustancias -->
+    </h:body>
+
+
+</html>
+

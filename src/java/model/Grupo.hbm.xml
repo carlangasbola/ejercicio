@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/07/2018 10:59:14 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Grupo" table="grupo" catalog="sgr" optimistic-lock="version">
+        <id name="idGrupo" type="string">
+            <column name="idGrupo" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="cupo" type="int">
+            <column name="Cupo" not-null="true" />
+        </property>
+        <set name="unidadAprendizajes" table="unidad_aprendizaje" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idGrupo" length="45" not-null="true" />
+            </key>
+            <one-to-many class="model.UnidadAprendizaje" />
+        </set>
+    </class>
+</hibernate-mapping>
