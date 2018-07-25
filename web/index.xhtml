@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+        <title> Página de inicio | Sistema de gestión de riesgos</title>
+    </h:head>
+    <h:body>
+
+
+        <!-- Header y barra de navegación -->
+        <header>
+            <nav class="navbar navbar-expand-md bg-faded justify-content-center" style="background-color: rgb(108,29,69);">
+                <img src="imagenes/ipn.png" alt="IPN" style="width: 35px; height: 45px;"/>
+                <!--<img src="imagenes/upibi.png" alt="UPIBI" style="width: 80px; height: 45px;"/>-->
+                <a href="/" class="navbar-brand d-flex w-50 mr-auto" style="color: white;">Instituto Politécnico Nacional</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+                    <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#"><u>Tutorial</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#"><u>Directorio Teléfonico</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#"><u>Búzon de sugerencias</u></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header> <!-- / .nav bar -->
+
+
+        <div class="container">
+            <div class="starter-template text-center">
+                <h1>Sistema de gestión de riesgos</h1>
+                <h2>Bienvenido</h2>
+            </div>
+        </div><!-- /.container -->
+
+        <h:form>  
+            <p:growl id="growl" showDetail="true" sticky="false"  />  
+        </h:form>
+
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mx-auto">
+
+                            <!-- form card login -->
+                            <div class="card rounded-0">
+                                <div class="card-header" style="background-color: #1d6c1d; text-align: center;">
+                                    <h3 class="mb-0" style="color:white; font-size: 20px;">Inicio de sesión</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" role="form" id="formLogin" method="POST" jsf:id="userform">
+                                        <div class="form-group">
+                                            <label for="uname1">Usuario</label>
+                                            <input type="text" class="form-control form-control-lg rounded-0" name="uname1" id="uname1" required="" jsf:value="#{managedBeanLogin.user}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contraseña</label>
+                                            <input type="password" class="form-control form-control-lg rounded-0" id="pwd1" required="" jsf:value="#{managedBeanLogin.pass}" />
+                                        </div>
+                                        <div>
+                                            <a href="#" style="color: blue;"> Olvidé mi contraseña</a>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-success " id="btnLogin" style="color:white;background-color:#1d6c1d" jsf:action="#{managedBeanLogin.validarUsuario()}">Ingresar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--/card-block-->
+                            </div>
+                            <!-- /form card login -->
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+                <!--/col-->
+            </div>
+            <!--/row-->
+        </div>
+        <!--/container-->
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    </h:body>
+</html>
+
