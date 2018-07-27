@@ -15,7 +15,7 @@ public class ManagedBeanLogin {
     public String validarUsuario() {
         if (user.equals("carlos") && pass.equals("hola")) {
             System.out.println("HOla");
-            return "Administrador";
+            return "docente";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, 
                     "!Error¡", "No estás registrado en el sistema intentalo de nuevo"));
