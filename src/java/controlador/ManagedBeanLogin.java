@@ -17,7 +17,7 @@ public class ManagedBeanLogin {
             System.out.println("HOla");
             return "docente";
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
                     "!Error¡", "No estás registrado en el sistema intentalo de nuevo"));
             return null;
         }

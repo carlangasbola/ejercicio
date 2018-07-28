@@ -38,7 +38,7 @@ public class ManagedBeanPractica implements Serializable {
     }
     
     public String regresar(){
-        return "creacionPractica1";
+        return "crearpractica1";
     }
     
     // Getters y Setters
