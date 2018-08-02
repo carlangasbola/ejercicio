@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author cesar
- */
 public class Practica {
     private int numeropractica ;
     private String titulopractica;
@@ -19,12 +12,13 @@ public class Practica {
     private String creador;
     private String editor;
     private String objetivos;
-
+    private List<Material> list;
+    
     public int getNumeropractica() {
         return numeropractica;
     }
 
-    public Practica(int numeropractica, String titulopractica, String competencias, String semestre, String creador, String editor, String objetivos) {
+    public Practica(int numeropractica, String titulopractica, String competencias, String semestre, String creador, String editor, String objetivos, List<Material> list) {
         this.numeropractica = numeropractica;
         this.titulopractica = titulopractica;
         this.competencias = competencias;
@@ -32,11 +26,15 @@ public class Practica {
         this.creador = creador;
         this.editor = editor;
         this.objetivos = objetivos;
+        this.list = list;
     }
     
+    
     public Practica() {
-        
+        list = new ArrayList<>();
     } 
+    
+    
 
     public void setNumeropractica(int numeropractica) {
         this.numeropractica = numeropractica;
@@ -90,16 +88,21 @@ public class Practica {
         this.objetivos = objetivos;
     }
 
+    public List<Material> getList() {
+        return list;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.numeropractica;
-        hash = 89 * hash + Objects.hashCode(this.titulopractica);
-        hash = 89 * hash + Objects.hashCode(this.competencias);
-        hash = 89 * hash + Objects.hashCode(this.semestre);
-        hash = 89 * hash + Objects.hashCode(this.creador);
-        hash = 89 * hash + Objects.hashCode(this.editor);
-        hash = 89 * hash + Objects.hashCode(this.objetivos);
+        int hash = 5;
+        hash = 71 * hash + this.numeropractica;
+        hash = 71 * hash + Objects.hashCode(this.titulopractica);
+        hash = 71 * hash + Objects.hashCode(this.competencias);
+        hash = 71 * hash + Objects.hashCode(this.semestre);
+        hash = 71 * hash + Objects.hashCode(this.creador);
+        hash = 71 * hash + Objects.hashCode(this.editor);
+        hash = 71 * hash + Objects.hashCode(this.objetivos);
+        hash = 71 * hash + Objects.hashCode(this.list);
         return hash;
     }
 
@@ -134,6 +137,9 @@ public class Practica {
             return false;
         }
         if (!Objects.equals(this.objetivos, other.objetivos)) {
+            return false;
+        }
+        if (!Objects.equals(this.list, other.list)) {
             return false;
         }
         return true;

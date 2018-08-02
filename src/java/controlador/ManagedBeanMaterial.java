@@ -17,7 +17,7 @@ import org.primefaces.event.FlowEvent;
 public class ManagedBeanMaterial implements Serializable {
 
    // Definicion de variables
-    private final List<Material> list;
+    static List<Material> list;
     
     
     // Constructor 

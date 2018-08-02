@@ -58,7 +58,7 @@ public class ManagedBeanPractica implements Serializable {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", " Datos guardados exitosamente ");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         List<Practica> datasource = new ArrayList<>();
-        datasource.add(new Practica(numeropractica, titulopractica, competencias, semestre, creador, "Usuario actual", objetivos));
+        datasource.add(new Practica(numeropractica, titulopractica, competencias, semestre, creador, "Usuario actual", objetivos, ManagedBeanMaterial.list));
         String filename = "Practica "+ numeropractica;
         String jasperPath = "/resources/FormatoDePractica.jasper";
         this.PDF(null, jasperPath, datasource, filename);
