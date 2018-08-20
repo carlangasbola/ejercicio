@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2018 08:54:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelbase.ReporteIncidencia" table="reporte_incidencia" catalog="sgrfinal" optimistic-lock="version">
+        <id name="idReporte" type="int">
+            <column name="idReporte" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="sesionDeLaboratorio" class="modelbase.SesionDeLaboratorio" fetch="select">
+            <column name="idSesion" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="documento" type="binary">
+            <column name="Documento" not-null="true" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="Fecha" length="19" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="45" not-null="true" />
+        </property>
+        <property name="actualizacion" type="timestamp">
+            <column name="Actualizacion" length="19" not-null="true" />
+        </property>
+        <set name="historialEmergencias" table="historial_emergencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idReporte" not-null="true" />
+            </key>
+            <one-to-many class="modelbase.HistorialEmergencia" />
+        </set>
+    </class>
+</hibernate-mapping>

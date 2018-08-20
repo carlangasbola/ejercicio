@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head jsf:id="head">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="misestilos/estiloC.css" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+        <!-- get the required files from 3rd party sources -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
+
+        <title>Creación de prácticas</title>
+        <!-- IMPORTANTE RECORDAR MOVER TODOS LOS ESTILOS CSS A UN ARCHIVO LLAMADO estilos.css PARA SER MAS LEGIBLE EL CODIGO -->
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .navbar-custom {
+                background-color: #6C1D45;
+            }
+
+            /* change the brand and text color */
+
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            /* change the link color */
+
+            .navbar-custom .navbar-nav .nav-link {
+                color: rgba(255, 255, 255, .5);
+            }
+
+            /* change the color of active or hovered links */
+
+            .navbar-custom .nav-item.active .nav-link,
+            .navbar-custom .nav-item:hover .nav-link {
+                color: #ffffff;
+            }
+
+            .colortitulo {
+                background-color: #B8447F;
+            }
+
+            .colorpantone {
+                color: #6C1D45;
+            }
+            .colorboton{
+                background-color: #B81F6D;
+                color: white;
+            }
+            
+            .colortitulo{
+                background-color: #831D1D;
+            }
+            
+        </style>
+    </head>
+    <body jsf:id="body">
+
+        <!-- Barra de navegación -->
+        <header jsf:id="header">
+            <nav class="navbar navbar-expand-lg navbar-custom mb-4">
+                <a class="navbar-brand" href="#">Creación de Practicas</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Aprende a usar la plataforma" href="#"><u>Incio</u><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Notificaciones</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h3> Ventana de confirmación de datos </h3>
+                    <h4 class="text-secondary"> Estos son los datos que se mostrarán en el pdf </h4>
+                    <h4 class="text-secondary">si esta de acuerdo con los datos oprima el botón de <span class="text-danger">Crear PDF</span>,
+                        se encuentra al final de la página</h4>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                            Requisitos
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Número de práctica : #{managedBeanPractica.numeropractica}</li>
+                            <li class="list-group-item">Título de la práctica : #{managedBeanPractica.titulopractica}</li>
+                            <li class="list-group-item">Objetivos : #{managedBeanPractica.objetivos}</li>
+                            <li class="list-group-item">Actividades previas : #{managedBeanPractica.actividadprevia}</li>           
+                            <li class="list-group-item">Introducción : <h:outputText value="#{managedBeanPractica.introduccion}" escape="false" ></h:outputText> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                            Materiales y Equipo
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Material  
+                                <ui:repeat var="item" value="#{managedBeanMaterial.list}" >
+                                    <br />
+                                    <strong>cantidad : </strong>  #{item.cantidad} <strong>nombre : </strong>  #{item.nombre}
+                                </ui:repeat>
+                            </li>
+                            <li class="list-group-item">Equipo 
+                                <ui:repeat var="item" value="#{managedBeanEquipo.lista}" >
+                                    <br />
+                                    <strong>cantidad : </strong>  #{item.cantidad} <strong>nombre : </strong>  #{item.nombre}
+                                </ui:repeat>
+                            </li>
+                            <li class="list-group-item">Reactivos
+                                <ui:repeat var="item" value="#{managedBeanReactivos.lista}" >
+                                    <br />
+                                    <strong>cantidad : </strong>  #{item.cantidad} <strong>nombre : </strong>  #{item.nombre}
+                                </ui:repeat>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                            Desarrollo de la práctica
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Desarrollo experimental : #{managedBeanPractica.desarrolloexp} </li>
+                            <li class="list-group-item">Registro de datos : #{managedBeanPractica.registrodatos}</li>
+                            <li class="list-group-item">Análisis de resultados : #{managedBeanPractica.analiresul}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                            Información adicional
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Referencias :  #{managedBeanPractica.referencias}</li>
+                            <li class="list-group-item">Nomenclatura : #{managedBeanPractica.nomenclatura}</li>
+                            <li class="list-group-item">Anexos : #{managedBeanPractica.anexos} </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn colorboton mt-4"><i class="fas fa-file-pdf"></i> Generar PDF</button>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    </body>
+</html>
+

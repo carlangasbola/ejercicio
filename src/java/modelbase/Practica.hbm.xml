@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2018 08:54:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelbase.Practica" table="practica" catalog="sgrfinal" optimistic-lock="version">
+        <id name="idPractica" type="int">
+            <column name="idPractica" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="unidadAprendizaje" class="modelbase.UnidadAprendizaje" fetch="select">
+            <column name="idUnidad_Aprendizaje" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarios" class="modelbase.Usuarios" fetch="select">
+            <column name="idCreador" not-null="true" />
+        </many-to-one>
+        <property name="creacion" type="timestamp">
+            <column name="Creacion" length="19" not-null="true" />
+        </property>
+        <set name="notificacionesPracticas" table="notificaciones_practica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPractica" not-null="true" />
+            </key>
+            <one-to-many class="modelbase.NotificacionesPractica" />
+        </set>
+        <set name="datosPracticas" table="datos_practica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPractica" not-null="true" />
+            </key>
+            <one-to-many class="modelbase.DatosPractica" />
+        </set>
+    </class>
+</hibernate-mapping>

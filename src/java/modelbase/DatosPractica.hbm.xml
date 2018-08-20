@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2018 08:54:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelbase.DatosPractica" table="datos_practica" catalog="sgrfinal" optimistic-lock="version">
+        <id name="idDatos" type="int">
+            <column name="idDatos" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="practica" class="modelbase.Practica" fetch="select">
+            <column name="idPractica" not-null="true" />
+        </many-to-one>
+        <property name="numeroPractica" type="int">
+            <column name="Numero_Practica" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="100" not-null="true" />
+        </property>
+        <property name="editor" type="string">
+            <column name="Editor" length="45" />
+        </property>
+        <property name="actualizacion" type="timestamp">
+            <column name="Actualizacion" length="19" />
+        </property>
+        <property name="introducion" type="string">
+            <column name="Introducion" length="16777215" not-null="true" />
+        </property>
+        <property name="actividadesPrevias" type="string">
+            <column name="Actividades_Previas" length="16777215" not-null="true" />
+        </property>
+        <property name="objetivos" type="string">
+            <column name="Objetivos" length="16777215" not-null="true" />
+        </property>
+        <property name="semaforo" type="string">
+            <column name="Semaforo" length="16777215" not-null="true" />
+        </property>
+        <property name="recomendaciones" type="string">
+            <column name="Recomendaciones" length="16777215" not-null="true" />
+        </property>
+        <property name="protocolos" type="string">
+            <column name="Protocolos" length="16777215" not-null="true" />
+        </property>
+        <property name="desarrollo" type="string">
+            <column name="Desarrollo" length="16777215" />
+        </property>
+        <property name="registroDatos" type="string">
+            <column name="Registro_Datos" length="16777215" />
+        </property>
+        <property name="resultados" type="string">
+            <column name="Resultados" length="16777215" />
+        </property>
+        <property name="analisisResultados" type="string">
+            <column name="Analisis_Resultados" length="16777215" />
+        </property>
+        <property name="referencias" type="string">
+            <column name="Referencias" length="16777215" />
+        </property>
+        <property name="nomeclantura" type="string">
+            <column name="Nomeclantura" length="16777215" />
+        </property>
+        <property name="anexos" type="string">
+            <column name="Anexos" length="16777215" />
+        </property>
+        <set name="equipoUtilizados" table="equipo_utilizado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idDatos" not-null="true" />
+            </key>
+            <one-to-many class="modelbase.EquipoUtilizado" />
+        </set>
+        <set name="reactivosUtilizados" table="reactivos_utilizado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idDatos" not-null="true" />
+            </key>
+            <one-to-many class="modelbase.ReactivosUtilizado" />
+        </set>
+        <set name="materialUtilizados" table="material_utilizado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idDatos" not-null="true" />
+            </key>
+            <one-to-many class="modelbase.MaterialUtilizado" />
+        </set>
+    </class>
+</hibernate-mapping>

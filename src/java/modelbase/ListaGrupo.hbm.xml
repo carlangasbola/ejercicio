@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2018 08:54:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelbase.ListaGrupo" table="lista_grupo" catalog="sgrfinal" optimistic-lock="version">
+        <id name="idListaGrupo" type="int">
+            <column name="idLista_Grupo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipo" class="modelbase.Equipo" fetch="select">
+            <column name="idEquipo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="grupo" class="modelbase.Grupo" fetch="select">
+            <column name="idGrupo" length="45" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarios" class="modelbase.Usuarios" fetch="select">
+            <column name="idAlumno" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
