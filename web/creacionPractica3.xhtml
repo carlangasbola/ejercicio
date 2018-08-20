@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <head jsf:id="head">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -88,18 +85,19 @@
         <!-- Selección de materiales -->
         <h2 class="text-center colorpantone my-5"> Desarrollo de la práctica </h2>
 
-        <form class="container border p-3 rounded" jsf:id="formulario">
+        <form class="container border p-3 rounded"  method="POST"  jsf:id="formpract">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="desarrollo">Desarrollo Experimental</label>
-                        <textArea id="desarrollo" class="form-control" rows="3" jsf:value="#{managedBeanPractica.desarrolloexp}"></textArea>
+                        <textarea id="desarrollo" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.desarrolloexp}"></textarea>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="registr">Registro de datos</label>
-                        <textArea id="registr" class="form-control" rows="3" jsf:value="#{managedBeanPractica.registrodatos}"></textArea>
+                        
+                        <textarea id="registr" class="form-control" rows="3" jsf:value="#{managedBeanPractica.registrodatos}" > </textarea>
                     </div>
                 </div>
             </div>
@@ -107,27 +105,25 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="resul">Resultados</label>
-                        <textArea id="resul" class="form-control" rows="3" jsf:value="#{managedBeanPractica.resultados}"></textArea>
+                        <textarea id="resul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.resultados}" > </textarea>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="col">
+                    
                     <div class="form-group">
                         <label for="aresul">Analisís de resultados</label>
-                        <textArea id="aresul" class="form-control" rows="3" jsf:value="#{managedBeanPractica.analiresul}"></textArea>
+                        <textarea id="aresul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.analiresul}" > </textarea>
                     </div>
                 </div>
                 </div>
-            </div>
-            
-            <hr />
+           
                 <h4 class="text-center"> Información adicional </h4>
                 <h6 class="mt-2">Referencias</h6>
-                <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.referencias}" />
+                 <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.referencias}" />
                  <h6 class="mt-2">Nomenclatura</h6>
-                 <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.nomenclatura}" />
+                 <p:textEditor widgetVar="editor2" height="150" value="#{managedBeanPractica.nomenclatura}" />
                  <h6 class="mt-2">Anexos</h6>
-                 <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.anexos}" />
+                 <p:textEditor widgetVar="editor3" height="150" value="#{managedBeanPractica.anexos}" />
                  
                  
             <div class="row">

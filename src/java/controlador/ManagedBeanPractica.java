@@ -57,7 +57,7 @@ public class ManagedBeanPractica implements Serializable {
     public String irA(String number){
         return "creacionPractica"+ number;
     }
-    
+    /*
     public void printPDF() throws JRException, IOException{
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", " Datos guardados exitosamente ");
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -78,7 +78,7 @@ public class ManagedBeanPractica implements Serializable {
         ServletOutputStream stream = response.getOutputStream();
         JasperExportManager.exportReportToPdfStream(print, stream);
         FacesContext.getCurrentInstance().responseComplete();
-    }
+    }*/
 
     public int getNumeropractica() {
         return numeropractica;
