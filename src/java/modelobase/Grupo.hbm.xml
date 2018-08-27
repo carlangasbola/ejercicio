@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelobase.Grupo" table="grupo" catalog="sgrfinal" optimistic-lock="version">
+        <id name="idGrupo" type="java.lang.Integer">
+            <column name="idGrupo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="cupo" type="int">
+            <column name="Cupo" not-null="true" />
+        </property>
+        <set name="eventoses" table="eventos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idGrupo" not-null="true" />
+            </key>
+            <one-to-many class="modelobase.Eventos" />
+        </set>
+        <set name="listaGrupos" table="lista_grupo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idGrupo" not-null="true" />
+            </key>
+            <one-to-many class="modelobase.ListaGrupo" />
+        </set>
+        <set name="unidadAprendizajes" table="unidad_aprendizaje" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idGrupo" not-null="true" />
+            </key>
+            <one-to-many class="modelobase.UnidadAprendizaje" />
+        </set>
+    </class>
+</hibernate-mapping>

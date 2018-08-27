@@ -24,7 +24,6 @@ public class ManagedBeanLogin {
         query.setParameter("pass", pass);
         
         if ( !query.list().isEmpty() ) {
-            System.out.println("HOla");
             hibernateSession.close();
             return "docente";
         } else {

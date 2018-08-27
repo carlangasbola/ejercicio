@@ -9,6 +9,8 @@ package controlador;
  *
  * @author sonri
  */
+
+/* Librerias para el Neuroph*/
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.*;
 

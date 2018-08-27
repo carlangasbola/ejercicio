@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelobase.UnidadAprendizaje" table="unidad_aprendizaje" catalog="sgrfinal" optimistic-lock="version">
+        <id name="idUnidadAprendizaje" type="java.lang.Integer">
+            <column name="idUnidad_Aprendizaje" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="grupo" class="modelobase.Grupo" fetch="select">
+            <column name="idGrupo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarios" class="modelobase.Usuarios" fetch="select">
+            <column name="idDocente" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="docenteAuxiliar" type="string">
+            <column name="DocenteAuxiliar" length="45" not-null="true" />
+        </property>
+        <set name="sesionDeLaboratorios" table="sesion_de_laboratorio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUnidad_Aprendizaje" not-null="true" />
+            </key>
+            <one-to-many class="modelobase.SesionDeLaboratorio" />
+        </set>
+        <set name="practicas" table="practica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUnidad_Aprendizaje" not-null="true" />
+            </key>
+            <one-to-many class="modelobase.Practica" />
+        </set>
+    </class>
+</hibernate-mapping>
