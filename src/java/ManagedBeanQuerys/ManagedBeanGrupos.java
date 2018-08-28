@@ -31,7 +31,26 @@ public class ManagedBeanGrupos {
     private int grupo;
     private int docente;
     
+    /*Parametros grupo*/
+    
+    
     public ManagedBeanGrupos() {
+    }
+    
+    public void actualizarGrupo( int idgrupo ){
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        hibernateSession.beginTransaction();
+        Grupo grupoO = new Grupo();
+        //Se recupera el grupo es como un select *from grupo where idgrupo = idgrupo
+        grupoO.setIdGrupo(idgrupo);
+        //se asignan los nuevos valores
+        grupoO.setNombre(nombregrupo);
+        grupoO.setCupo(cupogrupo);
+        //se hace el update
+        hibernateSession.update(grupoO);
+        //Commit the transaction
+        hibernateSession.getTransaction().commit();
+        hibernateSession.close();
     }
 
     public List<Grupo> getGrupos() {
@@ -74,6 +93,17 @@ public class ManagedBeanGrupos {
         Grupo grupoO = new Grupo();
         grupoO.setIdGrupo(idgrupo);
         hibernateSession.delete(grupoO);
+        //Commit the transaction
+        hibernateSession.getTransaction().commit();
+        hibernateSession.close();
+    }
+    
+    public void eliminarUnidadA( int idunidad ){
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        hibernateSession.beginTransaction();
+        UnidadAprendizaje ua = new UnidadAprendizaje();
+        ua.setIdUnidadAprendizaje(idunidad);
+        hibernateSession.delete(ua);
         //Commit the transaction
         hibernateSession.getTransaction().commit();
         hibernateSession.close();

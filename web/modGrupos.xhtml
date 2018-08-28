@@ -1,6 +1,5 @@
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <head jsf:id="head">
@@ -15,45 +14,33 @@
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+        <!-- Mis estilos -->
+        <link href="misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
 
-        <!-- Custom styles for this template -->
-        <style type="text/css">
-            body {
-                padding-top: 5rem;
-            }
-
-            .starter-template {
-                padding: 3rem 1.5rem;
-                text-align: center;
-            }
-        </style>
     </head>
     <body jsf:id="body">
 
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">IPN</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-custom ">
+                <a class="navbar-brand" href="#">Inicio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Directorio teléfonico</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notificaciones</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Nada aún</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Aprende a usar la plataforma" href="#"><u>Tutorial</u><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
 
         <div class="container text-center">
@@ -62,8 +49,7 @@
                 <div class="col mt-4">
                     <h1>Bienvenido Docente</h1>
                     <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user} </strong> </h3>
-                    <h4>Este es el modulo de grupos, en el puedes crear grupos o unidades de aprendizaje</h4>
-                    <h4>Para poder crear una unidad de aprendizaje debe existir un grupo y un docente al cual asignar</h4>
+                    <p class="text-muted">Este es el modulo de grupos, en el puedes crear grupos o unidades de aprendizaje</p>
                 </div>
             </div>
 
@@ -74,17 +60,17 @@
                         Crear un nuevo grupo
                     </button>
                     <div class="row">
-                <div class="col-12 col-md mt-4">
-                    <button type="button" class="btn btn-success" style="color:white" jsf:outcome="unidadAprendizaje">Crear unidade de aprendizaje</button>
-                </div>
-            </div>
+                        <div class="col-12 col-md mt-4">
+                            <button type="button" class="btn btn-success" style="color:white" jsf:outcome="unidadAprendizaje">Crear unidade de aprendizaje</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="row mt-5">
                 <div class="col">
                     <table class="table">
-                        <thead class="thead-dark">
+                        <thead class="thead-dark ">
                             <tr>
                                 <th scope="col">Grupo</th>
                                 <th scope="col">Cupo</th>
@@ -98,11 +84,16 @@
                                 <td>#{g.cupo}</td>
                                 <!-- Agregar el metodo eliminar grupo -->
                                 <td>
-                                    Modificar (aún no programado)
+                                    <form jsf:id="f">
+                                        <a>
+                                            Modificar un grupo (No programado) #{g.idGrupo}
+                                        </a>
+                                    </form>
+
                                 </td>
                                 <td>
                                     <form jsf:id="formeliminargrupo">
-                                    <a jsf:action="#{managedBeanGrupos.eliminarGrupo(g.idGrupo)}"> Eliminar grupo </a>
+                                        <a jsf:action="#{managedBeanGrupos.eliminarGrupo(g.idGrupo)}"> Eliminar grupo </a>
                                     </form>
                                 </td>
                             </tr>
@@ -135,7 +126,7 @@
                             <label for="cupo">Cupo del grupo</label>
                             <input id="cupo" class="form-control" type="number" min="1" max="30" jsf:value="#{managedBeanGrupos.cupogrupo}"/>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearGrupo}">Crear grupo</button>
                             </div>
                         </form>
