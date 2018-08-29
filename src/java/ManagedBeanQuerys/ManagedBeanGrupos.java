@@ -79,7 +79,14 @@ public class ManagedBeanGrupos {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         /*AQUI DEBERIAMOS OBTENER EL NOMBRE DEL USUARIO DE LA TABLA DATOS DE USUARIOS
         PERO LO MANEJO ASI POR AHORA PARA FINES PRACTICOS*/
-        String hql = " FROM Usuarios where idrol=2";
+        /*
+            Definir idrol
+            1.- Docente
+            2.- Administrador
+            3.- Alumno
+            4.- Tecnico
+        */
+        String hql = " FROM Usuarios where idrol=1";
         Query query = hibernateSession.createQuery(hql);
         List<Usuarios> results = query.list();
         hibernateSession.close();
@@ -91,6 +98,7 @@ public class ManagedBeanGrupos {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         hibernateSession.beginTransaction();
         Grupo grupoO = new Grupo();
+        // select *from grupo where idgrupo = idgrupo
         grupoO.setIdGrupo(idgrupo);
         hibernateSession.delete(grupoO);
         //Commit the transaction

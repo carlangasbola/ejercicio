@@ -26,6 +26,7 @@ public class Grupo  implements java.io.Serializable {
         this.nombre = nombre;
         this.cupo = cupo;
     }
+    
     public Grupo(String nombre, int cupo, Set eventoses, Set listaGrupos, Set unidadAprendizajes) {
        this.nombre = nombre;
        this.cupo = cupo;

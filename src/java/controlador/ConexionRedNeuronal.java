@@ -24,9 +24,7 @@ public class ConexionRedNeuronal {
     
     public void variables(int e1, int e2, int e3){
         
-        networkInput[0]=e1;
-        networkInput[1]=e2;
-        networkInput[2]=e3;
+        networkInput[0]=e1;networkInput[1]=e2;networkInput[2]=e3;
     }
     
     public void RedNeuronal(){

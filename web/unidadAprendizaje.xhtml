@@ -129,14 +129,6 @@
                                 <div value="#{managedBeanGrupos.grupos}" var="g" jsfc="f:selectItems" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}"></div>
                             </select>
 
-                            <!--
-                            <select class="custom-select" jsf:value="#{managedBeanGrupos.grupo}" >
-                                <ui:repeat var="g" value="#{managedBeanGrupos.grupos}">
-                                    <option jsf:value="#{g.idGrupo}">#{g.nombre}</option>
-                                </ui:repeat>
-                            </select> 
-                            -->
-
                             <label for="docenteaux">Docente auxiliar</label>
                             <input id="docenteaux" class="form-control" type="text"  jsf:value="#{managedBeanGrupos.docenteauxiliarunidad}"/>
 
@@ -145,13 +137,7 @@
                                 <option value="#{null}" jsfc="f:selectItem" />
                                 <div value="#{managedBeanGrupos.docentes}" var="d" jsfc="f:selectItems" itemValue="#{d.idUsuarios}" itemLabel="#{d.login}"></div>
                             </select>
-                            <!--
-                            <select class="custom-select">
-                                <ui:repeat var="g" value="#{managedBeanGrupos.docentes}">
-                                    <option jsf:value="#{g.idUsuarios}">#{g.login}</option>
-                                </ui:repeat>
-                            </select> 
-                            -->
+                            
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearUnidaAprendizaje()}">Crear unidad de aprendizaje</button>

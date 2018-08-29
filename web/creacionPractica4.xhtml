@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <head jsf:id="head">
@@ -13,55 +13,10 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
         <!-- get the required files from 3rd party sources -->
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
-
         <title>Creación de prácticas</title>
-        <!-- IMPORTANTE RECORDAR MOVER TODOS LOS ESTILOS CSS A UN ARCHIVO LLAMADO estilos.css PARA SER MAS LEGIBLE EL CODIGO -->
-        <style>
-            body {
-                font-family: 'Roboto', sans-serif;
-            }
-
-            .navbar-custom {
-                background-color: #6C1D45;
-            }
-
-            /* change the brand and text color */
-
-            .navbar-custom .navbar-brand,
-            .navbar-custom .navbar-text {
-                color: rgba(255, 255, 255, .8);
-            }
-
-            /* change the link color */
-
-            .navbar-custom .navbar-nav .nav-link {
-                color: rgba(255, 255, 255, .5);
-            }
-
-            /* change the color of active or hovered links */
-
-            .navbar-custom .nav-item.active .nav-link,
-            .navbar-custom .nav-item:hover .nav-link {
-                color: #ffffff;
-            }
-
-            .colortitulo {
-                background-color: #B8447F;
-            }
-
-            .colorpantone {
-                color: #6C1D45;
-            }
-            .colorboton{
-                background-color: #B81F6D;
-                color: white;
-            }
-            
-            .colortitulo{
-                background-color: #831D1D;
-            }
-            
-        </style>
+        <!-- Mis estilos -->
+        <link href="misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
+        
     </head>
     <body jsf:id="body">
 
@@ -93,9 +48,9 @@
             <div class="row text-center">
                 <div class="col">
                     <h3> Ventana de confirmación de datos </h3>
-                    <h4 class="text-secondary"> Estos son los datos que se mostrarán en el pdf </h4>
-                    <h4 class="text-secondary">si esta de acuerdo con los datos oprima el botón de <span class="text-danger">Crear PDF</span>,
-                        se encuentra al final de la página</h4>
+                    <p class="text-secondary"> Estos son los datos que se mostrarán en el pdf </p>
+                    <p class="text-secondary">si esta de acuerdo con los datos oprima el botón de <strong>crear práctica</strong>,
+                        se encuentra al final de la página</p>
                 </div>
             </div>
 
@@ -103,7 +58,7 @@
                 <div class="col">
                     <div class="card" >
                         <div class="card-header colortitulo text-white">
-                            Requisitos
+                            I Requisitos
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Número de práctica : #{managedBeanPractica.numeropractica}</li>
@@ -120,7 +75,7 @@
                 <div class="col">
                     <div class="card" >
                         <div class="card-header colortitulo text-white">
-                            Materiales y Equipo
+                           II Materiales y Equipo
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Material  
@@ -150,7 +105,7 @@
                 <div class="col">
                     <div class="card" >
                         <div class="card-header colortitulo text-white">
-                            Desarrollo de la práctica
+                           III Desarrollo de la práctica
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Desarrollo experimental :  <h:outputText value="#{managedBeanPractica.desarrolloexp}" escape="false" ></h:outputText> </li>
@@ -165,7 +120,7 @@
                 <div class="col">
                     <div class="card" >
                         <div class="card-header colortitulo text-white">
-                            Información adicional
+                          IV  Información adicional
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Referencias :  <h:outputText value="#{managedBeanPractica.referencias}" escape="false" ></h:outputText></li>
@@ -175,7 +130,41 @@
                     </div>
                 </div>
             </div>
-            <button class="btn colorboton mt-4"><i class="fas fa-file-pdf"></i> Generar PDF</button>
+            <button class="btn btn-primary mt-4" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-file"></i> Crear práctica</button>
+        </div>
+        
+        
+        
+         <!-- Modal de creacion de practica -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Creación de grupo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form jsf:id="formulario">
+                            <label >Fecha de creación : #{managedBeanPracticas.currentDate}</label>
+                            <br/>
+                            <label >Creador : #{managedBeanLogin.user}</label>
+                            <br/>
+                            <label for="ua" >Unidad de Aprendizaje</label>
+                            <select size="1" jsf:value="#{managedBeanPracticas.idUA}" class="form-control">
+                                <option value="#{null}" jsfc="f:selectItem" />
+                                <div value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje}" var="ua" jsfc="f:selectItems" itemValue="#{ua.idUnidadAprendizaje}" itemLabel="#{ua.nombre}"></div>
+                            </select>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearGrupo}">Crear grupo</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Optional JavaScript -->

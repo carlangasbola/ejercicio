@@ -29,6 +29,7 @@ public class UnidadAprendizaje  implements java.io.Serializable {
         this.nombre = nombre;
         this.docenteAuxiliar = docenteAuxiliar;
     }
+    
     public UnidadAprendizaje(Grupo grupo, Usuarios usuarios, String nombre, String docenteAuxiliar, Set sesionDeLaboratorios, Set practicas) {
        this.grupo = grupo;
        this.usuarios = usuarios;
