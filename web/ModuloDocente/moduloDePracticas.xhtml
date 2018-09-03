@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <head jsf:id="head">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+        <!-- get the required files from 3rd party sources -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
+
+        <title>Creación de prácticas</title>
+        <!-- IMPORTANTE RECORDAR MOVER TODOS LOS ESTILOS CSS A UN ARCHIVO LLAMADO estilos.css PARA SER MAS LEGIBLE EL CODIGO -->
+        <!-- Mis estilos -->
+        <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
+        
+        
+    </head>
+    <body jsf:id="body">
+
+        <!-- Barra de navegación -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-custom mb-4">
+                <a class="navbar-brand" href="#">Creación de Practicas</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Aprende a usar la plataforma" href="#"><u>Incio</u><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Notificaciones</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container ">
+            <div class="row text-center">
+                <div class="col">
+                    <h2 class=" colorpantone" > Bienvenido al modulo de creación de practicas </h2>
+                    <p class="text-muted">Estas son las practicas que han sido creadas o en su caso puedes crear una dando click a continuación</p>
+                    <button type="button" class=" btn  my-3" jsf:outcome="creacionPractica1" >Crear una nueva práctica</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#Número de práctica</th>
+                                <th scope="col">Título de la práctica</th>
+                                <th scope="col">Editor</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Semaforo ( riesgo )</th>
+                                <th scope="col"> Modificar </th>
+                                <th scope="col"> Eliminar </th>
+                                <th scope="col"> Asignar a grupo </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    </body>
+</html>
+

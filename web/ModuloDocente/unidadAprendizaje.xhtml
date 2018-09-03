@@ -1,5 +1,7 @@
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <head jsf:id="head">
@@ -15,15 +17,15 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
         <!-- Mis estilos -->
-        <link href="misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
-
+        <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
+        
     </head>
     <body jsf:id="body">
 
 
         <header>
             <nav class="navbar navbar-expand-lg navbar-custom ">
-                <a class="navbar-brand" href="#">Inicio</a>
+                <a class="navbar-brand" href="#">Unidad de aprendizaje</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -49,51 +51,47 @@
                 <div class="col mt-4">
                     <h1>Bienvenido Docente</h1>
                     <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user} </strong> </h3>
-                    <p class="text-muted">Este es el modulo de grupos, en el puedes crear grupos o unidades de aprendizaje</p>
+                    <p class="text-muted">Para poder crear una unidad de aprendizaje debe existir un grupo y un docente al cúal asignar</p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Crear un nuevo grupo
-                    </button>
-                    <div class="row">
-                        <div class="col-12 col-md mt-4">
-                            <button type="button" class="btn btn-success" style="color:white" jsf:outcome="unidadAprendizaje">Crear unidade de aprendizaje</button>
+                    <!-- Button trigger modal -->               
+                        <div class="col-12 col-md mt-4 ">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                                Crear una nueva unidad de aprendizaje
+                            </button>
                         </div>
-                    </div>
                 </div>
             </div>
 
             <div class="row mt-5">
                 <div class="col">
                     <table class="table">
-                        <thead class="thead-dark ">
+                        <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Grupo</th>
-                                <th scope="col">Cupo</th>
+                                <th scope="col">Nombre de la unidad</th>
+                                <th scope="col">Grupo asignado</th>
+                                <th scope="col">Docente auxiliar</th>
+                                <th scope="col">Docente principal</th>
                                 <th scope="col">Modificar</th>
                                 <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
-                        <ui:repeat var="g" value="#{managedBeanGrupos.grupos}">
+                        <ui:repeat var="u" value="#{managedBeanGrupos.unidadesA}" >
                             <tr>
-                                <td>#{g.nombre}</td>
-                                <td>#{g.cupo}</td>
+                                <td>#{u.nombre}</td>
+                                <td>#{u.grupo.nombre}</td>
+                                <td>#{u.docenteAuxiliar}</td>
+                                <td>#{u.usuarios.login}</td>
                                 <!-- Agregar el metodo eliminar grupo -->
                                 <td>
-                                    <form jsf:id="f">
-                                        <a>
-                                            Modificar un grupo (No programado) #{g.idGrupo}
-                                        </a>
-                                    </form>
-
+                                    Modificar (aún no programado)
                                 </td>
                                 <td>
-                                    <form jsf:id="formeliminargrupo">
-                                        <a jsf:action="#{managedBeanGrupos.eliminarGrupo(g.idGrupo)}"> Eliminar grupo </a>
+                                    <form jsf:id="formeliminarunidad">
+                                        <a jsf:action="#{managedBeanGrupos.eliminarUnidadA(u.idUnidadAprendizaje)}"> Eliminar unidad </a>
                                     </form>
                                 </td>
                             </tr>
@@ -114,20 +112,35 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Creación de grupo</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Creación de unidad de aprendizaje</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form jsf:id="formulario">
-                            <label for="nombre">Nombre del grupo</label>
-                            <input id="nombre" class="form-control" type="text" jsf:value="#{managedBeanGrupos.nombregrupo}" />
-                            <label for="cupo">Cupo del grupo</label>
-                            <input id="cupo" class="form-control" type="number" min="6" max="30" jsf:value="#{managedBeanGrupos.cupogrupo}"/>
+                            <label for="nu">Nombre de la unidad</label>
+                            <input id="nu" class="form-control" type="text" jsf:value="#{managedBeanGrupos.nombreunidad}"  />
+
+                            <label for="grupo">Grupo asignado</label>
+
+                            <select size="1" jsf:value="#{managedBeanGrupos.grupo}" class="form-control">
+                                <option value="#{null}" jsfc="f:selectItem" />
+                                <div value="#{managedBeanGrupos.grupos}" var="g" jsfc="f:selectItems" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}"></div>
+                            </select>
+
+                            <label for="docenteaux">Docente auxiliar</label>
+                            <input id="docenteaux" class="form-control" type="text"  jsf:value="#{managedBeanGrupos.docenteauxiliarunidad}"/>
+
+                            <label for="docente">Docente</label>
+                            <select size="1" jsf:value="#{managedBeanGrupos.docente}" class="form-control">
+                                <option value="#{null}" jsfc="f:selectItem" />
+                                <div value="#{managedBeanGrupos.docentes}" var="d" jsfc="f:selectItems" itemValue="#{d.idUsuarios}" itemLabel="#{d.login}"></div>
+                            </select>
+                            
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearGrupo}">Crear grupo</button>
+                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearUnidaAprendizaje()}">Crear unidad de aprendizaje</button>
                             </div>
                         </form>
                     </div>

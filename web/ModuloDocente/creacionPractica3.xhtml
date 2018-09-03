@@ -8,22 +8,17 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
-        
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
         <!-- get the required files from 3rd party sources -->
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
 
         <title>Creación de prácticas</title>
-        <!-- IMPORTANTE RECORDAR MOVER TODOS LOS ESTILOS CSS A UN ARCHIVO LLAMADO estilos.css PARA SER MAS LEGIBLE EL CODIGO -->
-        <!-- Mis estilos -->
-        <link href="misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
-        
-        
+       <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
     </head>
     <body jsf:id="body">
 
         <!-- Barra de navegación -->
-        <header>
+        <header jsf:id="header">
             <nav class="navbar navbar-expand-lg navbar-custom mb-4">
                 <a class="navbar-brand" href="#">Creación de Practicas</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -44,50 +39,59 @@
                     </ul>
                 </div>
             </nav>
-        </header>
+        </header>        
 
-        <div class="container ">
-            <div class="row text-center">
-                <div class="col">
-                    <h2 class=" colorpantone" > Bienvenido al modulo de creación de practicas </h2>
-                    <p class="text-muted">Estas son las practicas que han sido creadas o en su caso puedes crear una dando click a continuación</p>
-                    <button type="button" class=" btn  my-3" jsf:outcome="creacionPractica1" >Crear una nueva práctica</button>
-                </div>
-            </div>
-        </div>
+        <!-- Selección de materiales -->
+        <h2 class="text-center colorpantone my-5"> Desarrollo de la práctica </h2>
 
-        <div class="container">
+        <form class="container border p-3 rounded"  method="POST"  jsf:id="formpract">
             <div class="row">
                 <div class="col">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#Número de práctica</th>
-                                <th scope="col">Título de la práctica</th>
-                                <th scope="col">Editor</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Semaforo ( riesgo )</th>
-                                <th scope="col"> Modificar </th>
-                                <th scope="col"> Eliminar </th>
-                                <th scope="col"> Asignar a grupo </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td >1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="form-group">
+                        <label for="desarrollo">Desarrollo Experimental</label>
+                        <textarea id="desarrollo" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.desarrolloexp}"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="registr">Registro de datos</label>
+                        
+                        <textarea id="registr" class="form-control" rows="3" jsf:value="#{managedBeanPractica.registrodatos}" > </textarea>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="resul">Resultados</label>
+                        <textarea id="resul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.resultados}" > </textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    
+                    <div class="form-group">
+                        <label for="aresul">Analisís de resultados</label>
+                        <textarea id="aresul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.analiresul}" > </textarea>
+                    </div>
+                </div>
+                </div>
+           
+                <h4 class="text-center"> Información adicional </h4>
+                <h6 class="mt-2">Referencias</h6>
+                 <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.referencias}" />
+                 <h6 class="mt-2">Nomenclatura</h6>
+                 <p:textEditor widgetVar="editor2" height="150" value="#{managedBeanPractica.nomenclatura}" />
+                 <h6 class="mt-2">Anexos</h6>
+                 <p:textEditor widgetVar="editor3" height="150" value="#{managedBeanPractica.anexos}" />
+                 
+                 
+            <div class="row">
+                <button type="submit" class="btn colorboton mt-3 " jsf:action="#{managedBeanPractica.irA('4')}"><i class="fas fa-chevron-circle-right mr-2"></i>Ir a la página siguiente </button>
+                <div class="w-100"></div>
+                <button type="submit" class="btn colorboton mt-3 " jsf:action="#{managedBeanPractica.irA('2')}"><i class="fas fa-chevron-circle-left mr-2"></i>Regresar a la página anterior </button>                 
+            </div>
+        </form>
+        
 
 
         <!-- Optional JavaScript -->

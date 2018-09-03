@@ -117,6 +117,7 @@ public class ManagedBeanGrupos {
         hibernateSession.close();
     }
     
+    
     public void crearGrupo(){
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         hibernateSession.beginTransaction();
