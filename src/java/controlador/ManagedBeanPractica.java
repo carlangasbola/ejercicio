@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +47,10 @@ public class ManagedBeanPractica implements Serializable {
     private String referencias;
     private String nomenclatura;
     private String anexos;
+    
+    /*AQUI ESTAN LOS PROTOCOLOS Y RECOMENDACIONES*/
+    private String protocolos = "nada";
+    private String recomendaciones = "nada";
     
     public void guardar() throws JRException, IOException {        
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", " Datos guardados exitosamente ");
@@ -192,6 +195,23 @@ public class ManagedBeanPractica implements Serializable {
 
     public void setAnexos(String anexos) {
         this.anexos = anexos;
+    }
+    
+    
+    public String getProtocolos() {
+        return protocolos;
+    }
+
+    public void setProtocolos(String protocolos) {
+        this.protocolos = protocolos;
+    }
+
+    public String getRecomendaciones() {
+        return recomendaciones;
+    }
+
+    public void setRecomendaciones(String recomendaciones) {
+        this.recomendaciones = recomendaciones;
     }
     
 }
