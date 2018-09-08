@@ -11,6 +11,8 @@ package controlador;
  */
 
 /* Librerias para el Neuroph*/
+
+/*
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.*;
 
@@ -39,4 +41,4 @@ public class ConexionRedNeuronal {
         networkOutput = neuralNetwork.getOutput();
        
     }
-}
+}*/
