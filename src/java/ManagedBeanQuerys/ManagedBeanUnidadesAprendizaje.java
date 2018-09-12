@@ -24,12 +24,15 @@ public class ManagedBeanUnidadesAprendizaje {
     }
     
     public List<UnidadAprendizaje> getUnidadesAprendizaje(){
+        try{
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        String hql = "FROM UnidadAprendizaje";
-        Query query = hibernateSession.createQuery(hql);
-        List<UnidadAprendizaje> results = query.list();
-        hibernateSession.close();
-        return results;
+        Query query = hibernateSession.createSQLQuery("CALL PA_SelectUnidadAprendizaje()").addEntity(UnidadAprendizaje.class);
+        return  query.list();
+        }catch(Exception  e){
+            //Se muestra la exepción
+            System.out.println( "Exepcion encontrada " +  e);
+        }
+        return null;
     }
     
     

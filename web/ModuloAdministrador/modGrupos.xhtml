@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
 
 
-        <title>Bienvenido Docente</title>
+        <title>Bienvenido Administrador</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
@@ -61,7 +61,9 @@
                     </button>
                     <div class="row">
                         <div class="col-12 col-md mt-4">
-                            <button type="button" class="btn btn-success" style="color:white" jsf:outcome="unidadAprendizaje">Crear unidade de aprendizaje</button>
+                            <button type="button" class="btn btn-success" style="color:white" jsf:outcome="unidadAprendizaje">
+                                Crear unidade de aprendizaje
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +80,7 @@
                                 <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
-                        <ui:repeat var="g" value="#{managedBeanGrupos.grupos}">
+                        <ui:repeat var="g" value="#{managedBeanQuerys.getObjects('Grupo')}" >
                             <tr>
                                 <td>#{g.nombre}</td>
                                 <td>#{g.cupo}</td>

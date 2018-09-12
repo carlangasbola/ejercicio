@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
        
 
-        <title>Bienvenido Docente</title>
+        <title>Bienvenido Administrador</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
@@ -21,7 +21,7 @@
 
          <header>
             <nav class="navbar navbar-expand-lg navbar-custom ">
-                <a class="navbar-brand" href="#">Inicio Docente</a>
+                <a class="navbar-brand" href="#">Inicio Administrador</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -45,7 +45,7 @@
             <div class="row ">
                 
                 <div class="col mt-4">
-                    <h1>Bienvenido Docente</h1>
+                    <h1>Bienvenido Administrador</h1>
                     <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user} </strong> </h3>
                     <a href="" class="mx-2">Modificar perfíl</a>
                     <a href="" class="mx-2">Cambiar contraseña</a>
@@ -54,14 +54,17 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-12 col-md-4  my-1">
+                <div class="col-12 col-md-3  my-1">
                     <button type="button" class="btn btn-lg p-3" style="background-color: #0a3339; color:white" jsf:outcome="moduloDePracticas">Módulo de prácticas</button>
                 </div>
-                <div class="col-12 col-md-4  my-1">
+                <div class="col-12 col-md-3  my-1">
                     <button type="button" class="btn btn-lg p-3" style="background-color: #28a7b8; color:white">Módulo de eventos</button>
                 </div>
-                <div class="col-12 col-md-4 my-1">
+                <div class="col-12 col-md-3 my-1">
                     <button type="button" class="btn btn-lg p-3" style="background-color: #b81f6d; color:white" jsf:outcome="modGrupos">Módulo de grupos</button>
+                </div>
+                <div class="col-12 col-md-3 my-1">
+                    <button type="button" class="btn btn-lg p-3" style="background-color: #831D1D; color:white" jsf:outcome="modUsuarios">Módulo de usuarios</button>
                 </div>
             </div>
 

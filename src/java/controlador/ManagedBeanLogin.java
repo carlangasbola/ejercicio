@@ -38,7 +38,7 @@ public class ManagedBeanLogin {
 
                 /* Numero 1 identifica docentes */
                 case 1:                
-                    pagina = "ModuloDocente/docente";
+                    pagina = "ModuloAdministrador/administrador";
                     break;
                     
                 /* Numero 2 identifica administradores */
@@ -65,7 +65,7 @@ public class ManagedBeanLogin {
             return null;
         }
         
-        hibernateSession.close();
+        
         return pagina;
     }
 

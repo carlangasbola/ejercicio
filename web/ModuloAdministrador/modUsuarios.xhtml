@@ -1,0 +1,134 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <head jsf:id="head">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+
+
+        <title>Bienvenido Administrador</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+        <!-- Mis estilos -->
+        <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
+    </head>
+    <body jsf:id="body">
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-custom ">
+                <a class="navbar-brand" href="#">Módulo de usuarios</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Aprende a usar la plataforma" href="#"><u>Tutorial</u><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+
+        <div class="container ">
+            <div class="row ">
+                <div class="col mt-4">
+                    <h1 class="colorpantone text-center">Modulo de administración usuarios</h1>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+
+                <div class="col-12 col-md-8">
+                    <h2>Creación de múltiples usuarios</h2>
+                    <div class="w-100" ></div>
+                    <p>Siga las instrucciones que se muestran a continuación</p>
+                    <p>1.- Para la creación de usuarios descarge nuestra plantilla <a href="#">aquí</a>.</p>
+                    <p>2.- Llene los datos que se presentan en el archivo que acaba de descargar.</p>
+                    <p>3.- A continuación haga click en buscar archivo, seleccione la plantilla con la 
+                        información que ya ha ingresado y haga click en subir</p>
+                    <div class="w-100" ></div>
+                    <!-- Crear el codigo de programación -->
+                    <h:form enctype="multipart/form-data">
+                        Seleccionar archivo: <p:fileUpload label="Seleccionar archivo" mode="simple" skinSimple="true"/>
+                        <br/><br/>
+                        <button class="btn bg-coloverde text-white"> Subir el archivo </button>
+                    </h:form>
+                    <br />
+                    <br />
+                    <a href="#"> Modificar o ver la información de los usuarios </a>
+                </div>
+
+                <div class="col-12 col-md">
+                    <div class="card ">
+                        <div class="card-header text-white " style="background-color: #1D4483">
+                            <strong> Creación de un solo usuario </strong> 
+                        </div>
+                        <div class="card-body">
+                            <form jsf:id="formagregarusuario">
+                                <div class="form-group row">
+                                    <label for="name">Nombre</label>
+                                    <input type="text" class="form-control form-control-sm" id="name" />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="apaterno">Apellido paterno</label>
+                                    <input type="text" class="form-control form-control-sm" id="apaterno" />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="amaterno">Apellido materno</label>
+                                    <input type="text" class="form-control form-control-sm" id="amaterno" />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="tel">Teléfono</label>
+                                    <input type="number" class="form-control form-control-sm" id="tel" />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="email">Correo</label>
+                                    <input type="email" class="form-control form-control-sm" id="email" />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="numseg">Número de seguro</label>
+                                    <input type="text" class="form-control form-control-sm" id="numseg" />
+                                </div>
+                                <div class="form-group row">
+                                    Rol de usuario
+                                    <select class="custom-select">
+                                        <option value="1">administrador</option>
+                                        <option value="2">docente</option>
+                                        <option value="3">técnico</option>
+                                        <option value="4">alumno</option>
+                                    </select>
+                                </div> 
+                                <button href="#" type="submit" class="btn btn-success">Agregar Usuario</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+
+
+    </body>
+</html>
+

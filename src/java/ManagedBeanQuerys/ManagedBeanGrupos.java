@@ -53,12 +53,12 @@ public class ManagedBeanGrupos {
         hibernateSession.close();
     }
 
-    public List<Grupo> getGrupos() {
+    public List<Object> getGrupos() {
 
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         String hql = "FROM Grupo";
         Query query = hibernateSession.createQuery(hql);
-        List<Grupo> results = query.list();
+        List<Object> results = query.list();
         hibernateSession.close();
         return results;
         

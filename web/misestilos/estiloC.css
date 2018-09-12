@@ -33,6 +33,14 @@ body {
     color: #6C1D45;
 }
 
+.bg-coloverde{
+    background-color: #1d6c1d;
+}
+
+.bg-colorazul{
+   background-color:  #1A1C79;
+}
+
 .colorboton{
     background-color: #B81F6D;
     color: white;
