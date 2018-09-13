@@ -53,14 +53,18 @@ public class ManagedBeanGrupos {
         hibernateSession.close();
     }
 
-    public List<Object> getGrupos() {
+    public List<Grupo> getGrupos() {
 
+         try{
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        String hql = "FROM Grupo";
-        Query query = hibernateSession.createQuery(hql);
-        List<Object> results = query.list();
-        hibernateSession.close();
-        return results;
+        Query query = hibernateSession.createSQLQuery("CALL PA_SelectGrupos()").addEntity(Grupo.class);
+        List<Grupo> grupos =  query.list();
+        return grupos;
+        }catch(Exception  e){
+            //Se muestra la exepción
+            System.out.println( "Exepcion encontrada " +  e);
+        }
+        return null;
         
     }
     
