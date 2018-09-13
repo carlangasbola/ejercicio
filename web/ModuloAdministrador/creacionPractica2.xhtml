@@ -115,11 +115,13 @@
                                                         <!-- column header -->
                                                         <f:facet name="header">Cantidad (mililitros) </f:facet>
                                                         <p:inputText value="#{item.cantidad}" size="45" />
+                                                        
                                                     </p:column>
                                                     <p:column>
                                                         <!-- column header -->
                                                         <f:facet name="header">Sustancia</f:facet>
                                                         <p:selectOneMenu  value="#{item.nombre}" >
+                                           
                                                             <f:selectItem itemLabel="selecciona uno" />
                                                             <f:selectItems value="#{managedBeanReactivos.list}" var="hola" />
                                                         </p:selectOneMenu>
@@ -174,6 +176,7 @@
                                             </h:panelGrid>
                                             <p:commandButton value="Guardar" actionListener="#{managedBeanPractica.guardar}"  update="growl" process="@this"/>
                                             <p:commandLink ajax="false" value="Visualizar PDF" actionListener="#{managedBeanPractica.printPDF}"/>
+                                            <p:commandLink ajax="false" value="Generar riesgos" actionListener="#{managedBeanReactivos.Seleccionar}"/>
                                         </p:panel>
                                     </p:tab>
 
