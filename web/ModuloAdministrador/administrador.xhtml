@@ -47,7 +47,7 @@
                 <div class="col mt-4">
                     <h1>Bienvenido Administrador</h1>
                     <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user} </strong> </h3>
-                    <a href="" class="mx-2">Modificar perfíl</a>
+                    <a jsf:outcome="ModificacionDatos" class="mx-2">Modificar perfíl</a>
                     <a href="" class="mx-2">Cambiar contraseña</a>
                     <h5 class="font-weight-light mt-2"> Seleccione al módulo al cuál desea ingresar</h5>
                 </div>
@@ -58,7 +58,7 @@
                     <button type="button" class="btn btn-lg p-3" style="background-color: #0a3339; color:white" jsf:outcome="moduloDePracticas">Módulo de prácticas</button>
                 </div>
                 <div class="col-12 col-md-3  my-1">
-                    <button type="button" class="btn btn-lg p-3" style="background-color: #28a7b8; color:white">Módulo de eventos</button>
+                    <button type="button" class="btn btn-lg p-3" style="background-color: #28a7b8; color:white" jsf:outcome="modEventos">Módulo de eventos</button>
                 </div>
                 <div class="col-12 col-md-3 my-1">
                     <button type="button" class="btn btn-lg p-3" style="background-color: #b81f6d; color:white" jsf:outcome="modGrupos">Módulo de grupos</button>

@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelobase.Vale" table="vale" catalog="sgrfinal" optimistic-lock="version">
+    <class name="modelobase.Vale" table="vale" catalog="dbsgr" optimistic-lock="version">
         <id name="idVale" type="java.lang.Integer">
             <column name="idVale" />
             <generator class="identity" />

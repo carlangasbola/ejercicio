@@ -1,5 +1,5 @@
 package modelobase;
-// Generated 26/08/2018 08:42:52 PM by Hibernate Tools 4.3.1
+// Generated 23/09/2018 08:46:22 PM by Hibernate Tools 4.3.1
 
 
 
@@ -15,7 +15,7 @@ public class DatosUsuario  implements java.io.Serializable {
      private String nombre;
      private String apellidoPaterno;
      private String apellidoMaterno;
-     private Integer telefono;
+     private String telefono;
      private String correo;
      private String numeroSeguro;
 
@@ -26,7 +26,7 @@ public class DatosUsuario  implements java.io.Serializable {
     public DatosUsuario(Usuarios usuarios) {
         this.usuarios = usuarios;
     }
-    public DatosUsuario(Usuarios usuarios, String identificador, String nombre, String apellidoPaterno, String apellidoMaterno, Integer telefono, String correo, String numeroSeguro) {
+    public DatosUsuario(Usuarios usuarios, String identificador, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correo, String numeroSeguro) {
        this.usuarios = usuarios;
        this.identificador = identificador;
        this.nombre = nombre;
@@ -79,11 +79,11 @@ public class DatosUsuario  implements java.io.Serializable {
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
-    public Integer getTelefono() {
+    public String getTelefono() {
         return this.telefono;
     }
     
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     public String getCorreo() {

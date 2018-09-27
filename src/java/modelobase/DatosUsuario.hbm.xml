@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 23/09/2018 08:47:19 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelobase.DatosUsuario" table="datos_usuario" catalog="sgrfinal" optimistic-lock="version">
+    <class name="modelobase.DatosUsuario" table="datos_usuario" catalog="dbsgr" optimistic-lock="version">
         <id name="idDatosUsuario" type="java.lang.Integer">
             <column name="idDatos_usuario" />
             <generator class="identity" />
@@ -23,8 +23,8 @@
         <property name="apellidoMaterno" type="string">
             <column name="Apellido_Materno" length="45" />
         </property>
-        <property name="telefono" type="java.lang.Integer">
-            <column name="Telefono" />
+        <property name="telefono" type="string">
+            <column name="Telefono" length="25" />
         </property>
         <property name="correo" type="string">
             <column name="Correo" length="45" />

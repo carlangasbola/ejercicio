@@ -2,10 +2,13 @@ package controlador;
 
 import Entity.HibernateUtil;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import modelobase.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,38 +23,43 @@ public class ManagedBeanLogin {
 
     public String validarUsuario() {
 
+        /* Con estas declaraciones guardaremos el id del usuario para interactuar en todas las páginas*/
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Map<String, Object> sessionMap = externalContext.getSessionMap();
+
         String pagina = "";
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createQuery(" from Usuarios where login = :user and passsword = :pass ");
         query.setParameter("user", user);
         query.setParameter("pass", pass);
-        
-        //IMPORTANTE HAY QUE MANTENER EN LA SESION EL NOMBRE Y EL ID DEL USUARIO
+        List<Usuarios> u = query.list();
+
 
         /* Si hay un usuario en la base de datos */
         if (!query.list().isEmpty()) {
-
+            // Guardamos el IdUsuario en la sesión
+            sessionMap.put("UserId", u.get(0).getIdUsuarios());
             /* Accedemos a los atributos del usuario que encontro */
             List<Usuarios> lista = query.list();
 
             switch (lista.get(0).getRoles().getIdRol()) {
 
                 /* Numero 1 identifica docentes */
-                case 1:                
+                case 1:
                     pagina = "ModuloAdministrador/administrador";
                     break;
-                    
+
                 /* Numero 2 identifica administradores */
                 case 2:
                     //No creado aún
                     break;
-                    
-                /* Numero 3 identifica alumnos */    
+
+                /* Numero 3 identifica alumnos */
                 case 3:
                     //No creado aún
                     break;
-                    
-                /* Numero 4 identifica a tecnicos */   
+
+                /* Numero 4 identifica a tecnicos */
                 case 4:
                     //No creado aún
                     break;
@@ -64,8 +72,7 @@ public class ManagedBeanLogin {
             hibernateSession.close();
             return null;
         }
-        
-        
+
         return pagina;
     }
 

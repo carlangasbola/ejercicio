@@ -40,38 +40,43 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sgrfinal?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <mapping resource="modelobase/DatosPractica.hbm.xml"/>
-    <mapping resource="modelobase/Grupo.hbm.xml"/>
-    <mapping resource="modelobase/Practica.hbm.xml"/>
-    <mapping resource="modelobase/Emergencias.hbm.xml"/>
-    <mapping resource="modelobase/SesionDeLaboratorio.hbm.xml"/>
-    <mapping resource="modelobase/Vale.hbm.xml"/>
-    <mapping resource="modelobase/ReactivosUtilizado.hbm.xml"/>
-    <mapping resource="modelobase/EquipoLaboratorio.hbm.xml"/>
-    <mapping resource="modelobase/HistorialEmergencia.hbm.xml"/>
-    <mapping resource="modelobase/Usuarios.hbm.xml"/>
-    <mapping resource="modelobase/Deuda.hbm.xml"/>
-    <mapping resource="modelobase/ReactivoUtilizado.hbm.xml"/>
-    <mapping resource="modelobase/ReportePractica.hbm.xml"/>
-    <mapping resource="modelobase/HistorialEquipo.hbm.xml"/>
-    <mapping resource="modelobase/ListaGrupo.hbm.xml"/>
-    <mapping resource="modelobase/NotificacionesSesion.hbm.xml"/>
-    <mapping resource="modelobase/DatosUsuario.hbm.xml"/>
-    <mapping resource="modelobase/Eventos.hbm.xml"/>
-    <mapping resource="modelobase/Material.hbm.xml"/>
-    <mapping resource="modelobase/UnidadAprendizaje.hbm.xml"/>
-    <mapping resource="modelobase/Residuos.hbm.xml"/>
-    <mapping resource="modelobase/EquipoUtilizado.hbm.xml"/>
-    <mapping resource="modelobase/NotificacionesPractica.hbm.xml"/>
-    <mapping resource="modelobase/Equipo.hbm.xml"/>
-    <mapping resource="modelobase/ReporteIncidencia.hbm.xml"/>
-    <mapping resource="modelobase/Roles.hbm.xml"/>
-    <mapping resource="modelobase/MaterialUtilizado.hbm.xml"/>
-    <mapping resource="modelobase/Reactivos.hbm.xml"/>
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbsgr?zeroDateTimeBehavior=convertToNull</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="use_sql_comments">true</property>
+        <mapping resource="modelobase/DatosPractica.hbm.xml"/>
+        <mapping resource="modelobase/Grupo.hbm.xml"/>
+        <mapping resource="modelobase/Practica.hbm.xml"/>
+        <mapping resource="modelobase/Emergencias.hbm.xml"/>
+        <mapping resource="modelobase/SesionDeLaboratorio.hbm.xml"/>
+        <mapping resource="modelobase/Vale.hbm.xml"/>
+        <mapping resource="modelobase/ReactivosUtilizado.hbm.xml"/>
+        <mapping resource="modelobase/EquipoLaboratorio.hbm.xml"/>
+        <mapping resource="modelobase/HistorialEmergencia.hbm.xml"/>
+        <mapping resource="modelobase/Usuarios.hbm.xml"/>
+        <mapping resource="modelobase/UnidadTematica.hbm.xml"/>
+        <mapping resource="modelobase/Deuda.hbm.xml"/>
+        <mapping resource="modelobase/ReactivoUtilizado.hbm.xml"/>
+        <mapping resource="modelobase/ReportePractica.hbm.xml"/>
+        <mapping resource="modelobase/HistorialEquipo.hbm.xml"/>
+        <mapping resource="modelobase/ListaGrupo.hbm.xml"/>
+        <mapping resource="modelobase/NotificacionesSesion.hbm.xml"/>
+        <mapping resource="modelobase/DatosUsuario.hbm.xml"/>
+        <mapping resource="modelobase/Eventos.hbm.xml"/>
+        <mapping resource="modelobase/Material.hbm.xml"/>
+        <mapping resource="modelobase/UnidadAprendizaje.hbm.xml"/>
+        <mapping resource="modelobase/Residuos.hbm.xml"/>
+        <mapping resource="modelobase/EquipoUtilizado.hbm.xml"/>
+        <mapping resource="modelobase/NotificacionesPractica.hbm.xml"/>
+        <mapping resource="modelobase/Equipo.hbm.xml"/>
+        <mapping resource="modelobase/ReporteIncidencia.hbm.xml"/>
+        <mapping resource="modelobase/Roles.hbm.xml"/>
+        <mapping resource="modelobase/MaterialUtilizado.hbm.xml"/>
+        <mapping resource="modelobase/Reactivos.hbm.xml"/>
+    </session-factory>
 </hibernate-configuration>

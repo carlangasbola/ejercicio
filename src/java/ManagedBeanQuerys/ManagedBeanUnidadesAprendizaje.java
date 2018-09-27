@@ -26,7 +26,7 @@ public class ManagedBeanUnidadesAprendizaje {
     public List<UnidadAprendizaje> getUnidadesAprendizaje(){
         try{
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        Query query = hibernateSession.createSQLQuery("CALL PA_SelectUnidadAprendizaje()").addEntity(UnidadAprendizaje.class);
+        Query query = hibernateSession.createSQLQuery("CALL SelectUnidadAprendizaje()").addEntity(UnidadAprendizaje.class);
         return  query.list();
         }catch(Exception  e){
             //Se muestra la exepción

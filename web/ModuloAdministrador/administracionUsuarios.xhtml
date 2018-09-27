@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
 
 
-        <title>Bienvenido Administrador</title>
+        <title>Administración de usuarios</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
@@ -47,15 +47,15 @@
         </header>
 
 
-        <div class="container ">
+        <div class="container-fluid">
             <div class="row ">
                 <div class="col mt-4">
-                    <h1 class="colorpantone text-center">Módulo de administración usuarios</h1>
-                    <p> Estos son todos los usuarios que están en el sistema registrados </p>
+                    <h1 class="colorpantone text-center my-5">Módulo de administración de usuarios</h1>
+                    <h5> Estos son todos los usuarios que están registrados en el sistema</h5>
                 </div>
             </div>
         </div>    
-        
+
         <div class="container-fluid">
             <div class="row">
 
@@ -68,28 +68,43 @@
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellido Paterno</th>
                                 <th scope="col">Apellido Materno</th>
-                                <th scope="col">Telefono</th>
+                                <th scope="col">Teléfono</th>
                                 <th scope="col">Correo</th>
-                                <th scope="col">Numero_seguro</th>
+                                <th scope="col">Número_seguro</th>
                                 <th scope="col">Ver</th>
                                 <th scope="col">Modificar</th>
                                 <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>                   
-                            <ui:repeat var="d" value="#{managedBeanQuerys.obtenerDatos()}" >
+                            <ui:repeat var="du" value="#{managedBeanQuerys.obtenerUsuarios()}" >
                                 <tr>
                                     <!-- Cambiar a que obtenga el tipo de usuario  -->
-                                    <td>Administrador</td>
-                                    <td>#{d.nombre}</td>
-                                    <td>#{d.apellidoPaterno}</td>
-                                    <td>#{d.apellidoMaterno}</td>
-                                    <td>#{d.telefono}</td>
-                                    <td>#{d.correo}</td>
-                                    <td>#{d.numeroSeguro}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>#{du.getUsuarios().getRoles().getNombreRol()}</td>
+                                    <td>#{du.nombre}</td>
+                                    <td>#{du.apellidoPaterno}</td>
+                                    <td>#{du.apellidoMaterno}</td>
+                                    <td>#{du.telefono}</td>
+                                    <td>#{du.correo}</td>
+                                    <td>#{du.numeroSeguro}</td>
+
+                                    <td class="text-center"> <i class="fas fa-eye "></i> </td>
+
+                                    <td class="text-center"> 
+                                        <form jsf:id="formeditarUsuario">
+                                            <button class="btn" onclick=" getvalue( #{managedBeanQuerys.deleteUsuario(du.getUsuarios().getIdUsuarios())} )">
+                                                <i class="fas fa-edit "></i> Editar 
+                                            </button> 
+                                        </form>
+                                    </td>
+
+                                    <td class="text-center"> 
+                                        <form jsf:id="formeliminarUsuario">
+                                            <button class="btn" jsf:action="#{managedBeanQuerys.deleteUsuario(du.getUsuarios().getIdUsuarios())}">
+                                                <i class="fas fa-trash-alt "></i> Eliminar 
+                                            </button> 
+                                        </form>
+                                    </td>
                                 </tr>
                             </ui:repeat>
                         </tbody>
@@ -101,7 +116,13 @@
         </div>
 
 
+        <script>
+            funtion getvalue(var x){
+            var =
+                    alert (x)
+            }
 
+        </script>
 
 
 

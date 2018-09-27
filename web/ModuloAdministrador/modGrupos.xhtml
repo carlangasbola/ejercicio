@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
 
 
-        <title>Bienvenido Administrador</title>
+        <title>Módulo de grupos</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
@@ -56,15 +56,15 @@
             <div class="row">
                 <div class="col">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+                    <button type="button" class="btn " data-toggle="modal" data-target="#exampleModal" >
                         Crear un nuevo grupo
                     </button>
-                    <div class="row">
-                        <div class="col-12 col-md mt-4">
-                            <button type="button" class="btn btn-success" style="color:white" jsf:outcome="unidadAprendizaje">
-                                Crear unidade de aprendizaje
-                            </button>
-                        </div>
+                </div>
+                <div class="col">
+                    <div class="col">
+                        <button type="button" class="btn" jsf:outcome="unidadAprendizaje">
+                            Crear unidade de aprendizaje
+                        </button>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                                 <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
-                        <ui:repeat var="g" value="#{managedBeanGrupos.grupos()}" >
+                        <ui:repeat var="g" value="#{ managedBeanGrupos.getGrupos() }" >
                             <tr>
                                 <td>#{g.nombre}</td>
                                 <td>#{g.cupo}</td>
@@ -88,7 +88,7 @@
                                 <td>
                                     <form jsf:id="f">
                                         <a>
-                                            Modificar un grupo (No programado) #{g.idGrupo}
+                                            Modificar un grupo #{g.idGrupo}
                                         </a>
                                     </form>
 
@@ -136,11 +136,11 @@
                 </div>
             </div>
         </div>
-        
+
         <script>
-            
+
         </script>
-        
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->

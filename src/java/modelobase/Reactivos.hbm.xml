@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelobase.Reactivos" table="reactivos" catalog="sgrfinal" optimistic-lock="version">
+    <class name="modelobase.Reactivos" table="reactivos" catalog="dbsgr" optimistic-lock="version">
         <id name="idReactivo" type="java.lang.Integer">
             <column name="idReactivo" />
             <generator class="identity" />
