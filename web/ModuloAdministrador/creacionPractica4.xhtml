@@ -3,7 +3,8 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <head jsf:id="head">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -61,11 +62,11 @@
                             I Requisitos
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Número de práctica : #{managedBeanPractica.numeropractica}</li>
-                            <li class="list-group-item">Título de la práctica : #{managedBeanPractica.titulopractica}</li>
-                            <li class="list-group-item">Objetivos : #{managedBeanPractica.objetivos}</li>
-                            <li class="list-group-item">Actividades previas : #{managedBeanPractica.actividadprevia}</li>           
-                            <li class="list-group-item">Introducción : <h:outputText value="#{managedBeanPractica.introduccion}" escape="false" ></h:outputText> </li>
+                            <li class="list-group-item"><strong>Número de práctica:</strong><br/>#{managedBeanPractica.practica.numeropractica}</li>
+                            <li class="list-group-item"><strong>Título de la práctica:</strong><br/>#{managedBeanPractica.practica.titulopractica}</li>
+                            <li class="list-group-item"><strong>Objetivos:</strong><br/>#{managedBeanPractica.practica.objetivos}</li>
+                            <li class="list-group-item"><strong>Actividades previas:</strong><br/>#{managedBeanPractica.practica.actividadesprevias}</li>           
+                            <li class="list-group-item"><strong>Introducción:</strong><h:outputText value="#{managedBeanPractica.practica.introduccion}" escape="false" ></h:outputText> </li>
                         </ul>
                     </div>
                 </div>
@@ -78,22 +79,22 @@
                            II Materiales y Equipo
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Material  
+                            <li class="list-group-item"><strong>Material:</strong>  
                                 <ui:repeat var="item" value="#{managedBeanMaterial.list}" >
                                     <br />
-                                    <strong>cantidad : </strong>  #{item.cantidad} <strong>nombre : </strong>  #{item.nombre}
+                                    Cantidad:   #{item.cantidad}   Nombre:   #{item.nombre}
                                 </ui:repeat>
                             </li>
-                            <li class="list-group-item">Equipo 
+                            <li class="list-group-item"><strong>Equipo</strong>: 
                                 <ui:repeat var="item" value="#{managedBeanEquipo.lista}" >
                                     <br />
-                                    <strong>cantidad : </strong>  #{item.cantidad} <strong>nombre : </strong>  #{item.nombre}
+                                    Cantidad:   #{item.cantidad}   Nombre:   #{item.nombre}
                                 </ui:repeat>
                             </li>
-                            <li class="list-group-item">Reactivos
+                            <li class="list-group-item"><strong>Reactivos:</strong>
                                 <ui:repeat var="item" value="#{managedBeanReactivos.lista}" >
                                     <br />
-                                    <strong>cantidad : </strong>  #{item.cantidad} <strong>nombre : </strong>  #{item.nombre}
+                                    Cantidad:   #{item.cantidad}   Nombre:   #{item.nombre}
                                 </ui:repeat>
                             </li>
                         </ul>
@@ -108,9 +109,9 @@
                            III Desarrollo de la práctica
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Desarrollo experimental :  <h:outputText value="#{managedBeanPractica.desarrolloexp}" escape="false" ></h:outputText> </li>
-                            <li class="list-group-item">Registro de datos :  <h:outputText value="#{managedBeanPractica.registrodatos}" escape="false" ></h:outputText></li>
-                            <li class="list-group-item">Análisis de resultados :  <h:outputText value="#{managedBeanPractica.analiresul}" escape="false" ></h:outputText></li>
+                            <li class="list-group-item"><strong>Desarrollo experimental:</strong><br/><h:outputText value="#{managedBeanPractica.practica.desarrolloexperimental}" escape="false" ></h:outputText> </li>
+                            <li class="list-group-item"><strong>Registro de datos:</strong><br/><h:outputText value="#{managedBeanPractica.practica.registrodedatos}" escape="false" ></h:outputText></li>
+                            <li class="list-group-item"><strong>Análisis de resultados:</strong><br/><h:outputText value="#{managedBeanPractica.practica.analisisderesultados}" escape="false" ></h:outputText></li>
                         </ul>
                     </div>
                 </div>
@@ -123,11 +124,12 @@
                           IV  Información adicional
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Referencias :  <h:outputText value="#{managedBeanPractica.referencias}" escape="false" ></h:outputText></li>
-                            <li class="list-group-item">Nomenclatura :<h:outputText value="#{managedBeanPractica.nomenclatura}" escape="false" ></h:outputText></li>
-                            <li class="list-group-item">Anexos : <h:outputText value="#{managedBeanPractica.anexos}" escape="false" ></h:outputText> </li>
-                            <li class="list-group-item">Protocolos de actuación : <h:outputText value="#{managedBeanReactivos.protocolos}" escape="false" ></h:outputText> </li>
-                            <li class="list-group-item">Recomendaciones : <h:outputText value="#{managedBeanReactivos.recomendaciones}" escape="false" ></h:outputText> </li>
+                            <li class="list-group-item"><strong>Referencias:</strong><br/><h:outputText value="#{managedBeanPractica.practica.referencias}" escape="false" ></h:outputText></li>
+                            <li class="list-group-item"><strong>Nomenclatura:</strong><br/><h:outputText value="#{managedBeanPractica.practica.nomenclatura}" escape="false" ></h:outputText></li>
+                            <li class="list-group-item"><strong>Anexos:</strong><br/><h:outputText value="#{managedBeanPractica.practica.anexos}" escape="false" ></h:outputText> </li>
+                            <li class="list-group-item"><strong>Protocolos de actuación:</strong><h:outputText value="#{managedBeanReactivos.protocolos}" escape="false" ></h:outputText> </li>
+                            <li class="list-group-item"><strong>Recomendaciones:</strong><br/><h:outputText value="#{managedBeanReactivos.recomendaciones}" escape="false" ></h:outputText> </li>
+                            <li class="list-group-item"><strong>Semáforo:</strong><br/> <h:graphicImage value = "#{managedBeanReactivos.semaforo}"/> </li>
                         </ul>
                     </div>
                 </div>

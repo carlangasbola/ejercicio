@@ -35,6 +35,7 @@ public class ManagedBeanReactivos implements Serializable {
     private String recomendaciones;
     private String protocolos;
     private String prueba;
+    private String semaforo;
     private List<String> ReactivosF = new ArrayList<String>();
     private ConexionNeurona c = new ConexionNeurona();
     
@@ -56,13 +57,13 @@ public class ManagedBeanReactivos implements Serializable {
         lista = new ArrayList<>();
             }
     
+    //Agrega los reactivos a la lista que mustra la vista
     public void add() {
         lista.add(new Reactivos());
-
+        
         if("Ácido clorhídrico".equals(prueba)){
             tv[0]=1;
         }
-        
         if("Hidróxido de sodio".equals(prueba)){
             tv[0]=1;
         }
@@ -78,7 +79,6 @@ public class ManagedBeanReactivos implements Serializable {
         if("Acetona".equals(prueba)){
             tv[1]=1;
         }
-        
     }
     
     // Remover un Equipo
@@ -115,41 +115,43 @@ public class ManagedBeanReactivos implements Serializable {
         if(networkOutput>.8){
             if(tv[0]==1){
                 recomendaciones="Práctica con riesgo minimo: Sustancia Corrosiva.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[1]==1){
                 recomendaciones="Práctica con riesgo minimo: Sustancia Inflamable.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[2]==1){
                 recomendaciones="Práctica con riesgo minimo: Sustancia Peligrosa.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
+            semaforo="/resources/semaforo/semaforob.png";
         }
         
         if(networkOutput1>.8){
             if(tv[0]==1 && tv[1]==1){
                 recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia inflamable.<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\">NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[0]==1 && tv[2]==1){
                 recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia Peligrosa<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\">NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
+            semaforo="/resources/semaforo/semaforom.png";
         }
-        
         
         if(networkOutput2>.8){
             if(tv[0]==1 && tv[1]==1 && tv[2]==1){
                 recomendaciones="Práctica con riesgo Alto: Sustancia Corrosiva, Sustancia inflamable y Sustancia peligrosa.<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\">NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[1]==1 && tv[2]==1){
                 recomendaciones="Práctica con riesgo Alto: Sustancia inflamable y Sustancia Peligrosa. Residuo:<br/>Colocar en compartimientos separados o bodega aparte.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\">NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
+            
+            semaforo="/resources/semaforo/semaforoa.png";
         }
-        
     }
     
     public void Seleccionar (){
@@ -158,10 +160,10 @@ public class ManagedBeanReactivos implements Serializable {
             
             System.out.println(item.getNombre());
         
-            if("Acido clorhidrico".equals(item.getNombre())){
+            if("Ácido clorhídrico".equals(item.getNombre())){
                 tv[0]=1;
             }
-            if("Hidroxido de sodio".equals(item.getNombre())){
+            if("Hidróxido de sodio".equals(item.getNombre())){
                 tv[0]=1;
             }
             if("Glicerina".equals(item.getNombre())){
@@ -218,6 +220,12 @@ public class ManagedBeanReactivos implements Serializable {
     public void setProtocolos(String protocolos) {
         this.protocolos = protocolos;
     }
-    
-    
+
+    public String getSemaforo() {
+        return semaforo;
+    }
+
+    public void setSemaforo(String semaforo) {
+        this.semaforo = semaforo;
+    }
 }

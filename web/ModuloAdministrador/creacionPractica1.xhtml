@@ -60,7 +60,7 @@
                     <div class="col-12 col-md">
                         <div class="form-group ">
                             <label for="numeroprac" ><i class="fas fa-asterisk"></i> Número de práctica</label>
-                            <p:spinner id="numeroprac"  value="#{managedBeanPractica.numeropractica}"  min="1"/>
+                            <p:spinner id="numeroprac"  value="#{managedBeanPractica.practica.numeropractica}"  min="1"/>
                             <!--
                             <input id="numeroprac" type="text" class="form-control form-control-sm "></input>
                             -->
@@ -69,13 +69,13 @@
                     <div class="col-12 col-md">
                         <div class="form-group ">
                             <label for="tituloprac"><i class="fas fa-asterisk"></i> Titulo de la práctica</label>
-                            <input id="tituloprac" type="text" class="form-control form-control-sm " jsf:value="#{managedBeanPractica.titulopractica}"></input>
+                            <input id="tituloprac" type="text" class="form-control form-control-sm " jsf:value="#{managedBeanPractica.practica.titulopractica}"></input>
                         </div>
                     </div>
                     <div class="col-12 col-md">
                         <div class="form-group ">
                             <label for="autor">Autor</label>
-                            <input id="autor" type="text" class="form-control form-control-sm " jsf:value="#{managedBeanPractica.autor}" required="true"></input>
+                            <input id="autor" type="text" class="form-control form-control-sm " jsf:value="#{managedBeanPractica.practica.autor}" required="true"></input>
                         </div>
                     </div>
                 </div>  
@@ -84,14 +84,14 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="objetivo"><i class="fas fa-asterisk"></i> Objetivos</label>
-                            <textarea class="form-control" id="objetivo" rows="3" jsf:value="#{managedBeanPractica.objetivos}"></textarea>
+                            <textarea class="form-control" id="objetivo" rows="3" jsf:value="#{managedBeanPractica.practica.objetivos}"></textarea>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">    
                         <div class="form-group ">
                             <label for="activitypre"><i class="fas fa-asterisk"></i>Actividades Previas</label>
                             <!-- Valor de JSF ID NO -->
-                            <textarea class="form-control" id="activitypre" rows="3" jsf:value="#{managedBeanPractica.actividadprevia}" ></textarea>
+                            <textarea class="form-control" id="activitypre" rows="3" jsf:value="#{managedBeanPractica.practica.actividadesprevias}" ></textarea>
                         </div>
                     </div>    
                 </div>
@@ -101,7 +101,7 @@
 
                 <div class="col mt-3" >
                     <h5 class="text-center">Introducción de la práctica</h5>
-                    <p:textEditor widgetVar="editor1" height="300" value="#{managedBeanPractica.introduccion}" />
+                    <p:textEditor widgetVar="editor1" height="300" value="#{managedBeanPractica.practica.introduccion}" />
                     <button type="submit" class="btn colorboton btn-lg btn-block mt-3" jsf:action="#{managedBeanPractica.irA('2')}">Ir a la siguiente sección</button>
                 </div>
 
@@ -114,8 +114,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-
-
     </body>
 </html>
-

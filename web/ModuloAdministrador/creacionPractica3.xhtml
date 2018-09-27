@@ -49,14 +49,14 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="desarrollo">Desarrollo Experimental</label>
-                        <textarea id="desarrollo" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.desarrolloexp}"></textarea>
+                        <textarea id="desarrollo" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.desarrolloexperimental}"></textarea>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="registr">Registro de datos</label>
                         
-                        <textarea id="registr" class="form-control" rows="3" jsf:value="#{managedBeanPractica.registrodatos}" > </textarea>
+                        <textarea id="registr" class="form-control" rows="3" jsf:value="#{managedBeanPractica.practica.registrodedatos}" > </textarea>
                     </div>
                 </div>
             </div>
@@ -64,25 +64,25 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="resul">Resultados</label>
-                        <textarea id="resul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.resultados}" > </textarea>
+                        <textarea id="resul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.resultados}" > </textarea>
                     </div>
                 </div>
                 <div class="col">
                     
                     <div class="form-group">
                         <label for="aresul">Analisís de resultados</label>
-                        <textarea id="aresul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.analiresul}" > </textarea>
+                        <textarea id="aresul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.analisisderesultados}" > </textarea>
                     </div>
                 </div>
                 </div>
            
                 <h4 class="text-center"> Información adicional </h4>
                 <h6 class="mt-2">Referencias</h6>
-                 <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.referencias}" />
+                <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.practica.referencias}" />
                  <h6 class="mt-2">Nomenclatura</h6>
-                 <p:textEditor widgetVar="editor2" height="150" value="#{managedBeanPractica.nomenclatura}" />
+                 <p:textEditor widgetVar="editor2" height="150" value="#{managedBeanPractica.practica.nomenclatura}" />
                  <h6 class="mt-2">Anexos</h6>
-                 <p:textEditor widgetVar="editor3" height="150" value="#{managedBeanPractica.anexos}" />
+                 <p:textEditor widgetVar="editor3" height="150" value="#{managedBeanPractica.practica.anexos}" />
                  
                  
             <div class="row">

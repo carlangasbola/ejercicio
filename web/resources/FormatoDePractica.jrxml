@@ -2,16 +2,15 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Formato de practica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="552" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30" uuid="8ef8e082-5f23-4255-9894-910d754fbc42">
 	<property name="ireport.zoom" value="1.0000000000000027"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="249"/>
+	<property name="ireport.y" value="44"/>
 	<subDataset name="dataset1" uuid="17041853-1834-4e97-a990-1ea4604d387c"/>
 	<field name="numeropractica" class="java.lang.Integer"/>
 	<field name="titulopractica" class="java.lang.String"/>
 	<field name="competencias" class="java.lang.String"/>
 	<field name="semestre" class="java.lang.String"/>
-	<field name="creador" class="java.lang.String"/>
+	<field name="autor" class="java.lang.String"/>
 	<field name="editor" class="java.lang.String"/>
 	<field name="objetivos" class="java.lang.String"/>
-	<field name="list" class="java.util.List"/>
 	<filterExpression><![CDATA[new Boolean(true)]]></filterExpression>
 	<background>
 		<band splitType="Stretch"/>
@@ -76,14 +75,14 @@
 				<text><![CDATA[Semestre:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="117" width="521" height="20" uuid="c14d5943-f7c5-46a9-93f9-e42f7ac2ac8c"/>
+				<reportElement x="0" y="117" width="532" height="20" uuid="c14d5943-f7c5-46a9-93f9-e42f7ac2ac8c"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PRÁCTICA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="292" y="117" width="100" height="20" uuid="44b53973-ee1b-4628-bfb3-5986d3c59fd8"/>
+				<reportElement x="299" y="117" width="100" height="20" uuid="44b53973-ee1b-4628-bfb3-5986d3c59fd8"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
@@ -101,14 +100,14 @@
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Creador:]]></text>
+				<text><![CDATA[Autor:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="50" y="167" width="100" height="20" uuid="b11a0563-0a5a-4ed9-ae08-2b4316c6fe53"/>
 				<textElement>
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{creador}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{autor}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="190" width="50" height="20" uuid="3ab2b425-e342-47b0-a04b-7a959527bb0e"/>
@@ -155,14 +154,6 @@
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Competencias]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="275" y="220" width="218" height="53" uuid="a43e31dc-c73b-4952-bfdc-f8783f384a04"/>
-				<textFieldExpression><![CDATA[""+$F{list}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="175" y="238" width="100" height="20" uuid="28eb10cc-a430-4cd1-880c-6fb29c8766da"/>
-				<text><![CDATA[list]]></text>
 			</staticText>
 		</band>
 	</detail>

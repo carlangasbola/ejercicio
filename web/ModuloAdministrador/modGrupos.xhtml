@@ -80,7 +80,7 @@
                                 <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
-                        <ui:repeat var="g" value="#{managedBeanQuerys.getObjects('Grupo')}" >
+                        <ui:repeat var="g" value="#{managedBeanGrupos.grupos()}" >
                             <tr>
                                 <td>#{g.nombre}</td>
                                 <td>#{g.cupo}</td>
