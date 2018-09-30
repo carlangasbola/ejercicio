@@ -1,5 +1,5 @@
 package modelobase;
-// Generated 26/08/2018 08:42:52 PM by Hibernate Tools 4.3.1
+// Generated 30/09/2018 04:25:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,31 +12,23 @@ public class UnidadAprendizaje  implements java.io.Serializable {
 
 
      private Integer idUnidadAprendizaje;
-     private Grupo grupo;
-     private Usuarios usuarios;
      private String nombre;
-     private String docenteAuxiliar;
      private Set sesionDeLaboratorios = new HashSet(0);
-     private Set practicas = new HashSet(0);
+     private Set unidadTematicas = new HashSet(0);
+     private Set unidadGrupos = new HashSet(0);
 
     public UnidadAprendizaje() {
     }
 
 	
-    public UnidadAprendizaje(Grupo grupo, Usuarios usuarios, String nombre, String docenteAuxiliar) {
-        this.grupo = grupo;
-        this.usuarios = usuarios;
+    public UnidadAprendizaje(String nombre) {
         this.nombre = nombre;
-        this.docenteAuxiliar = docenteAuxiliar;
     }
-    
-    public UnidadAprendizaje(Grupo grupo, Usuarios usuarios, String nombre, String docenteAuxiliar, Set sesionDeLaboratorios, Set practicas) {
-       this.grupo = grupo;
-       this.usuarios = usuarios;
+    public UnidadAprendizaje(String nombre, Set sesionDeLaboratorios, Set unidadTematicas, Set unidadGrupos) {
        this.nombre = nombre;
-       this.docenteAuxiliar = docenteAuxiliar;
        this.sesionDeLaboratorios = sesionDeLaboratorios;
-       this.practicas = practicas;
+       this.unidadTematicas = unidadTematicas;
+       this.unidadGrupos = unidadGrupos;
     }
    
     public Integer getIdUnidadAprendizaje() {
@@ -46,33 +38,12 @@ public class UnidadAprendizaje  implements java.io.Serializable {
     public void setIdUnidadAprendizaje(Integer idUnidadAprendizaje) {
         this.idUnidadAprendizaje = idUnidadAprendizaje;
     }
-    public Grupo getGrupo() {
-        return this.grupo;
-    }
-    
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
-    public Usuarios getUsuarios() {
-        return this.usuarios;
-    }
-    
-    public void setUsuarios(Usuarios usuarios) {
-        this.usuarios = usuarios;
-    }
     public String getNombre() {
         return this.nombre;
     }
     
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-    public String getDocenteAuxiliar() {
-        return this.docenteAuxiliar;
-    }
-    
-    public void setDocenteAuxiliar(String docenteAuxiliar) {
-        this.docenteAuxiliar = docenteAuxiliar;
     }
     public Set getSesionDeLaboratorios() {
         return this.sesionDeLaboratorios;
@@ -81,12 +52,19 @@ public class UnidadAprendizaje  implements java.io.Serializable {
     public void setSesionDeLaboratorios(Set sesionDeLaboratorios) {
         this.sesionDeLaboratorios = sesionDeLaboratorios;
     }
-    public Set getPracticas() {
-        return this.practicas;
+    public Set getUnidadTematicas() {
+        return this.unidadTematicas;
     }
     
-    public void setPracticas(Set practicas) {
-        this.practicas = practicas;
+    public void setUnidadTematicas(Set unidadTematicas) {
+        this.unidadTematicas = unidadTematicas;
+    }
+    public Set getUnidadGrupos() {
+        return this.unidadGrupos;
+    }
+    
+    public void setUnidadGrupos(Set unidadGrupos) {
+        this.unidadGrupos = unidadGrupos;
     }
 
 

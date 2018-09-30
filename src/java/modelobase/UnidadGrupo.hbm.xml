@@ -3,19 +3,19 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 30/09/2018 04:25:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelobase.ListaGrupo" table="lista_grupo" catalog="dbsgr" optimistic-lock="version">
-        <id name="idListaGrupo" type="java.lang.Integer">
-            <column name="idLista_Grupo" />
-            <generator class="identity" />
+    <class name="modelobase.UnidadGrupo" table="unidad_grupo" catalog="dbsgr" optimistic-lock="version">
+        <id name="idUnidadGrupo" type="int">
+            <column name="idUnidad_Grupo" />
+            <generator class="assigned" />
         </id>
-        <many-to-one name="equipo" class="modelobase.Equipo" fetch="select">
-            <column name="idEquipo" not-null="true" />
-        </many-to-one>
         <many-to-one name="grupo" class="modelobase.Grupo" fetch="select">
             <column name="idGrupo" not-null="true" />
         </many-to-one>
+        <many-to-one name="unidadAprendizaje" class="modelobase.UnidadAprendizaje" fetch="select">
+            <column name="idUnidad_Aprendizaje" not-null="true" />
+        </many-to-one>
         <many-to-one name="usuarios" class="modelobase.Usuarios" fetch="select">
-            <column name="idUsuario_Alumno" not-null="true" />
+            <column name="idUsuarios_Docente" not-null="true" />
         </many-to-one>
     </class>
 </hibernate-mapping>

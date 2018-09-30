@@ -1,21 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/09/2018 04:25:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelobase.SesionDeLaboratorio" table="sesion_de_laboratorio" catalog="dbsgr" optimistic-lock="version">
         <id name="idSesion" type="java.lang.Integer">
             <column name="idSesion" />
             <generator class="identity" />
         </id>
+        <many-to-one name="grupo" class="modelobase.Grupo" fetch="select">
+            <column name="idGrupo" not-null="true" />
+        </many-to-one>
         <many-to-one name="unidadAprendizaje" class="modelobase.UnidadAprendizaje" fetch="select">
             <column name="idUnidad_Aprendizaje" not-null="true" />
         </many-to-one>
         <many-to-one name="usuarios" class="modelobase.Usuarios" fetch="select">
-            <column name="idTecnico" not-null="true" />
+            <column name="idUsuario_Tecnico" not-null="true" />
         </many-to-one>
         <property name="fecha" type="timestamp">
             <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="docenteAuxiliar" type="string">
+            <column name="Docente_Auxiliar" length="45" not-null="true" />
         </property>
         <set name="residuoses" table="residuos" inverse="true" lazy="true" fetch="select">
             <key>

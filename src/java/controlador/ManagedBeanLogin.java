@@ -8,7 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+import modelobase.DatosUsuario;
 import modelobase.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -33,7 +33,7 @@ public class ManagedBeanLogin {
         query.setParameter("user", user);
         query.setParameter("pass", pass);
         List<Usuarios> u = query.list();
-
+        Usuarios usuario = u.get(0);
 
         /* Si hay un usuario en la base de datos */
         if (!query.list().isEmpty()) {
@@ -41,7 +41,9 @@ public class ManagedBeanLogin {
             sessionMap.put("UserId", u.get(0).getIdUsuarios());
             /* Accedemos a los atributos del usuario que encontro */
             List<Usuarios> lista = query.list();
-
+            DatosUsuario data = new DatosUsuario();
+            this.user = usuario.getLogin();
+            
             switch (lista.get(0).getRoles().getIdRol()) {
 
                 /* Numero 1 identifica docentes */

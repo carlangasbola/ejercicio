@@ -1,5 +1,5 @@
 package modelobase;
-// Generated 26/08/2018 08:42:52 PM by Hibernate Tools 4.3.1
+// Generated 30/09/2018 04:25:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,7 +13,7 @@ public class Practica  implements java.io.Serializable {
 
 
      private Integer idPractica;
-     private UnidadAprendizaje unidadAprendizaje;
+     private UnidadTematica unidadTematica;
      private Usuarios usuarios;
      private Date creacion;
      private Set notificacionesPracticas = new HashSet(0);
@@ -23,13 +23,13 @@ public class Practica  implements java.io.Serializable {
     }
 
 	
-    public Practica(UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date creacion) {
-        this.unidadAprendizaje = unidadAprendizaje;
+    public Practica(UnidadTematica unidadTematica, Usuarios usuarios, Date creacion) {
+        this.unidadTematica = unidadTematica;
         this.usuarios = usuarios;
         this.creacion = creacion;
     }
-    public Practica(UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date creacion, Set notificacionesPracticas, Set datosPracticas) {
-       this.unidadAprendizaje = unidadAprendizaje;
+    public Practica(UnidadTematica unidadTematica, Usuarios usuarios, Date creacion, Set notificacionesPracticas, Set datosPracticas) {
+       this.unidadTematica = unidadTematica;
        this.usuarios = usuarios;
        this.creacion = creacion;
        this.notificacionesPracticas = notificacionesPracticas;
@@ -43,12 +43,12 @@ public class Practica  implements java.io.Serializable {
     public void setIdPractica(Integer idPractica) {
         this.idPractica = idPractica;
     }
-    public UnidadAprendizaje getUnidadAprendizaje() {
-        return this.unidadAprendizaje;
+    public UnidadTematica getUnidadTematica() {
+        return this.unidadTematica;
     }
     
-    public void setUnidadAprendizaje(UnidadAprendizaje unidadAprendizaje) {
-        this.unidadAprendizaje = unidadAprendizaje;
+    public void setUnidadTematica(UnidadTematica unidadTematica) {
+        this.unidadTematica = unidadTematica;
     }
     public Usuarios getUsuarios() {
         return this.usuarios;

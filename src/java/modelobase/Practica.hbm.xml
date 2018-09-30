@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/09/2018 04:25:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelobase.Practica" table="practica" catalog="dbsgr" optimistic-lock="version">
         <id name="idPractica" type="java.lang.Integer">
             <column name="idPractica" />
             <generator class="identity" />
         </id>
-        <many-to-one name="unidadAprendizaje" class="modelobase.UnidadAprendizaje" fetch="select">
-            <column name="idUnidad_Aprendizaje" not-null="true" />
+        <many-to-one name="unidadTematica" class="modelobase.UnidadTematica" fetch="select">
+            <column name="idUnidad_Tematica" not-null="true" />
         </many-to-one>
         <many-to-one name="usuarios" class="modelobase.Usuarios" fetch="select">
-            <column name="idCreador" not-null="true" />
+            <column name="idUsuario_Creador" not-null="true" />
         </many-to-one>
         <property name="creacion" type="timestamp">
             <column name="Creacion" length="19" not-null="true" />

@@ -1,5 +1,5 @@
 package modelobase;
-// Generated 26/08/2018 08:42:52 PM by Hibernate Tools 4.3.1
+// Generated 30/09/2018 04:25:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,7 +15,6 @@ public class Reactivos  implements java.io.Serializable {
      private String nombre;
      private String tipo;
      private double cantidad;
-     private String riesgo;
      private byte existenciaInventario;
      private Set reactivosUtilizados = new HashSet(0);
      private Set reactivoUtilizados = new HashSet(0);
@@ -24,18 +23,16 @@ public class Reactivos  implements java.io.Serializable {
     }
 
 	
-    public Reactivos(String nombre, String tipo, double cantidad, String riesgo, byte existenciaInventario) {
+    public Reactivos(String nombre, String tipo, double cantidad, byte existenciaInventario) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantidad = cantidad;
-        this.riesgo = riesgo;
         this.existenciaInventario = existenciaInventario;
     }
-    public Reactivos(String nombre, String tipo, double cantidad, String riesgo, byte existenciaInventario, Set reactivosUtilizados, Set reactivoUtilizados) {
+    public Reactivos(String nombre, String tipo, double cantidad, byte existenciaInventario, Set reactivosUtilizados, Set reactivoUtilizados) {
        this.nombre = nombre;
        this.tipo = tipo;
        this.cantidad = cantidad;
-       this.riesgo = riesgo;
        this.existenciaInventario = existenciaInventario;
        this.reactivosUtilizados = reactivosUtilizados;
        this.reactivoUtilizados = reactivoUtilizados;
@@ -68,13 +65,6 @@ public class Reactivos  implements java.io.Serializable {
     
     public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
-    }
-    public String getRiesgo() {
-        return this.riesgo;
-    }
-    
-    public void setRiesgo(String riesgo) {
-        this.riesgo = riesgo;
     }
     public byte getExistenciaInventario() {
         return this.existenciaInventario;

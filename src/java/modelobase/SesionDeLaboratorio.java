@@ -1,5 +1,5 @@
 package modelobase;
-// Generated 26/08/2018 08:42:52 PM by Hibernate Tools 4.3.1
+// Generated 30/09/2018 04:25:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,9 +13,11 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
 
 
      private Integer idSesion;
+     private Grupo grupo;
      private UnidadAprendizaje unidadAprendizaje;
      private Usuarios usuarios;
      private Date fecha;
+     private String docenteAuxiliar;
      private Set residuoses = new HashSet(0);
      private Set reporteIncidencias = new HashSet(0);
      private Set notificacionesSesions = new HashSet(0);
@@ -27,15 +29,19 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
     }
 
 	
-    public SesionDeLaboratorio(UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date fecha) {
+    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date fecha, String docenteAuxiliar) {
+        this.grupo = grupo;
         this.unidadAprendizaje = unidadAprendizaje;
         this.usuarios = usuarios;
         this.fecha = fecha;
+        this.docenteAuxiliar = docenteAuxiliar;
     }
-    public SesionDeLaboratorio(UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date fecha, Set residuoses, Set reporteIncidencias, Set notificacionesSesions, Set vales, Set historialEquipos, Set reactivoUtilizados) {
+    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date fecha, String docenteAuxiliar, Set residuoses, Set reporteIncidencias, Set notificacionesSesions, Set vales, Set historialEquipos, Set reactivoUtilizados) {
+       this.grupo = grupo;
        this.unidadAprendizaje = unidadAprendizaje;
        this.usuarios = usuarios;
        this.fecha = fecha;
+       this.docenteAuxiliar = docenteAuxiliar;
        this.residuoses = residuoses;
        this.reporteIncidencias = reporteIncidencias;
        this.notificacionesSesions = notificacionesSesions;
@@ -50,6 +56,13 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
     
     public void setIdSesion(Integer idSesion) {
         this.idSesion = idSesion;
+    }
+    public Grupo getGrupo() {
+        return this.grupo;
+    }
+    
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
     public UnidadAprendizaje getUnidadAprendizaje() {
         return this.unidadAprendizaje;
@@ -71,6 +84,13 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
     
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    public String getDocenteAuxiliar() {
+        return this.docenteAuxiliar;
+    }
+    
+    public void setDocenteAuxiliar(String docenteAuxiliar) {
+        this.docenteAuxiliar = docenteAuxiliar;
     }
     public Set getResiduoses() {
         return this.residuoses;

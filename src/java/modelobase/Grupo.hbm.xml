@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/09/2018 04:25:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelobase.Grupo" table="grupo" catalog="dbsgr" optimistic-lock="version">
         <id name="idGrupo" type="java.lang.Integer">
@@ -14,6 +14,12 @@
         <property name="cupo" type="int">
             <column name="Cupo" not-null="true" />
         </property>
+        <set name="unidadGrupos" table="unidad_grupo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idGrupo" not-null="true" />
+            </key>
+            <one-to-many class="modelobase.UnidadGrupo" />
+        </set>
         <set name="eventoses" table="eventos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idGrupo" not-null="true" />
@@ -26,11 +32,11 @@
             </key>
             <one-to-many class="modelobase.ListaGrupo" />
         </set>
-        <set name="unidadAprendizajes" table="unidad_aprendizaje" inverse="true" lazy="true" fetch="select">
+        <set name="sesionDeLaboratorios" table="sesion_de_laboratorio" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idGrupo" not-null="true" />
             </key>
-            <one-to-many class="modelobase.UnidadAprendizaje" />
+            <one-to-many class="modelobase.SesionDeLaboratorio" />
         </set>
     </class>
 </hibernate-mapping>

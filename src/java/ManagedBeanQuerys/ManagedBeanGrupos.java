@@ -120,7 +120,8 @@ public class ManagedBeanGrupos {
         hibernateSession.getTransaction().commit();
         hibernateSession.close();
     }
-
+    
+    /// YA NO FUNCIONA 
     public void crearUnidaAprendizaje() {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         hibernateSession.beginTransaction();
@@ -132,10 +133,10 @@ public class ManagedBeanGrupos {
         user.setIdUsuarios(docente);
 
         /* Mandamos los parametros para la creación de la unidad */
-        UnidadAprendizaje unidad = new UnidadAprendizaje(group, user, nombreunidad, docenteauxiliarunidad);
+        //UnidadAprendizaje unidad = new UnidadAprendizaje(group, user, nombreunidad, docenteauxiliarunidad);
 
         //Guardamos la unidad
-        hibernateSession.save(unidad);
+       // hibernateSession.save(unidad);
         //Commit the transaction
         hibernateSession.getTransaction().commit();
         hibernateSession.close();

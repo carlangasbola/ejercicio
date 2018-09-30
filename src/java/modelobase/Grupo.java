@@ -1,5 +1,5 @@
 package modelobase;
-// Generated 26/08/2018 08:42:52 PM by Hibernate Tools 4.3.1
+// Generated 30/09/2018 04:25:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,9 +14,10 @@ public class Grupo  implements java.io.Serializable {
      private Integer idGrupo;
      private String nombre;
      private int cupo;
+     private Set unidadGrupos = new HashSet(0);
      private Set eventoses = new HashSet(0);
      private Set listaGrupos = new HashSet(0);
-     private Set unidadAprendizajes = new HashSet(0);
+     private Set sesionDeLaboratorios = new HashSet(0);
 
     public Grupo() {
     }
@@ -26,13 +27,13 @@ public class Grupo  implements java.io.Serializable {
         this.nombre = nombre;
         this.cupo = cupo;
     }
-    
-    public Grupo(String nombre, int cupo, Set eventoses, Set listaGrupos, Set unidadAprendizajes) {
+    public Grupo(String nombre, int cupo, Set unidadGrupos, Set eventoses, Set listaGrupos, Set sesionDeLaboratorios) {
        this.nombre = nombre;
        this.cupo = cupo;
+       this.unidadGrupos = unidadGrupos;
        this.eventoses = eventoses;
        this.listaGrupos = listaGrupos;
-       this.unidadAprendizajes = unidadAprendizajes;
+       this.sesionDeLaboratorios = sesionDeLaboratorios;
     }
    
     public Integer getIdGrupo() {
@@ -56,6 +57,13 @@ public class Grupo  implements java.io.Serializable {
     public void setCupo(int cupo) {
         this.cupo = cupo;
     }
+    public Set getUnidadGrupos() {
+        return this.unidadGrupos;
+    }
+    
+    public void setUnidadGrupos(Set unidadGrupos) {
+        this.unidadGrupos = unidadGrupos;
+    }
     public Set getEventoses() {
         return this.eventoses;
     }
@@ -70,12 +78,12 @@ public class Grupo  implements java.io.Serializable {
     public void setListaGrupos(Set listaGrupos) {
         this.listaGrupos = listaGrupos;
     }
-    public Set getUnidadAprendizajes() {
-        return this.unidadAprendizajes;
+    public Set getSesionDeLaboratorios() {
+        return this.sesionDeLaboratorios;
     }
     
-    public void setUnidadAprendizajes(Set unidadAprendizajes) {
-        this.unidadAprendizajes = unidadAprendizajes;
+    public void setSesionDeLaboratorios(Set sesionDeLaboratorios) {
+        this.sesionDeLaboratorios = sesionDeLaboratorios;
     }
 
 

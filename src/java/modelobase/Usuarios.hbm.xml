@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/08/2018 08:42:54 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/09/2018 04:25:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelobase.Usuarios" table="usuarios" catalog="dbsgr" optimistic-lock="version">
         <id name="idUsuarios" type="java.lang.Integer">
@@ -19,33 +19,33 @@
         </property>
         <set name="reportePracticas" table="reporte_practica" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idAlumno" not-null="true" />
+                <column name="idUsuario_Alumno" not-null="true" />
             </key>
             <one-to-many class="modelobase.ReportePractica" />
         </set>
         <set name="practicas" table="practica" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idCreador" not-null="true" />
+                <column name="idUsuario_Creador" not-null="true" />
             </key>
             <one-to-many class="modelobase.Practica" />
         </set>
+        <set name="unidadGrupos" table="unidad_grupo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUsuarios_Docente" not-null="true" />
+            </key>
+            <one-to-many class="modelobase.UnidadGrupo" />
+        </set>
         <set name="listaGrupos" table="lista_grupo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idAlumno" not-null="true" />
+                <column name="idUsuario_Alumno" not-null="true" />
             </key>
             <one-to-many class="modelobase.ListaGrupo" />
         </set>
         <set name="sesionDeLaboratorios" table="sesion_de_laboratorio" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idTecnico" not-null="true" />
+                <column name="idUsuario_Tecnico" not-null="true" />
             </key>
             <one-to-many class="modelobase.SesionDeLaboratorio" />
-        </set>
-        <set name="unidadAprendizajes" table="unidad_aprendizaje" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idDocente" not-null="true" />
-            </key>
-            <one-to-many class="modelobase.UnidadAprendizaje" />
         </set>
         <set name="datosUsuarios" table="datos_usuario" inverse="true" lazy="true" fetch="select">
             <key>
