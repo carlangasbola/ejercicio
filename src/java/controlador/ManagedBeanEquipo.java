@@ -32,7 +32,7 @@ public class ManagedBeanEquipo implements Serializable {
             FacesContext.getCurrentInstance()
                     .addMessage(null,
                             new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                    "Cuidado", "No existen valores para eliminar"));
+                                    "Error", "No existen valores para eliminar"));
         }
     }
     

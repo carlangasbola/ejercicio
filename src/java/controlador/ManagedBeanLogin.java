@@ -22,7 +22,7 @@ public class ManagedBeanLogin {
     private Session hibernateSession;
 
     public String validarUsuario() {
-
+        
         /* Con estas declaraciones guardaremos el id del usuario para interactuar en todas las páginas*/
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> sessionMap = externalContext.getSessionMap();
@@ -33,18 +33,18 @@ public class ManagedBeanLogin {
         query.setParameter("user", user);
         query.setParameter("pass", pass);
         List<Usuarios> u = query.list();
-        Usuarios usuario = u.get(0);
+        
 
         /* Si hay un usuario en la base de datos */
         if (!query.list().isEmpty()) {
             // Guardamos el IdUsuario en la sesión
             sessionMap.put("UserId", u.get(0).getIdUsuarios());
+            Usuarios usuario = u.get(0);
             /* Accedemos a los atributos del usuario que encontro */
-            List<Usuarios> lista = query.list();
-            DatosUsuario data = new DatosUsuario();
-            this.user = usuario.getLogin();
+            this.user = usuario.getLogin()
+                    ;
             
-            switch (lista.get(0).getRoles().getIdRol()) {
+            switch (u.get(0).getRoles().getIdRol()) {
 
                 /* Numero 1 identifica docentes */
                 case 1:
@@ -76,6 +76,11 @@ public class ManagedBeanLogin {
         }
 
         return pagina;
+    }
+    
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
     }
 
     // Getters y setters

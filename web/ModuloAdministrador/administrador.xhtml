@@ -35,6 +35,11 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
                         </li>
+                        <li class="nav-item">
+                            <form jsf:id="formlogout">
+                                <button class="btn colorverde rounded" jsf:action="#{managedBeanLogin.logout()}"><i class="fas fa-sign-out-alt"></i> Cerra sesión</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -48,23 +53,34 @@
                     <h1>Bienvenido Administrador</h1>
                     <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user } </strong> </h3>
                     <a jsf:outcome="ModificacionDatos" class="mx-2">Modificar perfíl</a>
-                    <a href="" class="mx-2">Cambiar contraseña</a>
+                    <a jsf:outcome="actualizarcontra" class="mx-2">Cambiar contraseña</a>
                     <h5 class="font-weight-light mt-2"> Seleccione al módulo al cuál desea ingresar</h5>
                 </div>
             </div>
-
-            <div class="row mt-5">
+            <hr />
+            <div class="row mt-5 justify-content-center">
                 <div class="col-12 col-md-3  my-1">
                     <button type="button" class="btn btn-lg p-3" style="background-color: #0a3339; color:white" jsf:outcome="moduloDePracticas">Módulo de prácticas</button>
                 </div>
                 <div class="col-12 col-md-3  my-1">
                     <button type="button" class="btn btn-lg p-3" style="background-color: #28a7b8; color:white" jsf:outcome="modEventos">Módulo de eventos</button>
                 </div>
+            </div>    
+            <div class="row mt-3 justify-content-center">
                 <div class="col-12 col-md-3 my-1">
-                    <button type="button" class="btn btn-lg p-3" style="background-color: #b81f6d; color:white" jsf:outcome="modGrupos">Módulo de grupos</button>
+                    <button type="button" class="btn btn-lg p-3" style="background-color: #b81f6d; color:white" jsf:outcome="modGrupos"> - Módulo de grupos - </button>
                 </div>
                 <div class="col-12 col-md-3 my-1">
                     <button type="button" class="btn btn-lg p-3" style="background-color: #831D1D; color:white" jsf:outcome="modUsuarios">Módulo de usuarios</button>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <a href="#">  - Atender incidencias - </a>
+                    <div class="w-100"></div>
+                    <div class="w-100"></div>
+                    <a href="#"> - Bitácora de actividades -  </a>
                 </div>
             </div>
 

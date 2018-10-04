@@ -52,10 +52,9 @@ public class ManagedBeanQuerys {
     public void obtenerDatosUsuario() {
 
         int userId = getIdUsuarioSession();
-        System.out.print("asasasASASAasdadas" + userId);
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery(
-                "CALL SelectDatoUsuario(:idDatos_usuario)")
+                "CALL SelectDatosUsuario(:idDatos_usuario)")
                 .addEntity(DatosUsuario.class)
                 .setParameter("idDatos_usuario", userId);
 

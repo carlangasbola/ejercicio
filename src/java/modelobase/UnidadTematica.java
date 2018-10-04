@@ -1,5 +1,5 @@
 package modelobase;
-// Generated 30/09/2018 04:25:13 PM by Hibernate Tools 4.3.1
+// Generated 3/10/2018 11:18:56 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class UnidadTematica  implements java.io.Serializable {
 
 
-     private int idUnidadTematica;
+     private Integer idUnidadTematica;
      private UnidadAprendizaje unidadAprendizaje;
      private String nombre;
      private Set practicas = new HashSet(0);
@@ -20,23 +20,21 @@ public class UnidadTematica  implements java.io.Serializable {
     }
 
 	
-    public UnidadTematica(int idUnidadTematica, UnidadAprendizaje unidadAprendizaje, String nombre) {
-        this.idUnidadTematica = idUnidadTematica;
+    public UnidadTematica(UnidadAprendizaje unidadAprendizaje, String nombre) {
         this.unidadAprendizaje = unidadAprendizaje;
         this.nombre = nombre;
     }
-    public UnidadTematica(int idUnidadTematica, UnidadAprendizaje unidadAprendizaje, String nombre, Set practicas) {
-       this.idUnidadTematica = idUnidadTematica;
+    public UnidadTematica(UnidadAprendizaje unidadAprendizaje, String nombre, Set practicas) {
        this.unidadAprendizaje = unidadAprendizaje;
        this.nombre = nombre;
        this.practicas = practicas;
     }
    
-    public int getIdUnidadTematica() {
+    public Integer getIdUnidadTematica() {
         return this.idUnidadTematica;
     }
     
-    public void setIdUnidadTematica(int idUnidadTematica) {
+    public void setIdUnidadTematica(Integer idUnidadTematica) {
         this.idUnidadTematica = idUnidadTematica;
     }
     public UnidadAprendizaje getUnidadAprendizaje() {
