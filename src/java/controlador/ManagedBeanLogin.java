@@ -1,6 +1,7 @@
 package controlador;
 
 import Entity.HibernateUtil;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Named;
@@ -8,7 +9,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import modelobase.DatosUsuario;
 import modelobase.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,6 +20,8 @@ public class ManagedBeanLogin {
     private String user;
     private String pass;
     private Session hibernateSession;
+    // Cambiar a false para evitar el acceso a paginas sin login
+    private boolean session = true;
 
     public String validarUsuario() {
         
@@ -37,12 +39,12 @@ public class ManagedBeanLogin {
 
         /* Si hay un usuario en la base de datos */
         if (!query.list().isEmpty()) {
+            session = true;
             // Guardamos el IdUsuario en la sesión
             sessionMap.put("UserId", u.get(0).getIdUsuarios());
             Usuarios usuario = u.get(0);
             /* Accedemos a los atributos del usuario que encontro */
-            this.user = usuario.getLogin()
-                    ;
+            this.user = usuario.getLogin();
             
             switch (u.get(0).getRoles().getIdRol()) {
 
@@ -81,6 +83,17 @@ public class ManagedBeanLogin {
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index.xhtml?faces-redirect=true";
+    }
+    
+    public void permission() throws IOException {
+        
+        if(session == false) {
+            System.out.println("*** The user has no permission to visit this page. *** ");
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect("login.xhtml");
+        } else {
+            System.out.println("*** The session is still active. User is logged in. *** ");
+        }
     }
 
     // Getters y setters

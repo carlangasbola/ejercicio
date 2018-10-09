@@ -23,6 +23,15 @@ import org.hibernate.Session;
 public class ManagedBeanUnidadesAprendizaje implements Serializable {
 
     private static List<UnidadesTematicas> unidadTematica;
+
+    public List getLista() {
+        return lista;
+    }
+
+    public void setLista(List lista) {
+        this.lista = lista;
+    }
+    private List lista;
     private String unidadA;
 
     public ManagedBeanUnidadesAprendizaje() {
@@ -44,8 +53,30 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
                                     "Error", "No existen valores para eliminar"));
         }
     }
+    
+    public void eliminarUnidadAprendizaje(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        UnidadAprendizaje ua = new UnidadAprendizaje();
+        try{
+            session.beginTransaction();
+            ua.setIdUnidadAprendizaje(id);
+            session.delete(ua);
+            session.getTransaction().commit();
+        }catch(Exception e){
+            session.getTransaction().rollback();
+            System.out.println("Exepción :" + e);
+        }   
+    }
 
-    public List<UnidadesTematicas> unidadesAprendizaje() {
+    public List getUnidadesTematicas(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query;
+        query = session.createSQLQuery("CALL SelectUnidadesTematicas(:id)").setParameter("id", id);                
+        lista = query.list();
+        return lista;
+    }
+
+    public List unidadesAprendizaje() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         String hql = "FROM UnidadAprendizaje";
         Query query = session.createQuery(hql);
@@ -95,7 +126,7 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     public static void setUnidadTematica(List<UnidadesTematicas> unidadTematica) {
         ManagedBeanUnidadesAprendizaje.unidadTematica = unidadTematica;
     }
-    
+
     public String getUnidadA() {
         return unidadA;
     }
@@ -103,6 +134,5 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     public void setUnidadA(String unidadA) {
         this.unidadA = unidadA;
     }
-    
 
 }

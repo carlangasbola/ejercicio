@@ -48,6 +48,14 @@ public class ManagedBeanQuerys {
         Query query = hibernateSession.createSQLQuery("CALL SelectAllDatosUsuarios()").addEntity(DatosUsuario.class);
         return query.list();
     }
+    
+    public List obtenerUsuarios(int id) {
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Query query = hibernateSession.createSQLQuery("CALL SelectDatosRol(:id)")
+                .addEntity(DatosUsuario.class)
+                .setParameter("id", id);
+        return query.list();
+    }
 
     public void obtenerDatosUsuario() {
 
@@ -149,6 +157,7 @@ public class ManagedBeanQuerys {
             System.out.println("Exepcion : " + e);
         }
     }
+    
 
     public void crearUsuario() {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();

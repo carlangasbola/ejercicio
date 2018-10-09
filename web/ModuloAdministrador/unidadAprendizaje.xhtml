@@ -1,7 +1,8 @@
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <head jsf:id="head">
         <meta charset="utf-8" />
@@ -20,9 +21,14 @@
               crossorigin="anonymous" />
         <!-- Mis estilos -->
         <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css' />
+
     </head>
 
     <body jsf:id="body">
+
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{managedBeanLogin.permission()}"/>
+        </f:metadata>
 
         <form jsf:id="mensaje">
             <p:growl id="growl" sticky="true" showDetail="true"/>
@@ -78,7 +84,7 @@
                         <h6 ><strong> Creación de unidades de aprendizaje </strong></h6>
                         <div class="form-group">
                             <label for="nombreUnidad" >Nombre la unidad de aprendizaje </label>
-                            <h:inputText id="nombreUnidad" styleClass="form-control mt-1" value="#{managedBeanUnidadesAprendizaje.unidadA}" />
+                            <h:inputText id="nombreUnidad" styleClass="form-control mt-1" value="#{managedBeanUnidadesAprendizaje.unidadA}" required="true" />
 
                         </div>
                         <h:dataTable value="#{managedBeanUnidadesAprendizaje.unidadTematica}" var="u">
@@ -87,8 +93,8 @@
                                     <h:outputText value="Unidades temáticas"/>
                                 </f:facet>
                                 <h:outputLabel for="tematica" value="Nombre de la unidad temática:" />
-                                <h:inputText id="tematica" styleClass="form-control mt-1" value="#{u.nombreunidad}" />
-                                
+                                <h:inputText id="tematica" styleClass="form-control mt-1" value="#{u.nombreunidad}"  required="true"/>
+
                                 Prueba no lee de la base aún
                                 <h:outputLabel for="multiple" value="Seleccionar práctica a asignar :" />
                                 <p:selectCheckboxMenu id="multiple" value="#{checkboxView.selectedCities2}" label="Prácticas" multiple="true"
@@ -99,7 +105,8 @@
                         </h:dataTable>
                         <button class="btn colorverde mt-4 mr-2"  jsf:action="#{managedBeanUnidadesAprendizaje.enlargeList()}"> <i class="far fa-plus-square"></i> Agregar unidad temática </button>
                         <button class="btn colorrojo text-white mt-4"  jsf:action="#{managedBeanUnidadesAprendizaje.remove()}"> <i class="fas fa-trash"></i> Eliminar la ultima unidad de la lista </button>
-                        <button class="btn colorazul mt-4" jsf:action="#{managedBeanUnidadesAprendizaje.crearUnidad()}"><i class="fas fa-plus"></i>Crear la unidad de aprendizaje</button>
+                        <!-- jsf:action="" -->
+                        <button class="btn colorazul mt-4" data-toggle="modal" data-target="#crearunidad" ><i class="fas fa-plus"></i>Crear la unidad de aprendizaje</button>
                     </form>
 
                 </div>
@@ -110,18 +117,78 @@
                     <table class="table table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre unidad de aprendizaje</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Ver</th>
+                                <th scope="col">Eliminar</th>
+                                <th scope="col">Actualizar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <h:dataTable value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua">
-                                <h:column>
-                                    #{ua.nombre}
-                                </h:column>
-                            </h:dataTable>
+                            <ui:repeat  value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua">                       
+                                <tr>
+                                    <td>#{ua.nombre}</td>
+                                    <td>
+                                        <h:form>
+                                            <p:commandButton style="background-color: #00661d;color: white;border:none" value="ver"  update=":detalleunidad" action="#{managedBeanUnidadesAprendizaje.getUnidadesTematicas(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eye"  oncomplete="PF('dlg2').show()" />
+                                        </h:form>
+                                    </td> 
+                                    <td>
+                                        <h:form>
+                                            <p:commandButton style="background-color: #830D18; color: white; border: none" value="Eliminar"  action="#{managedBeanUnidadesAprendizaje.eliminarUnidadAprendizaje(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eraser" ajax="false" />
+                                        </h:form>
+                                    </td> 
+                                    <td>
+                                        <h:form>
+                                            <p:commandButton style="background-color: #1A5179; color: white; border: none" value="Update"   icon="fa fa-fw fa-edit" ajax="false" disabled="true" />
+                                        </h:form>
+                                    </td> 
+                                </tr>                      
+                            </ui:repeat>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para ver los detalles de las unidades de aprendizaje  -->
+        <p:dialog header="Unidades temáticas" id="detalleunidad" widgetVar="dlg2" modal="true" height="100">
+            <ui:repeat var="ua" value="#{managedBeanUnidadesAprendizaje.lista}" varStatus="status">
+                #{(status.index)+1}.-  #{ua}
+                <br />                
+            </ui:repeat>
+        </p:dialog>
+
+        <!-- Modal para la creación de unidades de aprendizaje -->
+        <div class="modal fade" id="crearunidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Creación de unidad de aprendizaje</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form jsf:id="modal">
+                            <div class="form-group">
+                                <label>Grupo a seleccionar </label>
+                                <h:selectOneMenu value="#" styleClass="form-control" >
+                                    <f:selectItems value="#{managedBeanGrupos.grupos}" var="g" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group">
+                                <label>Docente a asignar</label>
+                                <h:selectOneMenu value="#" styleClass="form-control" >
+                                    <!-- Le mando el 2 por que indica los docentes -->
+                                    <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -133,6 +200,8 @@
         crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
+
+
 
     </body>
 
