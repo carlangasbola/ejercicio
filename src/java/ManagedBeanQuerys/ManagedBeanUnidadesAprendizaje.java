@@ -9,8 +9,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import modelo.UnidadesTematicas;
+import modelobase.Grupo;
 import modelobase.UnidadAprendizaje;
+import modelobase.UnidadGrupo;
 import modelobase.UnidadTematica;
+import modelobase.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -23,6 +26,8 @@ import org.hibernate.Session;
 public class ManagedBeanUnidadesAprendizaje implements Serializable {
 
     private static List<UnidadesTematicas> unidadTematica;
+    private int idGrupo;
+    private int idDocente;
 
     public List getLista() {
         return lista;
@@ -89,6 +94,10 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
         //Creamos la unidad de aprendizaje y agregamos el nombre
         try {
             session.beginTransaction();
+            Grupo grupo = new Grupo();
+            Usuarios usuario = new Usuarios();
+            UnidadGrupo ug = new UnidadGrupo();
+            
             UnidadAprendizaje ua = new UnidadAprendizaje();
             ua.setNombre(unidadA);
             session.save(ua);
@@ -98,8 +107,19 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
                 ut = new UnidadTematica();
                 ut.setNombre(u.getNombreunidad());
                 ut.setUnidadAprendizaje(ua);
+                //Creamos la unidad de aprendizaje con sus unidades tematicas
                 session.save(ut);
             }
+            // Obtenemos el usuario y el grupo
+            usuario.setIdUsuarios(idDocente);
+            grupo.setIdGrupo(idGrupo);
+            
+            // Asignamos el grupo usuario y la unidad de aprendizaje a la unidad grupo
+            ug.setGrupo(grupo);
+            ug.setUsuarios(usuario);
+            ug.setUnidadAprendizaje(ua);
+            session.save(ug);
+            
             session.getTransaction().commit();
 
             FacesContext.getCurrentInstance()
@@ -133,6 +153,23 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
 
     public void setUnidadA(String unidadA) {
         this.unidadA = unidadA;
+    }
+    
+    
+    public int getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(int idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public int getIdDocente() {
+        return idDocente;
+    }
+
+    public void setIdDocente(int idDocente) {
+        this.idDocente = idDocente;
     }
 
 }

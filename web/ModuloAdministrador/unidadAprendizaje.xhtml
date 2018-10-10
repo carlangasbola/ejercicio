@@ -75,8 +75,13 @@
                 <div class="col">
                     <h5 class="text-justify">
                         <strong>Instrucciones</strong> : Para la creación de unidades de aprendizaje inserte el nombre
-                        de la nueva unidad, después de click en agregar unidad tematica coloque el nombre
-                        y cree las unidades temáticas correspondientes (mínimo 1) y después de click en crear.
+                        de la nueva unidad, después de click en agregar unidad tematica coloque el nombre y seleccione la práctica
+                        que se le asignará y después de click en crear, debe existir minímo una unidad de aprendizaje con una 
+                        unidad temática y esta debe tener una práctica para su creación.
+                        <h:form>
+                            <br />
+                            <p:commandButton icon="fa fa-plus" style=" background-color:  #1A5179; color:white; border: none" value="Crear unidad temática" type="button" onclick="PF('dlg1').show();" />
+                        </h:form>
                     </h5>
 
 
@@ -105,8 +110,6 @@
                         </h:dataTable>
                         <button class="btn colorverde mt-4 mr-2"  jsf:action="#{managedBeanUnidadesAprendizaje.enlargeList()}"> <i class="far fa-plus-square"></i> Agregar unidad temática </button>
                         <button class="btn colorrojo text-white mt-4"  jsf:action="#{managedBeanUnidadesAprendizaje.remove()}"> <i class="fas fa-trash"></i> Eliminar la ultima unidad de la lista </button>
-                        <!-- jsf:action="" -->
-                        <button class="btn colorazul mt-4" data-toggle="modal" data-target="#crearunidad" ><i class="fas fa-plus"></i>Crear la unidad de aprendizaje</button>
                     </form>
 
                 </div>
@@ -158,40 +161,22 @@
             </ui:repeat>
         </p:dialog>
 
-        <!-- Modal para la creación de unidades de aprendizaje -->
-        <div class="modal fade" id="crearunidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Creación de unidad de aprendizaje</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form jsf:id="modal">
-                            <div class="form-group">
-                                <label>Grupo a seleccionar </label>
-                                <h:selectOneMenu value="#" styleClass="form-control" >
-                                    <f:selectItems value="#{managedBeanGrupos.grupos}" var="g" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}" />
-                                </h:selectOneMenu>
-                            </div>
-                            <div class="form-group">
-                                <label>Docente a asignar</label>
-                                <h:selectOneMenu value="#" styleClass="form-control" >
-                                    <!-- Le mando el 2 por que indica los docentes -->
-                                    <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre}" />
-                                </h:selectOneMenu>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h:form>
+            <p:dialog header="Crear Unidad Temática" id="detalleunidad1" widgetVar="dlg1" modal="true" height="200">
+
+                <h:outputLabel for="Grupo" value="Selecciona el grupo" />
+                <h:selectOneMenu id="Grupo" value="#{managedBeanUnidadesAprendizaje.idGrupo}" styleClass="form-control" >
+                    <f:selectItems value="#{managedBeanGrupos.grupos}" var="g" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}" />
+                </h:selectOneMenu>
+                <h:outputLabel for="Docente" value="Selecciona el docente" />
+                <h:selectOneMenu id="Docente" value="#{managedBeanUnidadesAprendizaje.idDocente}" styleClass="form-control" >
+                    <!-- Le mando el 2 por que indica los docentes -->
+                    <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre}" />
+                </h:selectOneMenu>
+                <br />
+                <p:commandButton value="Crear unidad de aprendizaje" type="submit" action="#{managedBeanUnidadesAprendizaje.crearUnidad()}" ajax="false"/>
+            </p:dialog>
+        </h:form>
 
         <!-- Bootstrap core JavaScript
             ================================================== -->
