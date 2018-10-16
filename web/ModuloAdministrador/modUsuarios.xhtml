@@ -67,9 +67,16 @@
                     <div class="w-100" ></div>
                     <!-- Crear el codigo de programación -->
                     <h:form enctype="multipart/form-data">
+                        <div class="col-5 form-group">
+                        <h:outputLabel for="Grupo" value="Selecciona el grupo" />
+                        <h:selectOneMenu id="Grupo" value="#{managedBeanUnidadesAprendizaje.idGrupo}" styleClass="form-control" >
+                            <f:selectItems value="#{managedBeanGrupos.grupos}" var="g" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}" />
+                        </h:selectOneMenu>
+                        </div>
+                        <div class="w-100" ></div>
                         Seleccionar archivo: <p:fileUpload label="Seleccionar archivo" mode="simple" skinSimple="true"/>
                         <br/><br/>
-                        <button class="btn bg-coloverde text-white"> Subir el archivo </button>
+                        <button class="btn bg-coloverde text-white mr-2"> Subir el archivo </button>
                         <button  type="submit" jsf:action="#{managedBeanAgregarUsuariosArchivo.LeerArchivosExcel()}" class="btn btn-success">Subir el archivo original</button>
                     </h:form>
                     <br />
