@@ -1,17 +1,15 @@
 package controlador;
 
-import Entity.HibernateUtil;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import modelo.ConsultasHQL;
+import modelo.Mensajes;
+import modelobase.DatosUsuario;
 import modelobase.Usuarios;
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 @Named(value = "managedBeanLogin")
 @RequestScoped
@@ -19,75 +17,71 @@ public class ManagedBeanLogin {
 
     private String user;
     private String pass;
-    private Session hibernateSession;
     // Cambiar a false para evitar el acceso a paginas sin login
     private boolean session = true;
+    
+    // Constructor por defecto
+    public ManagedBeanLogin() {
+    }
 
     public String validarUsuario() {
-        
-        /* Con estas declaraciones guardaremos el id del usuario para interactuar en todas las páginas*/
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        Map<String, Object> sessionMap = externalContext.getSessionMap();
-
         String pagina = "";
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        Query query = hibernateSession.createQuery(" from Usuarios where login = :user and passsword = :pass ");
-        query.setParameter("user", user);
-        query.setParameter("pass", pass);
-        List<Usuarios> u = query.list();
-        
+        Mensajes message = new Mensajes("No estás registrado en la pagina", "Error");
+        ConsultasHQL consulta = new ConsultasHQL();
 
+        consulta.crearListPair("user", user);
+        consulta.crearListPair("pass", pass);
+        List<Usuarios> u = consulta.crearSelectQuery("from Usuarios where login = :user and passsword = :pass");
+        
         /* Si hay un usuario en la base de datos */
-        if (!query.list().isEmpty()) {
+        if (!u.isEmpty()) {
             session = true;
-            // Guardamos el IdUsuario en la sesión
-            sessionMap.put("UserId", u.get(0).getIdUsuarios());
-            Usuarios usuario = u.get(0);
-            /* Accedemos a los atributos del usuario que encontro */
-            this.user = usuario.getLogin();
+            // Guardamos el IdUsuario en la sesión con el recuperaremos datos
+            consulta.guardarDatosSession("UserId", u.get(0).getIdUsuarios());
             
+            consulta.crearListPair("IdUsuario", consulta.obtenerDatosSesion("UserId"));
+            // !!Se debe cambiar a un procedimiento almacenado
+            List<DatosUsuario> du = consulta
+                    .crearSelectQuery("FROM DatosUsuario as du where usuarios.idUsuarios = :IdUsuario ");
+            user = du.get(0).getNombre() +" "+ du.get(0).getApellidoPaterno() +" "+ du.get(0).getApellidoMaterno();
+            /* Accedemos a los atributos del usuario que encontro */
+
             switch (u.get(0).getRoles().getIdRol()) {
 
                 /* Numero 1 identifica docentes */
                 case 1:
                     pagina = "ModuloAdministrador/administrador";
                     break;
-
                 /* Numero 2 identifica administradores */
                 case 2:
                     //No creado aún
                     break;
-
                 /* Numero 3 identifica alumnos */
                 case 3:
                     //No creado aún
                     break;
-
                 /* Numero 4 identifica a tecnicos */
                 case 4:
                     //No creado aún
                     break;
-
             }
 
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "!Error¡", "No estás registrado en el sistema intentalo de nuevo"));
-            hibernateSession.close();
+            message.MensajeError();
             return null;
         }
 
         return pagina;
     }
-    
+
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index.xhtml?faces-redirect=true";
     }
-    
+
+    //Permisos de acceso a la página
     public void permission() throws IOException {
-        
-        if(session == false) {
+        if (session == false) {
             System.out.println("*** The user has no permission to visit this page. *** ");
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
             context.redirect("login.xhtml");
@@ -113,8 +107,5 @@ public class ManagedBeanLogin {
         this.pass = pass;
     }
 
-    // Constructor por defecto
-    public ManagedBeanLogin() {
-    }
 
 }
