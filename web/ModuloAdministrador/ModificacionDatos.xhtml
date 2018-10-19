@@ -8,19 +8,8 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <head jsf:id="head">
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
-
-
-        <title>Bienvenido Administrador</title>
-
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
-        <!-- Mis estilos -->
-        <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
+        <title>Modificación de datos</title>    
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
     </head>
 
     <body jsf:id="body"  >
@@ -29,23 +18,7 @@
             <p:growl id="growl" showDetail="true" sticky="false"  />  
         </h:form>
 
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-custom ">
-                <a class="navbar-brand" href="#">Inicio</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
 
         <h3 class=" text-center mt-4 col-12">Modificación de datos</h3>
 
