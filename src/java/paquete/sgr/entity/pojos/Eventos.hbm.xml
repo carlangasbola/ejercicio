@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.Eventos" optimistic-lock="version" table="eventos">
+    <id name="idEventos" type="java.lang.Integer">
+      <column name="idEventos"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="paquete.sgr.entity.pojos.Grupo" fetch="select" name="grupo">
+      <column name="idGrupo" not-null="true"/>
+    </many-to-one>
+    <property name="tipo" type="string">
+      <column length="45" name="Tipo" not-null="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="45" name="Nombre" not-null="true"/>
+    </property>
+    <property name="fecha" type="timestamp">
+      <column length="19" name="Fecha" not-null="true"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column length="450" name="Descripcion"/>
+    </property>
+  </class>
+</hibernate-mapping>

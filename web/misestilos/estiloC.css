@@ -64,3 +64,21 @@ body {
     background-color: #1A5179;
     color: white;
 }
+
+/* Estilos de las cartas de presentacion al inicio en administrador */
+.cardPracticas{
+    background-color: #0a3339; 
+    color:white
+}
+.cardEventos{
+    background-color: #28a7b8;
+    color:white
+}
+.cardUsuarios{
+    background-color: #b81f6d;
+    color:white
+}
+.cardGrupos{
+    background-color: #831D1D;
+    color:white
+}

@@ -1,45 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head jsf:id="head">
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
-        <!-- get the required files from 3rd party sources -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
-
         <title>Creación de prácticas</title>
-       <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
     </head>
     <body jsf:id="body">
 
         <!-- Barra de navegación -->
-        <header jsf:id="header">
-            <nav class="navbar navbar-expand-lg navbar-custom mb-4">
-                <a class="navbar-brand" href="#">Creación de Practicas</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item active">
-                            <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Aprende a usar la plataforma" href="#"><u>Incio</u><span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Notificaciones</u></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>        
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
 
         <!-- Selección de materiales -->
         <h2 class="text-center colorpantone my-5"> Desarrollo de la práctica </h2>
@@ -55,7 +26,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="registr">Registro de datos</label>
-                        
+
                         <textarea id="registr" class="form-control" rows="3" jsf:value="#{managedBeanPractica.practica.registrodedatos}" > </textarea>
                     </div>
                 </div>
@@ -68,30 +39,30 @@
                     </div>
                 </div>
                 <div class="col">
-                    
+
                     <div class="form-group">
                         <label for="aresul">Analisís de resultados</label>
                         <textarea id="aresul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.analisisderesultados}" > </textarea>
                     </div>
                 </div>
-                </div>
-           
-                <h4 class="text-center"> Información adicional </h4>
-                <h6 class="mt-2">Referencias</h6>
-                <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.practica.referencias}" />
-                 <h6 class="mt-2">Nomenclatura</h6>
-                 <p:textEditor widgetVar="editor2" height="150" value="#{managedBeanPractica.practica.nomenclatura}" />
-                 <h6 class="mt-2">Anexos</h6>
-                 <p:textEditor widgetVar="editor3" height="150" value="#{managedBeanPractica.practica.anexos}" />
-                 
-                 
+            </div>
+
+            <h4 class="text-center"> Información adicional </h4>
+            <h6 class="mt-2">Referencias</h6>
+            <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.practica.referencias}" />
+            <h6 class="mt-2">Nomenclatura</h6>
+            <p:textEditor widgetVar="editor2" height="150" value="#{managedBeanPractica.practica.nomenclatura}" />
+            <h6 class="mt-2">Anexos</h6>
+            <p:textEditor widgetVar="editor3" height="150" value="#{managedBeanPractica.practica.anexos}" />
+
+
             <div class="row">
                 <button type="submit" class="btn colorboton mt-3 " jsf:action="#{managedBeanPractica.irA('4')}"><i class="fas fa-chevron-circle-right mr-2"></i>Ir a la página siguiente </button>
                 <div class="w-100"></div>
                 <button type="submit" class="btn colorboton mt-3 " jsf:action="#{managedBeanPractica.irA('2')}"><i class="fas fa-chevron-circle-left mr-2"></i>Regresar a la página anterior </button>                 
             </div>
         </form>
-        
+
 
 
         <!-- Optional JavaScript -->

@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <head jsf:id="head">
         <title>Bienvenido Administrador</title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
@@ -13,7 +14,13 @@
         <f:metadata>
             <f:event type="preRenderView" listener="#{managedBeanLogin.permission()}"/>
         </f:metadata>
-
+        
+        <!-- Etiqueta para mostrar un mensaje -->
+        <h:form>  
+            <p:growl id="growl" showDetail="true" sticky="false"  />  
+        </h:form>
+        
+        <!-- Barra de navegación -->
         <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
 
         <div class="container text-center">
@@ -28,20 +35,61 @@
                 </div>
             </div>
             <hr />
-            <div class="row mt-5 justify-content-center">
-                <div class="col-12 col-md-3  my-1">
-                    <button type="button" class="btn btn-lg p-3" style="background-color: #0a3339; color:white" jsf:outcome="moduloDePracticas">Módulo de prácticas</button>
+            <div class="row">
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardPracticas">
+                            <h5>Módulo de prácticas</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="far fa-file-alt fa-3x"></i></h5>
+                            <p class="card-text">Creación y modificación de prácticas de laboratorio.</p>
+                            <button class="btn btn-sm cardPracticas" jsf:outcome="moduloDePracticas">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-md-3  my-1">
-                    <button type="button" class="btn btn-lg p-3" style="background-color: #28a7b8; color:white" jsf:outcome="modEventos">Módulo de eventos</button>
+
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardEventos">
+                            <h5>Módulo de eventos</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="far fa-calendar-alt fa-3x"></i></h5>
+                            <p class="card-text">Creación y modificación de eventos.</p>
+                            <button class="btn btn-sm cardEventos" jsf:outcome="modEventos">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
                 </div>
-            </div>    
-            <div class="row mt-3 justify-content-center">
-                <div class="col-12 col-md-3 my-1">
-                    <button type="button" class="btn btn-lg p-3" style="background-color: #b81f6d; color:white" jsf:outcome="modGrupos"> - Módulo de grupos - </button>
+
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardUsuarios">
+                            <h5>Módulo de usuarios</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-users fa-3x"></i></h5>
+                            <p class="card-text">Creación y modificación de usuarios en el sistema.</p>
+                            <button class="btn btn-sm cardUsuarios" jsf:outcome="modUsuarios">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-md-3 my-1">
-                    <button type="button" class="btn btn-lg p-3" style="background-color: #831D1D; color:white" jsf:outcome="modUsuarios">Módulo de usuarios</button>
+
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardGrupos">
+                            <h5>Módulo de grupos </h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-chalkboard-teacher fa-3x"></i></h5>
+                            <p class="card-text">Gestión de grupos y unidades de aprendizaje.</p>
+                            <button class="btn btn-sm cardGrupos" jsf:outcome="modGrupos">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

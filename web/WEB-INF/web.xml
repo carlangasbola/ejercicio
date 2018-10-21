@@ -9,9 +9,17 @@
         <param-value>/resources</param-value>
     </context-param>
     <context-param>
-            <param-name>primefaces.THEME</param-name>
-            <param-value>omega</param-value>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>omega</param-value>
     </context-param>
+    <filter>
+        <filter-name>Myfilter</filter-name>
+        <filter-class>paquete.sgr.model.filtro.Myfilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Myfilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

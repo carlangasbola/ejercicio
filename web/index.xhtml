@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
@@ -7,14 +6,15 @@
     <h:head>
         
         <title>Sistema de gestión de riesgos para laboratorios de biotecnología</title>
-        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
+        <h:outputText value="#{Etiquetas.metaTagsLinkTagsIndex}" escape="false" /> 
     </h:head>
     <h:body>
 
         <h:form>  
             <p:growl id="growl" showDetail="true" sticky="false"  />  
         </h:form>
-
+        
+        
         <h:outputText value="#{Etiquetas.headerIndex}" escape="false" />
 
         <h2 class="colorpantone text-center my-5 col-12">Sistema de gestión de riesgos para laboratorios de biotecnología</h2>
@@ -31,13 +31,13 @@
                             <h5 class="card-title mb-4">Ingrese sus datos para iniciar sesión</h5>
                             <form class="form" role="form" id="formLogin" method="POST" jsf:id="userform">
                                 <div class="form-group col-md">
-                                    <i class="fas fa-user"> &nbsp;</i>
+                                    <i class="fas fa-user"> </i>
                                     <label for="usuario"> Usuario </label>
                                     <input id="usuario" class="form-control" type="text" placeholder="usuario" requiered="true" jsf:value="#{managedBeanLogin.user}"/>
                                 </div>
 
                                 <div class="form-group col-md">
-                                    <i class="fas fa-key">&nbsp;</i>
+                                    <i class="fas fa-key"> </i>
                                     <label for="pass">Contraseña </label>
                                     <input id="pass" class="form-control" type="password" placeholder="contraseña" requiered="true" jsf:value="#{managedBeanLogin.pass}"/>
                                 </div>

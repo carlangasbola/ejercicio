@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.UnidadGrupo" optimistic-lock="version" table="unidad_grupo">
+    <id name="idUnidadGrupo" type="java.lang.Integer">
+      <column name="idUnidad_Grupo"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="paquete.sgr.entity.pojos.Grupo" fetch="select" name="grupo">
+      <column name="idGrupo" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="paquete.sgr.entity.pojos.UnidadAprendizaje" fetch="select" name="unidadAprendizaje">
+      <column name="idUnidad_Aprendizaje" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="paquete.sgr.entity.pojos.Usuarios" fetch="select" name="usuarios">
+      <column name="idUsuarios_Docente" not-null="true"/>
+    </many-to-one>
+    <set fetch="select" inverse="true" lazy="true" name="listaGrupos" table="lista_grupo">
+      <key>
+        <column name="idUnidad_Grupo" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.ListaGrupo"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.ListaGrupo" optimistic-lock="version" table="lista_grupo">
+    <id name="idListaGrupo" type="java.lang.Integer">
+      <column name="idLista_Grupo"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="paquete.sgr.entity.pojos.Equipo" fetch="select" name="equipo">
+      <column name="idEquipo" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="paquete.sgr.entity.pojos.UnidadGrupo" fetch="select" name="unidadGrupo">
+      <column name="idUnidad_Grupo" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="paquete.sgr.entity.pojos.Usuarios" fetch="select" name="usuarios">
+      <column name="idUsuario_Alumno" not-null="true"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

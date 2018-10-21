@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.ReportePractica" optimistic-lock="version" table="reporte_practica">
+    <id name="idReportePractica" type="java.lang.Integer">
+      <column name="idReporte_practica"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="paquete.sgr.entity.pojos.Usuarios" fetch="select" name="usuarios">
+      <column name="idUsuario_Alumno" not-null="true"/>
+    </many-to-one>
+    <property name="documentoPractica" type="binary">
+      <column name="Documento_practica" not-null="true"/>
+    </property>
+    <property name="fecha" type="timestamp">
+      <column length="19" name="Fecha" not-null="true"/>
+    </property>
+    <property name="calificacion" type="double">
+      <column name="calificacion" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="observaciones" type="string">
+      <column length="450" name="Observaciones"/>
+    </property>
+    <property name="grupo" type="string">
+      <column length="45" name="Grupo" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

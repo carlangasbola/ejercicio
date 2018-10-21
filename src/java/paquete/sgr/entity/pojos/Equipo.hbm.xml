@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.Equipo" optimistic-lock="version" table="equipo">
+    <id name="idEquipo" type="java.lang.Integer">
+      <column name="idEquipo"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="45" name="Nombre" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="deudas" table="deuda">
+      <key>
+        <column name="idEquipo" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.Deuda"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="vales" table="vale">
+      <key>
+        <column name="idEquipo" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.Vale"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="listaGrupos" table="lista_grupo">
+      <key>
+        <column name="idEquipo" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.ListaGrupo"/>
+    </set>
+  </class>
+</hibernate-mapping>

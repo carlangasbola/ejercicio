@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.Usuarios" optimistic-lock="version" table="usuarios">
+    <id name="idUsuarios" type="java.lang.Integer">
+      <column name="idUsuarios"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="paquete.sgr.entity.pojos.Roles" fetch="select" name="roles">
+      <column name="idRol" not-null="true"/>
+    </many-to-one>
+    <property name="login" type="string">
+      <column length="45" name="Login"/>
+    </property>
+    <property name="passsword" type="string">
+      <column length="60" name="Passsword"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="reportePracticas" table="reporte_practica">
+      <key>
+        <column name="idUsuario_Alumno" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.ReportePractica"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="practicas" table="practica">
+      <key>
+        <column name="idUsuario_Creador" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.Practica"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="unidadGrupos" table="unidad_grupo">
+      <key>
+        <column name="idUsuarios_Docente" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.UnidadGrupo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="listaGrupos" table="lista_grupo">
+      <key>
+        <column name="idUsuario_Alumno" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.ListaGrupo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="sesionDeLaboratorios" table="sesion_de_laboratorio">
+      <key>
+        <column name="idUsuario_Tecnico" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.SesionDeLaboratorio"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="datosUsuarios" table="datos_usuario">
+      <key>
+        <column name="idUsuarios" not-null="true"/>
+      </key>
+      <one-to-many class="paquete.sgr.entity.pojos.DatosUsuario"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.HistorialEmergencia" optimistic-lock="version" table="historial_emergencia">
+    <id name="idHistorial" type="java.lang.Integer">
+      <column name="idHistorial"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="paquete.sgr.entity.pojos.Emergencias" fetch="select" name="emergencias">
+      <column name="idEmergencias" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="paquete.sgr.entity.pojos.ReporteIncidencia" fetch="select" name="reporteIncidencia">
+      <column name="idReporte" not-null="true"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>
