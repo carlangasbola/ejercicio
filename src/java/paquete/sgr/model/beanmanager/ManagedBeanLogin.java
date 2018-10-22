@@ -13,7 +13,7 @@ import paquete.sgr.entity.pojos.Usuarios;
 @Named(value = "managedBeanLogin")
 @RequestScoped
 public class ManagedBeanLogin {
-
+    
     private String user;
     private String pass;
     // Cambiar a false para evitar el acceso a paginas sin login
@@ -22,12 +22,12 @@ public class ManagedBeanLogin {
     // Constructor por defecto
     public ManagedBeanLogin() {
     }
-
+    
     public String validarUsuario() {
         String pagina = "";
         Mensajes message = new Mensajes("No estás registrado en la pagina", "Error");
         ConsultasHQL consulta = new ConsultasHQL();
-
+        
         consulta.crearListPair("user", user);
         consulta.crearListPair("pass", pass);
         List<Usuarios> u = consulta.crearSelectQuery("from Usuarios where login = :user and passsword = :pass");
@@ -37,7 +37,7 @@ public class ManagedBeanLogin {
             session = true;
             // Guardamos el IdUsuario en la sesión con el recuperaremos datos
             consulta.guardarDatosSession("UserId", u.get(0).getIdUsuarios());
-
+            
             consulta.crearListPair("IdUsuario", consulta.obtenerDatosSesion("UserId"));
             // !!Se debe cambiar a un procedimiento almacenado
             List<DatosUsuario> du = consulta
@@ -46,7 +46,7 @@ public class ManagedBeanLogin {
                 user = du.get(0).getNombre() + " " + du.get(0).getApellidoPaterno() + " " + du.get(0).getApellidoMaterno();
             }
             /* Accedemos a los atributos del usuario que encontro */
-
+            
             switch (u.get(0).getRoles().getIdRol()) {
 
                 /* Numero 1 identifica docentes */
@@ -66,15 +66,15 @@ public class ManagedBeanLogin {
                     //No creado aún
                     break;
             }
-
+            
         } else {
             message.MensajeError();
             return null;
         }
-
+        
         return pagina;
     }
-
+    
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "../index.xhtml?faces-redirect=true";
@@ -95,17 +95,17 @@ public class ManagedBeanLogin {
     public String getUser() {
         return user;
     }
-
+    
     public void setUser(String user) {
         this.user = user;
     }
-
+    
     public String getPass() {
         return pass;
     }
-
+    
     public void setPass(String pass) {
         this.pass = pass;
     }
-
+    
 }

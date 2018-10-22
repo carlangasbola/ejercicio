@@ -13,6 +13,8 @@ import paquete.sgr.entity.pojos.Roles;
 import paquete.sgr.entity.pojos.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import paquete.sgr.beans.ConsultasHQL;
 
 /**
  *
@@ -48,7 +50,7 @@ public class ManagedBeanQuerys {
         Query query = hibernateSession.createSQLQuery("CALL SelectAllDatosUsuarios()").addEntity(DatosUsuario.class);
         return query.list();
     }
-    
+
     public List obtenerUsuarios(int id) {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectDatosRol(:id)")
@@ -98,69 +100,70 @@ public class ManagedBeanQuerys {
 
     public void actualizaUsuario() {
         Mensajes m = new Mensajes();
-        int userId = getIdUsuarioSession();
+        Usuarios u = new Usuarios();
+        DatosUsuario du = new DatosUsuario();
+        ConsultasHQL consulta = new ConsultasHQL();
+        int userId = (int) consulta.obtenerDatosSesion("UserId");
 
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        DatosUsuario datos2 = new DatosUsuario();
-        int idDatosUsuarios;
-
-        Query query = hibernateSession.createSQLQuery(
-                "CALL SelectDatoUsuario(:idDatos_usuario)")
-                .addEntity(DatosUsuario.class)
-                .setParameter("idDatos_usuario", userId);
-
-        List result = query.list();
-        if (!result.isEmpty()) {
-            datos2 = (DatosUsuario) result.get(0);
-            idDatosUsuarios = datos2.getIdDatosUsuario();
-        }
-        else
-            idDatosUsuarios = userId;
-
+        Session hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = hibernateSession.beginTransaction();
+        consulta.crearListPair("userId", userId);
+        List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
+        
         try {
-            hibernateSession.beginTransaction();
-            Usuarios user = new Usuarios();
-            DatosUsuario data = new DatosUsuario();
+            u.setIdUsuarios(userId);
+            // Si no tiene datos de usuario
+            if ( dulist.isEmpty() ) {
+                // Obtenemos la referencia a datos de usuario
+                du.setUsuarios(u);
+                du.setIdentificador(identificador);
+                du.setNombre(nombre);
+                du.setApellidoPaterno(paterno);
+                du.setApellidoMaterno(materno);
+                du.setTelefono(telefono);
+                du.setCorreo(correo);
+                du.setNumeroSeguro(numeroSeguro);
+                hibernateSession.save(du);
+                tx.commit();
+                
+            } else {
+                du.setUsuarios(u);
+                du.setIdDatosUsuario(dulist.get(0).getIdDatosUsuario());
+                du.setIdentificador(identificador);
+                du.setNombre(nombre);
+                du.setApellidoPaterno(paterno);
+                du.setApellidoMaterno(materno);
+                du.setTelefono(telefono);
+                du.setCorreo(correo);
+                du.setNumeroSeguro(numeroSeguro);
+                hibernateSession.update(du);
+                tx.commit();
+            }
 
-            user.setIdUsuarios(userId);
-            data.setUsuarios(user);
-            data.setIdDatosUsuario(idDatosUsuarios);
-            data.setIdentificador(identificador);
-            data.setNombre(nombre);
-            data.setApellidoMaterno(materno);
-            data.setApellidoPaterno(paterno);
-            data.setTelefono(telefono);
-            data.setCorreo(correo);
-            data.setNumeroSeguro(numeroSeguro);
-
-            // Si existe en la base lo actualiza si no lo crea
-            hibernateSession.clear();
-
-            String hqlUpdate = "update Usuarios u set u.login = :login, u.passsword =:pass where u.idUsuarios = :idUsuarios";
-            int updatedEntities = hibernateSession.createQuery(hqlUpdate)
-                    .setString("login", correo)
-                    .setString("pass", password)
-                    .setInteger("idUsuarios", userId)
-                    .executeUpdate();
-
-            hibernateSession.saveOrUpdate(data);
-            hibernateSession.flush();
-
-            hibernateSession.getTransaction().commit();
-            
+//            consulta.crearListPair("Id_Usuario", userId);
+//            consulta.crearListPair("Identificador", identificador);
+//            consulta.crearListPair("Nombre", nombre);
+//            consulta.crearListPair("Apellido_Paterno", paterno);
+//            consulta.crearListPair("Apellido_Materno", materno);
+//            consulta.crearListPair("Telefono", telefono);
+//            consulta.crearListPair("Correo", correo);
+//            consulta.crearListPair("Numero_Seguro", numeroSeguro);
+//            
+//            //Cree dinamicamente
+//            consulta.ejecutarStoreProcedure("{ Call SaveUpdateDatosUsuario(?,?,?,?,?,?,?,?) }");
+//            
             m.setTitulo("!Correcto¡");
             m.setMensaje("Se actualizó tu información");
             m.MensajeInfo();
 
         } catch (Exception e) {
-            hibernateSession.getTransaction().rollback();
+            tx.rollback();
             m.setTitulo("Fatal!");
             m.setMensaje("Algo salio mal :v");
             m.MensajeFaltal();
             System.out.println("Exepcion : " + e);
         }
     }
-    
 
     public void crearUsuario() {
         Mensajes m = new Mensajes();

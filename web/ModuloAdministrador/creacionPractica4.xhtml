@@ -128,7 +128,7 @@
                             <label for="ua" >Unidad de Aprendizaje</label>
                             <select size="1" jsf:value="#{managedBeanPracticas.idUA}" class="form-control">
                                 <option value="#{null}" jsfc="f:selectItem" />
-                                <div value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje}" var="ua" jsfc="f:selectItems" itemValue="#{ua.idUnidadAprendizaje}" itemLabel="#{ua.nombre}"></div>
+                                <div value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua" jsfc="f:selectItems" itemValue="#{ua.idUnidadAprendizaje}" itemLabel="#{ua.nombre}"></div>
                             </select>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
