@@ -15,7 +15,6 @@ public class Mensajes {
         titulo = "";
     }
     
-
     public Mensajes(String mensaje, String titulo) {
         this.mensaje = mensaje;
         this.titulo = titulo;
