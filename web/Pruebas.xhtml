@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
@@ -8,23 +7,9 @@
     </h:head>
     <h:body>
         
-        <p> Variables Recuperadas </p>
-        <p> Numero práctica:  #{managedBean.numeropractica}</p>
-        <p> titulo práctica:  #{managedBean.titulopractica}</p>
-        <p> competencias práctica:  #{managedBean.competencias}</p>
-        <p> semestre práctica:  #{managedBean.semestre}</p>
-        <p> creador práctica:  #{managedBean.creador}</p>
+        #{managedBeanGrupos.grupo}
         
-        <h:dataTable value="#{managedBean.list}" var="item">
-            <h:column>
-                #{item.cantidad}
-            </h:column>
-            <h:column>
-                #{item.nombre}
-            </h:column>
-        </h:dataTable>
-        
-        
+        dsadsada
         <!-- Hola Prueba 2  jhjhjh -->
         
     </h:body>
