@@ -41,6 +41,8 @@ public class ManagedBeanQuerys {
     private String password;
     private String numeroSeguro;
     private String identificador;
+    private String passnew;
+    private String passnew2;
     private int tipousuario;
     private int rol;
     private int idDatos;
@@ -59,8 +61,10 @@ public class ManagedBeanQuerys {
         return query.list();
     }
 
-    public void obtenerDatosUsuario() {
-        int userId = getIdUsuarioSession();
+    public String obtenerDatosUsuario() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        int userId = Integer.parseInt( params.get("id") );
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery(
                 "CALL SelectDatosUsuario(:idDatos_usuario)")
@@ -80,6 +84,7 @@ public class ManagedBeanQuerys {
             identificador = datos.getIdentificador();
 
         }
+        return "ModificacionDatos";
     }
 
     public void deleteUsuario(int id) {
@@ -98,6 +103,36 @@ public class ManagedBeanQuerys {
         }
     }
 
+    public void actualizarContrasena() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        Mensajes msj = new Mensajes();
+
+        // Obtenemos el id del usuario 
+        int idUsuario = (int) consulta.obtenerDatosSesion("UserId");
+        consulta.crearListPair("UserId", idUsuario);
+        List<Usuarios> u = consulta.crearSelectQuery(" FROM Usuarios where idUsuarios = :UserId");
+        // Primero verificamos si la contraseña que ingreso es la misma que tiene registrada
+        if (u.get(0).getPasssword().equals(password)) {
+            if (passnew.equals(passnew2)) {
+                Usuarios user = (Usuarios) u.get(0);
+                user.setPasssword(passnew);
+                consulta.actualizarObjeto(user);
+                msj.setTitulo("Mensaje del sistema");
+                msj.setMensaje("La contraseña se actualizó corectamente");
+                msj.MensajeInfo();
+            } else {
+                msj.setTitulo("Mensaje del sistema");
+                msj.setMensaje("Las contraseñas no coinciden");
+                msj.MensajePrecaucion();
+            }
+        } else {
+            msj.setTitulo("Mensaje del sistema");
+            msj.setMensaje("Contraseña incorrecta");
+            msj.MensajePrecaucion();
+        }
+
+    }
+
     public void actualizaUsuario() {
         Mensajes m = new Mensajes();
         Usuarios u = new Usuarios();
@@ -109,11 +144,11 @@ public class ManagedBeanQuerys {
         Transaction tx = hibernateSession.beginTransaction();
         consulta.crearListPair("userId", userId);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
-        
+
         try {
             u.setIdUsuarios(userId);
             // Si no tiene datos de usuario
-            if ( dulist.isEmpty() ) {
+            if (dulist.isEmpty()) {
                 // Obtenemos la referencia a datos de usuario
                 du.setUsuarios(u);
                 du.setIdentificador(identificador);
@@ -125,7 +160,7 @@ public class ManagedBeanQuerys {
                 du.setNumeroSeguro(numeroSeguro);
                 hibernateSession.save(du);
                 tx.commit();
-                
+
             } else {
                 du.setUsuarios(u);
                 du.setIdDatosUsuario(dulist.get(0).getIdDatosUsuario());
@@ -140,18 +175,6 @@ public class ManagedBeanQuerys {
                 tx.commit();
             }
 
-//            consulta.crearListPair("Id_Usuario", userId);
-//            consulta.crearListPair("Identificador", identificador);
-//            consulta.crearListPair("Nombre", nombre);
-//            consulta.crearListPair("Apellido_Paterno", paterno);
-//            consulta.crearListPair("Apellido_Materno", materno);
-//            consulta.crearListPair("Telefono", telefono);
-//            consulta.crearListPair("Correo", correo);
-//            consulta.crearListPair("Numero_Seguro", numeroSeguro);
-//            
-//            //Cree dinamicamente
-//            consulta.ejecutarStoreProcedure("{ Call SaveUpdateDatosUsuario(?,?,?,?,?,?,?,?) }");
-//            
             m.setTitulo("!Correcto¡");
             m.setMensaje("Se actualizó tu información");
             m.MensajeInfo();
@@ -310,6 +333,30 @@ public class ManagedBeanQuerys {
 
     public void setIdDatos_usuario(int idDatos_usuario) {
         this.idDatos = idDatos_usuario;
+    }
+
+    public String getPassnew() {
+        return passnew;
+    }
+
+    public void setPassnew(String passnew) {
+        this.passnew = passnew;
+    }
+
+    public int getIdDatos() {
+        return idDatos;
+    }
+
+    public void setIdDatos(int idDatos) {
+        this.idDatos = idDatos;
+    }
+
+    public String getPassnew2() {
+        return passnew2;
+    }
+
+    public void setPassnew2(String passnew2) {
+        this.passnew2 = passnew2;
     }
 
 }

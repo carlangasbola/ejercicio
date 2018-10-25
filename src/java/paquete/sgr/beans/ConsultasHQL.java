@@ -10,25 +10,23 @@ import java.util.Map;
 import javafx.util.Pair;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
-import org.hibernate.engine.spi.SessionFactoryImplementor;
-import org.hibernate.internal.SessionImpl;
-import org.hibernate.jdbc.Work;
-import org.hibernate.procedure.ProcedureCall;
 
 public class ConsultasHQL {
 
     private ArrayList<Pair<String, Object>> listPair;
     private Map<String, Object> sessionMap;
     private ExternalContext externalContext;
+    private Session hibernateSession;
 
     /**
-     * Creates a new instance of ManagedBeanConsultas and listPair
+     * Creates a new instance of ManagedBeanConsultas
      */
     public ConsultasHQL() {
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
         listPair = new ArrayList<>();
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         sessionMap = externalContext.getSessionMap();
@@ -48,18 +46,15 @@ public class ConsultasHQL {
     private void creaParametro(Query query, Pair<String, Object> par) {
         query.setParameter(par.getKey(), par.getValue());
     }
-    
-    //Creación de parametros para la consulta
-    private void creaParametroSP(CallableStatement query, Pair<String, Object> par) throws SQLException {
-       query.setObject(par.getKey(), par.getValue());
-    }
 
-    //Creacion del comando de consulta
-    //Ejempplo consulta = from Usuarios where login = :user and passsword = :pass 
+    /**
+     * 
+     * @param consulta Consulta de tipo String como puede ser "FROM Usuarios"
+     * @return Lista de tipo Object de resultados acorde la consulta enviada
+     */
     public List crearSelectQuery(String consulta) {
-        Session hibernateSession;
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        Query query = hibernateSession.createQuery(consulta);
+        Session s = obtenerSession();
+        Query query = s.createQuery(consulta);
         //Si no se le manda datos no hara nada
         if (!listPair.isEmpty()) {
             for (Pair<String, Object> par : listPair) {
@@ -69,27 +64,81 @@ public class ConsultasHQL {
         vaciarListPair();
         return query.list();
     }
-
-    public void ejecutarStoreProcedure(String nombre_procedimiento) throws SQLException {
-
-        Session hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        // Obtenemos la cadena de conexion a la base de datos dbsgr
-        SessionImpl sessionImpl = (SessionImpl) hibernateSession;
-        Connection conn = sessionImpl.connection();
-        CallableStatement cStmt = conn.prepareCall(nombre_procedimiento);
+    
+    public List crearSelectStoreProcesure(String consulta) {
+        Session s = obtenerSession();
+        Query query = s.createSQLQuery(consulta);
         //Si no se le manda datos no hara nada
         if (!listPair.isEmpty()) {
             for (Pair<String, Object> par : listPair) {
-                creaParametroSP(cStmt, par);
+                creaParametro(query, par);
             }
         }
         vaciarListPair();
-        cStmt.executeUpdate();
-
+        return query.list();
+    }
+    
+    /**
+     * 
+     * @param o Objeto de la clase entity.pojos que va a actualizar
+     */
+    public void actualizarObjeto(Object o) {
+        Session s = obtenerSession();
+        Transaction tx = null;
+        tx = s.beginTransaction();
+        try {
+            s.update(o);
+            tx.commit();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+            tx.rollback();
+        }
+    }
+    
+    public void insertarObjeto(Object o) {
+        Session s = obtenerSession();
+        Transaction tx = null;
+        tx = s.beginTransaction();
+        try {
+            s.save(o);
+            tx.commit();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+            tx.rollback();
+        }
+    }
+    
+    public void eliminarObjeto(Object o) {
+        Session s = obtenerSession();
+        Transaction tx = null;
+        tx = s.beginTransaction();
+        try {
+            s.delete(o);
+            tx.commit();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+            tx.rollback();
+        }
     }
 
+    // Si hay una session en hibernate la devuelve si no la crea
+    public Session obtenerSession() {
+        if (hibernateSession.isOpen()) {
+            return hibernateSession;
+        } else {
+            return HibernateUtil.getSessionFactory().openSession();
+        }
+    }
+    
+    // El metodo finalize termina la conexion a la base de datos si no esta en uso
+    @Override
+    public void finalize() {
+        if (hibernateSession.isOpen()) {
+            hibernateSession.close();
+        }
+    }
 
-    // Guardar Datos en la sesión
+// Guardar Datos en la sesión
     public void guardarDatosSession(String identificador, Object valor) {
         sessionMap.put(identificador, valor);
     }
@@ -99,9 +148,9 @@ public class ConsultasHQL {
         return sessionMap.get(identificador);
     }
 
-    /*
+    /*******************************
         Getters y Setters Del Codigo
-     */
+    *********************************/
     //Getters y setters de listPair
     public ArrayList<Pair<String, Object>> getListPair() {
         return listPair;

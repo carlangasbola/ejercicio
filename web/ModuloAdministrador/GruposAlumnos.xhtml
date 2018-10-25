@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"  
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head jsf:id="head">  
+        <title>Bienvenido Administrador</title>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
+    </head>
+
+    <body jsf:id="body">
+        <!-- Barra de navegación -->
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
+
+        <div class="container mt-4">
+            <div class="container">
+                <div class="col">
+                    <h1 class="h4 text-center"> Alumnos en este grupo </h1>
+                    <p class="lead">
+                        Haga click en algunas de las opciones que desee
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido Paterno</th>
+                                <th scope="col">Apellido Materno</th>
+                                <th scope="col">Ver datos</th>
+                                <th scope="col">Cambiar de grupo</th>
+                                <th scope="col">Eliminar de este grupo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="o" value="#{managedBeanGrupos.alumnosGrupo}" varStatus="status">
+                                <tr>
+                                    <td scope="row">#{status.index + 1}</td>
+                                    <td>#{o[1]} #{o[0]}</td>
+                                    <td>#{o[2]}</td>
+                                    <td>#{o[3]}</td>
+                                    <td>
+                                        <h:form>
+                                            <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{managedBeanQuerys.obtenerDatosUsuario()}">
+                                                <f:param name="id" value="#{o[0]}" />
+                                            </h:commandButton>
+                                        </h:form>
+                                    </td>
+                                    <td> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-exchange-alt"></i> Cambiar</button> </td>
+                                    <td> <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-user-minus"></i> Eliminar</button> </td>
+                                </tr>
+                            </ui:repeat>
+
+                            <h:panelGroup rendered="#{empty managedBeanGrupos.alumnosGrupo}">
+                                <div class="alert alert-danger" role="alert">
+                                    No hay alumnos en este grupo 
+                                    <br/>
+                                    Puedes ingresar un alumno haciendo click en este botón <button class="btn colorverde btn-sm"> <i class="fas fa-plus"></i> Agregar usuario </button>
+                                    <br />
+                                    O puedes agregar a los alumnos mediante un archivo dando click en la siguiente liga <a jsf:outcome="modUsuarios"> Añadir usuarios </a>
+                                </div>
+                            </h:panelGroup>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
