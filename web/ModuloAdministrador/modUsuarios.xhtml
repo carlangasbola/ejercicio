@@ -4,6 +4,13 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    
     <head jsf:id="head">
         <title>Bienvenido Administrador</title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
@@ -32,13 +39,13 @@
                     <h4>Creación de múltiples usuarios</h4>
                     <div class="w-100" ></div>
                     <p class="colorpantone">Siga las instrucciones que se muestran a continuación</p>
-                    <p>1.- Para la creación de usuarios descarge nuestra plantilla <a href="#">aquí</a>.</p>
+                    <p>1.- Para la creación de usuarios descarge nuestra plantilla <a href="/ejercicio/faces/FormatoExcel/FormatoExcel.xls">aquí</a>.</p>
                     <p>2.- Llene los datos que se presentan en el archivo que acaba de descargar.</p>
                     <p>3.- A continuación haga click en buscar archivo, seleccione la plantilla con la 
                         información que ya ha ingresado y haga click en subir</p>
                     <div class="w-100" ></div>
                     <!-- Crear el codigo de programación -->
-                    <h:form enctype="multipart/form-data">
+                    <h:form id="formActualizarFoto">
                         <div class="col-5 form-group">
                             <h:outputLabel for="Grupo" value="Selecciona el grupo" />
                             <h:selectOneMenu id="Grupo" value="#{managedBeanUnidadesAprendizaje.idGrupo}" styleClass="form-control" >
@@ -46,10 +53,13 @@
                             </h:selectOneMenu>
                         </div>
                         <div class="w-100" ></div>
-                        Seleccionar archivo: <p:fileUpload label="Seleccionar archivo" mode="simple" skinSimple="true"/>
+                        Seleccionar archivo:<p:fileUpload fileUploadListener="#{managedBeanUpload.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                                      update="messages" sizeLimit="1000000" fileLimit="10" allowTypes="/(\.|\/)(xls)$/" oncomplete="PF('dlgActualizarFoto').hide()" fileLimitMessage="El maximo de imagenes es 1"  invalidFileMessage="Se debe seleccionar un archivo xls"
+                                      cancelLabel="Cancelar" uploadLabel="Actualizar"/>
+
+                        <p:growl id="messages" showDetail="true" />
                         <br/><br/>
-                        <button class="btn bg-coloverde text-white mr-2"> Subir el archivo </button>
-                        <button  type="submit" jsf:action="#{managedBeanAgregarUsuariosArchivo.LeerArchivosExcel()}" class="btn btn-success">Subir el archivo original</button>
+                        <button  type="submit" jsf:action="#{managedBeanAgregarUsuariosArchivo.LeerArchivosExcel()}" class="btn btn-success">Agregar Alumnos</button>
                     </h:form>
                     <br />
                     <br />
@@ -138,18 +148,6 @@
                 </div>
             </div>
         </div>
-
-
-
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-
-
-
     </body>
 </html>
 
