@@ -47,11 +47,35 @@ public class ManagedBeanQuerys {
     private int rol;
     private int idDatos;
 
+    public String getNombrecompleto() {
+        return nombrecompleto;
+    }
+
+    public void setNombrecompleto(String nombrecompleto) {
+        this.nombrecompleto = nombrecompleto;
+    }
+    
+    static String nombrecompleto;
+    
+    public String ObtenerNombreUsuario(){
+        ConsultasHQL consulta = new ConsultasHQL();
+        
+
+        int id = (int) consulta.obtenerDatosSesion("UserId");
+        
+        consulta.crearListPair("idUsuario", id);
+        List<DatosUsuario> du = consulta.crearSelectQuery("FROM DatosUsuario WHERE usuarios.idUsuarios = :idUsuario");
+        
+        nombrecompleto = du.get(0).getNombre() + " " + du.get(0).getApellidoPaterno() + " " + du.get(0).getApellidoMaterno();
+        return "creacionPractica1";
+    }
+
     public List obtenerUsuarios() {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectAllDatosUsuarios()").addEntity(DatosUsuario.class);
         return query.list();
     }
+    
 
     public List obtenerUsuarios(int id) {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
@@ -80,7 +104,6 @@ public class ManagedBeanQuerys {
             correo = datos.getCorreo();
             numeroSeguro = datos.getNumeroSeguro();
             identificador = datos.getIdentificador();
-
         }
     }
 
@@ -96,7 +119,6 @@ public class ManagedBeanQuerys {
             hibernateSession.getTransaction().rollback();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Algo salio mal :v"));
             System.out.println("Exepcion : " + e);
-
         }
     }
 
