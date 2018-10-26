@@ -20,10 +20,11 @@ import paquete.sgr.entity.pojos.Roles;
 import paquete.sgr.entity.pojos.Usuarios;
 import org.hibernate.Session;
 import paquete.sgr.model.beanmanager.ManagedBeanUpload;
+import paquete.sgr.beans.UtilPath;
 
 /**
  *
- * @author jorge
+ * @author Jorge
  */
 @Named(value = "managedBeanAgregarUsuariosArchivo")
 @RequestScoped
@@ -37,8 +38,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
     
     private Session hibernateSession;
     
-    //Parametros para la creación de un usuario
-    
+    //Parametros para la creación de un usuario    
     private String nombre;
     private String paterno;
     private String materno;
@@ -53,8 +53,11 @@ public class ManagedBeanAgregarUsuariosArchivo {
     private String filename = ManagedBeanUpload.fileName;
     
     public void LeerArchivosExcel(){
+        
+        ExternalContext ec=FacesContext.getCurrentInstance().getExternalContext();
+        String realPath = UtilPath.getUrlDefinida(ec.getRealPath("/"));
         System.out.println(filename);
-        String archivoDestino = "C:\\Users\\sonri\\Documents\\NetBeansProjects\\TT\\ejercicio\\build\\web\\ExcelUpload\\"+filename;
+        String archivoDestino = realPath + File.separator + "web" + File.separator + "ExcelUpload" + File.separator + filename;
         int contador=1;
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         try{

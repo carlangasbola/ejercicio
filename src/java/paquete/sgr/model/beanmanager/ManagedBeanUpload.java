@@ -23,7 +23,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 /**
  *
- * @author sonri
+ * @author Jorge
  */
 @Named(value = "managedBeanUpload")
 @SessionScoped
