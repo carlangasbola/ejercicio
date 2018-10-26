@@ -31,6 +31,7 @@
                             I Requisitos
                         </div>
                         <ul class="list-group list-group-flush">
+                            
                             <li class="list-group-item"><strong>Número de práctica:</strong><br/>#{managedBeanPractica.practica.numeropractica}</li>
                             <li class="list-group-item"><strong>Título de la práctica:</strong><br/>#{managedBeanPractica.practica.titulopractica}</li>
                             <li class="list-group-item"><strong>Objetivos:</strong><br/>#{managedBeanPractica.practica.objetivos}</li>
@@ -40,7 +41,8 @@
                     </div>
                 </div>
             </div>
-
+            
+           
             <div class="row mt-3">
                 <div class="col">
                     <div class="card" >
@@ -103,6 +105,7 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" class="btn colorboton btn-block mt-3" jsf:action="#{managedBeanPractica.printPDF()}">Ver PDF</button>
             <button class="btn btn-primary mt-4" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-file"></i> Crear práctica</button>
         </div>
         
@@ -123,13 +126,15 @@
                         <form jsf:id="formulario">
                             <label >Fecha de creación : #{managedBeanPracticas.currentDate}</label>
                             <br/>
-                            <label >Creador : #{managedBeanLogin.user}</label>
+                            <label >Creador : #{managedBeanQuerys.nombrecompleto}</label>
                             <br/>
+                            
                             <label for="ua" >Unidad de Aprendizaje</label>
-                            <select size="1" jsf:value="#{managedBeanPracticas.idUA}" class="form-control">
-                                <option value="#{null}" jsfc="f:selectItem" />
-                                <div value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua" jsfc="f:selectItems" itemValue="#{ua.idUnidadAprendizaje}" itemLabel="#{ua.nombre}"></div>
+                            <select size="1" jsf:value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua" class="form-control">
+                                <div value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua" jsfc="f:selectItems" itemLabel="#{ua.nombre}"></div>
                             </select>
+                            
+                            
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearGrupo}">Crear grupo</button>

@@ -9,6 +9,7 @@ import paquete.sgr.entity.pojos.UnidadAprendizaje;
 import paquete.sgr.entity.pojos.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import paquete.sgr.beans.ConsultasHQL;
 
 /**
  *
@@ -30,6 +31,9 @@ public class ManagedBeanGrupos {
     private String docenteauxiliarunidad;
     private int grupo;
     private int docente;
+    
+    /* Todos los alumnos que estan en un grupo */
+    private List alumnosGrupo;
 
     /*Parametros grupo*/
     public ManagedBeanGrupos() {
@@ -56,6 +60,15 @@ public class ManagedBeanGrupos {
         Query query = hibernateSession.createSQLQuery("CALL SelectGrupos()").addEntity(Grupo.class);
         List<Grupo> grupos = query.list();
         return grupos;
+    }
+    
+    public String redirecionarGruposAlumnos(int IdG){
+        ConsultasHQL consulta = new ConsultasHQL();
+        grupo = IdG;
+        consulta.crearListPair("Id_Grupo", IdG);
+        List<Object[]> lista = consulta.crearSelectStoreProcesure("CALL SelectAlumnosGrupo(:Id_Grupo)");
+        alumnosGrupo = lista;
+        return "GruposAlumnos";
     }
 
     public List<UnidadAprendizaje> getUnidadesA() {
@@ -190,5 +203,14 @@ public class ManagedBeanGrupos {
     public void setDocente(int docente) {
         this.docente = docente;
     }
+    
+    public List getAlumnosGrupo() {
+        return alumnosGrupo;
+    }
+
+    public void setAlumnosGrupo(List alumnosGrupo) {
+        this.alumnosGrupo = alumnosGrupo;
+    }
+
 
 }

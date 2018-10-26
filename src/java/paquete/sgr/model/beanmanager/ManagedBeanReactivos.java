@@ -21,7 +21,7 @@ public class ManagedBeanReactivos implements Serializable {
     
     // Declaracion de variables
     
-    private List<Reactivos> lista;
+    static List<Reactivos> lista;
     private List<String> list;
     private double p1;
     private double p2;
@@ -109,8 +109,7 @@ public class ManagedBeanReactivos implements Serializable {
         networkOutput=c.networkOutput[0];
         networkOutput1=c.networkOutput[1];
         networkOutput2=c.networkOutput[2];
-
-        //System.out.println("\nSalida: "+ networkOutput);
+        
         //Salidas
         if(networkOutput>.8){
             if(tv[0]==1){

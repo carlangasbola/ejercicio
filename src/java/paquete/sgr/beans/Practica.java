@@ -7,15 +7,15 @@ public class Practica {
     private String semestre;
     private int numeropractica ;
     private String titulopractica;
-    private String autor;
+    public String autor;
     private String editor;
+    public String introduccion;
     private String objetivos;
     private String actividadesprevias;
-    private String introduccion;
     //Segunta parte creacionPractica2.xhtml
-    private List<Material> listamaterial;
-    private List<Equipo> listaequipo;
-    private List<Reactivos> listareactivos;
+    public List<Material> listamaterial;
+    public List<Equipo> listaequipo;
+    public List<Reactivos> listareactivos;
     private String competencias;
     //Tercera parte creacionPractica3.xhtml
     private String desarrolloexperimental;
@@ -26,12 +26,40 @@ public class Practica {
     private String nomenclatura;
     private String anexos;
     //Cuarta parte parte creacionPractica3.xhtml
-    private String protocolosdeactuación;
+    private String protocolosdeactuacion;
     private String recomendaciones;
     private String semaforo;
 
     public Practica(){
 
+    }
+    
+    public void imprime(){
+        System.out.println("Semestre: " + getSemestre());
+        System.out.println("Numero de practica: " + getNumeropractica());
+        System.out.println("titulo de practica: " + getTitulopractica());
+        System.out.println("Autor: " + getAutor());
+        System.out.println("Editor: " + getEditor());
+        System.out.println("Objetivos: " + getObjetivos());
+        System.out.println("Actividades previas: " + getActividadesprevias());
+        System.out.println("Introduccion: " + getIntroduccion());
+        for(Material item:getListamaterial())
+            System.out.println("Cantidad: " + item.getCantidad() + " Material: " + item.getNombre());
+        for(Equipo item:getListaequipo())
+            System.out.println("Cantidad: " + item.getCantidad() + " Equipo: " + item.getNombre());
+        for(Reactivos item:getListareactivos())
+            System.out.println("Cantidad: " + item.getCantidad() + " Reactivo: " + item.getNombre());
+        System.out.println("Competencias: " + getCompetencias());
+        System.out.println("Desarrollo experimental: " + getDesarrolloexperimental());
+        System.out.println("Registro de datos: " + getRegistrodedatos());
+        System.out.println("Resultados: " + getResultados());
+        System.out.println("Analisis de resultados: " + getAnalisisderesultados());
+        System.out.println("Referencias: " + getReferencias());
+        System.out.println("Nomenclatura: " + getNomenclatura());
+        System.out.println("Anexos: " + getAnexos());
+        System.out.println("Protocolos de actuacion: " + getProtocolosdeactuacion());
+        System.out.println("Recomendaciones: " + getRecomendaciones());
+        System.out.println("Semaforo: " + getSemaforo());
     }
     
     @Override
@@ -56,7 +84,7 @@ public class Practica {
         hash = 29 * hash + Objects.hashCode(this.referencias);
         hash = 29 * hash + Objects.hashCode(this.nomenclatura);
         hash = 29 * hash + Objects.hashCode(this.anexos);
-        hash = 29 * hash + Objects.hashCode(this.protocolosdeactuación);
+        hash = 29 * hash + Objects.hashCode(this.protocolosdeactuacion);
         hash = 29 * hash + Objects.hashCode(this.recomendaciones);
         hash = 29 * hash + Objects.hashCode(this.semaforo);
         return hash;
@@ -122,7 +150,7 @@ public class Practica {
         if (!Objects.equals(this.anexos, other.anexos)) {
             return false;
         }
-        if (!Objects.equals(this.protocolosdeactuación, other.protocolosdeactuación)) {
+        if (!Objects.equals(this.protocolosdeactuacion, other.protocolosdeactuacion)) {
             return false;
         }
         if (!Objects.equals(this.recomendaciones, other.recomendaciones)) {
@@ -295,12 +323,12 @@ public class Practica {
         this.anexos = anexos;
     }
 
-    public String getProtocolosdeactuación() {
-        return protocolosdeactuación;
+    public String getProtocolosdeactuacion() {
+        return protocolosdeactuacion;
     }
 
-    public void setProtocolosdeactuación(String protocolosdeactuación) {
-        this.protocolosdeactuación = protocolosdeactuación;
+    public void setProtocolosdeactuacion(String protocolosdeactuacion) {
+        this.protocolosdeactuacion = protocolosdeactuacion;
     }
 
     public String getRecomendaciones() {

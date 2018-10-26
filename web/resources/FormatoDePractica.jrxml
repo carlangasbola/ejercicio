@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Formato de practica" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="552" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30" uuid="8ef8e082-5f23-4255-9894-910d754fbc42">
 	<property name="ireport.zoom" value="1.0000000000000027"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="44"/>
+	<property name="ireport.y" value="76"/>
 	<subDataset name="dataset1" uuid="17041853-1834-4e97-a990-1ea4604d387c"/>
 	<field name="numeropractica" class="java.lang.Integer"/>
 	<field name="titulopractica" class="java.lang.String"/>
@@ -11,6 +11,7 @@
 	<field name="autor" class="java.lang.String"/>
 	<field name="editor" class="java.lang.String"/>
 	<field name="objetivos" class="java.lang.String"/>
+	<field name="introduccion" class="java.lang.String"/>
 	<filterExpression><![CDATA[new Boolean(true)]]></filterExpression>
 	<background>
 		<band splitType="Stretch"/>
@@ -18,106 +19,106 @@
 	<title>
 		<band height="210" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="552" height="20" uuid="1f22bd15-870e-490c-8c4a-723dc2ef3331"/>
+				<reportElement uuid="1f22bd15-870e-490c-8c4a-723dc2ef3331" x="0" y="0" width="552" height="20"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[INSTITUTO POLITÉCNICO NACIONAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="20" width="552" height="17" uuid="54b98838-bbf5-431b-8d10-0d33462d3d64"/>
+				<reportElement uuid="54b98838-bbf5-431b-8d10-0d33462d3d64" x="0" y="20" width="552" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[UNIDAD PROFESIONAL INTERDISCIPLINARIA DE BIOTECNOLOGÍA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="37" width="552" height="17" uuid="bf9bc130-9d8d-49f8-abcd-6fd371476ded"/>
+				<reportElement uuid="bf9bc130-9d8d-49f8-abcd-6fd371476ded" x="0" y="37" width="552" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DEPARTAMENTO DE BIOINGENIERÍA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="54" width="552" height="17" uuid="05b7b40b-9536-4d03-84e6-faf3605f557b"/>
+				<reportElement uuid="05b7b40b-9536-4d03-84e6-faf3605f557b" x="0" y="54" width="552" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ACADEMIA DE FUNDAMENTOS DE BIOINGENIERÍA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="70" width="552" height="17" uuid="0014e651-3058-4b4d-b484-bd74e18169c7"/>
+				<reportElement uuid="0014e651-3058-4b4d-b484-bd74e18169c7" x="0" y="70" width="552" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LABORATORIO DE BIOINGENIERÍA]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="9" width="50" height="70" uuid="8bdd91f1-94cd-456c-9910-5490afee98c2"/>
-				<imageExpression><![CDATA["C:\\Users\\César\\Documents\\NetBeansProjects\\ejercicio\\web\\imagenes\\IPN 2.png"]]></imageExpression>
+				<reportElement uuid="8bdd91f1-94cd-456c-9910-5490afee98c2" x="0" y="9" width="50" height="70"/>
+				<imageExpression><![CDATA["C:\\Users\\César\\Documents\\NetBeansProjects\\ProyectoFinalTT2\\web\\imagenes\\IPN 2.png"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="473" y="13" width="79" height="62" uuid="f512b9c8-dbc7-4605-84bb-eec901463c4c"/>
-				<imageExpression><![CDATA["C:\\Users\\César\\Documents\\NetBeansProjects\\ejercicio\\web\\imagenes\\UPIBI 2.png"]]></imageExpression>
+				<reportElement uuid="f512b9c8-dbc7-4605-84bb-eec901463c4c" x="473" y="13" width="79" height="62"/>
+				<imageExpression><![CDATA["C:\\Users\\César\\Documents\\NetBeansProjects\\ProyectoFinalTT2\\web\\imagenes\\UPIBI 2.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="61" y="97" width="100" height="20" uuid="10d9bc11-cb0b-4f18-a415-4780d250133a"/>
+				<reportElement uuid="10d9bc11-cb0b-4f18-a415-4780d250133a" x="61" y="97" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{semestre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="97" width="61" height="20" uuid="44e5f13b-9f36-4d28-8baa-7b2085dba854"/>
+				<reportElement uuid="44e5f13b-9f36-4d28-8baa-7b2085dba854" x="0" y="97" width="61" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Semestre:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="117" width="532" height="20" uuid="c14d5943-f7c5-46a9-93f9-e42f7ac2ac8c"/>
+				<reportElement uuid="c14d5943-f7c5-46a9-93f9-e42f7ac2ac8c" x="0" y="117" width="532" height="20"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PRÁCTICA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="299" y="117" width="100" height="20" uuid="44b53973-ee1b-4628-bfb3-5986d3c59fd8"/>
+				<reportElement uuid="44b53973-ee1b-4628-bfb3-5986d3c59fd8" x="299" y="117" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numeropractica}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="143" width="552" height="24" uuid="b4834219-9d48-4705-b528-597b84c493e2"/>
+				<reportElement uuid="b4834219-9d48-4705-b528-597b84c493e2" x="0" y="143" width="552" height="24"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{titulopractica}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="167" width="50" height="20" uuid="5dada464-533a-461f-9b75-dfb0bafe8967"/>
+				<reportElement uuid="5dada464-533a-461f-9b75-dfb0bafe8967" x="0" y="167" width="50" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Autor:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="50" y="167" width="100" height="20" uuid="b11a0563-0a5a-4ed9-ae08-2b4316c6fe53"/>
+				<reportElement uuid="b11a0563-0a5a-4ed9-ae08-2b4316c6fe53" x="50" y="167" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{autor}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="190" width="50" height="20" uuid="3ab2b425-e342-47b0-a04b-7a959527bb0e"/>
+				<reportElement uuid="3ab2b425-e342-47b0-a04b-7a959527bb0e" x="0" y="190" width="50" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Editor:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="50" y="190" width="100" height="20" uuid="ec5803a4-ddc8-4af9-9755-b9b4ad3d4942"/>
+				<reportElement uuid="ec5803a4-ddc8-4af9-9755-b9b4ad3d4942" x="50" y="190" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11"/>
 				</textElement>
@@ -126,54 +127,48 @@
 		</band>
 	</title>
 	<detail>
-		<band height="273" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="40" width="552" height="56" uuid="c2796da3-e7bd-44f0-a2be-f872935cdb77"/>
+		<band height="305" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c2796da3-e7bd-44f0-a2be-f872935cdb77" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="40" width="552" height="30"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objetivos}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="20" width="552" height="20" uuid="b9a08a21-5efa-4b72-bec3-a7afbf463f70"/>
+				<reportElement uuid="b9a08a21-5efa-4b72-bec3-a7afbf463f70" x="0" y="20" width="552" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Objetivos]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="0" y="164" width="552" height="56" uuid="692bab38-b26c-43c2-9b5e-93033fcd9324"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Arial" size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{competencias}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="0" y="144" width="552" height="20" uuid="ea3b1423-63fe-4b14-895c-6dd2aa30fb4c"/>
+				<reportElement uuid="ea3b1423-63fe-4b14-895c-6dd2aa30fb4c" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="70" width="552" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Competencias]]></text>
 			</staticText>
+			<componentElement>
+				<reportElement uuid="069bc9f5-3153-4970-8eb3-9989e7b425e7" positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="-1" y="90" width="552" height="73" isPrintWhenDetailOverflows="true"/>
+				<hc:html xmlns:hc="http://jasperreports.sourceforge.net/htmlcomponent" xsi:schemaLocation="http://jasperreports.sourceforge.net/htmlcomponent http://jasperreports.sourceforge.net/xsd/htmlcomponent.xsd" scaleType="RealSize" horizontalAlign="Left" verticalAlign="Middle">
+					<hc:htmlContentExpression><![CDATA[$F{introduccion}]]></hc:htmlContentExpression>
+				</hc:html>
+			</componentElement>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="431" y="22" width="80" height="20" uuid="4b9e434c-86fc-444d-9fe4-4921e3a20132"/>
+				<reportElement uuid="4b9e434c-86fc-444d-9fe4-4921e3a20132" positionType="FixRelativeToBottom" x="431" y="5" width="80" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement positionType="FixRelativeToBottom" x="511" y="22" width="40" height="20" uuid="a8b9405f-d9f0-4dd9-bd4c-c8eeabdd2539"/>
+				<reportElement uuid="a8b9405f-d9f0-4dd9-bd4c-c8eeabdd2539" positionType="FixRelativeToBottom" x="511" y="5" width="40" height="20"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
-	</summary>
+	</pageFooter>
 </jasperReport>

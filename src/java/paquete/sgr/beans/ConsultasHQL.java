@@ -65,6 +65,19 @@ public class ConsultasHQL {
         return query.list();
     }
     
+    public List crearSelectStoreProcesure(String consulta) {
+        Session s = obtenerSession();
+        Query query = s.createSQLQuery(consulta);
+        //Si no se le manda datos no hara nada
+        if (!listPair.isEmpty()) {
+            for (Pair<String, Object> par : listPair) {
+                creaParametro(query, par);
+            }
+        }
+        vaciarListPair();
+        return query.list();
+    }
+    
     /**
      * 
      * @param o Objeto de la clase entity.pojos que va a actualizar

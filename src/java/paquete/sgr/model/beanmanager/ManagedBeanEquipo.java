@@ -32,12 +32,12 @@ public class ManagedBeanEquipo implements Serializable {
             FacesContext.getCurrentInstance()
                     .addMessage(null,
                             new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                    "Error", "No existen valores para eliminar"));
+                                    "Cuidado", "No existen valores para eliminar"));
         }
     }
     
     // Definicion de variables
-    private List<Equipo> lista;
+    static List<Equipo> lista;
     
     // Getters y Setters
     public List<Equipo> getLista() {
@@ -47,9 +47,5 @@ public class ManagedBeanEquipo implements Serializable {
     public void setLista(List<Equipo> lista) {
         this.lista = lista;
     }
-    
-    
-    
-    
-    
+
 }

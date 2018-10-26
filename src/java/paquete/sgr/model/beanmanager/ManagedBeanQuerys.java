@@ -85,8 +85,10 @@ public class ManagedBeanQuerys {
         return query.list();
     }
 
-    public void obtenerDatosUsuario() {
-        int userId = getIdUsuarioSession();
+    public String obtenerDatosUsuario() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        int userId = Integer.parseInt( params.get("id") );
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery(
                 "CALL SelectDatosUsuario(:idDatos_usuario)")
@@ -105,6 +107,7 @@ public class ManagedBeanQuerys {
             numeroSeguro = datos.getNumeroSeguro();
             identificador = datos.getIdentificador();
         }
+        return "ModificacionDatos";
     }
 
     public void deleteUsuario(int id) {

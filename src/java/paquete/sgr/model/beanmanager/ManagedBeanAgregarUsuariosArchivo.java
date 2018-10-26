@@ -19,6 +19,7 @@ import paquete.sgr.entity.pojos.DatosUsuario;
 import paquete.sgr.entity.pojos.Roles;
 import paquete.sgr.entity.pojos.Usuarios;
 import org.hibernate.Session;
+import paquete.sgr.model.beanmanager.ManagedBeanUpload;
 
 /**
  *
@@ -37,7 +38,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
     private Session hibernateSession;
     
     //Parametros para la creación de un usuario
-    private String archivoDestino = "C:\\Users\\sonri\\Documents\\NetBeansProjects\\librerias\\prueba.xls";
+    
     private String nombre;
     private String paterno;
     private String materno;
@@ -49,8 +50,11 @@ public class ManagedBeanAgregarUsuariosArchivo {
     private int tipousuario = 3;
     private int rol =3;
     private int idDatos =3;
+    private String filename = ManagedBeanUpload.fileName;
     
     public void LeerArchivosExcel(){
+        System.out.println(filename);
+        String archivoDestino = "C:\\Users\\sonri\\Documents\\NetBeansProjects\\TT\\ejercicio\\build\\web\\ExcelUpload\\"+filename;
         int contador=1;
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         try{
@@ -126,6 +130,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     datauser.setTelefono(telefono);
                     datauser.setCorreo(correo);
                     datauser.setNumeroSeguro(numeroSeguro);
+                    datauser.setNumeroSeguro(identificador);
                     // Hacemos la relacion de los datos de usuario con la tabla usuario
                     datauser.setUsuarios(user);
                     //Guardamos los datos del usuario

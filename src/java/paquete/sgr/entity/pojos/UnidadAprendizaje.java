@@ -12,6 +12,7 @@ public class UnidadAprendizaje  implements java.io.Serializable {
 
 
      private Integer idUnidadAprendizaje;
+     private Integer idUnidadTematica;
      private String nombre;
      private Set sesionDeLaboratorios = new HashSet(0);
      private Set unidadTematicas = new HashSet(0);
@@ -65,6 +66,14 @@ public class UnidadAprendizaje  implements java.io.Serializable {
     
     public void setUnidadGrupos(Set unidadGrupos) {
         this.unidadGrupos = unidadGrupos;
+    }
+
+    public Integer getIdUnidadTematica() {
+        return idUnidadTematica;
+    }
+
+    public void setIdUnidadTematica(Integer idUnidadTematica) {
+        this.idUnidadTematica = idUnidadTematica;
     }
 
 

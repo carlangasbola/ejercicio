@@ -19,6 +19,7 @@ public class ManagedBeanPracticas {
      */
     private Session hibernateSession;
     private int idUA;
+    private int idUT;
     
     private Date currentDate = new Date();
     
@@ -43,6 +44,7 @@ public class ManagedBeanPracticas {
         Usuarios user = new Usuarios();
         // Recupero la unidad de aprendizaje
         ua.setIdUnidadAprendizaje(idUA);
+        ua.setIdUnidadTematica(idUT);
         // Recupero el id del creador (que es el usuario en turno)
         
         
@@ -72,6 +74,12 @@ public class ManagedBeanPracticas {
         this.idUA = idUA;
     }
     
-    
+    public int getIdUT() {
+        return idUT;
+    }
+
+    public void setIdUT(int idUA) {
+        this.idUT = idUT;
+    }
     
 }
