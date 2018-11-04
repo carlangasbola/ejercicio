@@ -1,12 +1,14 @@
 <!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:jsf="http://xmlns.jcp.org/jsf"
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <head jsf:id="head">
-      <title> Unidad de aprendizaje </title>
-      <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
+        <title> Unidad de aprendizaje </title>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
     </head>
 
     <body jsf:id="body">
@@ -32,25 +34,33 @@
 
             <div class="row mt-4">
                 <div class="col">
-                    <h5 class="text-justify">
-                        <strong>Instrucciones</strong> : Para la creación de unidades de aprendizaje inserte el nombre
+                    <strong>Instrucciones : </strong>
+                    <div class="w-100"></div>
+                    <p class="text-justify ">
+                        Para la creación de unidades de aprendizaje inserte el nombre
                         de la nueva unidad, después de click en agregar unidad tematica coloque el nombre y seleccione la práctica
                         que se le asignará y después de click en crear, debe existir minímo una unidad de aprendizaje con una 
                         unidad temática y esta debe tener una práctica para su creación.
-                        <h:form>
-                            <br />
-                            <p:commandButton icon="fa fa-plus" style=" background-color:  #1A5179; color:white; border: none" value="Crear unidad temática" type="button" onclick="PF('dlg1').show();" />
-                        </h:form>
-                    </h5>
+                    </p>
 
-
-                    <form jsf:id="formua" class="mt-5">
+                    <div class="w-100"></div>
+                    <h:form>
                         <h6 ><strong> Creación de unidades de aprendizaje </strong></h6>
                         <div class="form-group">
-                            <label for="nombreUnidad" >Nombre la unidad de aprendizaje </label>
+                            <h:outputLabel for="Grupo" value="Selecciona el grupo" />
+                            <h:selectOneMenu id="Grupo" value="#{managedBeanUnidadesAprendizaje.idGrupo}" styleClass="form-control" >
+                                <f:selectItems value="#{managedBeanGrupos.grupos}" var="g" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}" />
+                            </h:selectOneMenu>
+                            <h:outputLabel for="Docente" value="Selecciona el docente" />
+                            <h:selectOneMenu id="Docente" value="#{managedBeanUnidadesAprendizaje.idDocente}" styleClass="form-control" >
+                                <!-- Le mando el 2 por que indica los docentes -->
+                                <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre}" />
+                            </h:selectOneMenu>
+                            <br />
+                            <h:outputLabel for="nombreUnidad" value="Nombre de la unidad de aprendizaje"></h:outputLabel>
                             <h:inputText id="nombreUnidad" styleClass="form-control mt-1" value="#{managedBeanUnidadesAprendizaje.unidadA}" required="true" />
-
                         </div>
+
                         <h:dataTable value="#{managedBeanUnidadesAprendizaje.unidadTematica}" var="u">
                             <h:column class="form-inline">
                                 <f:facet name="header" >
@@ -58,18 +68,12 @@
                                 </f:facet>
                                 <h:outputLabel for="tematica" value="Nombre de la unidad temática:" />
                                 <h:inputText id="tematica" styleClass="form-control mt-1" value="#{u.nombreunidad}"  required="true"/>
-
-                                Prueba no lee de la base aún
-                                <h:outputLabel for="multiple" value="Seleccionar práctica a asignar :" />
-                                <p:selectCheckboxMenu id="multiple" value="#{checkboxView.selectedCities2}" label="Prácticas" multiple="true"
-                                                      filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                    <f:selectItems value="#{checkboxView.cities}" />
-                                </p:selectCheckboxMenu>
                             </h:column>
                         </h:dataTable>
-                        <button class="btn colorverde mt-4 mr-2"  jsf:action="#{managedBeanUnidadesAprendizaje.enlargeList()}"> <i class="far fa-plus-square"></i> Agregar unidad temática </button>
+                        <button class="btn colorverde mt-4 mr-2"  jsf:action="#{managedBeanUnidadesAprendizaje.enlargeList()}"> <i class="far fa-plus-square"></i> Agregar nueva unidad temática </button>
                         <button class="btn colorrojo text-white mt-4"  jsf:action="#{managedBeanUnidadesAprendizaje.remove()}"> <i class="fas fa-trash"></i> Eliminar la ultima unidad de la lista </button>
-                    </form>
+                        <button class="btn colorazul mt-4"  jsf:action="#{managedBeanUnidadesAprendizaje.crearUnidad()}"> <i class="fas fa-plus"></i> Agregar unidad de aprendizaje </button>
+                    </h:form>
 
                 </div>
 
@@ -86,26 +90,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <ui:repeat  value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua">                       
-                                <tr>
-                                    <td>#{ua.nombre}</td>
-                                    <td>
-                                        <h:form>
+                            <h:form>
+                                <ui:repeat  value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua">                       
+                                    <tr>
+                                        <td>#{ua.nombre}</td>
+                                        <td>
                                             <p:commandButton style="background-color: #00661d;color: white;border:none" value="ver"  update=":detalleunidad" action="#{managedBeanUnidadesAprendizaje.getUnidadesTematicas(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eye"  oncomplete="PF('dlg2').show()" />
-                                        </h:form>
-                                    </td> 
-                                    <td>
-                                        <h:form>
+                                        </td> 
+                                        <td>
                                             <p:commandButton style="background-color: #830D18; color: white; border: none" value="Eliminar"  action="#{managedBeanUnidadesAprendizaje.eliminarUnidadAprendizaje(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eraser" ajax="false" />
-                                        </h:form>
-                                    </td> 
-                                    <td>
-                                        <h:form>
+                                        </td> 
+                                        <td>
                                             <p:commandButton style="background-color: #1A5179; color: white; border: none" value="Update"   icon="fa fa-fw fa-edit" ajax="false" disabled="true" />
-                                        </h:form>
-                                    </td> 
-                                </tr>                      
-                            </ui:repeat>
+                                        </td> 
+                                    </tr>                      
+                                </ui:repeat>
+                            </h:form>
                         </tbody>
                     </table>
                 </div>
@@ -120,32 +120,14 @@
             </ui:repeat>
         </p:dialog>
 
-        <h:form>
-            <p:dialog header="Crear Unidad Temática" id="detalleunidad1" widgetVar="dlg1" modal="true" height="200">
 
-                <h:outputLabel for="Grupo" value="Selecciona el grupo" />
-                <h:selectOneMenu id="Grupo" value="#{managedBeanUnidadesAprendizaje.idGrupo}" styleClass="form-control" >
-                    <f:selectItems value="#{managedBeanGrupos.grupos}" var="g" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}" />
-                </h:selectOneMenu>
-                <h:outputLabel for="Docente" value="Selecciona el docente" />
-                <h:selectOneMenu id="Docente" value="#{managedBeanUnidadesAprendizaje.idDocente}" styleClass="form-control" >
-                    <!-- Le mando el 2 por que indica los docentes -->
-                    <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre}" />
-                </h:selectOneMenu>
-                <br />
-                <p:commandButton value="Crear unidad de aprendizaje" type="submit" action="#{managedBeanUnidadesAprendizaje.crearUnidad()}" ajax="false"/>
-            </p:dialog>
-        </h:form>
 
-        <!-- Bootstrap core JavaScript
-            ================================================== -->
+        <!-- Bootstrap core JavaScript ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
-
-
 
     </body>
 

@@ -16,6 +16,7 @@ import paquete.sgr.entity.pojos.UnidadTematica;
 import paquete.sgr.entity.pojos.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import paquete.sgr.beans.ConsultasHQL;
 
 /**
  *
@@ -58,25 +59,18 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
                                     "Error", "No existen valores para eliminar"));
         }
     }
-    
-    public void eliminarUnidadAprendizaje(int id){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+
+    public void eliminarUnidadAprendizaje(int id) {
+        ConsultasHQL consulta = new ConsultasHQL();
         UnidadAprendizaje ua = new UnidadAprendizaje();
-        try{
-            session.beginTransaction();
-            ua.setIdUnidadAprendizaje(id);
-            session.delete(ua);
-            session.getTransaction().commit();
-        }catch(Exception e){
-            session.getTransaction().rollback();
-            System.out.println("Exepción :" + e);
-        }   
+        ua.setIdUnidadAprendizaje(id);
+        consulta.eliminarObjeto(ua);
     }
 
     public List getUnidadesTematicas(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query;
-        query = session.createSQLQuery("CALL SelectUnidadesTematicas(:id)").setParameter("id", id);                
+        query = session.createSQLQuery("CALL SelectUnidadesTematicas(:id)").setParameter("id", id);
         lista = query.list();
         return lista;
     }
@@ -97,7 +91,7 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
             Grupo grupo = new Grupo();
             Usuarios usuario = new Usuarios();
             UnidadGrupo ug = new UnidadGrupo();
-            
+
             UnidadAprendizaje ua = new UnidadAprendizaje();
             ua.setNombre(unidadA);
             session.save(ua);
@@ -113,13 +107,13 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
             // Obtenemos el usuario y el grupo
             usuario.setIdUsuarios(idDocente);
             grupo.setIdGrupo(idGrupo);
-            
+
             // Asignamos el grupo usuario y la unidad de aprendizaje a la unidad grupo
             ug.setGrupo(grupo);
             ug.setUsuarios(usuario);
             ug.setUnidadAprendizaje(ua);
             session.save(ug);
-            
+
             session.getTransaction().commit();
 
             FacesContext.getCurrentInstance()
@@ -154,8 +148,7 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     public void setUnidadA(String unidadA) {
         this.unidadA = unidadA;
     }
-    
-    
+
     public int getIdGrupo() {
         return idGrupo;
     }
