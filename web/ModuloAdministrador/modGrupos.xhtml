@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <head jsf:id="head">
         <title>Módulo de grupos</title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
@@ -11,7 +12,10 @@
 
         <!-- Barra de navegación -->
         <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
-
+        
+        <h:form>  
+            <p:growl id="growl" showDetail="true" sticky="false"  />  
+        </h:form>
 
         <div class="container text-center">
             <div class="row ">
@@ -53,29 +57,23 @@
                         <h:form>
                             <ui:repeat var="g" value="#{ managedBeanGrupos.getGrupos() }" >
                                 <tr>
-                                    <td> <h:commandLink value = "#{g.nombre}" action = "#{managedBeanGrupos.redirecionarGruposAlumnos(g.idGrupo)}" /> </td>
+                                    <td> <h:commandLink value = "#{g.nombre}" action = "#{managedBeanGrupos.redirecionarGrupoUnidadesAprendizaje(g.idGrupo)}" /> </td>
                                     <td>#{g.cupo}</td>
                                     <!-- Agregar el metodo eliminar grupo -->
                                     <td>
-                                        <form jsf:id="f">
-                                            <a>
-                                                Modificar un grupo #{g.idGrupo}
-                                            </a>
-                                        </form>
+                                        <a>
+                                            Modificar un grupo #{g.idGrupo}
+                                        </a>
                                     </td>
                                     <td>
-                                        <form jsf:id="formeliminargrupo">
-                                            <a jsf:action="#{managedBeanGrupos.eliminarGrupo(g.idGrupo)}"> Eliminar grupo </a>
-                                        </form>
+                                        <a jsf:action="#{managedBeanGrupos.eliminarGrupo(g.idGrupo)}"> Eliminar grupo </a>                        
                                     </td>
                                 </tr>
                             </ui:repeat>
                         </h:form>
                     </table>
-
                 </div>
             </div>
-
         </div>
 
 
@@ -93,10 +91,11 @@
                     </div>
                     <div class="modal-body">
                         <form jsf:id="formulario">
+                            <p class="text-danger lead">El nombre del grupo no se puede repetir</p>
                             <label for="nombre">Nombre del grupo</label>
                             <input id="nombre" class="form-control" type="text" jsf:value="#{managedBeanGrupos.nombregrupo}" />
                             <label for="cupo">Cupo del grupo</label>
-                            <input id="cupo" class="form-control" type="number" min="6" max="30" jsf:value="#{managedBeanGrupos.cupogrupo}"/>
+                            <input id="cupo" class="form-control" type="number" min="6" max="40" jsf:value="#{managedBeanGrupos.cupogrupo}"/>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearGrupo}">Crear grupo</button>
@@ -114,11 +113,8 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-
-
 
     </body>
 </html>

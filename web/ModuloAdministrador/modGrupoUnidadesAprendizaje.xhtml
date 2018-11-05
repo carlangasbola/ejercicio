@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <head jsf:id="head">
+        <title>Unidades Aprendizaje grupo</title>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" />
+    </head>
+
+    <body jsf:id="body">
+
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
+
+        <!-- Etiqueta para mostrar un mensaje -->
+        <h:form>
+            <p:growl id="growl" showDetail="true" sticky="false" />
+        </h:form>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center my-4"> Unidades de aprendizaje asignadas que tiene este grupo </h2>
+                    <p> Nombre del grupo : #{managedBeanGrupos.g.nombre}</p>
+                    <p> Cupo de alumnos  : #{managedBeanGrupos.g.cupo}</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    
+                    <h:form>
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Unidades de aprendizaje</th>
+                                    <th scope="col">Ver alumnos inscritos </th> 
+                                    <th scope="col">Ver Prácticas asignadas </th> 
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <ui:repeat value="#{managedBeanGrupos.ua}" var="ua" varStatus="estatus">
+                                <tr>
+                                    <td>#{estatus.index +1}</td>
+                                    <td>#{ua.nombre}</td>
+                                    <td>
+                                        <button class="btn">ver alumnos</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn">ver prácticas</button>
+                                    </td>
+                                </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </h:form>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Bootstrap core JavaScript
+                ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

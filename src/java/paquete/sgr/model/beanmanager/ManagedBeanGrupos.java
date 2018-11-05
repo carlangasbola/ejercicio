@@ -1,7 +1,10 @@
 package paquete.sgr.model.beanmanager;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import paquete.sgr.entity.util.HibernateUtil;
 import java.util.List;
+import java.util.Set;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import paquete.sgr.entity.pojos.Grupo;
@@ -10,6 +13,7 @@ import paquete.sgr.entity.pojos.Usuarios;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
+import paquete.sgr.entity.pojos.UnidadGrupo;
 
 /**
  *
@@ -19,9 +23,6 @@ import paquete.sgr.beans.ConsultasHQL;
 @RequestScoped
 public class ManagedBeanGrupos {
 
-    /**
-     * Creates a new instance of ManagedBeanGrupos
-     */
     private Session hibernateSession;
     private String nombregrupo;
     private int cupogrupo;
@@ -31,12 +32,16 @@ public class ManagedBeanGrupos {
     private String docenteauxiliarunidad;
     private int grupo;
     private int docente;
-    
+
     /* Todos los alumnos que estan en un grupo */
     private List alumnosGrupo;
+    /* Las unidades que tiene un grupo*/
+    private List<UnidadAprendizaje> ua;
+    /* Obtener un solo grupo */
+    private Grupo g;
 
-    /*Parametros grupo*/
     public ManagedBeanGrupos() {
+        ua = new ArrayList<>();
     }
 
     public void actualizarGrupo(int idgrupo) {
@@ -61,8 +66,8 @@ public class ManagedBeanGrupos {
         List<Grupo> grupos = query.list();
         return grupos;
     }
-    
-    public String redirecionarGruposAlumnos(int IdG){
+
+    public String redirecionarGruposAlumnos(int IdG) {
         ConsultasHQL consulta = new ConsultasHQL();
         grupo = IdG;
         consulta.crearListPair("Id_Grupo", IdG);
@@ -71,88 +76,73 @@ public class ManagedBeanGrupos {
         return "GruposAlumnos";
     }
 
-    public List<UnidadAprendizaje> getUnidadesA() {
-        /*No regresa las unidades de aprendizaje*/
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        String hql = " FROM UnidadAprendizaje";
-        Query query = hibernateSession.createQuery(hql);
-        List<UnidadAprendizaje> results = query.list();
-        /*Si cierro la conexion ya no funciona*/
-        return results;
+    public String redirecionarGrupoUnidadesAprendizaje(int IdG) {
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.getHibernateSession();
+        Query query = hibernateSession.createSQLQuery("CALL SelectUnidadesAprendizajeGrupo (:idGrupo)")
+                .addEntity(UnidadAprendizaje.class)
+                .setParameter("idGrupo", IdG);
+        ua = query.list();
+        informacionGrupo(IdG);
+        return "modGrupoUnidadesAprendizaje";
+    }
 
+    public List<UnidadAprendizaje> getUnidadesA() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        List<UnidadAprendizaje> results = consulta.crearSelectQuery("FROM UnidadAprendizaje");
+        return results;
     }
 
     public List<Usuarios> getDocentes() {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
         /*AQUI DEBERIAMOS OBTENER EL NOMBRE DEL USUARIO DE LA TABLA DATOS DE USUARIOS
         PERO LO MANEJO ASI POR AHORA PARA FINES PRACTICOS*/
  /*
             Definir idrol
-            1.- Docente
-            2.- Administrador
-            3.- Alumno
-            4.- Tecnico
+            1.- Administrador
+            2.- Docente
+            3.- Tecnico
+            4.- Alumno
          */
-        String hql = " FROM Usuarios where idrol=1";
-        Query query = hibernateSession.createQuery(hql);
-        List<Usuarios> results = query.list();
-        hibernateSession.close();
+        ConsultasHQL consulta = new ConsultasHQL();
+        consulta.crearListPair("rol", 2);
+        List<Usuarios> results = consulta.crearSelectQuery("FROM Usuarios where idrol = :rol");
         return results;
-
     }
 
     public void eliminarGrupo(int idgrupo) {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        hibernateSession.beginTransaction();
-        Grupo grupoO = new Grupo();
-        // select *from grupo where idgrupo = idgrupo
-        grupoO.setIdGrupo(idgrupo);
-        hibernateSession.delete(grupoO);
-        //Commit the transaction
-        hibernateSession.getTransaction().commit();
-        hibernateSession.close();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.getHibernateSession();
+        Grupo g = (Grupo) s.load(Grupo.class, idgrupo);
+        consulta.eliminarObjeto(g);
     }
 
     public void eliminarUnidadA(int idunidad) {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        hibernateSession.beginTransaction();
-        UnidadAprendizaje ua = new UnidadAprendizaje();
-        ua.setIdUnidadAprendizaje(idunidad);
-        hibernateSession.delete(ua);
-        //Commit the transaction
-        hibernateSession.getTransaction().commit();
-        hibernateSession.close();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.getHibernateSession();
+        UnidadAprendizaje ua = (UnidadAprendizaje) s.load(UnidadAprendizaje.class, idunidad);
+        consulta.eliminarObjeto(ua);
     }
 
     public void crearGrupo() {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        hibernateSession.beginTransaction();
+        Mensajes msj = new Mensajes();
+        ConsultasHQL consulta = new ConsultasHQL();
         Grupo grupoO = new Grupo(nombregrupo, cupogrupo);
-        hibernateSession.save(grupoO);
-        //Commit the transaction
-        hibernateSession.getTransaction().commit();
-        hibernateSession.close();
+        if (consulta.insertarObjeto(grupoO)) {
+            msj.setTitulo("!Operación exitosa¡");
+            msj.setMensaje("Grupo creado");
+            msj.MensajeInfo();
+        } else {
+            msj.setTitulo("Ocurrió un error");
+            msj.setMensaje("No se inserto el grupo, probablemente el nombre ya existe");
+            msj.MensajePrecaucion();
+        }
     }
-    
-    /// YA NO FUNCIONA 
-    public void crearUnidaAprendizaje() {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        hibernateSession.beginTransaction();
-        /*Obtener el grupo y el usuario sus llaves foraneas*/
-        Grupo group = new Grupo();
-        Usuarios user = new Usuarios();
 
-        group.setIdGrupo(grupo);
-        user.setIdUsuarios(docente);
-
-        /* Mandamos los parametros para la creación de la unidad */
-        //UnidadAprendizaje unidad = new UnidadAprendizaje(group, user, nombreunidad, docenteauxiliarunidad);
-
-        //Guardamos la unidad
-       // hibernateSession.save(unidad);
-        //Commit the transaction
-        hibernateSession.getTransaction().commit();
-        hibernateSession.close();
+    public void informacionGrupo(int id) {
+        UnidadGrupo ug = new UnidadGrupo();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.getHibernateSession();
+        g = (Grupo) s.load(Grupo.class, id);
     }
 
     /*Getters y setters*/
@@ -203,7 +193,7 @@ public class ManagedBeanGrupos {
     public void setDocente(int docente) {
         this.docente = docente;
     }
-    
+
     public List getAlumnosGrupo() {
         return alumnosGrupo;
     }
@@ -212,5 +202,20 @@ public class ManagedBeanGrupos {
         this.alumnosGrupo = alumnosGrupo;
     }
 
+    public List<UnidadAprendizaje> getUa() {
+        return ua;
+    }
+
+    public void setUa(List<UnidadAprendizaje> ua) {
+        this.ua = ua;
+    }
+
+    public Grupo getG() {
+        return g;
+    }
+
+    public void setG(Grupo g) {
+        this.g = g;
+    }
 
 }

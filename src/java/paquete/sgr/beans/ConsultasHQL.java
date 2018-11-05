@@ -1,8 +1,5 @@
 package paquete.sgr.beans;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
 import paquete.sgr.entity.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +45,7 @@ public class ConsultasHQL {
     }
 
     /**
-     * 
+     *
      * @param consulta Consulta de tipo String como puede ser "FROM Usuarios"
      * @return Lista de tipo Object de resultados acorde la consulta enviada
      */
@@ -64,7 +61,7 @@ public class ConsultasHQL {
         vaciarListPair();
         return query.list();
     }
-    
+
     public List crearSelectStoreProcesure(String consulta) {
         Session s = obtenerSession();
         Query query = s.createSQLQuery(consulta);
@@ -77,9 +74,9 @@ public class ConsultasHQL {
         vaciarListPair();
         return query.list();
     }
-    
+
     /**
-     * 
+     *
      * @param o Objeto de la clase entity.pojos que va a actualizar
      */
     public void actualizarObjeto(Object o) {
@@ -92,22 +89,27 @@ public class ConsultasHQL {
         } catch (HibernateException ex) {
             System.err.println(ex);
             tx.rollback();
+        } finally {
+            s.flush();
+            s.clear();
         }
     }
-    
-    public void insertarObjeto(Object o) {
+
+    public boolean insertarObjeto(Object o) {
         Session s = obtenerSession();
         Transaction tx = null;
         tx = s.beginTransaction();
         try {
             s.save(o);
             tx.commit();
+            return true;
         } catch (HibernateException ex) {
             System.err.println(ex);
             tx.rollback();
-        }
+            return false;
+        } 
     }
-    
+
     public void eliminarObjeto(Object o) {
         Session s = obtenerSession();
         Transaction tx = null;
@@ -118,6 +120,9 @@ public class ConsultasHQL {
         } catch (HibernateException ex) {
             System.err.println(ex);
             tx.rollback();
+        } finally {
+            s.flush();
+            s.clear();
         }
     }
 
@@ -129,7 +134,7 @@ public class ConsultasHQL {
             return HibernateUtil.getSessionFactory().openSession();
         }
     }
-    
+
     // El metodo finalize termina la conexion a la base de datos si no esta en uso
     @Override
     public void finalize() {
@@ -138,7 +143,7 @@ public class ConsultasHQL {
         }
     }
 
-// Guardar Datos en la sesión
+    // Guardar Datos en la sesión
     public void guardarDatosSession(String identificador, Object valor) {
         sessionMap.put(identificador, valor);
     }
@@ -148,10 +153,14 @@ public class ConsultasHQL {
         return sessionMap.get(identificador);
     }
 
-    /*******************************
-        Getters y Setters Del Codigo
-    *********************************/
-    //Getters y setters de listPair
+    
+    /**
+     * *****************************
+     * Getters y Setters Del Codigo 
+     * *******************************
+     * @return 
+     */
+    
     public ArrayList<Pair<String, Object>> getListPair() {
         return listPair;
     }
@@ -174,5 +183,9 @@ public class ConsultasHQL {
 
     public void setExternalContext(ExternalContext externalContext) {
         this.externalContext = externalContext;
+    }
+    
+    public Session getHibernateSession() {
+        return hibernateSession;
     }
 }
