@@ -54,18 +54,17 @@ public class ManagedBeanQuerys {
     public void setNombrecompleto(String nombrecompleto) {
         this.nombrecompleto = nombrecompleto;
     }
-    
+
     static String nombrecompleto;
-    
-    public String ObtenerNombreUsuario(){
+
+    public String ObtenerNombreUsuario() {
         ConsultasHQL consulta = new ConsultasHQL();
-        
 
         int id = (int) consulta.obtenerDatosSesion("UserId");
-        
+
         consulta.crearListPair("idUsuario", id);
         List<DatosUsuario> du = consulta.crearSelectQuery("FROM DatosUsuario WHERE usuarios.idUsuarios = :idUsuario");
-        
+
         nombrecompleto = du.get(0).getNombre() + " " + du.get(0).getApellidoPaterno() + " " + du.get(0).getApellidoMaterno();
         return "creacionPractica1";
     }
@@ -75,7 +74,6 @@ public class ManagedBeanQuerys {
         Query query = hibernateSession.createSQLQuery("CALL SelectAllDatosUsuarios()").addEntity(DatosUsuario.class);
         return query.list();
     }
-    
 
     public List obtenerUsuarios(int id) {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
@@ -88,7 +86,7 @@ public class ManagedBeanQuerys {
     public String obtenerDatosUsuario() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-        int userId = Integer.parseInt( params.get("id") );
+        int userId = Integer.parseInt(params.get("id"));
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery(
                 "CALL SelectDatosUsuario(:idDatos_usuario)")
@@ -166,48 +164,57 @@ public class ManagedBeanQuerys {
         Transaction tx = hibernateSession.beginTransaction();
         consulta.crearListPair("userId", userId);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
+        
+        u = (Usuarios) hibernateSession.load(Usuarios.class, userId);
 
-        try {
-            u.setIdUsuarios(userId);
-            // Si no tiene datos de usuario
-            if (dulist.isEmpty()) {
-                // Obtenemos la referencia a datos de usuario
-                du.setUsuarios(u);
-                du.setIdentificador(identificador);
-                du.setNombre(nombre);
-                du.setApellidoPaterno(paterno);
-                du.setApellidoMaterno(materno);
-                du.setTelefono(telefono);
-                du.setCorreo(correo);
-                du.setNumeroSeguro(numeroSeguro);
-                hibernateSession.save(du);
-                tx.commit();
+        if ( password.equals( u.getPasssword() ) ) {
 
-            } else {
-                du.setUsuarios(u);
-                du.setIdDatosUsuario(dulist.get(0).getIdDatosUsuario());
-                du.setIdentificador(identificador);
-                du.setNombre(nombre);
-                du.setApellidoPaterno(paterno);
-                du.setApellidoMaterno(materno);
-                du.setTelefono(telefono);
-                du.setCorreo(correo);
-                du.setNumeroSeguro(numeroSeguro);
-                hibernateSession.update(du);
-                tx.commit();
+            try {
+                // Si no tiene datos de usuario
+                if (dulist.isEmpty()) {
+                    // Obtenemos la referencia a datos de usuario
+                    du.setUsuarios(u);
+                    du.setIdentificador(identificador);
+                    du.setNombre(nombre);
+                    du.setApellidoPaterno(paterno);
+                    du.setApellidoMaterno(materno);
+                    du.setTelefono(telefono);
+                    du.setCorreo(correo);
+                    du.setNumeroSeguro(numeroSeguro);
+                    hibernateSession.save(du);
+                    tx.commit();
+
+                } else {
+                    du.setUsuarios(u);
+                    du.setIdDatosUsuario(dulist.get(0).getIdDatosUsuario());
+                    du.setIdentificador(identificador);
+                    du.setNombre(nombre);
+                    du.setApellidoPaterno(paterno);
+                    du.setApellidoMaterno(materno);
+                    du.setTelefono(telefono);
+                    du.setCorreo(correo);
+                    du.setNumeroSeguro(numeroSeguro);
+                    hibernateSession.update(du);
+                    tx.commit();
+                }
+
+                m.setTitulo("!Correcto¡");
+                m.setMensaje("Se actualizó tu información");
+                m.MensajeInfo();
+
+            } catch (Exception e) {
+                tx.rollback();
+                m.setTitulo("Fatal!");
+                m.setMensaje("Algo salio mal :v");
+                m.MensajeFaltal();
+                System.out.println("Exepcion : " + e);
             }
-
-            m.setTitulo("!Correcto¡");
-            m.setMensaje("Se actualizó tu información");
-            m.MensajeInfo();
-
-        } catch (Exception e) {
-            tx.rollback();
-            m.setTitulo("Fatal!");
-            m.setMensaje("Algo salio mal :v");
-            m.MensajeFaltal();
-            System.out.println("Exepcion : " + e);
+        } else {
+            m.setTitulo("Eroor");
+            m.setMensaje("La contraseña no es correcta");
+            m.MensajePrecaucion();
         }
+
     }
 
     public void crearUsuario() {

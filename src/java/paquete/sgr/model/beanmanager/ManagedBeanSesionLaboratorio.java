@@ -6,6 +6,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import org.hibernate.Session;
+import paquete.sgr.beans.ConsultasHQL;
+import paquete.sgr.entity.pojos.Grupo;
+import paquete.sgr.entity.pojos.SesionDeLaboratorio;
+import paquete.sgr.entity.pojos.UnidadAprendizaje;
+import paquete.sgr.entity.pojos.Usuarios;
+import paquete.sgr.model.beanmanager.dropdownview.DropdownViewGrupoUnidades;
 
 /**
  *
@@ -14,24 +22,57 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "SesionLaboratorio")
 @RequestScoped
 public class ManagedBeanSesionLaboratorio {
-    
+
     // Constructor
-    public ManagedBeanSesionLaboratorio() {        
+    public ManagedBeanSesionLaboratorio() {
     }
 
     private Date fechaSesison;
-    private int idUnidadAprendizaje;
-    private int idGrupo;
+    private String idUnidadAprendizaje;
+    private String idGrupo;
     private int idTecnico;
     private String docenteAuxiliar;
-    
-    public String diaMaximo(){
-        return "1/1/26";
+
+    @ManagedProperty(value = "#{DropdownViewGrupoUnidades}")
+    private DropdownViewGrupoUnidades grupoUnidades;
+
+    public String diaMaximo() {
+        return "31/12/18";
     }
-    
-    /** Getters and Setters
-     * @return  **/
-    
+
+    public void crearSesionLaboratorio() {
+        Mensajes msj = new Mensajes();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.getHibernateSession();
+        SesionDeLaboratorio sl = new SesionDeLaboratorio();
+
+        UnidadAprendizaje ua = (UnidadAprendizaje) s.load(UnidadAprendizaje.class, Integer.parseInt(grupoUnidades.getId_UnidadAprendizaje()));
+        Grupo g = (Grupo) s.load(Grupo.class, Integer.parseInt(grupoUnidades.getId_Grupo()));
+        Usuarios u = (Usuarios) s.load(Usuarios.class, idTecnico);
+
+        sl.setFecha(fechaSesison);
+        sl.setUnidadAprendizaje(ua);
+        sl.setUsuarios(u);
+        sl.setDocenteAuxiliar(docenteAuxiliar);
+        sl.setGrupo(g);
+
+        if (consulta.insertarObjeto(sl)) {
+            msj.setTitulo("Exíto");
+            msj.setMensaje("Evento creado exitosamente");
+            msj.MensajeInfo();
+        } else {
+            msj.setTitulo("Error");
+            msj.setMensaje("Ocurrio un error al procesar la solicitud");
+            msj.MensajeError();
+        }
+
+    }
+
+    /**
+     * Getters and Setters
+     *
+     * @return  *
+     */
     public Date getFechaSesison() {
         return fechaSesison;
     }
@@ -40,19 +81,19 @@ public class ManagedBeanSesionLaboratorio {
         this.fechaSesison = fechaSesison;
     }
 
-    public int getIdUnidadAprendizaje() {
+    public String getIdUnidadAprendizaje() {
         return idUnidadAprendizaje;
     }
 
-    public void setIdUnidadAprendizaje(int idUnidadAprendizaje) {
+    public void setIdUnidadAprendizaje(String idUnidadAprendizaje) {
         this.idUnidadAprendizaje = idUnidadAprendizaje;
     }
 
-    public int getIdGrupo() {
+    public String getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(int idGrupo) {
+    public void setIdGrupo(String idGrupo) {
         this.idGrupo = idGrupo;
     }
 
@@ -72,6 +113,12 @@ public class ManagedBeanSesionLaboratorio {
         this.docenteAuxiliar = docenteAuxiliar;
     }
     
-    
-    
+    public DropdownViewGrupoUnidades getGrupoUnidades() {
+        return grupoUnidades;
+    }
+
+    public void setGrupoUnidades(DropdownViewGrupoUnidades grupoUnidades) {
+        this.grupoUnidades = grupoUnidades;
+    }
+
 }
