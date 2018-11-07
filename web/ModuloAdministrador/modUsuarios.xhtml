@@ -6,11 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <!-- Bootstrap core JavaScript
         ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
     <head jsf:id="head">
         <title>Bienvenido Administrador</title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
@@ -46,6 +46,31 @@
                     <div class="w-100" ></div>
                     <!-- Crear el codigo de programación -->
                     <h:form id="formActualizarFoto">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="Grupo">Grupo </label>
+                            <div class="col-sm-9">
+                                <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
+                                    <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
+                                    <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
+                                </p:selectOneMenu>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="ua">Unidad de Aprendizaje </label>
+                            <div class="col-sm-9">
+
+                                <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
+                                    <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
+                                </p:selectOneMenu>
+
+                            </div>
+                        </div>
+
                         <div class="col-5 form-group">
                             <h:outputLabel for="Grupo" value="Selecciona el grupo" />
                             <h:selectOneMenu id="Grupo" value="#{managedBeanUnidadesAprendizaje.idGrupo}" styleClass="form-control" >
@@ -54,8 +79,8 @@
                         </div>
                         <div class="w-100" ></div>
                         Seleccionar archivo:<p:fileUpload fileUploadListener="#{managedBeanUpload.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                                      update="messages" sizeLimit="1000000" fileLimit="10" allowTypes="/(\.|\/)(xls)$/" oncomplete="PF('dlgActualizarFoto').hide()" fileLimitMessage="El maximo de imagenes es 1"  invalidFileMessage="Se debe seleccionar un archivo xls"
-                                      cancelLabel="Cancelar" uploadLabel="Actualizar"/>
+                                                          update="messages" sizeLimit="1000000" fileLimit="10" allowTypes="/(\.|\/)(xls)$/" oncomplete="PF('dlgActualizarFoto').hide()" fileLimitMessage="El maximo de imagenes es 1"  invalidFileMessage="Se debe seleccionar un archivo xls"
+                                                          cancelLabel="Cancelar" uploadLabel="Actualizar"/>
 
                         <p:growl id="messages" showDetail="true" />
                         <br/><br/>

@@ -8,16 +8,21 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
 import paquete.sgr.entity.pojos.Grupo;
+import paquete.sgr.entity.pojos.SesionDeLaboratorio;
 import paquete.sgr.entity.pojos.UnidadAprendizaje;
+import paquete.sgr.entity.pojos.Usuarios;
+import paquete.sgr.model.beanmanager.ManagedBeanSesionLaboratorio;
+import paquete.sgr.model.beanmanager.Mensajes;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class DropdownViewGrupoUnidades implements Serializable {
 
     private Map<String, Map<String, String>> data = new HashMap<String, Map<String, String>>();
@@ -25,6 +30,9 @@ public class DropdownViewGrupoUnidades implements Serializable {
     private String id_UnidadAprendizaje;
     private Map<String, String> grupos;
     private Map<String, String> unidades_aprendizaje;
+
+    @ManagedProperty(value = "#{SesionLaboratorio}")
+    private ManagedBeanSesionLaboratorio sesionLaboratorio;
 
     @PostConstruct
     public void init() {
@@ -50,11 +58,39 @@ public class DropdownViewGrupoUnidades implements Serializable {
             List<UnidadAprendizaje> uas = query2.list();
             
             map = new HashMap<>();
-            for (UnidadAprendizaje listua : uas) {
-                String a = listua.getIdUnidadAprendizaje().toString();
-                map.put(  listua.getNombre() + " " + a,  listua.getIdUnidadAprendizaje().toString() );
+            for (UnidadAprendizaje listua : uas) {             
+                map.put(  listua.getNombre() ,  listua.getIdUnidadAprendizaje().toString() );
             }
             data.put(g.getIdGrupo().toString(), map);
+        }
+
+    }
+    
+    public void crearSesionLaboratorio() {
+        
+        Mensajes msj = new Mensajes();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.getHibernateSession();
+         SesionDeLaboratorio sl = new SesionDeLaboratorio();
+
+        UnidadAprendizaje ua = (UnidadAprendizaje) s.load(UnidadAprendizaje.class, Integer.parseInt( id_UnidadAprendizaje ));
+        Grupo g = (Grupo) s.load(Grupo.class, Integer.parseInt(id_Grupo ));
+        Usuarios u = (Usuarios) s.load(Usuarios.class, sesionLaboratorio.getIdTecnico());
+
+        sl.setFecha(sesionLaboratorio.getFechaSesison());
+        sl.setUnidadAprendizaje(ua);
+        sl.setUsuarios(u);
+        sl.setDocenteAuxiliar(sesionLaboratorio.getDocenteAuxiliar());
+        sl.setGrupo(g);
+
+        if (consulta.insertarObjeto(sl)) {
+            msj.setTitulo("Exíto");
+            msj.setMensaje("Evento creado exitosamente");
+            msj.MensajeInfo();
+        } else {
+            msj.setTitulo("Error");
+            msj.setMensaje("Ocurrio un error al procesar la solicitud");
+            msj.MensajeError();
         }
 
     }
@@ -86,6 +122,15 @@ public class DropdownViewGrupoUnidades implements Serializable {
     public Map<String, String> getUnidades_aprendizaje() {
         return unidades_aprendizaje;
     }
+    
+    public ManagedBeanSesionLaboratorio getSesionLaboratorio() {
+        return sesionLaboratorio;
+    }
+
+    public void setSesionLaboratorio(ManagedBeanSesionLaboratorio SesionLaboratorio) {
+        this.sesionLaboratorio = SesionLaboratorio;
+    }
+    
 
     public void onCountryChange() {
         if (id_Grupo != null && !id_Grupo.equals("")) {
