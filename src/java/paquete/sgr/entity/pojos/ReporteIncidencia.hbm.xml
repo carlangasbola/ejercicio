@@ -1,35 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/11/2018 09:24:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.ReporteIncidencia" optimistic-lock="version" table="reporte_incidencia">
-    <id name="idReporte" type="java.lang.Integer">
-      <column name="idReporte"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="paquete.sgr.entity.pojos.SesionDeLaboratorio" fetch="select" name="sesionDeLaboratorio">
-      <column name="idSesion" not-null="true"/>
-    </many-to-one>
-    <property name="nombre" type="string">
-      <column length="45" name="Nombre" not-null="true"/>
-    </property>
-    <property name="documento" type="binary">
-      <column name="Documento" not-null="true"/>
-    </property>
-    <property name="fecha" type="timestamp">
-      <column length="19" name="Fecha" not-null="true"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="45" name="Estado" not-null="true"/>
-    </property>
-    <property name="actualizacion" type="timestamp">
-      <column length="19" name="Actualizacion" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="historialEmergencias" table="historial_emergencia">
-      <key>
-        <column name="idReporte" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.HistorialEmergencia"/>
-    </set>
-  </class>
+    <class name="paquete.sgr.entity.pojos.ReporteIncidencia" table="reporte_incidencia" catalog="dbsgr" optimistic-lock="version">
+        <id name="idReporte" type="java.lang.Integer">
+            <column name="idReporte" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="sesionDeLaboratorio" class="paquete.sgr.entity.pojos.SesionDeLaboratorio" fetch="select">
+            <column name="idSesion" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="documento" type="binary">
+            <column name="Documento" not-null="true" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="Fecha" length="19" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="45" not-null="true" />
+        </property>
+        <property name="actualizacion" type="timestamp">
+            <column name="Actualizacion" length="19" not-null="true" />
+        </property>
+        <set name="historialEmergencias" table="historial_emergencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idReporte" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.HistorialEmergencia" />
+        </set>
+    </class>
 </hibernate-mapping>

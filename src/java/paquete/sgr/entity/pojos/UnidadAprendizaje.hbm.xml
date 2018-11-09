@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/11/2018 09:24:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.UnidadAprendizaje" optimistic-lock="version" table="unidad_aprendizaje">
-    <id name="idUnidadAprendizaje" type="java.lang.Integer">
-      <column name="idUnidad_Aprendizaje"/>
-      <generator class="identity"/>
-    </id>
-    <property name="nombre" type="string">
-      <column length="45" name="Nombre" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="sesionDeLaboratorios" table="sesion_de_laboratorio">
-      <key>
-        <column name="idUnidad_Aprendizaje" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.SesionDeLaboratorio"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="unidadTematicas" table="unidad_tematica">
-      <key>
-        <column name="idUnidad_Aprendizaje" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.UnidadTematica"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="unidadGrupos" table="unidad_grupo">
-      <key>
-        <column name="idUnidad_Aprendizaje" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.UnidadGrupo"/>
-    </set>
-  </class>
+    <class name="paquete.sgr.entity.pojos.UnidadAprendizaje" table="unidad_aprendizaje" catalog="dbsgr" optimistic-lock="version">
+        <id name="idUnidadAprendizaje" type="java.lang.Integer">
+            <column name="idUnidad_Aprendizaje" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <set name="sesionDeLaboratorios" table="sesion_de_laboratorio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUnidad_Aprendizaje" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.SesionDeLaboratorio" />
+        </set>
+        <set name="unidadTematicas" table="unidad_tematica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUnidad_Aprendizaje" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.UnidadTematica" />
+        </set>
+        <set name="unidadGrupos" table="unidad_grupo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUnidad_Aprendizaje" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.UnidadGrupo" />
+        </set>
+    </class>
 </hibernate-mapping>

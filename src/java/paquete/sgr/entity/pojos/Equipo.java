@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 20/10/2018 05:28:52 PM by Hibernate Tools 4.3.1
+// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,23 +12,24 @@ public class Equipo  implements java.io.Serializable {
 
 
      private Integer idEquipo;
+     private Usuarios usuarios;
      private String nombre;
      private Set deudas = new HashSet(0);
      private Set vales = new HashSet(0);
-     private Set listaGrupos = new HashSet(0);
 
     public Equipo() {
     }
 
 	
-    public Equipo(String nombre) {
+    public Equipo(Usuarios usuarios, String nombre) {
+        this.usuarios = usuarios;
         this.nombre = nombre;
     }
-    public Equipo(String nombre, Set deudas, Set vales, Set listaGrupos) {
+    public Equipo(Usuarios usuarios, String nombre, Set deudas, Set vales) {
+       this.usuarios = usuarios;
        this.nombre = nombre;
        this.deudas = deudas;
        this.vales = vales;
-       this.listaGrupos = listaGrupos;
     }
    
     public Integer getIdEquipo() {
@@ -37,6 +38,13 @@ public class Equipo  implements java.io.Serializable {
     
     public void setIdEquipo(Integer idEquipo) {
         this.idEquipo = idEquipo;
+    }
+    public Usuarios getUsuarios() {
+        return this.usuarios;
+    }
+    
+    public void setUsuarios(Usuarios usuarios) {
+        this.usuarios = usuarios;
     }
     public String getNombre() {
         return this.nombre;
@@ -58,13 +66,6 @@ public class Equipo  implements java.io.Serializable {
     
     public void setVales(Set vales) {
         this.vales = vales;
-    }
-    public Set getListaGrupos() {
-        return this.listaGrupos;
-    }
-    
-    public void setListaGrupos(Set listaGrupos) {
-        this.listaGrupos = listaGrupos;
     }
 
 

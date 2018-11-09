@@ -1,62 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/11/2018 09:24:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.SesionDeLaboratorio" optimistic-lock="version" table="sesion_de_laboratorio">
-    <id name="idSesion" type="java.lang.Integer">
-      <column name="idSesion"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="paquete.sgr.entity.pojos.Grupo" fetch="select" name="grupo">
-      <column name="idGrupo" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="paquete.sgr.entity.pojos.UnidadAprendizaje" fetch="select" name="unidadAprendizaje">
-      <column name="idUnidad_Aprendizaje" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="paquete.sgr.entity.pojos.Usuarios" fetch="select" name="usuarios">
-      <column name="idUsuario_Tecnico" not-null="true"/>
-    </many-to-one>
-    <property name="fecha" type="timestamp">
-      <column length="19" name="fecha" not-null="true"/>
-    </property>
-    <property name="docenteAuxiliar" type="string">
-      <column length="45" name="Docente_Auxiliar" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="residuoses" table="residuos">
-      <key>
-        <column name="idSesion" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.Residuos"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="reporteIncidencias" table="reporte_incidencia">
-      <key>
-        <column name="idSesion" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.ReporteIncidencia"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="notificacionesSesions" table="notificaciones_sesion">
-      <key>
-        <column name="idSesion" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.NotificacionesSesion"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="vales" table="vale">
-      <key>
-        <column name="idSesion" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.Vale"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="historialEquipos" table="historial_equipo">
-      <key>
-        <column name="idSesion" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.HistorialEquipo"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="reactivoUtilizados" table="reactivo_utilizado">
-      <key>
-        <column name="idSesion" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.ReactivoUtilizado"/>
-    </set>
-  </class>
+    <class name="paquete.sgr.entity.pojos.SesionDeLaboratorio" table="sesion_de_laboratorio" catalog="dbsgr" optimistic-lock="version">
+        <id name="idSesion" type="java.lang.Integer">
+            <column name="idSesion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="grupo" class="paquete.sgr.entity.pojos.Grupo" fetch="select">
+            <column name="idGrupo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="unidadAprendizaje" class="paquete.sgr.entity.pojos.UnidadAprendizaje" fetch="select">
+            <column name="idUnidad_Aprendizaje" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="docenteAuxiliar" type="string">
+            <column name="Docente_Auxiliar" length="45" not-null="true" />
+        </property>
+        <set name="residuoses" table="residuos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSesion" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.Residuos" />
+        </set>
+        <set name="reporteIncidencias" table="reporte_incidencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSesion" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.ReporteIncidencia" />
+        </set>
+        <set name="notificacionesSesions" table="notificaciones_sesion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSesion" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.NotificacionesSesion" />
+        </set>
+        <set name="vales" table="vale" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSesion" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.Vale" />
+        </set>
+        <set name="historialEquipos" table="historial_equipo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSesion" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.HistorialEquipo" />
+        </set>
+        <set name="reactivoUtilizados" table="reactivo_utilizado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSesion" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.ReactivoUtilizado" />
+        </set>
+    </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 20/10/2018 05:28:52 PM by Hibernate Tools 4.3.1
+// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,7 +15,6 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
      private Integer idSesion;
      private Grupo grupo;
      private UnidadAprendizaje unidadAprendizaje;
-     private Usuarios usuarios;
      private Date fecha;
      private String docenteAuxiliar;
      private Set residuoses = new HashSet(0);
@@ -29,17 +28,15 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
     }
 
 	
-    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date fecha, String docenteAuxiliar) {
+    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Date fecha, String docenteAuxiliar) {
         this.grupo = grupo;
         this.unidadAprendizaje = unidadAprendizaje;
-        this.usuarios = usuarios;
         this.fecha = fecha;
         this.docenteAuxiliar = docenteAuxiliar;
     }
-    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuarios, Date fecha, String docenteAuxiliar, Set residuoses, Set reporteIncidencias, Set notificacionesSesions, Set vales, Set historialEquipos, Set reactivoUtilizados) {
+    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Date fecha, String docenteAuxiliar, Set residuoses, Set reporteIncidencias, Set notificacionesSesions, Set vales, Set historialEquipos, Set reactivoUtilizados) {
        this.grupo = grupo;
        this.unidadAprendizaje = unidadAprendizaje;
-       this.usuarios = usuarios;
        this.fecha = fecha;
        this.docenteAuxiliar = docenteAuxiliar;
        this.residuoses = residuoses;
@@ -70,13 +67,6 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
     
     public void setUnidadAprendizaje(UnidadAprendizaje unidadAprendizaje) {
         this.unidadAprendizaje = unidadAprendizaje;
-    }
-    public Usuarios getUsuarios() {
-        return this.usuarios;
-    }
-    
-    public void setUsuarios(Usuarios usuarios) {
-        this.usuarios = usuarios;
     }
     public Date getFecha() {
         return this.fecha;

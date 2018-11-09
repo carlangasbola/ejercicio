@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 20/10/2018 05:28:52 PM by Hibernate Tools 4.3.1
+// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

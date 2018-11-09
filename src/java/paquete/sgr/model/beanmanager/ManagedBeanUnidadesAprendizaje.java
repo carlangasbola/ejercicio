@@ -83,15 +83,11 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     }
 
     public void crearUnidad() {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session session = consulta.getHibernateSession();
         //Creamos la unidad de aprendizaje y agregamos el nombre
         try {
-            session.beginTransaction();
-            Grupo grupo = new Grupo();
-            Usuarios usuario = new Usuarios();
-            UnidadGrupo ug = new UnidadGrupo();
-
+            session.beginTransaction();   
             UnidadAprendizaje ua = new UnidadAprendizaje();
             ua.setNombre(unidadA);
             session.save(ua);
@@ -104,15 +100,6 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
                 //Creamos la unidad de aprendizaje con sus unidades tematicas
                 session.save(ut);
             }
-            // Obtenemos el usuario y el grupo
-            usuario.setIdUsuarios(idDocente);
-            grupo.setIdGrupo(idGrupo);
-
-            // Asignamos el grupo usuario y la unidad de aprendizaje a la unidad grupo
-            ug.setGrupo(grupo);
-            ug.setUsuarios(usuario);
-            ug.setUnidadAprendizaje(ua);
-            session.save(ug);
 
             session.getTransaction().commit();
 

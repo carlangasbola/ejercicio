@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 20/10/2018 05:28:52 PM by Hibernate Tools 4.3.1
+// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package paquete.sgr.entity.pojos;
 public class DatosUsuario  implements java.io.Serializable {
 
 
-     private Integer idDatosUsuario;
+     private int idUsuarios;
      private Usuarios usuarios;
      private String identificador;
      private String nombre;
@@ -37,12 +37,12 @@ public class DatosUsuario  implements java.io.Serializable {
        this.numeroSeguro = numeroSeguro;
     }
    
-    public Integer getIdDatosUsuario() {
-        return this.idDatosUsuario;
+    public int getIdUsuarios() {
+        return this.idUsuarios;
     }
     
-    public void setIdDatosUsuario(Integer idDatosUsuario) {
-        this.idDatosUsuario = idDatosUsuario;
+    public void setIdUsuarios(int idUsuarios) {
+        this.idUsuarios = idUsuarios;
     }
     public Usuarios getUsuarios() {
         return this.usuarios;

@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 20/10/2018 05:28:52 PM by Hibernate Tools 4.3.1
+// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,6 +15,7 @@ public class EquipoLaboratorio  implements java.io.Serializable {
      private String nombre;
      private String caracteristicas;
      private byte existenciaInventario;
+     private int cantidad;
      private Set equipoUtilizados = new HashSet(0);
      private Set historialEquipos = new HashSet(0);
 
@@ -22,15 +23,17 @@ public class EquipoLaboratorio  implements java.io.Serializable {
     }
 
 	
-    public EquipoLaboratorio(String nombre, String caracteristicas, byte existenciaInventario) {
+    public EquipoLaboratorio(String nombre, String caracteristicas, byte existenciaInventario, int cantidad) {
         this.nombre = nombre;
         this.caracteristicas = caracteristicas;
         this.existenciaInventario = existenciaInventario;
+        this.cantidad = cantidad;
     }
-    public EquipoLaboratorio(String nombre, String caracteristicas, byte existenciaInventario, Set equipoUtilizados, Set historialEquipos) {
+    public EquipoLaboratorio(String nombre, String caracteristicas, byte existenciaInventario, int cantidad, Set equipoUtilizados, Set historialEquipos) {
        this.nombre = nombre;
        this.caracteristicas = caracteristicas;
        this.existenciaInventario = existenciaInventario;
+       this.cantidad = cantidad;
        this.equipoUtilizados = equipoUtilizados;
        this.historialEquipos = historialEquipos;
     }
@@ -62,6 +65,13 @@ public class EquipoLaboratorio  implements java.io.Serializable {
     
     public void setExistenciaInventario(byte existenciaInventario) {
         this.existenciaInventario = existenciaInventario;
+    }
+    public int getCantidad() {
+        return this.cantidad;
+    }
+    
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
     public Set getEquipoUtilizados() {
         return this.equipoUtilizados;

@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/11/2018 09:24:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.MaterialUtilizado" optimistic-lock="version" table="material_utilizado">
-    <id name="idMaterialUtilizado" type="java.lang.Integer">
-      <column name="idMaterial_utilizado"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="paquete.sgr.entity.pojos.DatosPractica" fetch="select" name="datosPractica">
-      <column name="idDatos" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="paquete.sgr.entity.pojos.Material" fetch="select" name="material">
-      <column name="idMaterial" not-null="true"/>
-    </many-to-one>
-  </class>
+    <class name="paquete.sgr.entity.pojos.MaterialUtilizado" table="material_utilizado" catalog="dbsgr" optimistic-lock="version">
+        <id name="idMaterialUtilizado" type="java.lang.Integer">
+            <column name="idMaterial_utilizado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="datosPractica" class="paquete.sgr.entity.pojos.DatosPractica" fetch="select">
+            <column name="idDatos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="material" class="paquete.sgr.entity.pojos.Material" fetch="select">
+            <column name="idMaterial" not-null="true" />
+        </many-to-one>
+    </class>
 </hibernate-mapping>

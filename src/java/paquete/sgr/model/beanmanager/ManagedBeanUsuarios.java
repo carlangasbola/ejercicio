@@ -22,12 +22,12 @@ import paquete.sgr.beans.ConsultasHQL;
  */
 @Named(value = "managedBeanQuerys")
 @RequestScoped
-public class ManagedBeanQuerys {
+public class ManagedBeanUsuarios {
 
     /**
      * Creates a new instance of ManagedBeanQuerys
      */
-    public ManagedBeanQuerys() {
+    public ManagedBeanUsuarios() {
     }
 
     private Session hibernateSession;
@@ -186,7 +186,6 @@ public class ManagedBeanQuerys {
 
                 } else {
                     du.setUsuarios(u);
-                    du.setIdDatosUsuario(dulist.get(0).getIdDatosUsuario());
                     du.setIdentificador(identificador);
                     du.setNombre(nombre);
                     du.setApellidoPaterno(paterno);

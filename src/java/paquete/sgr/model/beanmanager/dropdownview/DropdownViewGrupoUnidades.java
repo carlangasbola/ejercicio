@@ -79,7 +79,6 @@ public class DropdownViewGrupoUnidades implements Serializable {
 
         sl.setFecha(sesionLaboratorio.getFechaSesison());
         sl.setUnidadAprendizaje(ua);
-        sl.setUsuarios(u);
         sl.setDocenteAuxiliar(sesionLaboratorio.getDocenteAuxiliar());
         sl.setGrupo(g);
 

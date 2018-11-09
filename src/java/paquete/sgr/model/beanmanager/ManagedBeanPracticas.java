@@ -44,7 +44,6 @@ public class ManagedBeanPracticas {
         Usuarios user = new Usuarios();
         // Recupero la unidad de aprendizaje
         ua.setIdUnidadAprendizaje(idUA);
-        ua.setIdUnidadTematica(idUT);
         // Recupero el id del creador (que es el usuario en turno)
         
         

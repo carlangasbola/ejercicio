@@ -47,17 +47,7 @@
                     <h:form>
                         <h6 ><strong> Creación de unidades de aprendizaje </strong></h6>
                         <div class="form-group">
-                            <h:outputLabel for="Grupo" value="Selecciona el grupo" />
-                            <h:selectOneMenu id="Grupo" value="#{managedBeanUnidadesAprendizaje.idGrupo}" styleClass="form-control" >
-                                <f:selectItems value="#{managedBeanGrupos.grupos}" var="g" itemValue="#{g.idGrupo}" itemLabel="#{g.nombre}" />
-                            </h:selectOneMenu>
-                            <h:outputLabel for="Docente" value="Selecciona el docente" />
-                            <h:selectOneMenu id="Docente" value="#{managedBeanUnidadesAprendizaje.idDocente}" styleClass="form-control" >
-                                <!-- Le mando el 2 por que indica los docentes -->
-                                <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
-                            </h:selectOneMenu>
-                            <br />
-                            <h:outputLabel for="nombreUnidad" value="Nombre de la unidad de aprendizaje"></h:outputLabel>
+                            <h:outputLabel for="nombreUnidad" value="Nombre de la unidad de aprendizaje (Requerido)"></h:outputLabel>
                             <h:inputText id="nombreUnidad" styleClass="form-control mt-1" value="#{managedBeanUnidadesAprendizaje.unidadA}" required="true" />
                         </div>
 
@@ -66,7 +56,7 @@
                                 <f:facet name="header" >
                                     <h:outputText value="Unidades temáticas"/>
                                 </f:facet>
-                                <h:outputLabel for="tematica" value="Nombre de la unidad temática:" />
+                                <h:outputLabel for="tematica" value="Nombre de la unidad temática (Requerido):" />
                                 <h:inputText id="tematica" styleClass="form-control mt-1" value="#{u.nombreunidad}"  required="true"/>
                             </h:column>
                         </h:dataTable>

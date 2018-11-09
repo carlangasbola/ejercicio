@@ -68,7 +68,7 @@ public class ManagedBeanPractica implements Serializable {
     }
     
     public void copia(){
-        practica.autor=ManagedBeanQuerys.nombrecompleto;
+        practica.autor=ManagedBeanUsuarios.nombrecompleto;
         practica.introduccion=prueba;
         practica.listamaterial=ManagedBeanMaterial.list;
         practica.listaequipo=ManagedBeanEquipo.lista;

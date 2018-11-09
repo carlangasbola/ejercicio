@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 20/10/2018 05:28:52 PM by Hibernate Tools 4.3.1
+// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,10 +17,11 @@ public class Usuarios  implements java.io.Serializable {
      private String passsword;
      private Set reportePracticas = new HashSet(0);
      private Set practicas = new HashSet(0);
-     private Set unidadGrupos = new HashSet(0);
+     private Set unidadGruposForIdUsuariosDocente = new HashSet(0);
+     private Set equipos = new HashSet(0);
      private Set listaGrupos = new HashSet(0);
-     private Set sesionDeLaboratorios = new HashSet(0);
-     private Set datosUsuarios = new HashSet(0);
+     private Set unidadGruposForUsuariosIdUsuarios = new HashSet(0);
+     private DatosUsuario datosUsuario;
 
     public Usuarios() {
     }
@@ -29,16 +30,17 @@ public class Usuarios  implements java.io.Serializable {
     public Usuarios(Roles roles) {
         this.roles = roles;
     }
-    public Usuarios(Roles roles, String login, String passsword, Set reportePracticas, Set practicas, Set unidadGrupos, Set listaGrupos, Set sesionDeLaboratorios, Set datosUsuarios) {
+    public Usuarios(Roles roles, String login, String passsword, Set reportePracticas, Set practicas, Set unidadGruposForIdUsuariosDocente, Set equipos, Set listaGrupos, Set unidadGruposForUsuariosIdUsuarios, DatosUsuario datosUsuario) {
        this.roles = roles;
        this.login = login;
        this.passsword = passsword;
        this.reportePracticas = reportePracticas;
        this.practicas = practicas;
-       this.unidadGrupos = unidadGrupos;
+       this.unidadGruposForIdUsuariosDocente = unidadGruposForIdUsuariosDocente;
+       this.equipos = equipos;
        this.listaGrupos = listaGrupos;
-       this.sesionDeLaboratorios = sesionDeLaboratorios;
-       this.datosUsuarios = datosUsuarios;
+       this.unidadGruposForUsuariosIdUsuarios = unidadGruposForUsuariosIdUsuarios;
+       this.datosUsuario = datosUsuario;
     }
    
     public Integer getIdUsuarios() {
@@ -83,12 +85,19 @@ public class Usuarios  implements java.io.Serializable {
     public void setPracticas(Set practicas) {
         this.practicas = practicas;
     }
-    public Set getUnidadGrupos() {
-        return this.unidadGrupos;
+    public Set getUnidadGruposForIdUsuariosDocente() {
+        return this.unidadGruposForIdUsuariosDocente;
     }
     
-    public void setUnidadGrupos(Set unidadGrupos) {
-        this.unidadGrupos = unidadGrupos;
+    public void setUnidadGruposForIdUsuariosDocente(Set unidadGruposForIdUsuariosDocente) {
+        this.unidadGruposForIdUsuariosDocente = unidadGruposForIdUsuariosDocente;
+    }
+    public Set getEquipos() {
+        return this.equipos;
+    }
+    
+    public void setEquipos(Set equipos) {
+        this.equipos = equipos;
     }
     public Set getListaGrupos() {
         return this.listaGrupos;
@@ -97,19 +106,19 @@ public class Usuarios  implements java.io.Serializable {
     public void setListaGrupos(Set listaGrupos) {
         this.listaGrupos = listaGrupos;
     }
-    public Set getSesionDeLaboratorios() {
-        return this.sesionDeLaboratorios;
+    public Set getUnidadGruposForUsuariosIdUsuarios() {
+        return this.unidadGruposForUsuariosIdUsuarios;
     }
     
-    public void setSesionDeLaboratorios(Set sesionDeLaboratorios) {
-        this.sesionDeLaboratorios = sesionDeLaboratorios;
+    public void setUnidadGruposForUsuariosIdUsuarios(Set unidadGruposForUsuariosIdUsuarios) {
+        this.unidadGruposForUsuariosIdUsuarios = unidadGruposForUsuariosIdUsuarios;
     }
-    public Set getDatosUsuarios() {
-        return this.datosUsuarios;
+    public DatosUsuario getDatosUsuario() {
+        return this.datosUsuario;
     }
     
-    public void setDatosUsuarios(Set datosUsuarios) {
-        this.datosUsuarios = datosUsuarios;
+    public void setDatosUsuario(DatosUsuario datosUsuario) {
+        this.datosUsuario = datosUsuario;
     }
 
 

@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 20/10/2018 05:28:52 PM by Hibernate Tools 4.3.1
+// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,6 +12,7 @@ public class Eventos  implements java.io.Serializable {
 
      private Integer idEventos;
      private Grupo grupo;
+     private UnidadGrupo unidadGrupo;
      private String tipo;
      private String nombre;
      private Date fecha;
@@ -21,14 +22,16 @@ public class Eventos  implements java.io.Serializable {
     }
 
 	
-    public Eventos(Grupo grupo, String tipo, String nombre, Date fecha) {
+    public Eventos(Grupo grupo, UnidadGrupo unidadGrupo, String tipo, String nombre, Date fecha) {
         this.grupo = grupo;
+        this.unidadGrupo = unidadGrupo;
         this.tipo = tipo;
         this.nombre = nombre;
         this.fecha = fecha;
     }
-    public Eventos(Grupo grupo, String tipo, String nombre, Date fecha, String descripcion) {
+    public Eventos(Grupo grupo, UnidadGrupo unidadGrupo, String tipo, String nombre, Date fecha, String descripcion) {
        this.grupo = grupo;
+       this.unidadGrupo = unidadGrupo;
        this.tipo = tipo;
        this.nombre = nombre;
        this.fecha = fecha;
@@ -48,6 +51,13 @@ public class Eventos  implements java.io.Serializable {
     
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
+    }
+    public UnidadGrupo getUnidadGrupo() {
+        return this.unidadGrupo;
+    }
+    
+    public void setUnidadGrupo(UnidadGrupo unidadGrupo) {
+        this.unidadGrupo = unidadGrupo;
     }
     public String getTipo() {
         return this.tipo;

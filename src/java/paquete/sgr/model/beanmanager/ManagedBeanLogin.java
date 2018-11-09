@@ -50,11 +50,11 @@ public class ManagedBeanLogin {
             
             switch (u.get(0).getRoles().getIdRol()) {
 
-                /* Numero 1 identifica docentes */
+                /* Numero 1 identifica administradores */
                 case 1:
                     pagina = "ModuloAdministrador/administrador";
                     break;
-                /* Numero 2 identifica administradores */
+                /* Numero 2 identifica docentes */
                 case 2:
                     //No creado aún
                     break;
@@ -64,7 +64,7 @@ public class ManagedBeanLogin {
                     break;
                 /* Numero 4 identifica a tecnicos */
                 case 4:
-                    //No creado aún
+                     pagina = "ModuloAlumno/alumno";
                     break;
             }
             

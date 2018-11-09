@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/11/2018 09:24:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.Residuos" optimistic-lock="version" table="residuos">
-    <id name="idResiduo" type="java.lang.Integer">
-      <column name="idResiduo"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="paquete.sgr.entity.pojos.SesionDeLaboratorio" fetch="select" name="sesionDeLaboratorio">
-      <column name="idSesion" not-null="true"/>
-    </many-to-one>
-    <property name="nombre" type="string">
-      <column length="45" name="Nombre" not-null="true"/>
-    </property>
-    <property name="tipo" type="string">
-      <column length="45" name="Tipo" not-null="true"/>
-    </property>
-    <property name="cantidad" type="double">
-      <column name="Cantidad" not-null="true" precision="22" scale="0"/>
-    </property>
-    <property name="fechaDeIngreso" type="timestamp">
-      <column length="19" name="Fecha_de_ingreso" not-null="true"/>
-    </property>
-  </class>
+    <class name="paquete.sgr.entity.pojos.Residuos" table="residuos" catalog="dbsgr" optimistic-lock="version">
+        <id name="idResiduo" type="java.lang.Integer">
+            <column name="idResiduo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="sesionDeLaboratorio" class="paquete.sgr.entity.pojos.SesionDeLaboratorio" fetch="select">
+            <column name="idSesion" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="Tipo" length="45" not-null="true" />
+        </property>
+        <property name="cantidad" type="double">
+            <column name="Cantidad" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fechaDeIngreso" type="timestamp">
+            <column name="Fecha_de_ingreso" length="19" not-null="true" />
+        </property>
+    </class>
 </hibernate-mapping>

@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20/10/2018 05:29:16 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/11/2018 09:24:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbsgr" name="paquete.sgr.entity.pojos.Emergencias" optimistic-lock="version" table="emergencias">
-    <id name="idEmergencias" type="java.lang.Integer">
-      <column name="idEmergencias"/>
-      <generator class="identity"/>
-    </id>
-    <property name="nombre" type="string">
-      <column length="45" name="Nombre" not-null="true"/>
-    </property>
-    <property name="telefono" type="int">
-      <column name="Telefono" not-null="true"/>
-    </property>
-    <property name="correo" type="string">
-      <column length="45" name="Correo" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="historialEmergencias" table="historial_emergencia">
-      <key>
-        <column name="idEmergencias" not-null="true"/>
-      </key>
-      <one-to-many class="paquete.sgr.entity.pojos.HistorialEmergencia"/>
-    </set>
-  </class>
+    <class name="paquete.sgr.entity.pojos.Emergencias" table="emergencias" catalog="dbsgr" optimistic-lock="version">
+        <id name="idEmergencias" type="java.lang.Integer">
+            <column name="idEmergencias" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="int">
+            <column name="Telefono" not-null="true" />
+        </property>
+        <property name="correo" type="string">
+            <column name="Correo" length="45" not-null="true" />
+        </property>
+        <set name="historialEmergencias" table="historial_emergencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEmergencias" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.HistorialEmergencia" />
+        </set>
+    </class>
 </hibernate-mapping>
