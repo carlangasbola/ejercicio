@@ -19,7 +19,6 @@ public class ManagedBeanMaterial implements Serializable {
    // Definicion de variables
     static List<Material> list;
     
-    
     // Constructor 
     public ManagedBeanMaterial() {
         list = new ArrayList<>();

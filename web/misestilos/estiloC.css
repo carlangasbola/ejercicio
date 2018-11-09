@@ -82,3 +82,47 @@ body {
     background-color: #831D1D;
     color:white
 }
+.bts {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.success {
+    border-color: #CED4DA;
+}
+.success:hover {
+    background-color: #B81F6D;
+    color: white;
+}
+
+.successrojo {
+    border-color: #CED4DA;
+}
+.successrojo:hover {
+    background-color: #DC3545;
+    color: white;
+}
+
+.successverde {
+    border-color: #CED4DA;
+}
+.successverde:hover {
+    background-color: #5CB85C;
+    color: white;
+}
+
+.anteriorsiguiente {
+    background-color: #B81F6D;
+    color: white;
+    cursor: pointer; 
+}
+.successansig {
+    border-color: #CED4DA;
+}
+.successansig:hover {
+    background-color: #A51B62;
+    color: white;
+}
+.tabla{
+    background-color: #B81F6D;
+}

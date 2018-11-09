@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head jsf:id="head">
+        <title>Administración de reactivos</title>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
+    </head>
+    <body jsf:id="body">
+
+        <!-- Barra de navegación -->
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
+
+        <div class="container mt-4">
+            <div class="row text-center">
+                <div class="col">
+                    <h2 class=" colorpantone" > Administración de material </h2>
+                        <button type="submit" class=" btn  my-3" data-toggle="modal" data-target="#modalmaterial">Agregar material</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Disponibilidad</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Existencia</th>
+                                <th scope="col">Modificar/eliminar</th>
+                            </tr>
+                        </thead>
+                        <h:form>
+                            <ui:repeat var="m" value="#{managedBeanAdminMateriales.getMaterial()}" >
+                                <tr>
+                                    <td>#{managedBeanAdminMateriales.validarExistencia(m.existenciaInventario)}</td>
+                                    <td>#{m.nombre}</td>
+                                    <td>#{m.cantidad} #{r.medida}</td>
+                                    <td>
+                                        <a jsf:action="#{managedBeanAdminMateriales.eliminarMaterial(m.idMaterial)}">Eliminar material</a>                        
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                        </h:form>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Usuario -->
+        <div class="modal fade" id="modalmaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel">Creación de un nuevo material</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <div class="card p-1">
+                        <div class="card-body">
+                            <form jsf:id="formagregarmaterial">
+                                <div class="form-group row">
+                                    <label for="nombrem">Nombre</label>
+                                    <input type="text" jsf:value="#{managedBeanAdminMateriales.nombrematerial}" class="form-control form-control-sm" id="nombrem" required="true"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cantidadm">Cantidad</label>
+                                    <input type="text" jsf:value="#{managedBeanAdminMateriales.cantidadmaterial}" class="form-control form-control-sm" id="cantidadm" required="true"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="existenciam">Disponibilidad</label>
+                                    <select  class="custom-select" required="required" jsf:value="#{managedBeanAdminMateriales.existenciamaterial}" size="0">
+                                        <f:selectItem itemValue="1" itemLabel="Si"/>
+                                        <f:selectItem itemValue="0" itemLabel="No"/>
+                                    </select>
+                                </div>
+                                <button  type="submit" jsf:action="#{managedBeanAdminMateriales.crearMaterial()}" class="btn btn-success">Crear nuevo material</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>

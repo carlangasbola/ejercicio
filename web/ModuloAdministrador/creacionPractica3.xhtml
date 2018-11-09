@@ -20,86 +20,271 @@
     <body jsf:id="body">
 
         <!-- Barra de navegación -->
-        <header jsf:id="header">
-            <nav class="navbar navbar-expand-lg navbar-custom mb-4">
-                <a class="navbar-brand" href="#">Creación de Practicas</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item active">
-                            <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Aprende a usar la plataforma" href="#"><u>Incio</u><span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Notificaciones</u></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><u>Directorio Teléfonico</u></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#"><u>Buzón de sugerencias</u></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>        
-
-        <!-- Selección de materiales -->
-        <h2 class="text-center colorpantone my-5"> Desarrollo de la práctica </h2>
-
-        <form class="container border p-3 rounded"  method="POST"  jsf:id="formpract">
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="desarrollo">Desarrollo Experimental</label>
-                        <textarea id="desarrollo" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.desarrolloexperimental}"></textarea>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="registr">Registro de datos</label>
-                        
-                        <textarea id="registr" class="form-control" rows="3" jsf:value="#{managedBeanPractica.practica.registrodedatos}" > </textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="resul">Resultados</label>
-                        <textarea id="resul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.resultados}" > </textarea>
-                    </div>
-                </div>
-                <div class="col">
-                    
-                    <div class="form-group">
-                        <label for="aresul">Analisís de resultados</label>
-                        <textarea id="aresul" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.analisisderesultados}" > </textarea>
-                    </div>
-                </div>
-                </div>
-           
-                <h4 class="text-center"> Información adicional </h4>
-                <h6 class="mt-2">Referencias</h6>
-                <p:textEditor widgetVar="editor1" height="150" value="#{managedBeanPractica.practica.referencias}" />
-                 <h6 class="mt-2">Nomenclatura</h6>
-                 <p:textEditor widgetVar="editor2" height="150" value="#{managedBeanPractica.practica.nomenclatura}" />
-                 <h6 class="mt-2">Anexos</h6>
-                 <p:textEditor widgetVar="editor3" height="150" value="#{managedBeanPractica.practica.anexos}" />
-                 
-                 
-            <div class="row">
-                <button type="submit" class="btn colorboton mt-3 " jsf:action="#{managedBeanPractica.irA('4')}">
-                    <i class="fas fa-chevron-circle-right mr-2">
-                        <f:actionListener binding="#{managedBeanPractica.copia()}" />    
-                    </i>Ir a la página siguiente </button>
-                <div class="w-100"></div>
-                <button type="submit" class="btn colorboton mt-3 " jsf:action="#{managedBeanPractica.irA('2')}"><i class="fas fa-chevron-circle-left mr-2"></i>Regresar a la página anterior </button>             
-                <button target="_blank" class="btn colorboton btn-block mt-3" jsf:action="#{managedBeanPractica.printPDF()}">Ver PDF</button>
-            </div>
-        </form>
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />  
         
-
-
+        <!-- Desarrollo de la práctica -->
+        <h5 class="text-center my-4">III Desarrollo de la práctica</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form3">
+                        <!-- Desarrollo experimental -->
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <div class="form-group ">
+                                    <label for="Desarrollo experimental">> Desarrollo experimental</label>
+                                    <p:textEditor id="Desarrolloexp" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.desarrolloexperimental}">
+                                        <f:facet name="toolbar">
+                                            <span class="ql-formats">
+                                                <select class="ql-font" />
+                                                <select class="ql-size" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold" />
+                                                <button class="ql-italic" />
+                                                <button class="ql-underline" />
+                                                <button class="ql-strike" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub" />
+                                                <button class="ql-script" value="super" />
+                                            </span>                            
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered" />
+                                                <button class="ql-list" value="bullet" />
+                                                <button class="ql-indent" value="-1" />
+                                                <button class="ql-indent" value="+1" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-align" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-image" />>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-clean" />
+                                            </span>
+                                        </f:facet>
+                                    </p:textEditor>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Registro de datos -->
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <div class="form-group ">
+                                    <label for="Registro de datos">> Registro de datos</label>
+                                    <p:textEditor id="Registrodedatos" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.registrodedatos}">
+                                        <f:facet name="toolbar">
+                                            <span class="ql-formats">
+                                                <select class="ql-font" />
+                                                <select class="ql-size" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold" />
+                                                <button class="ql-italic" />
+                                                <button class="ql-underline" />
+                                                <button class="ql-strike" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub" />
+                                                <button class="ql-script" value="super" />
+                                            </span>                            
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered" />
+                                                <button class="ql-list" value="bullet" />
+                                                <button class="ql-indent" value="-1" />
+                                                <button class="ql-indent" value="+1" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-align" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-image" />>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-clean" />
+                                            </span>
+                                        </f:facet>
+                                    </p:textEditor>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Resultados -->
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <div class="form-group ">
+                                    <label for="Resultados">> Resultados </label>
+                                    <p:textEditor id="resultados" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.resultados}">
+                                        <f:facet name="toolbar">
+                                            <span class="ql-formats">
+                                                <select class="ql-font" />
+                                                <select class="ql-size" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold" />
+                                                <button class="ql-italic" />
+                                                <button class="ql-underline" />
+                                                <button class="ql-strike" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub" />
+                                                <button class="ql-script" value="super" />
+                                            </span>                            
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered" />
+                                                <button class="ql-list" value="bullet" />
+                                                <button class="ql-indent" value="-1" />
+                                                <button class="ql-indent" value="+1" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-align" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-image" />>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-clean" />
+                                            </span>
+                                        </f:facet>
+                                    </p:textEditor>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Análisis de resultados -->
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <div class="form-group ">
+                                    <label for="Analisis de resultados">> Análisis de resultados</label>
+                                    <p:textEditor id="analisisr" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.analisisderesultados}">
+                                        <f:facet name="toolbar">
+                                            <span class="ql-formats">
+                                                <select class="ql-font" />
+                                                <select class="ql-size" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold" />
+                                                <button class="ql-italic" />
+                                                <button class="ql-underline" />
+                                                <button class="ql-strike" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub" />
+                                                <button class="ql-script" value="super" />
+                                            </span>                            
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered" />
+                                                <button class="ql-list" value="bullet" />
+                                                <button class="ql-indent" value="-1" />
+                                                <button class="ql-indent" value="+1" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-align" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-image" />>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-clean" />
+                                            </span>
+                                        </f:facet>
+                                    </p:textEditor>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <h5 class="text-center my-4">IV Información adicional</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form2">
+                        <div class="row">
+                            <!-- Referencias -->
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="Referencias">> Referencias</label>
+                                    <textarea id="Referencias" class="form-control" rows="3"  jsf:value="#{managedBeanPractica.practica.referencias}"></textarea>
+                                </div>
+                            </div>
+                            <!-- Nomecatura -->
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="Nomenclatura">> Nomenclatura</label>
+                                    <textarea id="nomeclatura" class="form-control" rows="3" jsf:value="#{managedBeanPractica.practica.nomenclatura}" > </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Anexos -->
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <div class="form-group ">
+                                    <label for="anexos">> Anexos</label>
+                                    <p:textEditor id="anexos" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.anexos}" >
+                                        <f:facet name="toolbar">
+                                            <span class="ql-formats">
+                                                <select class="ql-font" />
+                                                <select class="ql-size" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold" />
+                                                <button class="ql-italic" />
+                                                <button class="ql-underline" />
+                                                <button class="ql-strike" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub" />
+                                                <button class="ql-script" value="super" />
+                                            </span>                            
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered" />
+                                                <button class="ql-list" value="bullet" />
+                                                <button class="ql-indent" value="-1" />
+                                                <button class="ql-indent" value="+1" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-align" />
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-image" />>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-clean" />
+                                            </span>
+                                        </f:facet>
+                                    </p:textEditor>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Botones anterior/siguiente -->
+                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('2')}" style="float:left"><i class="fas fa-chevron-circle-left mr-2"></i>Anterior</button>
+                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('4')}" style="float:right">
+                            <i class="fas fa-chevron-circle-right mr-2">
+                                <f:actionListener binding="#{managedBeanPractica.copia()}" />    
+                            </i>Ir a la página siguiente
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

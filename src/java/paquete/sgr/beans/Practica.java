@@ -1,4 +1,6 @@
 package paquete.sgr.beans;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,7 +9,7 @@ public class Practica {
     private String semestre;
     private int numeropractica ;
     private String titulopractica;
-    public String autor;
+    public List<String> autor;
     private String editor;
     public String introduccion;
     private String objetivos;
@@ -38,7 +40,8 @@ public class Practica {
         System.out.println("Semestre: " + getSemestre());
         System.out.println("Numero de practica: " + getNumeropractica());
         System.out.println("titulo de practica: " + getTitulopractica());
-        System.out.println("Autor: " + getAutor());
+        for (int i=0;i<autor.size();i++)
+			System.out.println(autor.get(i));
         System.out.println("Editor: " + getEditor());
         System.out.println("Objetivos: " + getObjetivos());
         System.out.println("Actividades previas: " + getActividadesprevias());
@@ -61,32 +64,32 @@ public class Practica {
         System.out.println("Recomendaciones: " + getRecomendaciones());
         System.out.println("Semaforo: " + getSemaforo());
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.semestre);
-        hash = 29 * hash + this.numeropractica;
-        hash = 29 * hash + Objects.hashCode(this.titulopractica);
-        hash = 29 * hash + Objects.hashCode(this.autor);
-        hash = 29 * hash + Objects.hashCode(this.editor);
-        hash = 29 * hash + Objects.hashCode(this.objetivos);
-        hash = 29 * hash + Objects.hashCode(this.actividadesprevias);
-        hash = 29 * hash + Objects.hashCode(this.introduccion);
-        hash = 29 * hash + Objects.hashCode(this.listamaterial);
-        hash = 29 * hash + Objects.hashCode(this.listaequipo);
-        hash = 29 * hash + Objects.hashCode(this.listareactivos);
-        hash = 29 * hash + Objects.hashCode(this.competencias);
-        hash = 29 * hash + Objects.hashCode(this.desarrolloexperimental);
-        hash = 29 * hash + Objects.hashCode(this.registrodedatos);
-        hash = 29 * hash + Objects.hashCode(this.resultados);
-        hash = 29 * hash + Objects.hashCode(this.analisisderesultados);
-        hash = 29 * hash + Objects.hashCode(this.referencias);
-        hash = 29 * hash + Objects.hashCode(this.nomenclatura);
-        hash = 29 * hash + Objects.hashCode(this.anexos);
-        hash = 29 * hash + Objects.hashCode(this.protocolosdeactuacion);
-        hash = 29 * hash + Objects.hashCode(this.recomendaciones);
-        hash = 29 * hash + Objects.hashCode(this.semaforo);
+        hash = 47 * hash + Objects.hashCode(this.semestre);
+        hash = 47 * hash + this.numeropractica;
+        hash = 47 * hash + Objects.hashCode(this.titulopractica);
+        hash = 47 * hash + Objects.hashCode(this.autor);
+        hash = 47 * hash + Objects.hashCode(this.editor);
+        hash = 47 * hash + Objects.hashCode(this.introduccion);
+        hash = 47 * hash + Objects.hashCode(this.objetivos);
+        hash = 47 * hash + Objects.hashCode(this.actividadesprevias);
+        hash = 47 * hash + Objects.hashCode(this.listamaterial);
+        hash = 47 * hash + Objects.hashCode(this.listaequipo);
+        hash = 47 * hash + Objects.hashCode(this.listareactivos);
+        hash = 47 * hash + Objects.hashCode(this.competencias);
+        hash = 47 * hash + Objects.hashCode(this.desarrolloexperimental);
+        hash = 47 * hash + Objects.hashCode(this.registrodedatos);
+        hash = 47 * hash + Objects.hashCode(this.resultados);
+        hash = 47 * hash + Objects.hashCode(this.analisisderesultados);
+        hash = 47 * hash + Objects.hashCode(this.referencias);
+        hash = 47 * hash + Objects.hashCode(this.nomenclatura);
+        hash = 47 * hash + Objects.hashCode(this.anexos);
+        hash = 47 * hash + Objects.hashCode(this.protocolosdeactuacion);
+        hash = 47 * hash + Objects.hashCode(this.recomendaciones);
+        hash = 47 * hash + Objects.hashCode(this.semaforo);
         return hash;
     }
 
@@ -111,19 +114,16 @@ public class Practica {
         if (!Objects.equals(this.titulopractica, other.titulopractica)) {
             return false;
         }
-        if (!Objects.equals(this.autor, other.autor)) {
+        if (!Objects.equals(this.editor, other.editor)) {
             return false;
         }
-        if (!Objects.equals(this.editor, other.editor)) {
+        if (!Objects.equals(this.introduccion, other.introduccion)) {
             return false;
         }
         if (!Objects.equals(this.objetivos, other.objetivos)) {
             return false;
         }
         if (!Objects.equals(this.actividadesprevias, other.actividadesprevias)) {
-            return false;
-        }
-        if (!Objects.equals(this.introduccion, other.introduccion)) {
             return false;
         }
         if (!Objects.equals(this.competencias, other.competencias)) {
@@ -157,6 +157,9 @@ public class Practica {
             return false;
         }
         if (!Objects.equals(this.semaforo, other.semaforo)) {
+            return false;
+        }
+        if (!Objects.equals(this.autor, other.autor)) {
             return false;
         }
         if (!Objects.equals(this.listamaterial, other.listamaterial)) {
@@ -195,11 +198,11 @@ public class Practica {
         this.titulopractica = titulopractica;
     }
 
-    public String getAutor() {
+    public List<String> getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(List<String> autor) {
         this.autor = autor;
     }
 
@@ -350,5 +353,5 @@ public class Practica {
     public void add(Object clone) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-     
+    
 }

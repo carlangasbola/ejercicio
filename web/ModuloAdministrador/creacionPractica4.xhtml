@@ -31,7 +31,6 @@
                             I Requisitos
                         </div>
                         <ul class="list-group list-group-flush">
-                            
                             <li class="list-group-item"><strong>Número de práctica:</strong><br/>#{managedBeanPractica.practica.numeropractica}</li>
                             <li class="list-group-item"><strong>Título de la práctica:</strong><br/>#{managedBeanPractica.practica.titulopractica}</li>
                             <li class="list-group-item"><strong>Objetivos:</strong><br/>#{managedBeanPractica.practica.objetivos}</li>
@@ -82,6 +81,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Desarrollo experimental:</strong><br/><h:outputText value="#{managedBeanPractica.practica.desarrolloexperimental}" escape="false" ></h:outputText> </li>
                             <li class="list-group-item"><strong>Registro de datos:</strong><br/><h:outputText value="#{managedBeanPractica.practica.registrodedatos}" escape="false" ></h:outputText></li>
+                            <li class="list-group-item"><strong>Resultados:</strong><br/><h:outputText value="#{managedBeanPractica.practica.resultados}" escape="false" ></h:outputText></li>
                             <li class="list-group-item"><strong>Análisis de resultados:</strong><br/><h:outputText value="#{managedBeanPractica.practica.analisisderesultados}" escape="false" ></h:outputText></li>
                         </ul>
                     </div>
@@ -105,45 +105,23 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn colorboton btn-block mt-3" jsf:action="#{managedBeanPractica.printPDF()}">Ver PDF</button>
-            <button class="btn btn-primary mt-4" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-file"></i> Crear práctica</button>
-        </div>
-        
-        
-        <!-- Semefaoro -->
-         <!-- Modal de creacion de practica -->
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Creación de grupo</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form jsf:id="formulario">
-                            <label >Fecha de creación : #{managedBeanPracticas.currentDate}</label>
-                            <br/>
-                            <label >Creador : #{managedBeanQuerys.nombrecompleto}</label>
-                            <br/>
-                            
-                            <label for="ua" >Unidad de Aprendizaje</label>
-                            <select size="1" jsf:value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua" class="form-control">
-                                <div value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua" jsfc="f:selectItems" itemLabel="#{ua.nombre}"></div>
-                            </select>
-                            
-                            
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary" jsf:action="#{managedBeanGrupos.crearGrupo}">Crear grupo</button>
-                            </div>
-                        </form>
-                    </div>
+            
+                
+            
+            <div class="row mt-3">
+                <div class="col">
+                    <form method="POST" jsf:id="form2">
+                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.printPDF()}" style="float:left">Ver PDF</button>
+                    </form>
                 </div>
             </div>
         </div>
+        <br/><br/>
+        
+        <!-- Semafaoro -->
+         <!-- Modal de creacion de practica -->
+        <!-- Modal -->
+        
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
