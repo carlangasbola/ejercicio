@@ -77,37 +77,37 @@ public class ManagedBeanAgregarUsuariosArchivo {
                         //Intruccion switch que evalua la variable contador
                         switch(contador){
                             case 1:
-                                nombre = dato;
+                                identificador = dato;
                                 contador++;
                                 break;
                             case 2:
-                                paterno = dato;
+                                nombre = dato;
                                 contador++;
                                 break;
                             case 3:
-                                materno = dato;
+                                paterno = dato;
                                 contador++;
                                 break;
                             case 4:
-                                telefono = dato;
-                                contador++;
-                                break;
-                            case 5:
-                                correo = dato;
-                                contador++;
-                                break;
-                            case 6:
-                                password = dato;
-                                contador++;
-                                break;
-                            case 7:
-                                numeroSeguro = dato;
-                                contador++;
-                                break;
-                            case 8:
-                                identificador = dato;
+                                materno = dato;
                                 contador=1;
-                                break;    
+                                break;
+                           // case 5:
+                                //correo = dato;
+                                //contador++;
+                                //break;
+                            //case 6:
+                                //password = dato;
+                                //contador++;
+                                //break;
+                            //case 7:
+                                //numeroSeguro = dato;
+                               //contador++;
+                                //break;
+                            //case 8:
+                                //identificador = dato;
+                                //contador=1;
+                                //break;    
                         }
                         
                     }
@@ -120,8 +120,8 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     // Obetener el rol
                     roles.setIdRol(rol);
                     //El login sera con el correo y la password dada
-                    user.setLogin(correo);
-                    user.setPasssword(password);
+                    user.setLogin(identificador);
+                    user.setPasssword(identificador);
                     user.setRoles(roles);
                     //Guardamos el usuario en la base de datos
                     hibernateSession.save(user);
@@ -130,9 +130,9 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     datauser.setNombre(nombre);
                     datauser.setApellidoPaterno(paterno);
                     datauser.setApellidoMaterno(materno);
-                    datauser.setTelefono(telefono);
-                    datauser.setCorreo(correo);
-                    datauser.setNumeroSeguro(numeroSeguro);
+                    //datauser.setTelefono(telefono);
+                    //datauser.setCorreo(correo);
+                    //datauser.setNumeroSeguro(numeroSeguro);
                     datauser.setNumeroSeguro(identificador);
                     // Hacemos la relacion de los datos de usuario con la tabla usuario
                     datauser.setUsuarios(user);
