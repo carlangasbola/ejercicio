@@ -30,11 +30,10 @@
                     <h1>Bienvenido Administrador</h1>
                     <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user } </strong> </h3>
                     <h:form>
-                        <h:commandButton action="#{managedBeanQuerys.obtenerDatosUsuario()}">
+                        <h:commandButton styleClass="btn btn-link" value="Modificar Información" action="#{managedBeanQuerys.obtenerDatosUsuario()}">
                             <f:param name="id" value="#{UserId}" />
                         </h:commandButton>
-                    </h:form>
-                    <a  class="mx-2">Modificar perfíl</a>
+                    </h:form>            
                     <a jsf:outcome="actualizarcontra" class="mx-2">Cambiar contraseña</a>
                     <h5 class="font-weight-light mt-2"> Seleccione al módulo al cuál desea ingresar</h5>
                 </div>

@@ -19,9 +19,9 @@
                     <h2 class=" colorpantone" > Bienvenido al modulo de creación de practicas </h2>
                     <p class="text-muted">Estas son las practicas que han sido creadas o en su caso puedes crear una dando click a continuación</p>
                     <h:form>
-                        <button type="submit" class=" btn  my-3" jsf:action="#{managedBeanQuerys.ObtenerNombreUsuario()}">Crear una nueva práctica
-                                <f:actionListener binding="#{managedBeanPractica.limpialista(managedBeanQuerys.nombrecompleto)}" /> 
-                        </button>
+                        <h:commandButton styleClass="btn colorazul  my-3" type="submit" action="#{managedBeanQuerys.ObtenerNombreUsuario()}" value="boton">
+                            <f:actionListener binding="#{managedBeanPractica.limpialista(managedBeanQuerys.nombrecompleto)}" />   
+                        </h:commandButton>
                     </h:form>
                 </div>
             </div>

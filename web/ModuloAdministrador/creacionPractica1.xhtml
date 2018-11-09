@@ -39,7 +39,8 @@
                 <div class="row">
                     <div class="input-group col-sm-6">
                         <label for="autor">> Autores</label>
-                        <div class="input-group"><input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{managedBeanPractica.auxiliar}"></input>
+                        <div class="input-group">
+                            <input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{managedBeanPractica.auxiliar}"></input>
                             <div class="input-group-append">
                                 <button type="submit" class="bts successverde form-control form-control-sm" jsf:action="#{managedBeanPractica.agregarautor(managedBeanPractica.auxiliar)}" ajax="false">Agregar</button>
                             </div>
@@ -49,9 +50,10 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <ui:repeat var="item" varStatus="status" value="#{managedBeanPractica.lista}"><br/>
-                            <div class="input-group"><input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{item}" readonly = "true"></input>
+                            <div class="input-group">
+                                <input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{item}" readonly = "true"></input>
                                 <div class="input-group-append">
-                                    <button type="submit" class="bts successrojo form-control form-control-sm" jsf:action="#{managedBeanPractica.eliminarautor(status.index)}" ajax="false">Eliminar</button>
+                                    <button type="submit" class="bts successrojo form-control form-control-sm" jsf:action="#{managedBeanPractica.eliminarautor(status.index)}" >Eliminar</button>
                                 </div>
                             </div>
                         </ui:repeat>

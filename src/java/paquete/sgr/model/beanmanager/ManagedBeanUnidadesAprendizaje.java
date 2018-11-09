@@ -1,20 +1,13 @@
 package paquete.sgr.model.beanmanager;
 
-import paquete.sgr.entity.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import paquete.sgr.beans.UnidadesTematicas;
-import paquete.sgr.entity.pojos.Grupo;
 import paquete.sgr.entity.pojos.UnidadAprendizaje;
-import paquete.sgr.entity.pojos.UnidadGrupo;
 import paquete.sgr.entity.pojos.UnidadTematica;
-import paquete.sgr.entity.pojos.Usuarios;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
 
@@ -29,14 +22,6 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     private static List<UnidadesTematicas> unidadTematica;
     private int idGrupo;
     private int idDocente;
-
-    public List getLista() {
-        return lista;
-    }
-
-    public void setLista(List lista) {
-        this.lista = lista;
-    }
     private List lista;
     private String unidadA;
 
@@ -50,13 +35,13 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
 
     // Remover un Equipo
     public void remove() {
+        Mensajes msj = new Mensajes();
         if (unidadTematica.size() > 0) {
             unidadTematica.remove(unidadTematica.size() - 1);
         } else {
-            FacesContext.getCurrentInstance()
-                    .addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                    "Error", "No existen valores para eliminar"));
+            msj.setTitulo("Error");
+            msj.setMensaje("No existen valores para eliminar");
+            msj.MensajeInfo();
         }
     }
 
@@ -68,26 +53,23 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     }
 
     public List getUnidadesTematicas(int id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query;
-        query = session.createSQLQuery("CALL SelectUnidadesTematicas(:id)").setParameter("id", id);
-        lista = query.list();
-        return lista;
+        ConsultasHQL consulta = new ConsultasHQL();
+        consulta.crearListPair("id", id);
+        return consulta.crearSelectStoreProcesure("CALL SelectUnidadesTematicas(:id)");
     }
 
     public List unidadesAprendizaje() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        String hql = "FROM UnidadAprendizaje";
-        Query query = session.createQuery(hql);
-        return query.list();
+        ConsultasHQL consulta = new ConsultasHQL();
+        return consulta.crearSelectQuery("FROM UnidadAprendizaje");
     }
 
     public void crearUnidad() {
+        Mensajes msj = new Mensajes();
         ConsultasHQL consulta = new ConsultasHQL();
         Session session = consulta.getHibernateSession();
         //Creamos la unidad de aprendizaje y agregamos el nombre
         try {
-            session.beginTransaction();   
+            session.beginTransaction();
             UnidadAprendizaje ua = new UnidadAprendizaje();
             ua.setNombre(unidadA);
             session.save(ua);
@@ -103,20 +85,16 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
 
             session.getTransaction().commit();
 
-            FacesContext.getCurrentInstance()
-                    .addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_INFO,
-                                    "Excelente", "Operación realizada con éxito"));
-
+            msj.setTitulo("Excelente");
+            msj.setMensaje("Operación realizada con éxito");
+            msj.MensajeInfo();
         } catch (Exception e) {
             session.getTransaction().rollback();
             System.out.println(e);
-            FacesContext.getCurrentInstance()
-                    .addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                    "Error", "Problema contacte al administrador"));
+            msj.setTitulo("Error");
+            msj.setMensaje("Problema contacte al administrador");
+            msj.MensajeError();
         }
-
     }
 
     //Getters y Setters
@@ -151,5 +129,12 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     public void setIdDocente(int idDocente) {
         this.idDocente = idDocente;
     }
+    
+     public List getLista() {
+        return lista;
+    }
 
+    public void setLista(List lista) {
+        this.lista = lista;
+    }
 }
