@@ -27,10 +27,10 @@
                     <p> Cupo de alumnos  : #{managedBeanGrupos.g.cupo}</p>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col">
-                    
+
                     <h:form>
                         <table class="table">
                             <thead class="thead-light">
@@ -42,29 +42,34 @@
                                     <th scope="col">Ver Prácticas asignadas </th> 
                                 </tr>
                             </thead>
-                            
+
                             <tbody>
                                 <ui:repeat value="#{managedBeanGrupos.ua}" var="ua" varStatus="estatus">
-                                <tr>
-                                    <td>#{estatus.index +1}</td>
-                                    <td>#{ua.nombre}</td>
-                                    <td> aaa</td>
-                                    <td>
-                                        <button class="btn">ver alumnos</button>
-                                    </td>
-                                    <td>
-                                        <button class="btn">ver prácticas</button>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>#{estatus.index +1}</td>
+                                        <td>#{ua.nombre}</td>
+                                        <td> aaa</td>
+                                        <td>
+                                            <button class="btn">ver alumnos</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn">ver prácticas</button>
+                                        </td>
+                                    </tr>
                                 </ui:repeat>
                             </tbody>
                         </table>
                     </h:form>
-                    
+
                 </div>
-            </div>
-            
+            </div>            
         </div>
+
+        <h:panelGroup rendered="#{empty managedBeanGrupos.ua}">  
+            <div>
+                <strong>NO HAY NADA </strong>
+            </div>
+        </h:panelGroup>  
 
         <!-- Bootstrap core JavaScript
                 ================================================== -->

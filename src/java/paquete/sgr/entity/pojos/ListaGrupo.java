@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
+// Generated 9/11/2018 11:27:59 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,13 +10,15 @@ public class ListaGrupo  implements java.io.Serializable {
 
 
      private Integer idListaGrupo;
+     private Equipo equipo;
      private UnidadGrupo unidadGrupo;
      private Usuarios usuarios;
 
     public ListaGrupo() {
     }
 
-    public ListaGrupo(UnidadGrupo unidadGrupo, Usuarios usuarios) {
+    public ListaGrupo(Equipo equipo, UnidadGrupo unidadGrupo, Usuarios usuarios) {
+       this.equipo = equipo;
        this.unidadGrupo = unidadGrupo;
        this.usuarios = usuarios;
     }
@@ -27,6 +29,13 @@ public class ListaGrupo  implements java.io.Serializable {
     
     public void setIdListaGrupo(Integer idListaGrupo) {
         this.idListaGrupo = idListaGrupo;
+    }
+    public Equipo getEquipo() {
+        return this.equipo;
+    }
+    
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
     public UnidadGrupo getUnidadGrupo() {
         return this.unidadGrupo;

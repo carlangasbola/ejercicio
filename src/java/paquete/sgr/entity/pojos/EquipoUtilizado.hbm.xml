@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 8/11/2018 09:24:12 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 9/11/2018 11:28:54 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.EquipoUtilizado" table="equipo_utilizado" catalog="dbsgr" optimistic-lock="version">
         <id name="idEquipoUtilizado" type="java.lang.Integer">
             <column name="idEquipo_utilizado" />
             <generator class="identity" />
         </id>
-        <many-to-one name="datosPractica" class="paquete.sgr.entity.pojos.DatosPractica" fetch="select">
-            <column name="idDatos" not-null="true" />
-        </many-to-one>
         <many-to-one name="equipoLaboratorio" class="paquete.sgr.entity.pojos.EquipoLaboratorio" fetch="select">
             <column name="idEquipo_laboratorio" not-null="true" />
         </many-to-one>
+        <property name="idDatos" type="int">
+            <column name="idDatos" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

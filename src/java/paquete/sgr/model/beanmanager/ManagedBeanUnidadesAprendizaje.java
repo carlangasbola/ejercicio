@@ -10,7 +10,6 @@ import paquete.sgr.entity.pojos.UnidadAprendizaje;
 import paquete.sgr.entity.pojos.UnidadTematica;
 import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
-
 /**
  *
  * @author iron1

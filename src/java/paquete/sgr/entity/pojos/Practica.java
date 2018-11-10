@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
+// Generated 9/11/2018 11:27:59 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,7 +17,7 @@ public class Practica  implements java.io.Serializable {
      private Usuarios usuarios;
      private Date creacion;
      private Set notificacionesPracticas = new HashSet(0);
-     private Set datosPracticas = new HashSet(0);
+     private DatosPractica datosPractica;
 
     public Practica() {
     }
@@ -28,12 +28,12 @@ public class Practica  implements java.io.Serializable {
         this.usuarios = usuarios;
         this.creacion = creacion;
     }
-    public Practica(UnidadTematica unidadTematica, Usuarios usuarios, Date creacion, Set notificacionesPracticas, Set datosPracticas) {
+    public Practica(UnidadTematica unidadTematica, Usuarios usuarios, Date creacion, Set notificacionesPracticas, DatosPractica datosPractica) {
        this.unidadTematica = unidadTematica;
        this.usuarios = usuarios;
        this.creacion = creacion;
        this.notificacionesPracticas = notificacionesPracticas;
-       this.datosPracticas = datosPracticas;
+       this.datosPractica = datosPractica;
     }
    
     public Integer getIdPractica() {
@@ -71,12 +71,12 @@ public class Practica  implements java.io.Serializable {
     public void setNotificacionesPracticas(Set notificacionesPracticas) {
         this.notificacionesPracticas = notificacionesPracticas;
     }
-    public Set getDatosPracticas() {
-        return this.datosPracticas;
+    public DatosPractica getDatosPractica() {
+        return this.datosPractica;
     }
     
-    public void setDatosPracticas(Set datosPracticas) {
-        this.datosPracticas = datosPracticas;
+    public void setDatosPractica(DatosPractica datosPractica) {
+        this.datosPractica = datosPractica;
     }
 
 

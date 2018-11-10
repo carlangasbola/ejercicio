@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 8/11/2018 09:23:46 PM by Hibernate Tools 4.3.1
+// Generated 9/11/2018 11:27:59 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,7 +18,6 @@ public class Usuarios  implements java.io.Serializable {
      private Set reportePracticas = new HashSet(0);
      private Set practicas = new HashSet(0);
      private Set unidadGruposForIdUsuariosDocente = new HashSet(0);
-     private Set equipos = new HashSet(0);
      private Set listaGrupos = new HashSet(0);
      private Set unidadGruposForUsuariosIdUsuarios = new HashSet(0);
      private DatosUsuario datosUsuario;
@@ -30,14 +29,13 @@ public class Usuarios  implements java.io.Serializable {
     public Usuarios(Roles roles) {
         this.roles = roles;
     }
-    public Usuarios(Roles roles, String login, String passsword, Set reportePracticas, Set practicas, Set unidadGruposForIdUsuariosDocente, Set equipos, Set listaGrupos, Set unidadGruposForUsuariosIdUsuarios, DatosUsuario datosUsuario) {
+    public Usuarios(Roles roles, String login, String passsword, Set reportePracticas, Set practicas, Set unidadGruposForIdUsuariosDocente, Set listaGrupos, Set unidadGruposForUsuariosIdUsuarios, DatosUsuario datosUsuario) {
        this.roles = roles;
        this.login = login;
        this.passsword = passsword;
        this.reportePracticas = reportePracticas;
        this.practicas = practicas;
        this.unidadGruposForIdUsuariosDocente = unidadGruposForIdUsuariosDocente;
-       this.equipos = equipos;
        this.listaGrupos = listaGrupos;
        this.unidadGruposForUsuariosIdUsuarios = unidadGruposForUsuariosIdUsuarios;
        this.datosUsuario = datosUsuario;
@@ -91,13 +89,6 @@ public class Usuarios  implements java.io.Serializable {
     
     public void setUnidadGruposForIdUsuariosDocente(Set unidadGruposForIdUsuariosDocente) {
         this.unidadGruposForIdUsuariosDocente = unidadGruposForIdUsuariosDocente;
-    }
-    public Set getEquipos() {
-        return this.equipos;
-    }
-    
-    public void setEquipos(Set equipos) {
-        this.equipos = equipos;
     }
     public Set getListaGrupos() {
         return this.listaGrupos;
