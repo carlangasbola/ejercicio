@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.hibernate.Session;
 import paquete.sgr.beans.Material;
 import org.primefaces.event.FlowEvent;
 
@@ -19,26 +20,22 @@ public class ManagedBeanMaterial implements Serializable {
    // Definicion de variables
     static List<Material> list;
     
+    private String auxnombre;
+    private int auxcantidad;
+    
     // Constructor 
     public ManagedBeanMaterial() {
         list = new ArrayList<>();
     }
     
     // Agregar un nuevo material
-    public void add() {
-        list.add(new Material());
+    public void add(String nombre, int cantidad) {
+        Material agrega = new Material(nombre, cantidad);
+        list.add(agrega);
     }
     
-    // Remover un material
-    public void remove(){
-        if (list.size() > 0) {
-            list.remove(list.size() - 1);
-        } else {
-            FacesContext.getCurrentInstance()
-                    .addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                    "Cuidado", "No existen valores para eliminar"));
-        }
+    public void eliminar(int posicion) {
+        list.remove(posicion);
     }
     
     public String onFlowProcess(FlowEvent event) {
@@ -52,8 +49,28 @@ public class ManagedBeanMaterial implements Serializable {
 
     //Getters y Setters
     
+    public static void setList(List<Material> list) {
+        ManagedBeanMaterial.list = list;
+    }
+
     public List<Material> getList() {
         return list;
     }
 
+    public String getAuxnombre() {
+        return auxnombre;
+    }
+
+    public void setAuxnombre(String auxnombre) {
+        this.auxnombre = auxnombre;
+    }
+
+    public int getAuxcantidad() {
+        return auxcantidad;
+    }
+
+    public void setAuxcantidad(int auxcantidad) {
+        this.auxcantidad = auxcantidad;
+    }
+    
 }

@@ -3,7 +3,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <head jsf:id="head">
         <title>Creación de prácticas</title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
@@ -19,74 +20,112 @@
             <div class="row">
                 <div class="col">
                     <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form"> 
+                        <!-- Selección de reactivos -->
+                        <label for="reac">> Selección de reactivos</label>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-12 col-md-5">Cantidad</th>
+                                    <th scope="col" class="col-12 col-md-5">Nombre del reactivo</th>
+                                    <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="r" value="#{managedBeanReactivos.lista}">
+                                    <tr>
+                                        <td>#{r.cantidad}</td>
+                                        <td>#{r.nombre}</td>
+                                        <td>
+                                            <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanReactivos.eliminar(status.index)}">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <tr>
+                                    <td>
+                                        <input id="cantidadreactivo" type="number" required="true" class="form-control" jsf:value="#{managedBeanReactivos.auxcantidad}"></input>
+                                    </td>
+                                    <td>
+                                        <select  class="custom-select" required="required" jsf:value="#{managedBeanReactivos.auxnombre}" size="0">
+                                            <f:selectItems value="#{managedBeanAdminReactivos.NombresReactivos()}" var="hola" />
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanReactivos.add(managedBeanReactivos.auxnombre, managedBeanReactivos.auxcantidad)}">Agregar</button></td>
+                                </tr>
+                            </tbody>
+                        </table><br/><hr/><br/>
+                        
                         <!-- Selección de material -->
-                        <div class="row">
-                            <div class="col-12 col-md">
-                                <label for="material">> Selección de material</label>
-                                <p:dataTable value="#{managedBeanMaterial.list}" var="item" emptyMessage="No hay registros" >
-                                    <p:column >
-                                        <!-- column header -->
-                                        <f:facet name="header"> Cantidad (Piezas) </f:facet>
-                                        <p:spinner value="#{item.cantidad}" size="45" min="1" />
-                                    </p:column>
-                                    <p:column>
-                                        <!-- column header -->
-                                        <f:facet name="header"> Nombre del material </f:facet>
-                                        <p:inputText value="#{item.nombre}" size="45" />
-                                    </p:column>
-                                </p:dataTable>
-                                <br />
-                                <p:commandButton value="Agregar" action="#{managedBeanMaterial.add}" ajax="false" />
-                                <p:commandButton value="Eliminar" action="#{managedBeanMaterial.remove}" ajax="false" />
-                                <br /><br />
-                            </div>
-                        </div>
+                        
+                        <label for="mate">> Selección de material</label>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-12 col-md-5">Cantidad</th>
+                                    <th scope="col" class="col-12 col-md-5">Nombre del material</th>
+                                    <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="m" value="#{managedBeanMaterial.list}">
+                                    <tr>
+                                        <td>#{m.cantidad}</td>
+                                        <td>#{m.nombre}</td>
+                                        <td>
+                                            <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanMaterial.eliminar(status.index)}">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <tr>
+                                    <td>
+                                        <input id="cantidadmaterial" type="number" required="true" class="form-control" jsf:value="#{managedBeanMaterial.auxcantidad}"></input>
+                                    </td>
+                                    <td>
+                                        <select  class="custom-select" required="required" jsf:value="#{managedBeanMaterial.auxnombre}" size="0">
+                                            <f:selectItems value="#{managedBeanAdminMateriales.NombresMateriales()}" var="hola" />
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanMaterial.add(managedBeanMaterial.auxnombre, managedBeanMaterial.auxcantidad)}">Agregar</button></td>
+                                </tr>
+                            </tbody>
+                        </table><br/><hr/><br/>
+
+                        
                         <!-- Selección de equipo -->
-                        <div class="row">
-                            <div class="col-12 col-md">
-                                <label for="equipo">> Selección de equipo</label>
-                                <p:dataTable value="#{managedBeanEquipo.lista}" var="item" emptyMessage="No hay registros" >
-                                    <p:column >
-                                        <!-- column header -->
-                                        <f:facet name="header"> Cantidad (Piezas) </f:facet>
-                                        <p:spinner value="#{item.cantidad}"  size="45" min="1" />
-                                    </p:column>
-                                    <p:column>
-                                        <!-- column header -->
-                                        <f:facet name="header"> Nombre del equipo </f:facet>
-                                        <p:inputText value="#{item.nombre}" size="45" />
-                                    </p:column>
-                                </p:dataTable>
-                                <br />
-                                <p:commandButton value="Agregar" action="#{managedBeanEquipo.add}" ajax="false"  />
-                                <p:commandButton value="Eliminar" action="#{managedBeanEquipo.remove}" ajax="false" />
-                                <br /><br />
-                            </div>
-                        </div>
-                        <!-- Seleección de reactivoa -->
-                        <div class="row">
-                            <div class="col-12 col-md">
-                                <p:dataTable value="#{managedBeanReactivos.lista}" var="item" emptyMessage="No hay registros" >
-                                    <p:column >
-                                        <!-- column header -->
-                                        <f:facet name="header">Cantidad (mililitros) </f:facet>
-                                        <p:spinner value="#{item.cantidad}" size="45" />
-                                    </p:column>
-                                    <p:column>
-                                        <!-- column header -->
-                                        <f:facet name="header">Sustancia</f:facet>
-                                        <p:selectOneMenu  value="#{item.nombre}" >
-                                            <f:selectItem itemLabel="selecciona uno" />
-                                            <f:selectItems value="#{managedBeanReactivos.list}" var="hola" />
-                                        </p:selectOneMenu>
-                                    </p:column>
-                                </p:dataTable>
-                                <br />
-                                <p:commandButton value="Agregar" action="#{managedBeanReactivos.add}" ajax="false" />
-                                <p:commandButton value="Eliminar" action="#{managedBeanReactivos.remove}" ajax="false" />
-                                <br /> <br />
-                            </div>>
-                        </div>
+                        
+                        <label for="equi">> Selección de equipo</label>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-12 col-md-5">Cantidad</th>
+                                    <th scope="col" class="col-12 col-md-5">Nombre del equipo</th>
+                                    <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="e" value="#{managedBeanEquipo.lista}">
+                                    <tr>
+                                        <td>#{e.cantidad}</td>
+                                        <td>#{e.nombre}</td>
+                                        <td>
+                                            <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanEquipo.eliminar(status.index)}">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <tr>
+                                    <td>
+                                        <input id="cantidadequipo" type="number" required="true" class="form-control" jsf:value="#{managedBeanEquipo.auxcantidad}"></input>
+                                    </td>
+                                    <td>
+                                        <select  class="custom-select" required="required" jsf:value="#{managedBeanEquipo.auxnombre}" size="0">
+                                            <f:selectItems value="#{managedBeanAdminEquipo.NombresEquipo()}" var="hola" />
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanEquipo.add(managedBeanEquipo.auxnombre, managedBeanEquipo.auxcantidad)}">Agregar</button></td>
+                                </tr>
+                            </tbody>
+                        </table><br/><hr/><br/>
+                        
+                        
                         <!-- Botones anterior/siguiente -->
                         <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('1')}" style="float:left"><i class="fas fa-chevron-circle-left mr-2"></i>Anterior</button>
                         <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('3')}" style="float:right">

@@ -12,7 +12,11 @@ import paquete.sgr.beans.Equipo;
 @Named(value = "managedBeanEquipo")
 @SessionScoped
 public class ManagedBeanEquipo implements Serializable {
-
+    
+    // Definicion de variables
+    static List<Equipo> lista;
+    private String auxnombre;
+    private int auxcantidad;
     /**
      * Creates a new instance of ManagedBeanEquipo
      */
@@ -20,24 +24,15 @@ public class ManagedBeanEquipo implements Serializable {
         lista = new ArrayList<>();
     }
     
-    public void add() {
-        lista.add(new Equipo());
+    // Agregar un nuevo equipo
+    public void add(String nombre, int cantidad) {
+        Equipo agrega = new Equipo(nombre, cantidad);
+        lista.add(agrega);
     }
     
-    // Remover un Equipo
-    public void remove(){
-        if (lista.size() > 0) {
-            lista.remove(lista.size() - 1);
-        } else {
-            FacesContext.getCurrentInstance()
-                    .addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                    "Cuidado", "No existen valores para eliminar"));
-        }
+    public void eliminar(int posicion) {
+        lista.remove(posicion);
     }
-    
-    // Definicion de variables
-    static List<Equipo> lista;
     
     // Getters y Setters
     public List<Equipo> getLista() {
@@ -48,4 +43,20 @@ public class ManagedBeanEquipo implements Serializable {
         this.lista = lista;
     }
 
+    public String getAuxnombre() {
+        return auxnombre;
+    }
+
+    public void setAuxnombre(String auxnombre) {
+        this.auxnombre = auxnombre;
+    }
+
+    public int getAuxcantidad() {
+        return auxcantidad;
+    }
+
+    public void setAuxcantidad(int auxcantidad) {
+        this.auxcantidad = auxcantidad;
+    }
+    
 }

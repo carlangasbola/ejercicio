@@ -1,5 +1,6 @@
 package paquete.sgr.model.beanmanager;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -29,6 +30,9 @@ public class ManagedBeanAdminReactivos {
     /* Obtener un solo reactivo */
     private Reactivos r;
     
+    /*Obtener solo el nombre de los reactivos*/
+    private List<String> listanombres;
+    
     public void actualizarReactivo(int idreactivo) {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         hibernateSession.beginTransaction();
@@ -53,6 +57,17 @@ public class ManagedBeanAdminReactivos {
         Query query = hibernateSession.createSQLQuery("select *from reactivos").addEntity(Reactivos.class);
         List<Reactivos> reactivos = query.list();
         return reactivos;
+    }
+    
+    public List<String> NombresReactivos() {
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Query query = hibernateSession.createSQLQuery("select *from reactivos").addEntity(Reactivos.class);
+        List<Reactivos> reactivos = query.list();
+        listanombres = new ArrayList<>();
+        for(paquete.sgr.entity.pojos.Reactivos item:reactivos)
+            listanombres.add(item.getNombre());
+        
+        return listanombres;
     }
     
     public void eliminarReactivo(int idreactivo) {

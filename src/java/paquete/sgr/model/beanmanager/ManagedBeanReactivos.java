@@ -13,6 +13,9 @@ import javax.faces.context.FacesContext;
 import paquete.sgr.beans.ConexionNeurona;
 import paquete.sgr.beans.Reactivos;
 import net.sf.jasperreports.engine.JRException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import paquete.sgr.entity.util.HibernateUtil;
 
 
 @Named(value = "managedBeanReactivos")
@@ -23,6 +26,8 @@ public class ManagedBeanReactivos implements Serializable {
     
     static List<Reactivos> lista;
     private List<String> list;
+    private String auxnombre;
+    private double auxcantidad;
     private double p1;
     private double p2;
     private double p3;
@@ -39,27 +44,14 @@ public class ManagedBeanReactivos implements Serializable {
     private List<String> ReactivosF = new ArrayList<String>();
     private ConexionNeurona c = new ConexionNeurona();
     
-    // Inicializa el array de los materiales
-    @PostConstruct
-    public void init(){
-        /*Aqui haremos una consulta a la base y obtendremos los materiales */
-        list = new ArrayList<>();
-        list.add("Hidróxido de sodio");
-        list.add("Metanol");
-        list.add("Glicerina");
-        list.add("Ácido clorhídrico");
-        list.add("Etanol");
-        list.add("Acetona");
-        list.add("Agua");
-    }
-    
     public ManagedBeanReactivos() {
         lista = new ArrayList<>();
-            }
+    }
     
     //Agrega los reactivos a la lista que mustra la vista
-    public void add() {
-        lista.add(new Reactivos());
+    public void add(String nombre, double cantidad) {
+        Reactivos agrega = new Reactivos(nombre, cantidad);
+        lista.add(agrega);
         
         if("Ácido clorhídrico".equals(prueba)){
             tv[0]=1;
@@ -79,6 +71,11 @@ public class ManagedBeanReactivos implements Serializable {
         if("Acetona".equals(prueba)){
             tv[1]=1;
         }
+    }
+    
+    
+    public void eliminar(int posicion) {
+        lista.remove(posicion);;
     }
     
     // Remover un Equipo
@@ -227,4 +224,21 @@ public class ManagedBeanReactivos implements Serializable {
     public void setSemaforo(String semaforo) {
         this.semaforo = semaforo;
     }
+
+    public String getAuxnombre() {
+        return auxnombre;
+    }
+
+    public void setAuxnombre(String auxnombre) {
+        this.auxnombre = auxnombre;
+    }
+
+    public double getAuxcantidad() {
+        return auxcantidad;
+    }
+
+    public void setAuxcantidad(double auxcantidad) {
+        this.auxcantidad = auxcantidad;
+    }
+    
 }

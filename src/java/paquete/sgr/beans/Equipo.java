@@ -4,6 +4,11 @@ public class Equipo {
     
     private int cantidad;
     private String nombre;
+
+    public Equipo(String nombre, int cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
     
     public int getCantidad() {
         return cantidad;

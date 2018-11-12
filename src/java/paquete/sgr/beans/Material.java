@@ -4,9 +4,14 @@ public class Material {
 
     public Material() {
     }
+
+    public Material(String nombre, int cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
     
     private String nombre;
-    private String cantidad;
+    private int cantidad;
 
     public String getNombre() {
         return nombre;
@@ -16,11 +21,11 @@ public class Material {
         this.nombre = nombre;
     }
 
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
     

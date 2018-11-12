@@ -5,7 +5,16 @@ package paquete.sgr.beans;
 public class Reactivos {
     
     private String nombre;
-    private String cantidad;
+    private double cantidad;
+
+    public Reactivos(String nombre, double cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
+    
+    public Reactivos(){
+        
+    }
     
     public String getNombre() {
         return nombre;
@@ -15,11 +24,11 @@ public class Reactivos {
         this.nombre = nombre;
     }
 
-    public String getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
     

@@ -128,7 +128,7 @@ public class ManagedBeanGrupos {
         ConsultasHQL consulta = new ConsultasHQL();
         Grupo grupoO = new Grupo(nombregrupo, cupogrupo);
         if (consulta.insertarObjeto(grupoO)) {
-            msj.setTitulo("!Operación exitosa¡");
+            msj.setTitulo("¡Operación exitosa!");
             msj.setMensaje("Grupo creado");
             msj.MensajeInfo();
         } else {

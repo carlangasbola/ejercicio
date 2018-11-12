@@ -1,5 +1,6 @@
 package paquete.sgr.model.beanmanager;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -21,11 +22,15 @@ public class ManagedBeanAdminMateriales {
     /*Crecion de variables para la recuperacion de datos*/
     private Session hibernateSession;
     private String nombrematerial;
+    private String caracteristicasmaterial;
     private int cantidadmaterial;
     private byte existenciamaterial;
     
-    /* Obtener un solo reactivo */
+    /* Obtener un solo material */
     private Material m;
+    
+    /*Obtener solo el nombre de los materiales*/
+    private List<String> listanombres;
     
     public void actualizarMaterial(int idmaterial) {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
@@ -35,6 +40,7 @@ public class ManagedBeanAdminMateriales {
         material1.setIdMaterial(idmaterial);
         //se asignan los nuevos valores
         material1.setNombre(nombrematerial);
+        material1.setCaracteristicas(caracteristicasmaterial);
         material1.setCantidad(cantidadmaterial);
         material1.setExistenciaInventario(existenciamaterial);
         //se hace el update
@@ -49,6 +55,17 @@ public class ManagedBeanAdminMateriales {
         Query query = hibernateSession.createSQLQuery("select *from material").addEntity(Material.class);
         List<Material> materiales = query.list();
         return materiales;
+    }
+    
+    public List<String> NombresMateriales() {
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Query query = hibernateSession.createSQLQuery("select *from material").addEntity(Material.class);
+        List<Material> materiales = query.list();
+        listanombres = new ArrayList<>();
+        for(paquete.sgr.entity.pojos.Material item:materiales)
+            listanombres.add(item.getNombre());
+        
+        return listanombres;
     }
     
     public void eliminarMaterial(int idmaterial) {
@@ -66,6 +83,7 @@ public class ManagedBeanAdminMateriales {
             Material material = new Material();
             
             material.setNombre(nombrematerial);
+            material.setCaracteristicas(caracteristicasmaterial);
             material.setCantidad(cantidadmaterial);
             material.setExistenciaInventario(existenciamaterial);
             //Guardamos el material en la base de datos
@@ -107,6 +125,16 @@ public class ManagedBeanAdminMateriales {
     public void setNombrematerial(String nombrematerial) {
         this.nombrematerial = nombrematerial;
     }
+
+    public String getCaracteristicasmaterial() {
+        return caracteristicasmaterial;
+    }
+
+    public void setCaracteristicasmaterial(String caracteristicasmaterial) {
+        this.caracteristicasmaterial = caracteristicasmaterial;
+    }
+    
+    
 
     public int getCantidadmaterial() {
         return cantidadmaterial;

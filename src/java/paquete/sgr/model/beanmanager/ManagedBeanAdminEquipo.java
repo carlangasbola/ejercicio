@@ -1,5 +1,6 @@
 package paquete.sgr.model.beanmanager;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -27,6 +28,9 @@ public class ManagedBeanAdminEquipo {
     /* Obtener un solo equipo */
     private EquipoLaboratorio e;
     
+    /*Obtener solo el nombre de los equipos*/
+    private List<String> listanombres;
+    
     
     public void actualizarEquipo(int idequipo) {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
@@ -51,6 +55,18 @@ public class ManagedBeanAdminEquipo {
         List<EquipoLaboratorio> equipo = query.list();
         return equipo;
     }
+    
+    public List<String> NombresEquipo() {
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Query query = hibernateSession.createSQLQuery("select *from equipo_laboratorio").addEntity(EquipoLaboratorio.class);
+        List<EquipoLaboratorio> equipo = query.list();
+        listanombres = new ArrayList<>();
+        for(paquete.sgr.entity.pojos.EquipoLaboratorio item:equipo)
+            listanombres.add(item.getNombre());
+        
+        return listanombres;
+    }
+    
     
     public void eliminarEquipo(int idequipo) {
         ConsultasHQL consulta = new ConsultasHQL();

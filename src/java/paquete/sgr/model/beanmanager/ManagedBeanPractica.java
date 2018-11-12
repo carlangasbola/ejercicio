@@ -52,7 +52,6 @@ public class ManagedBeanPractica implements Serializable {
         practica.listamaterial=ManagedBeanMaterial.list;
         practica.listaequipo=ManagedBeanEquipo.lista;
         practica.listareactivos=ManagedBeanReactivos.lista;
-        practica.introduccion="C:\\Users\\César\\Documents\\NetBeansProjects\\ApiTest\\Prueba.jpg";
         practica.imprime();
     }
         
@@ -60,7 +59,7 @@ public class ManagedBeanPractica implements Serializable {
         List<Practica> datasource = new ArrayList<>();
         datasource.add(practica);
         String filename = "Practica ";
-        String jasperPath = "/resources/FormatoDePractica.jasper";
+        String jasperPath = "/resources/ReporteDePractica.jasper";
         this.PDF(null, jasperPath, datasource, filename);
      }
      

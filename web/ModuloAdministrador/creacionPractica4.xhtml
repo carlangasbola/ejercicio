@@ -49,6 +49,12 @@
                            II Materiales y Equipo
                         </div>
                         <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Reactivos:</strong>
+                                <ui:repeat var="item" value="#{managedBeanReactivos.lista}" >
+                                    <br />
+                                    Cantidad:   #{item.cantidad}   Nombre:   #{item.nombre}
+                                </ui:repeat>
+                            </li>
                             <li class="list-group-item"><strong>Material:</strong>  
                                 <ui:repeat var="item" value="#{managedBeanMaterial.list}" >
                                     <br />
@@ -57,12 +63,6 @@
                             </li>
                             <li class="list-group-item"><strong>Equipo</strong>: 
                                 <ui:repeat var="item" value="#{managedBeanEquipo.lista}" >
-                                    <br />
-                                    Cantidad:   #{item.cantidad}   Nombre:   #{item.nombre}
-                                </ui:repeat>
-                            </li>
-                            <li class="list-group-item"><strong>Reactivos:</strong>
-                                <ui:repeat var="item" value="#{managedBeanReactivos.lista}" >
                                     <br />
                                     Cantidad:   #{item.cantidad}   Nombre:   #{item.nombre}
                                 </ui:repeat>
