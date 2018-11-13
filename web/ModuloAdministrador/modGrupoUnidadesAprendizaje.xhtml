@@ -3,7 +3,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html" 
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <head jsf:id="head">
         <title>Unidades Aprendizaje grupo</title>
@@ -30,46 +30,68 @@
 
             <div class="row">
                 <div class="col">
-
                     <h:form>
-                        <table class="table">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Unidades de aprendizaje</th>
-                                    <th scope="col">Ocupabilidad</th> 
-                                    <th scope="col">Ver alumnos inscritos </th> 
-                                    <th scope="col">Ver Prácticas asignadas </th> 
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <ui:repeat value="#{managedBeanGrupos.ua}" var="ua" varStatus="estatus">
-                                    <tr>
-                                        <td>#{estatus.index +1}</td>
-                                        <td>#{ua.nombre}</td>
-                                        <td> aaa</td>
-                                        <td>
-                                            <button class="btn">ver alumnos</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn">ver prácticas</button>
-                                        </td>
-                                    </tr>
-                                </ui:repeat>
-                            </tbody>
-                        </table>
+                        <p:dataTable value="#{managedBeanGrupos.ua}" var="ua" emptyMessage="Sin registros aún" >
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ua.nombre}" />
+                            </p:column>
+                        </p:dataTable>
                     </h:form>
-
                 </div>
-            </div>            
-        </div>
+            </div>     
 
-        <h:panelGroup rendered="#{empty managedBeanGrupos.ua}">  
-            <div>
-                <strong>NO HAY NADA </strong>
+
+            <div class="row mt-4">
+                <h:form>
+                    <h:panelGrid rendered="#{empty managedBeanGrupos.ua}"  columns="3">
+                        <h:panelGroup>  
+                            <div class="col">
+                                <strong class="text-danger">Este grupo no tiene unidades de aprendizaje </strong>
+                                <p>Te presentamos las siguientes opciones</p>
+                                <h6>1.- Selecciona las unidades de aprendizaje que quieras añadir a este grupo</h6>
+                                <p>* Lado izquierdo las disponibles</p>
+                                <p>* Lado derecho las que se asignarán</p>
+                                
+                                
+                                <p:pickList id="pickList" value="#{pickListViewUnidadAprendizaje.unidadAprendizaje}" var="ua" itemLabel="#{ua.nombre}" itemValue="#{ua.idUnidadAprendizaje}" />
+                                <p:commandButton id="citySubmit" value="Asignar" update="displayModal" oncomplete="PF('cityDialog').show()" style="margin-top:5px" />                        
+                            </div>
+                        </h:panelGroup>
+
+                        <h:panelGroup>  
+                            <div class="col">
+                                <h6>2.- Crear una nueva unidad de aprendizaje </h6>
+                                <p> Da clic en el boton que aparece debajo </p>
+                                <button class="btn colorverde" jsf:outcome="unidadAprendizaje"> <i class="fas fa-plus"></i> Ir a creación de unidad de aprendizaje </button>
+                                <br/><br/><br/><br/><br/><br/><br/><br/>
+                            </div>
+                        </h:panelGroup>
+                    </h:panelGrid>
+
+                    <p:dialog modal="true" showEffect="fade" id="displayModal"  hideEffect="fade" widgetVar="cityDialog">                    
+                           <h:outputText value="Seleccione el docente y el tecnico" style="font-weight:bold" />
+                            
+                            <br/>
+                            <h:outputLabel for="Docente" value="Selecciona el Docente" />
+                            <h:selectOneMenu id="Docente" value="" styleClass="form-control" >
+                                <!-- Le mando el 2 por que indica los docentes -->
+                                <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                            </h:selectOneMenu>
+                            
+                            <br/>
+                            <h:outputLabel for="tecnico" value="Selecciona el Tecnico" />
+                            <h:selectOneMenu id="tecnico" value="" styleClass="form-control" >
+                                <!-- Le mando el 3 por que indica los tecnicos -->
+                                <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                            </h:selectOneMenu>       
+                            
+                            <h:commandButton class="btn colorverde"  value="Aceptar" >  </h:commandButton>
+                            
+                    </p:dialog>
+
+                </h:form>
             </div>
-        </h:panelGroup>  
+        </div>
 
         <!-- Bootstrap core JavaScript
                 ================================================== -->

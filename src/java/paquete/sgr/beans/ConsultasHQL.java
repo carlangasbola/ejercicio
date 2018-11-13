@@ -23,7 +23,7 @@ public class ConsultasHQL {
      * Creates a new instance of ManagedBeanConsultas
      */
     public ConsultasHQL() {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        hibernateSession = HibernateUtil.getSession();
         listPair = new ArrayList<>();
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         sessionMap = externalContext.getSessionMap();
@@ -89,9 +89,6 @@ public class ConsultasHQL {
         } catch (HibernateException ex) {
             System.err.println(ex);
             tx.rollback();
-        } finally {
-            s.flush();
-            s.clear();
         }
     }
 
@@ -107,7 +104,7 @@ public class ConsultasHQL {
             System.err.println(ex);
             tx.rollback();
             return false;
-        } 
+        }
     }
 
     public void eliminarObjeto(Object o) {
@@ -120,19 +117,16 @@ public class ConsultasHQL {
         } catch (HibernateException ex) {
             System.err.println(ex);
             tx.rollback();
-        } finally {
-            s.flush();
-            s.clear();
         }
     }
 
     // Si hay una session en hibernate la devuelve si no la crea
     public Session obtenerSession() {
-        if (hibernateSession.isOpen()) {
-            return hibernateSession;
-        } else {
-            return HibernateUtil.getSessionFactory().openSession();
-        }
+        return HibernateUtil.getSession();
+    }
+    
+    public void cerrarSesion(){
+        HibernateUtil.shutdown();
     }
 
     // El metodo finalize termina la conexion a la base de datos si no esta en uso
@@ -153,14 +147,10 @@ public class ConsultasHQL {
         return sessionMap.get(identificador);
     }
 
-    
     /**
      * *****************************
-     * Getters y Setters Del Codigo 
-     * *******************************
-     * @return 
+     * Getters y Setters Del Codigo ******************************* @return
      */
-    
     public ArrayList<Pair<String, Object>> getListPair() {
         return listPair;
     }
@@ -184,7 +174,7 @@ public class ConsultasHQL {
     public void setExternalContext(ExternalContext externalContext) {
         this.externalContext = externalContext;
     }
-    
+
     public Session getHibernateSession() {
         return hibernateSession;
     }

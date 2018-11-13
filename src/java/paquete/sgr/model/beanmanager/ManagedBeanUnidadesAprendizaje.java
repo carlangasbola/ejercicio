@@ -26,6 +26,8 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
 
     public ManagedBeanUnidadesAprendizaje() {
         unidadTematica = new ArrayList<>();
+        // Esto garantiza que minimo exista una unidad tematica
+        enlargeList();
     }
 
     public void enlargeList() {
@@ -94,6 +96,8 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
             msj.setMensaje("Problema contacte al administrador");
             msj.MensajeError();
         }
+        consulta.getHibernateSession().close();
+        
     }
 
     //Getters y Setters

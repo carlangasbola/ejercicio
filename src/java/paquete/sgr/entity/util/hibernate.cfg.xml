@@ -46,6 +46,7 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbsgr?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping resource="paquete/sgr/entity/pojos/ReactivoUtilizado.hbm.xml"/>
     <mapping resource="paquete/sgr/entity/pojos/Grupo.hbm.xml"/>
     <mapping resource="paquete/sgr/entity/pojos/Equipo.hbm.xml"/>

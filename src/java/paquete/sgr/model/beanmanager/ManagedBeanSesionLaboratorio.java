@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
+import jxl.write.DateTime;
 import paquete.sgr.model.beanmanager.dropdownview.DropdownViewGrupoUnidades;
 
 /**

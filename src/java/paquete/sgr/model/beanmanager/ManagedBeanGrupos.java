@@ -79,7 +79,7 @@ public class ManagedBeanGrupos {
     public String redirecionarGrupoUnidadesAprendizaje(int IdG) {
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.getHibernateSession();
-        Query query = hibernateSession.createSQLQuery("CALL SelectUnidadesAprendizajeGrupo (:idGrupo)")
+        Query query = s.createSQLQuery("CALL SelectUnidadesAprendizajeGrupo (:idGrupo)")
                 .addEntity(UnidadAprendizaje.class)
                 .setParameter("idGrupo", IdG);
         ua = query.list();

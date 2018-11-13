@@ -76,7 +76,8 @@ public class ManagedBeanUsuarios {
     }
 
     public List obtenerUsuarios(int id) {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        ConsultasHQL consulta = new ConsultasHQL();
+        hibernateSession = consulta.getHibernateSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectDatosRol(:id)")
                 .addEntity(DatosUsuario.class)
                 .setParameter("id", id);

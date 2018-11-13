@@ -28,9 +28,9 @@ public class ManagedBeanLogin {
         Mensajes message = new Mensajes("No estás registrado en la pagina", "Error");
         ConsultasHQL consulta = new ConsultasHQL();
         
-        // Crear list pair crea parametros que se envian a la consulta
-        consulta.crearListPair("user", user);
-        consulta.crearListPair("pass", pass);
+        // Crear list pair crea parametros que se envian a la consulta sin espacios
+        consulta.crearListPair("user", user.trim() );
+        consulta.crearListPair("pass", pass );
         List<Usuarios> u = consulta.crearSelectQuery("from Usuarios where login = :user and passsword = :pass");
 
         /* Si hay un usuario en la base de datos */
