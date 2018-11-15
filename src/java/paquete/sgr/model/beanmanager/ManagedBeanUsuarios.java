@@ -70,7 +70,8 @@ public class ManagedBeanUsuarios {
     }
 
     public List obtenerUsuarios() {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        ConsultasHQL consulta = new ConsultasHQL();
+        hibernateSession = consulta.getHibernateSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectAllDatosUsuarios()").addEntity(DatosUsuario.class);
         return query.list();
     }
@@ -159,10 +160,11 @@ public class ManagedBeanUsuarios {
         Usuarios u = new Usuarios();
         DatosUsuario du = new DatosUsuario();
         ConsultasHQL consulta = new ConsultasHQL();
-        int userId = (int) consulta.obtenerDatosSesion("UserId");
-
+        
+        int userId = getIdUsuarioSession();
         Session hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = hibernateSession.beginTransaction();
+        
         consulta.crearListPair("userId", userId);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
         
@@ -210,11 +212,11 @@ public class ManagedBeanUsuarios {
                 System.out.println("Exepcion : " + e);
             }
         } else {
-            m.setTitulo("Eroor");
+            m.setTitulo("Error");
             m.setMensaje("La contraseña no es correcta");
             m.MensajePrecaucion();
         }
-
+        
     }
 
     public void crearUsuario() {

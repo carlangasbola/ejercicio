@@ -23,7 +23,7 @@ public class ConsultasHQL {
      * Creates a new instance of ManagedBeanConsultas
      */
     public ConsultasHQL() {
-        hibernateSession = HibernateUtil.getSession();
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
         listPair = new ArrayList<>();
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         sessionMap = externalContext.getSessionMap();
@@ -122,18 +122,10 @@ public class ConsultasHQL {
 
     // Si hay una session en hibernate la devuelve si no la crea
     public Session obtenerSession() {
-        return HibernateUtil.getSession();
-    }
-    
-    public void cerrarSesion(){
-        HibernateUtil.shutdown();
-    }
-
-    // El metodo finalize termina la conexion a la base de datos si no esta en uso
-    @Override
-    public void finalize() {
         if (hibernateSession.isOpen()) {
-            hibernateSession.close();
+            return hibernateSession;
+        } else {
+            return HibernateUtil.getSessionFactory().openSession();
         }
     }
 

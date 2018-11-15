@@ -45,6 +45,7 @@ public class ManagedBeanLogin {
                     .crearSelectQuery("FROM DatosUsuario as du where usuarios.idUsuarios = :IdUsuario ");
             if (!du.isEmpty()) {
                 user = du.get(0).getNombre() + " " + du.get(0).getApellidoPaterno() + " " + du.get(0).getApellidoMaterno();
+                consulta.guardarDatosSession("nombreUsuario", user);
             }
             /* Accedemos a los atributos del usuario que encontro */
             

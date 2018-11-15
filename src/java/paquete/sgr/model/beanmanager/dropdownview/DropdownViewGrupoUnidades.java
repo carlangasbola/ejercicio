@@ -71,7 +71,7 @@ public class DropdownViewGrupoUnidades implements Serializable {
         Mensajes msj = new Mensajes();
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.getHibernateSession();
-         SesionDeLaboratorio sl = new SesionDeLaboratorio();
+        SesionDeLaboratorio sl = new SesionDeLaboratorio();
 
         UnidadAprendizaje ua = (UnidadAprendizaje) s.load(UnidadAprendizaje.class, Integer.parseInt( id_UnidadAprendizaje ));
         Grupo g = (Grupo) s.load(Grupo.class, Integer.parseInt(id_Grupo ));
@@ -91,7 +91,7 @@ public class DropdownViewGrupoUnidades implements Serializable {
             msj.setMensaje("Ocurrio un error al procesar la solicitud");
             msj.MensajeError();
         }
-
+        s.close();
     }
 
     public Map<String, Map<String, String>> getData() {

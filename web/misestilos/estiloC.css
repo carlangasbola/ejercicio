@@ -126,3 +126,12 @@ body {
 .tabla{
     background-color: #B81F6D;
 }
+
+.colorrojofuerte{
+    color: #830A2C;
+}
+
+.bgcolorrojofuerte{
+    background-color: #830A2C;
+    color:white;
+}

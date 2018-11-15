@@ -73,19 +73,19 @@
                             
                             <br/>
                             <h:outputLabel for="Docente" value="Selecciona el Docente" />
-                            <h:selectOneMenu id="Docente" value="" styleClass="form-control" >
+                            <h:selectOneMenu id="Docente" value="#{pickListViewUnidadAprendizaje.idDocente}" styleClass="form-control" >
                                 <!-- Le mando el 2 por que indica los docentes -->
                                 <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
                             </h:selectOneMenu>
                             
                             <br/>
                             <h:outputLabel for="tecnico" value="Selecciona el Tecnico" />
-                            <h:selectOneMenu id="tecnico" value="" styleClass="form-control" >
+                            <h:selectOneMenu id="tecnico" value="#{pickListViewUnidadAprendizaje.idtecnico}" styleClass="form-control" >
                                 <!-- Le mando el 3 por que indica los tecnicos -->
                                 <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
                             </h:selectOneMenu>       
                             
-                            <h:commandButton class="btn colorverde"  value="Aceptar" >  </h:commandButton>
+                            <h:commandButton class="btn colorverde" value="Aceptar" action="#{pickListViewUnidadAprendizaje.crearUnidadGrupo(managedBeanGrupos.grupo)}" >  </h:commandButton>
                             
                     </p:dialog>
 

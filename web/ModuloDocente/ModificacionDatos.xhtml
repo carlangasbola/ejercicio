@@ -19,18 +19,6 @@
         </h:form>
 
         <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
-        
-        <div class="container-fluid my-3">
-            <div class="row">
-                <div class="col">
-                    <form jsf:id="navegacion">
-                        <button class="btn btn-light" type="submit" jsf:action="#{navegar.irA('ModificacionDatos')}"> 
-                            <i class="fas fa-arrow-circle-left colorrojofuerte fa-lg"></i> 
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
 
         <h3 class=" text-center mt-4 col-12">Modificación de datos</h3>
 
@@ -49,8 +37,7 @@
                             <label for="name">Nombre</label>
                             <input type="text" jsf:value="#{managedBeanQuerys.nombre}" class="form-control form-control-sm" id="name" required="true"/>
                         </div>
-
-
+                        
                         <div class="form-group ">
                             <label for="apaterno">Apellido paterno</label>
                             <input type="text" jsf:value="#{managedBeanQuerys.paterno}" class="form-control form-control-sm" id="apaterno" required="true"/>
@@ -71,7 +58,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="unico">Mátricula o número de boleta</label>
-                            <input type="text" jsf:value="#{managedBeanQuerys.identificador}" class="form-control form-control-sm" id="unico" required="true"/>
+                            <input type="text" jsf:value="#{managedBeanQuerys.identificador}" disabled="true" class="form-control form-control-sm" id="unico" required="true"/>
                         </div>
                     </div>
                     <div class="col-12 col-md">

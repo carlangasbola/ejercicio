@@ -57,11 +57,12 @@ public class ManagedBeanGrupos {
         hibernateSession.update(grupoO);
         //Commit the transaction
         hibernateSession.getTransaction().commit();
-        hibernateSession.close();
+    
     }
 
     public List<Grupo> getGrupos() {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        ConsultasHQL consulta = new ConsultasHQL();
+        hibernateSession = consulta.getHibernateSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectGrupos()").addEntity(Grupo.class);
         List<Grupo> grupos = query.list();
         return grupos;

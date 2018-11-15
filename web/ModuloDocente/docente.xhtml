@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <head jsf:id="head">
-        <title>Bienvenido Administrador</title>
+        <title>Bienvenido </title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
     </head>
     <body jsf:id="body">
@@ -27,13 +27,14 @@
             <div class="row ">
 
                 <div class="col mt-4">
-                    <h1>Bienvenido Administrador</h1>
-                    <h3 class="my-4"> <strong class="text-capitalize"> #{nombreUsuario} </strong> </h3>
+                    <h1>Bienvenido Docente</h1>
+                    <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user } </strong> </h3>
                     <h:form>
-                        <h:commandButton styleClass="btn btn-link" value="Modificar Información" action="#{managedBeanQuerys.obtenerDatosUsuario()}">
+                        <h:commandButton action="#{managedBeanQuerys.obtenerDatosUsuario()}">
                             <f:param name="id" value="#{UserId}" />
                         </h:commandButton>
-                    </h:form>            
+                    </h:form>
+                    <a  class="mx-2">Modificar perfíl</a>
                     <a jsf:outcome="actualizarcontra" class="mx-2">Cambiar contraseña</a>
                     <h5 class="font-weight-light mt-2"> Seleccione al módulo al cuál desea ingresar</h5>
                 </div>
@@ -99,7 +100,7 @@
 
             <div class="row mt-4">
                 <div class="col">
-                    <a href="#">  - Reportar incidencias - </a>
+                    <a href="#">  - Atender incidencias - </a>
                     <div class="w-100"></div>
                     <div class="w-100"></div>
                     <a href="#"> - Bitácora de actividades -  </a>
