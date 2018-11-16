@@ -17,8 +17,5 @@ public class ManagedBeanNavigation {
     public ManagedBeanNavigation() {
     }
     
-    public String irA(String pagina){
-        return pagina;
-    }
     
 }

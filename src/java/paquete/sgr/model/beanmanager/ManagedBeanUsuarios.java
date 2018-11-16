@@ -86,9 +86,7 @@ public class ManagedBeanUsuarios {
     }
 
     public String obtenerDatosUsuario() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-        int userId = Integer.parseInt(params.get("id"));
+        int userId = getIdUsuarioSession();
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery(
                 "CALL SelectDatosUsuario(:idDatos_usuario)")
@@ -161,10 +159,10 @@ public class ManagedBeanUsuarios {
         DatosUsuario du = new DatosUsuario();
         ConsultasHQL consulta = new ConsultasHQL();
         
-        int userId = getIdUsuarioSession();
+        
         Session hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = hibernateSession.beginTransaction();
-        
+        int userId = getIdUsuarioSession();
         consulta.crearListPair("userId", userId);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
         
@@ -173,6 +171,7 @@ public class ManagedBeanUsuarios {
         if ( password.equals( u.getPasssword() ) ) {
 
             try {
+         
                 // Si no tiene datos de usuario
                 if (dulist.isEmpty()) {
                     // Obtenemos la referencia a datos de usuario
@@ -188,7 +187,8 @@ public class ManagedBeanUsuarios {
                     tx.commit();
 
                 } else {
-                    du.setUsuarios(u);
+                    du.setIdUsuarios(u.getIdUsuarios());
+               
                     du.setIdentificador(identificador);
                     du.setNombre(nombre);
                     du.setApellidoPaterno(paterno);
@@ -207,7 +207,7 @@ public class ManagedBeanUsuarios {
             } catch (Exception e) {
                 tx.rollback();
                 m.setTitulo("Fatal!");
-                m.setMensaje("Algo salio mal :v");
+                m.setMensaje("Ah ocurrido algo inesperado");
                 m.MensajeFaltal();
                 System.out.println("Exepcion : " + e);
             }
