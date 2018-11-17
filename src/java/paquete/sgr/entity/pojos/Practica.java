@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 14/11/2018 08:24:45 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2018 11:10:37 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,6 +16,9 @@ public class Practica  implements java.io.Serializable {
      private UnidadTematica unidadTematica;
      private Usuarios usuarios;
      private Date creacion;
+     private Set reactivosUtilizadoPracticas = new HashSet(0);
+     private Set materialUtilizados = new HashSet(0);
+     private Set equipoUtilizados = new HashSet(0);
      private Set notificacionesPracticas = new HashSet(0);
      private DatosPractica datosPractica;
 
@@ -28,10 +31,13 @@ public class Practica  implements java.io.Serializable {
         this.usuarios = usuarios;
         this.creacion = creacion;
     }
-    public Practica(UnidadTematica unidadTematica, Usuarios usuarios, Date creacion, Set notificacionesPracticas, DatosPractica datosPractica) {
+    public Practica(UnidadTematica unidadTematica, Usuarios usuarios, Date creacion, Set reactivosUtilizadoPracticas, Set materialUtilizados, Set equipoUtilizados, Set notificacionesPracticas, DatosPractica datosPractica) {
        this.unidadTematica = unidadTematica;
        this.usuarios = usuarios;
        this.creacion = creacion;
+       this.reactivosUtilizadoPracticas = reactivosUtilizadoPracticas;
+       this.materialUtilizados = materialUtilizados;
+       this.equipoUtilizados = equipoUtilizados;
        this.notificacionesPracticas = notificacionesPracticas;
        this.datosPractica = datosPractica;
     }
@@ -63,6 +69,27 @@ public class Practica  implements java.io.Serializable {
     
     public void setCreacion(Date creacion) {
         this.creacion = creacion;
+    }
+    public Set getReactivosUtilizadoPracticas() {
+        return this.reactivosUtilizadoPracticas;
+    }
+    
+    public void setReactivosUtilizadoPracticas(Set reactivosUtilizadoPracticas) {
+        this.reactivosUtilizadoPracticas = reactivosUtilizadoPracticas;
+    }
+    public Set getMaterialUtilizados() {
+        return this.materialUtilizados;
+    }
+    
+    public void setMaterialUtilizados(Set materialUtilizados) {
+        this.materialUtilizados = materialUtilizados;
+    }
+    public Set getEquipoUtilizados() {
+        return this.equipoUtilizados;
+    }
+    
+    public void setEquipoUtilizados(Set equipoUtilizados) {
+        this.equipoUtilizados = equipoUtilizados;
     }
     public Set getNotificacionesPracticas() {
         return this.notificacionesPracticas;

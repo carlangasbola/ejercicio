@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 14/11/2018 08:24:45 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2018 11:10:37 PM by Hibernate Tools 4.3.1
 
 
 
@@ -11,14 +11,14 @@ public class MaterialUtilizado  implements java.io.Serializable {
 
      private Integer idMaterialUtilizado;
      private Material material;
-     private int idDatos;
+     private Practica practica;
 
     public MaterialUtilizado() {
     }
 
-    public MaterialUtilizado(Material material, int idDatos) {
+    public MaterialUtilizado(Material material, Practica practica) {
        this.material = material;
-       this.idDatos = idDatos;
+       this.practica = practica;
     }
    
     public Integer getIdMaterialUtilizado() {
@@ -35,12 +35,12 @@ public class MaterialUtilizado  implements java.io.Serializable {
     public void setMaterial(Material material) {
         this.material = material;
     }
-    public int getIdDatos() {
-        return this.idDatos;
+    public Practica getPractica() {
+        return this.practica;
     }
     
-    public void setIdDatos(int idDatos) {
-        this.idDatos = idDatos;
+    public void setPractica(Practica practica) {
+        this.practica = practica;
     }
 
 

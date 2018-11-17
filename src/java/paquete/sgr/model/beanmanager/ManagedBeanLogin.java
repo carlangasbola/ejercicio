@@ -71,7 +71,7 @@ public class ManagedBeanLogin {
             
         } else {
             message.MensajeError();
-            return null;
+            return "index.xhtml?faces-redirect=true";
         }
         
         return pagina;

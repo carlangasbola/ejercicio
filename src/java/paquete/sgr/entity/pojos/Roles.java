@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 14/11/2018 08:24:45 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2018 11:10:37 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

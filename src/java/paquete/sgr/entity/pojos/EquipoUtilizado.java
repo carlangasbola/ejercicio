@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 14/11/2018 08:24:45 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2018 11:10:37 PM by Hibernate Tools 4.3.1
 
 
 
@@ -11,14 +11,14 @@ public class EquipoUtilizado  implements java.io.Serializable {
 
      private Integer idEquipoUtilizado;
      private EquipoLaboratorio equipoLaboratorio;
-     private int idDatos;
+     private Practica practica;
 
     public EquipoUtilizado() {
     }
 
-    public EquipoUtilizado(EquipoLaboratorio equipoLaboratorio, int idDatos) {
+    public EquipoUtilizado(EquipoLaboratorio equipoLaboratorio, Practica practica) {
        this.equipoLaboratorio = equipoLaboratorio;
-       this.idDatos = idDatos;
+       this.practica = practica;
     }
    
     public Integer getIdEquipoUtilizado() {
@@ -35,12 +35,12 @@ public class EquipoUtilizado  implements java.io.Serializable {
     public void setEquipoLaboratorio(EquipoLaboratorio equipoLaboratorio) {
         this.equipoLaboratorio = equipoLaboratorio;
     }
-    public int getIdDatos() {
-        return this.idDatos;
+    public Practica getPractica() {
+        return this.practica;
     }
     
-    public void setIdDatos(int idDatos) {
-        this.idDatos = idDatos;
+    public void setPractica(Practica practica) {
+        this.practica = practica;
     }
 
 

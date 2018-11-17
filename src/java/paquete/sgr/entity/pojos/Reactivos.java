@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 14/11/2018 08:24:45 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2018 11:10:37 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,7 +17,7 @@ public class Reactivos  implements java.io.Serializable {
      private double cantidad;
      private byte existenciaInventario;
      private String medida;
-     private Set reactivosUtilizados = new HashSet(0);
+     private Set reactivosUtilizadoPracticas = new HashSet(0);
      private Set reactivoUtilizados = new HashSet(0);
 
     public Reactivos() {
@@ -31,13 +31,13 @@ public class Reactivos  implements java.io.Serializable {
         this.existenciaInventario = existenciaInventario;
         this.medida = medida;
     }
-    public Reactivos(String nombre, String tipo, double cantidad, byte existenciaInventario, String medida, Set reactivosUtilizados, Set reactivoUtilizados) {
+    public Reactivos(String nombre, String tipo, double cantidad, byte existenciaInventario, String medida, Set reactivosUtilizadoPracticas, Set reactivoUtilizados) {
        this.nombre = nombre;
        this.tipo = tipo;
        this.cantidad = cantidad;
        this.existenciaInventario = existenciaInventario;
        this.medida = medida;
-       this.reactivosUtilizados = reactivosUtilizados;
+       this.reactivosUtilizadoPracticas = reactivosUtilizadoPracticas;
        this.reactivoUtilizados = reactivoUtilizados;
     }
    
@@ -83,12 +83,12 @@ public class Reactivos  implements java.io.Serializable {
     public void setMedida(String medida) {
         this.medida = medida;
     }
-    public Set getReactivosUtilizados() {
-        return this.reactivosUtilizados;
+    public Set getReactivosUtilizadoPracticas() {
+        return this.reactivosUtilizadoPracticas;
     }
     
-    public void setReactivosUtilizados(Set reactivosUtilizados) {
-        this.reactivosUtilizados = reactivosUtilizados;
+    public void setReactivosUtilizadoPracticas(Set reactivosUtilizadoPracticas) {
+        this.reactivosUtilizadoPracticas = reactivosUtilizadoPracticas;
     }
     public Set getReactivoUtilizados() {
         return this.reactivoUtilizados;

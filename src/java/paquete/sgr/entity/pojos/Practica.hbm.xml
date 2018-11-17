@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/11/2018 08:25:40 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2018 11:11:10 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.Practica" table="practica" catalog="dbsgr" optimistic-lock="version">
         <id name="idPractica" type="java.lang.Integer">
@@ -17,6 +17,24 @@
         <property name="creacion" type="timestamp">
             <column name="Creacion" length="19" not-null="true" />
         </property>
+        <set name="reactivosUtilizadoPracticas" table="reactivos_utilizado_practica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPractica" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.ReactivosUtilizadoPractica" />
+        </set>
+        <set name="materialUtilizados" table="material_utilizado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPractica" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.MaterialUtilizado" />
+        </set>
+        <set name="equipoUtilizados" table="equipo_utilizado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPractica" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.EquipoUtilizado" />
+        </set>
         <set name="notificacionesPracticas" table="notificaciones_practica" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idPractica" not-null="true" />
