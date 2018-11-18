@@ -1,9 +1,12 @@
 package paquete.sgr.model.beanmanager;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import paquete.sgr.entity.util.HibernateUtil;
 import java.util.List;
 import java.util.Map;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -21,13 +24,14 @@ import paquete.sgr.beans.ConsultasHQL;
  * @author iron1
  */
 @Named(value = "managedBeanQuerys")
-@RequestScoped
-public class ManagedBeanUsuarios {
+@SessionScoped
+public class ManagedBeanUsuarios implements Serializable {
 
     /**
      * Creates a new instance of ManagedBeanQuerys
      */
     public ManagedBeanUsuarios() {
+        datosUsuarios = new ArrayList<>();
     }
 
     private Session hibernateSession;
@@ -46,6 +50,9 @@ public class ManagedBeanUsuarios {
     private int tipousuario;
     private int rol;
     private int idDatos;
+
+    private List<DatosUsuario> datosUsuarios;
+    private List<DatosUsuario> datosUsuariosFiltrados;
 
     public String getNombrecompleto() {
         return nombrecompleto;
@@ -69,11 +76,12 @@ public class ManagedBeanUsuarios {
         return "creacionPractica1";
     }
 
-    public List obtenerUsuarios() {
+    public String obtenerUsuarios() {
         ConsultasHQL consulta = new ConsultasHQL();
-        hibernateSession = consulta.getHibernateSession();
+        hibernateSession = consulta.obtenerSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectAllDatosUsuarios()").addEntity(DatosUsuario.class);
-        return query.list();
+        datosUsuarios = query.list();
+        return "administracionUsuarios?faces-redirect=true";
     }
 
     public List obtenerUsuarios(int id) {
@@ -86,7 +94,19 @@ public class ManagedBeanUsuarios {
     }
 
     public String obtenerDatosUsuario() {
-        int userId = getIdUsuarioSession();
+
+        // Este codigo es para el f:params 
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        int userId;
+        int id = Integer.parseInt(params.get("IdUsuario"));
+        
+        if (id == 0) {
+            userId = getIdUsuarioSession();
+        } else {
+            userId = id;
+        }
+        
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery(
                 "CALL SelectDatosUsuario(:idDatos_usuario)")
@@ -158,20 +178,19 @@ public class ManagedBeanUsuarios {
         Usuarios u = new Usuarios();
         DatosUsuario du = new DatosUsuario();
         ConsultasHQL consulta = new ConsultasHQL();
-        
-        
+
         Session hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = hibernateSession.beginTransaction();
         int userId = getIdUsuarioSession();
         consulta.crearListPair("userId", userId);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
-        
+
         u = (Usuarios) hibernateSession.load(Usuarios.class, userId);
 
-        if ( password.equals( u.getPasssword() ) ) {
+        if (password.equals(u.getPasssword())) {
 
             try {
-         
+
                 // Si no tiene datos de usuario
                 if (dulist.isEmpty()) {
                     // Obtenemos la referencia a datos de usuario
@@ -188,7 +207,7 @@ public class ManagedBeanUsuarios {
 
                 } else {
                     du.setIdUsuarios(u.getIdUsuarios());
-               
+
                     du.setIdentificador(identificador);
                     du.setNombre(nombre);
                     du.setApellidoPaterno(paterno);
@@ -216,7 +235,7 @@ public class ManagedBeanUsuarios {
             m.setMensaje("La contraseña no es correcta");
             m.MensajePrecaucion();
         }
-        
+
     }
 
     public void crearUsuario() {
@@ -388,6 +407,22 @@ public class ManagedBeanUsuarios {
 
     public void setPassnew2(String passnew2) {
         this.passnew2 = passnew2;
+    }
+
+    public List<DatosUsuario> getDatosUsuarios() {
+        return datosUsuarios;
+    }
+
+    public void setDatosUsuarios(List<DatosUsuario> datosUsuarios) {
+        this.datosUsuarios = datosUsuarios;
+    }
+
+    public List<DatosUsuario> getDatosUsuariosFiltrados() {
+        return datosUsuariosFiltrados;
+    }
+
+    public void setDatosUsuariosFiltrados(List<DatosUsuario> datosUsuariosFiltrados) {
+        this.datosUsuariosFiltrados = datosUsuariosFiltrados;
     }
 
 }

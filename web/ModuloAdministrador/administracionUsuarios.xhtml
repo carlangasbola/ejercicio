@@ -3,11 +3,26 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <head jsf:id="head">
         <title>Administración de usuarios</title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
+
+        <style type="text/css">
+            .ui-datatable .ui-datatable-header {
+                text-align: right !important;
+            }
+
+            .ui-button-text-only .ui-button-text {
+                padding: 0.3em 0.4em;
+            }
+
+            .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                visibility: hidden;
+            }       
+        </style>
+
     </head>
 
     <body jsf:id="body">
@@ -33,55 +48,66 @@
             <div class="row">
 
                 <div class="col">
+                    <h:form>
+                        <p:dataTable var="du" 
+                                     value="#{managedBeanQuerys.datosUsuarios}" 
+                                     widgetVar="duTable" 
+                                     emptyMessage="Sin resultados" 
+                                     filteredValue="#{managedBeanQuerys.datosUsuariosFiltrados}">
 
-                    <table class="table table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Rol usuario</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido Paterno</th>
-                                <th scope="col">Apellido Materno</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Número_seguro</th>
-                                <th scope="col">Ver</th>
-                                <th scope="col">Modificar</th>
-                                <th scope="col">Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>                   
-                            <ui:repeat var="du" value="#{managedBeanQuerys.obtenerUsuarios()}" >
-                                <tr>
-                                    <!-- Cambiar a que obtenga el tipo de usuario  -->
-                                    <td>#{du.getUsuarios().getRoles().getNombreRol()}</td>
-                                    <td>#{du.nombre}</td>
-                                    <td>#{du.apellidoPaterno}</td>
-                                    <td>#{du.apellidoMaterno}</td>
-                                    <td>#{du.telefono}</td>
-                                    <td>#{du.correo}</td>
-                                    <td>#{du.numeroSeguro}</td>
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Buscar por cualquier campo: " />
+                                    <p:inputText id="globalFilter" onkeyup="PF('duTable').filter()" style="width:200px" placeholder="Escribe la búsqueda"/>
+                                </p:outputPanel>
+                            </f:facet>
 
-                                    <td class="text-center"> <i class="fas fa-eye "></i> </td>
+                            <p:column sortBy="#{du.usuarios.roles.nombreRol}" filterBy="#{du.usuarios.roles.nombreRol}" filterStyle="display:none" headerText="Rol"  >
+                                <h:outputText value="#{du.usuarios.roles.nombreRol}" />
+                            </p:column>
 
-                                    <td class="text-center"> 
-                                        <form jsf:id="formeditarUsuario">
-                                            <button class="btn" onclick=" getvalue(#{managedBeanQuerys.deleteUsuario(du.getUsuarios().getIdUsuarios())})">
-                                                <i class="fas fa-edit "></i> Editar 
-                                            </button> 
-                                        </form>
-                                    </td>
+                            <p:column filterBy="#{du.nombre}" filterStyle="display:none" headerText="Nombre"  >
+                                <h:outputText value="#{du.nombre}" />
+                            </p:column>
 
-                                    <td class="text-center"> 
-                                        <form jsf:id="formeliminarUsuario">
-                                            <button class="btn" jsf:action="#{managedBeanQuerys.deleteUsuario(du.getUsuarios().getIdUsuarios())}">
-                                                <i class="fas fa-trash-alt "></i> Eliminar 
-                                            </button> 
-                                        </form>
-                                    </td>
-                                </tr>
-                            </ui:repeat>
-                        </tbody>
-                    </table>
+                            <p:column filterBy="#{du.apellidoPaterno}" filterStyle="display:none" headerText="Apellido Paterno"  >
+                                <h:outputText value="#{du.apellidoPaterno}" />
+                            </p:column>
+
+                            <p:column filterBy="#{du.apellidoMaterno}" filterStyle="display:none" headerText="Apellido Materno"  >
+                                <h:outputText value="#{du.apellidoMaterno}" />
+                            </p:column>
+
+                            <p:column filterBy="#{du.telefono}" filterStyle="display:none" headerText="Teléfono"  >
+                                <h:outputText value="#{du.telefono}" />
+                            </p:column>
+
+                            <p:column filterBy="#{du.correo}" filterStyle="display:none" headerText="Nombre"  >
+                                <h:outputText value="#{du.correo}" />
+                            </p:column>
+
+                            <p:column filterBy="#{du.identificador}" filterStyle="display:none" headerText="Identificador"  >
+                                <h:outputText value="#{du.identificador}" />
+                            </p:column>
+
+                            <p:column  headerText="Modificar"  style="width:95px;">
+                                <p:commandButton icon="pi pi-eye" style="width:50px;" action="#{managedBeanQuerys.obtenerDatosUsuario()}" ajax="false">
+                                    <f:param name="IdUsuario" value="#{du.usuarios.idUsuarios}" />
+                                </p:commandButton>
+                            </p:column>
+
+                            <p:column headerText="Eliminar" style="width:95px;" >
+                                <p:button icon="pi pi-trash" style="width:50px;" >
+                                    <!--
+                                    <f:param name="productId" value="10" />
+                                    -->
+                                </p:button>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>
+
+
 
                 </div>
             </div>

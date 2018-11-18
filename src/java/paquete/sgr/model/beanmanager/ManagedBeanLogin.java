@@ -36,7 +36,7 @@ public class ManagedBeanLogin {
         /* Si hay un usuario en la base de datos */
         if (!u.isEmpty()) {
             session = true;
-            // Guardamos el IdUsuario en la sesión con el recuperaremos datos
+            // Guardamos el IdUsuario en session en la sesión con el recuperaremos datos
             consulta.guardarDatosSession("UserId", u.get(0).getIdUsuarios());
             
             consulta.crearListPair("IdUsuario", consulta.obtenerDatosSesion("UserId"));
@@ -71,7 +71,7 @@ public class ManagedBeanLogin {
             
         } else {
             message.MensajeError();
-            return "index.xhtml?faces-redirect=true";
+            return "index.xhtml";
         }
         
         return pagina;

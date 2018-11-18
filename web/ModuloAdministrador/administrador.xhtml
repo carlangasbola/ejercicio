@@ -30,7 +30,7 @@
                     <h3 class="my-4"> <strong class="text-capitalize"> #{nombreUsuario} </strong> </h3>
                     <h:form>
                         <h:commandButton styleClass="btn btn-link" value="Modificar Información" action="#{managedBeanQuerys.obtenerDatosUsuario()}">
-                            <f:param name="id" value="#{UserId}" />
+                            <f:param name="IdUsuario" value="0" />
                         </h:commandButton>
                     </h:form>            
                     <a jsf:outcome="actualizarcontra" class="mx-2">Cambiar contraseña</a>

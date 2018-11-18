@@ -20,10 +20,10 @@ public class ConsultasHQL {
     private Session hibernateSession;
 
     /**
-     * Creates a new instance of ManagedBeanConsultas
+     * Creates a new instance of ConsultasHQL
      */
     public ConsultasHQL() {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        hibernateSession = HibernateUtil.currentSession();
         listPair = new ArrayList<>();
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         sessionMap = externalContext.getSessionMap();
@@ -82,41 +82,54 @@ public class ConsultasHQL {
     public void actualizarObjeto(Object o) {
         Session s = obtenerSession();
         Transaction tx = null;
-        tx = s.beginTransaction();
         try {
+            tx = s.beginTransaction();
             s.update(o);
             tx.commit();
         } catch (HibernateException ex) {
-            System.err.println(ex);
-            tx.rollback();
+            if (tx != null) {
+                tx.rollback();
+                throw ex;
+            }
+        } finally {
+            s.close();
         }
     }
 
     public boolean insertarObjeto(Object o) {
         Session s = obtenerSession();
+        boolean result = false;
         Transaction tx = null;
-        tx = s.beginTransaction();
         try {
+            tx = s.beginTransaction();
             s.save(o);
             tx.commit();
-            return true;
+            result = true;
         } catch (HibernateException ex) {
-            System.err.println(ex);
-            tx.rollback();
-            return false;
-        }
+            if (tx != null) {
+                tx.rollback();
+                result = false;
+            }
+        } finally {
+            s.close();
+        }    
+        return result;
     }
 
     public void eliminarObjeto(Object o) {
         Session s = obtenerSession();
         Transaction tx = null;
-        tx = s.beginTransaction();
         try {
+            tx = s.beginTransaction();
             s.delete(o);
             tx.commit();
         } catch (HibernateException ex) {
-            System.err.println(ex);
-            tx.rollback();
+            if (tx != null) {
+                tx.rollback();
+                throw ex;
+            }
+        } finally {
+            s.close();
         }
     }
 
@@ -125,7 +138,7 @@ public class ConsultasHQL {
         if (hibernateSession.isOpen()) {
             return hibernateSession;
         } else {
-            return HibernateUtil.getSessionFactory().openSession();
+            return HibernateUtil.currentSession();
         }
     }
 

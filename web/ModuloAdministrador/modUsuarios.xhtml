@@ -88,7 +88,9 @@
                     </h:form>
                     <br />
                     <br />
-                    <a href="administracionUsuarios.xhtml"> Modificar o ver la información de los usuarios </a>
+                    <form jsf:id="irAdministracionUsuarios">
+                        <button class="btn" jsf:action="#{managedBeanQuerys.obtenerUsuarios()}" > Ver todos los usuarios</button>
+                    </form>
                 </div>
 
                 <div class="col-12 col-md">
@@ -107,8 +109,6 @@
 
 
         <!-- MODALES -->
-
-
         <!-- Modal Usuario -->
         <div class="modal fade" id="modalusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
