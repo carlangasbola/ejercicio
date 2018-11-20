@@ -1,10 +1,8 @@
 package paquete.sgr.model.beanmanager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
-import paquete.sgr.entity.util.HibernateUtil;
 import java.util.List;
-import java.util.Set;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import paquete.sgr.entity.pojos.Grupo;
@@ -21,9 +19,8 @@ import paquete.sgr.entity.pojos.UnidadGrupo;
  */
 @Named(value = "managedBeanGrupos")
 @RequestScoped
-public class ManagedBeanGrupos {
+public class ManagedBeanGrupos implements Serializable{
 
-    private Session hibernateSession;
     private String nombregrupo;
     private int cupogrupo;
 
@@ -44,6 +41,7 @@ public class ManagedBeanGrupos {
         ua = new ArrayList<>();
     }
 
+    /*
     public void actualizarGrupo(int idgrupo) {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         hibernateSession.beginTransaction();
@@ -58,12 +56,12 @@ public class ManagedBeanGrupos {
         //Commit the transaction
         hibernateSession.getTransaction().commit();
     
-    }
-
+    }*/
+    
     public List<Grupo> getGrupos() {
         ConsultasHQL consulta = new ConsultasHQL();
-        hibernateSession = consulta.getHibernateSession();
-        Query query = hibernateSession.createSQLQuery("CALL SelectGrupos()").addEntity(Grupo.class);
+        Session s = consulta.obtenerSession();
+        Query query = s.createSQLQuery("CALL SelectGrupos()").addEntity(Grupo.class);
         List<Grupo> grupos = query.list();
         return grupos;
     }
@@ -79,7 +77,9 @@ public class ManagedBeanGrupos {
 
     public String redirecionarGrupoUnidadesAprendizaje(int IdG) {
         ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.getHibernateSession();
+        Session s = consulta.obtenerSession();
+        consulta.removerDatosSesion("GrupoId");
+        consulta.guardarDatosSession("GrupoId", IdG);
         Query query = s.createSQLQuery("CALL SelectUnidadesAprendizajeGrupo (:idGrupo)")
                 .addEntity(UnidadAprendizaje.class)
                 .setParameter("idGrupo", IdG);
@@ -97,7 +97,7 @@ public class ManagedBeanGrupos {
     public List<Usuarios> getDocentes() {
         /*AQUI DEBERIAMOS OBTENER EL NOMBRE DEL USUARIO DE LA TABLA DATOS DE USUARIOS
         PERO LO MANEJO ASI POR AHORA PARA FINES PRACTICOS*/
- /*
+        /*
             Definir idrol
             1.- Administrador
             2.- Docente

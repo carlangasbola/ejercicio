@@ -44,14 +44,14 @@ public class HibernateUtil {
         getSessionFactory().close();
     }
     
-    // Metodo añadido hibernate y propiedad añadida
+    // NO USARLO NO SIRVE CHIDO
     public static final ThreadLocal session = new ThreadLocal();
 
     public static Session currentSession() throws HibernateException {
         Session s = (Session) session.get();
         // Open a new Session, if this thread has none yet
         if (s == null) {
-            s = sessionFactory.openSession();
+            s = getSessionFactory().openSession();
             // Store it in the ThreadLocal variable
             session.set(s);
         }

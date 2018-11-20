@@ -40,20 +40,13 @@ public class ScheduleView implements Serializable {
             eventModel
                     .addEvent(
                             new DefaultScheduleEvent("Grupo : " + sl.getGrupo().getNombre() + "\n" +
-                                                     "Unidad Aprendizaje: " + sl.getUnidadAprendizaje().getNombre(),
+                                                     "Unidad Aprendizaje: " + sl.getUnidadAprendizaje().getNombre() + "\n"+
+                                                     "Docente Auxiliar: " + sl.getDocenteAuxiliar(),
                                     sl.getFecha(),
                                     sl.getFecha()
                             ));
         }
 
-    }
-
-    public Date getRandomDate(Date base) {
-        Calendar date = Calendar.getInstance();
-        date.setTime(base);
-        date.add(Calendar.DATE, ((int) (Math.random() * 30)) + 1);    //set random day of month
-
-        return date.getTime();
     }
 
     public Date getInitialDate() {
@@ -70,7 +63,6 @@ public class ScheduleView implements Serializable {
     private Calendar today() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 0, 0, 0);
-
         return calendar;
     }
 

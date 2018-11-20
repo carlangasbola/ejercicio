@@ -32,8 +32,20 @@
                 <div class="col">
                     <h:form>
                         <p:dataTable value="#{managedBeanGrupos.ua}" var="ua" emptyMessage="Sin registros aún" >
-                            <p:column headerText="Nombre">
+                            <p:column headerText="Nombre de la unidad de aprendizaje">
                                 <h:outputText value="#{ua.nombre}" />
+                            </p:column>
+                            <p:column headerText="Cantidad Alumnos"  style=" text-align:center">
+                                #{30}
+                            </p:column>
+                            <p:column headerText="Ver alumnos" style=" text-align:center">
+                                <h:commandButton class="btn cardUsuarios" value="ver alumnos"></h:commandButton>
+                            </p:column>
+                            <p:column headerText="Ver prácticas" style=" text-align:center">
+                                <h:commandButton class="btn cardPracticas" value="ver prácticas"></h:commandButton>
+                            </p:column>
+                            <p:column headerText="Eliminar la unidad de aprendizaje" style=" text-align:center">
+                                <h:commandButton class="btn btn-danger" value="Eliminar"></h:commandButton>
                             </p:column>
                         </p:dataTable>
                     </h:form>
@@ -45,16 +57,22 @@
                 <h:form>
                     <h:panelGrid rendered="#{empty managedBeanGrupos.ua}"  columns="3">
                         <h:panelGroup>  
-                            <div class="col">
-                                <strong class="text-danger">Este grupo no tiene unidades de aprendizaje </strong>
-                                <p>Te presentamos las siguientes opciones</p>
+                            <div class="col-9">
+                                <strong class="text-danger">Este grupo no tiene unidades de aprendizaje asignadas</strong>
+                                <p>Te presentamos las siguientes 2 opciones</p>
                                 <h6>1.- Selecciona las unidades de aprendizaje que quieras añadir a este grupo</h6>
-                                <p>* Lado izquierdo las disponibles</p>
-                                <p>* Lado derecho las que se asignarán</p>
-                                
-                                
-                                <p:pickList id="pickList" value="#{pickListViewUnidadAprendizaje.unidadAprendizaje}" var="ua" itemLabel="#{ua.nombre}" itemValue="#{ua.idUnidadAprendizaje}" />
+
+                                <p:dataTable id="checkboxDT" var="uas" value="#{datatableCheckBoxUnidadAprendizaje.unidadAprendizaje}" selection="#{datatableCheckBoxUnidadAprendizaje.unidadAprendizajeSeleccionada}" rowKey="#{uas.idUnidadAprendizaje}" style="margin-bottom:0">
+                                    <f:facet name="header">
+                                        Unidades de Aprendizaje
+                                    </f:facet>
+                                    <p:column selectionMode="multiple" style="width:35px;text-align:center"/>
+                                    <p:column headerText="Nombre de la unidad de aprendizaje">
+                                        <h:outputText value="#{uas.nombre}" />
+                                    </p:column>
+                                </p:dataTable>                        
                                 <p:commandButton id="citySubmit" value="Asignar" update="displayModal" oncomplete="PF('cityDialog').show()" style="margin-top:5px" />                        
+
                             </div>
                         </h:panelGroup>
 
@@ -63,30 +81,30 @@
                                 <h6>2.- Crear una nueva unidad de aprendizaje </h6>
                                 <p> Da clic en el boton que aparece debajo </p>
                                 <button class="btn colorverde" jsf:outcome="unidadAprendizaje"> <i class="fas fa-plus"></i> Ir a creación de unidad de aprendizaje </button>
-                                <br/><br/><br/><br/><br/><br/><br/><br/>
+                                <br/><br/><br/>
                             </div>
                         </h:panelGroup>
                     </h:panelGrid>
 
                     <p:dialog modal="true" showEffect="fade" id="displayModal"  hideEffect="fade" widgetVar="cityDialog">                    
-                           <h:outputText value="Seleccione el docente y el tecnico" style="font-weight:bold" />
-                            
-                            <br/>
-                            <h:outputLabel for="Docente" value="Selecciona el Docente" />
-                            <h:selectOneMenu id="Docente" value="#{pickListViewUnidadAprendizaje.idDocente}" styleClass="form-control" >
-                                <!-- Le mando el 2 por que indica los docentes -->
-                                <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
-                            </h:selectOneMenu>
-                            
-                            <br/>
-                            <h:outputLabel for="tecnico" value="Selecciona el Tecnico" />
-                            <h:selectOneMenu id="tecnico" value="#{pickListViewUnidadAprendizaje.idtecnico}" styleClass="form-control" >
-                                <!-- Le mando el 3 por que indica los tecnicos -->
-                                <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
-                            </h:selectOneMenu>       
-                            
-                            <h:commandButton class="btn colorverde" value="Aceptar" action="#{pickListViewUnidadAprendizaje.crearUnidadGrupo(managedBeanGrupos.grupo)}" >  </h:commandButton>
-                            
+                        <h:outputText value="Seleccione el docente y el tecnico" style="font-weight:bold" />
+
+                        <br/>
+                        <h:outputLabel for="Docente" value="Selecciona el Docente" />
+                        <h:selectOneMenu id="Docente" value="#{datatableCheckBoxUnidadAprendizaje.idDocente}" styleClass="form-control" >
+                            <!-- Le mando el 2 por que indica los docentes -->
+                            <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                        </h:selectOneMenu>
+
+                        <br/>
+                        <h:outputLabel for="tecnico" value="Selecciona el Tecnico" />
+                        <h:selectOneMenu id="tecnico" value="#{datatableCheckBoxUnidadAprendizaje.idtecnico}" styleClass="form-control" >
+                            <!-- Le mando el 3 por que indica los tecnicos -->
+                            <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                        </h:selectOneMenu>       
+
+                        <p:commandButton class="btn colorverde" value="Aceptar" action="#{datatableCheckBoxUnidadAprendizaje.crearUnidadGrupo()}" ajax="false" >  </p:commandButton>
+
                     </p:dialog>
 
                 </h:form>

@@ -41,7 +41,7 @@ public class DropdownViewGrupoUnidades implements Serializable {
         grupos = new HashMap<>();
 
         ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.getHibernateSession();
+        Session s = consulta.obtenerSession();
         Map<String, String> map;
         Grupo grupo = new Grupo();
         Query query = s.createSQLQuery("CALL SelectGrupoUnidadAprendizaje()").addEntity(Grupo.class);
@@ -91,7 +91,6 @@ public class DropdownViewGrupoUnidades implements Serializable {
             msj.setMensaje("Ocurrio un error al procesar la solicitud");
             msj.MensajeError();
         }
-        s.close();
     }
 
     public Map<String, Map<String, String>> getData() {

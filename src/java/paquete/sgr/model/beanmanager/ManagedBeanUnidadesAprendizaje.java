@@ -96,8 +96,6 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
             msj.setMensaje("Problema contacte al administrador");
             msj.MensajeError();
         }
-        consulta.getHibernateSession().close();
-        
     }
 
     //Getters y Setters

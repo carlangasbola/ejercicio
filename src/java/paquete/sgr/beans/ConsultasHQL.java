@@ -91,9 +91,7 @@ public class ConsultasHQL {
                 tx.rollback();
                 throw ex;
             }
-        } finally {
-            s.close();
-        }
+        } 
     }
 
     public boolean insertarObjeto(Object o) {
@@ -110,9 +108,7 @@ public class ConsultasHQL {
                 tx.rollback();
                 result = false;
             }
-        } finally {
-            s.close();
-        }    
+        }  
         return result;
     }
 
@@ -128,9 +124,7 @@ public class ConsultasHQL {
                 tx.rollback();
                 throw ex;
             }
-        } finally {
-            s.close();
-        }
+        } 
     }
 
     // Si hay una session en hibernate la devuelve si no la crea
@@ -148,8 +142,14 @@ public class ConsultasHQL {
     }
 
     // Obtener datos de la sesion se regresa un object y se debe hacer un cast al dato que se desea utilizar
-    public Object obtenerDatosSesion(String identificador) {
+    public Object obtenerDatosSesion(String identificador) {        
         return sessionMap.get(identificador);
+    }
+    
+    public void removerDatosSesion(String identificador){
+        if(sessionMap.containsKey(identificador)){
+            sessionMap.remove(identificador);
+        }
     }
 
     /**

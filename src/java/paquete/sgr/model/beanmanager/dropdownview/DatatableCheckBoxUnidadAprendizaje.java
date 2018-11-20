@@ -1,59 +1,47 @@
 package paquete.sgr.model.beanmanager.dropdownview;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import org.hibernate.Session;
-import org.primefaces.model.DualListModel;
 import paquete.sgr.beans.ConsultasHQL;
 import paquete.sgr.entity.pojos.Grupo;
 import paquete.sgr.entity.pojos.UnidadAprendizaje;
 import paquete.sgr.entity.pojos.UnidadGrupo;
 import paquete.sgr.entity.pojos.Usuarios;
 import paquete.sgr.entity.util.HibernateUtil;
-import paquete.sgr.model.beanmanager.ManagedBeanGrupos;
-import paquete.sgr.model.beanmanager.ManagedBeanUnidadGrupo;
 import paquete.sgr.model.beanmanager.Mensajes;
 
 /**
  *
  * @author iron1
  */
-@Named(value = "pickListViewUnidadAprendizaje")
-@RequestScoped
-public class PickListViewUnidadAprendizaje {
+@ManagedBean
+@ViewScoped
+public class DatatableCheckBoxUnidadAprendizaje implements Serializable{
 
-    private DualListModel<UnidadAprendizaje> UnidadAprendizaje;
+    private List<UnidadAprendizaje> UnidadAprendizaje;
+    private List<UnidadAprendizaje> UnidadAprendizajeSeleccionada;
     private int idGrupo;
     private int idDocente;
     private int idtecnico;
 
     @PostConstruct
     public void init() {
-        ConsultasHQL consulta = new ConsultasHQL();
-        List<UnidadAprendizaje> UnidadesAprendizajeSource = new ArrayList<>();
-        List<UnidadAprendizaje> UnidadesAprendizajeTarget = new ArrayList<>();
-
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        UnidadAprendizaje = new ArrayList<>();
         // Obtenemos las unidades de aprendizaje
-        List<UnidadAprendizaje> uas = consulta.crearSelectQuery("FROM UnidadAprendizaje ");
-
-        // Le asigna el objeto a la unidad de aprensizaje
-        for (UnidadAprendizaje ua : uas) {
-            UnidadesAprendizajeSource.add(ua);
-        }
-
-        UnidadAprendizaje = new DualListModel<>(UnidadesAprendizajeSource, UnidadesAprendizajeTarget);
-
+        UnidadAprendizaje = s.createQuery("FROM UnidadAprendizaje ").list(); 
     }
 
-    public void crearUnidadGrupo(int idGrupo) {
+    public void crearUnidadGrupo() {
         Mensajes msj = new Mensajes();
         ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.getHibernateSession();
+        int idGrupo = (int) consulta.obtenerDatosSesion("GrupoId") ;
+        Session s = consulta.obtenerSession();
         Grupo g = new Grupo();
         UnidadAprendizaje ua = new UnidadAprendizaje();
         UnidadGrupo ug;
@@ -63,18 +51,18 @@ public class PickListViewUnidadAprendizaje {
         g = (Grupo) s.load(Grupo.class, idGrupo);
         uDocente = (Usuarios) s.load(Usuarios.class, idDocente);
         uTecnico = (Usuarios) s.load(Usuarios.class, idtecnico);
-
-        s.beginTransaction();
+        
         try {
-            for (UnidadAprendizaje item : UnidadAprendizaje.getTarget()) {
+            s.beginTransaction();
+            for (UnidadAprendizaje item : UnidadAprendizajeSeleccionada) {
                 ug = new UnidadGrupo();
                 ug.setGrupo(g);
                 ug.setUsuariosByIdUsuariosDocente(uDocente);
                 ug.setUsuariosByUsuariosIdUsuarios(uTecnico);
                 ug.setUnidadAprendizaje(item);
                 s.save(ug);
-                s.getTransaction().commit();
             }
+            s.getTransaction().commit();
             msj.setTitulo("Correcto");
             msj.setMensaje("Operación realizada");
             msj.MensajeInfo();
@@ -85,14 +73,6 @@ public class PickListViewUnidadAprendizaje {
             msj.MensajeError();
         }
 
-    }
-
-    public DualListModel<UnidadAprendizaje> getUnidadAprendizaje() {
-        return UnidadAprendizaje;
-    }
-
-    public void setUnidadAprendizaje(DualListModel<UnidadAprendizaje> UnidadAprendizaje) {
-        this.UnidadAprendizaje = UnidadAprendizaje;
     }
 
     public int getIdGrupo() {
@@ -117,5 +97,21 @@ public class PickListViewUnidadAprendizaje {
 
     public void setIdtecnico(int idtecnico) {
         this.idtecnico = idtecnico;
+    }
+    
+    public List<UnidadAprendizaje> getUnidadAprendizaje() {
+        return UnidadAprendizaje;
+    }
+
+    public void setUnidadAprendizaje(List<UnidadAprendizaje> UnidadAprendizaje) {
+        this.UnidadAprendizaje = UnidadAprendizaje;
+    }
+
+    public List<UnidadAprendizaje> getUnidadAprendizajeSeleccionada() {
+        return UnidadAprendizajeSeleccionada;
+    }
+
+    public void setUnidadAprendizajeSeleccionada(List<UnidadAprendizaje> UnidadAprendizajeSeleccionada) {
+        this.UnidadAprendizajeSeleccionada = UnidadAprendizajeSeleccionada;
     }
 }

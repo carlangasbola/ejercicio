@@ -11,7 +11,7 @@
 
         <style type="text/css">
             .ui-datatable .ui-datatable-header {
-                text-align: right !important;
+                text-align: left !important;
             }
 
             .ui-button-text-only .ui-button-text {
@@ -35,11 +35,11 @@
 
         <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
 
-        <div class="container-fluid">
+        <div class="container">
             <div class="row ">
-                <div class="col mt-4">
+                <div class="col my-3">
                     <h1 class="colorpantone text-center my-5">Módulo de administración de usuarios</h1>
-                    <h5> Estos son todos los usuarios que están registrados en el sistema</h5>
+                    <h5> Estos son todos los usuarios que están registrados actualmente en el sistema</h5>
                 </div>
             </div>
         </div>    
@@ -49,11 +49,16 @@
 
                 <div class="col">
                     <h:form>
-                        <p:dataTable var="du" 
-                                     value="#{managedBeanQuerys.datosUsuarios}" 
-                                     widgetVar="duTable" 
-                                     emptyMessage="Sin resultados" 
-                                     filteredValue="#{managedBeanQuerys.datosUsuariosFiltrados}">
+                        <p:dataTable
+                            id="dataTableDatosUsuarios"
+                            var="du" 
+                            value="#{TableUsuarios.datosUsuarios}" 
+                            rows="10"
+                            paginator="true"
+                            widgetVar="duTable" 
+                            emptyMessage="Sin resultados" 
+                            filteredValue="#{TableUsuarios.datosUsuariosFiltrados}"
+                            >
 
                             <f:facet name="header">
                                 <p:outputPanel>
@@ -61,6 +66,7 @@
                                     <p:inputText id="globalFilter" onkeyup="PF('duTable').filter()" style="width:200px" placeholder="Escribe la búsqueda"/>
                                 </p:outputPanel>
                             </f:facet>
+
 
                             <p:column sortBy="#{du.usuarios.roles.nombreRol}" filterBy="#{du.usuarios.roles.nombreRol}" filterStyle="display:none" headerText="Rol"  >
                                 <h:outputText value="#{du.usuarios.roles.nombreRol}" />
@@ -97,12 +103,13 @@
                             </p:column>
 
                             <p:column headerText="Eliminar" style="width:95px;" >
-                                <p:button icon="pi pi-trash" style="width:50px;" >
-                                    <!--
-                                    <f:param name="productId" value="10" />
-                                    -->
-                                </p:button>
+                                <p:commandButton action="#{managedBeanQuerys.deleteUsuario( du.usuarios.idUsuarios )}" ajax="false" icon="pi pi-trash" style="width:50px;" >
+                                </p:commandButton>
                             </p:column>
+
+                            <f:facet name="paginatorTopLeft">
+                                <p:commandButton type="button" action="#{TableUsuarios.reload()}" icon="pi pi-refresh" />
+                            </f:facet>
 
                         </p:dataTable>
                     </h:form>
@@ -118,7 +125,6 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 
     </body>

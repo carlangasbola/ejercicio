@@ -77,10 +77,12 @@ public class ManagedBeanUsuarios implements Serializable {
     }
 
     public String obtenerUsuarios() {
+        /*
         ConsultasHQL consulta = new ConsultasHQL();
         hibernateSession = consulta.obtenerSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectAllDatosUsuarios()").addEntity(DatosUsuario.class);
         datosUsuarios = query.list();
+         */
         return "administracionUsuarios?faces-redirect=true";
     }
 
@@ -100,13 +102,13 @@ public class ManagedBeanUsuarios implements Serializable {
         Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
         int userId;
         int id = Integer.parseInt(params.get("IdUsuario"));
-        
+
         if (id == 0) {
             userId = getIdUsuarioSession();
         } else {
             userId = id;
         }
-        
+
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery(
                 "CALL SelectDatosUsuario(:idDatos_usuario)")
@@ -129,6 +131,7 @@ public class ManagedBeanUsuarios implements Serializable {
     }
 
     public void deleteUsuario(int id) {
+        Mensajes msj = new Mensajes();
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         try {
             hibernateSession.beginTransaction();
@@ -136,10 +139,14 @@ public class ManagedBeanUsuarios implements Serializable {
             user.setIdUsuarios(id);
             hibernateSession.delete(user);
             hibernateSession.getTransaction().commit();
+            msj.setTitulo("Operación realizada");
+            msj.setMensaje("Eliminado con éxito");
+            msj.MensajeInfo();
         } catch (Exception e) {
             hibernateSession.getTransaction().rollback();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Algo salio mal :v"));
-            System.out.println("Exepcion : " + e);
+            msj.setTitulo("Operación no realizada");
+            msj.setMensaje("Ocurrió un error intente más tarde");
+            msj.MensajeError();
         }
     }
 
