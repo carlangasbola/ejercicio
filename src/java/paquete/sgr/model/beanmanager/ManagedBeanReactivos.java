@@ -37,10 +37,10 @@ public class ManagedBeanReactivos implements Serializable {
     private double networkOutput1;
     private double networkOutput2;
     private int[] tv={0,0,0}; 
-    private String recomendaciones;
-    private String protocolos;
+    static String recomendaciones;
+    static String protocolos;
     private String prueba;
-    private String semaforo;
+    static String semaforo;
     private List<String> ReactivosF = new ArrayList<String>();
     private ConexionNeurona c = new ConexionNeurona();
     
@@ -72,7 +72,6 @@ public class ManagedBeanReactivos implements Serializable {
             tv[1]=1;
         }
     }
-    
     
     public void eliminar(int posicion) {
         lista.remove(posicion);;
@@ -111,15 +110,15 @@ public class ManagedBeanReactivos implements Serializable {
         if(networkOutput>.8){
             if(tv[0]==1){
                 recomendaciones="Práctica con riesgo minimo: Sustancia Corrosiva.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[1]==1){
                 recomendaciones="Práctica con riesgo minimo: Sustancia Inflamable.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[2]==1){
                 recomendaciones="Práctica con riesgo minimo: Sustancia Peligrosa.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             semaforo="/resources/semaforo/semaforob.png";
         }
@@ -127,11 +126,11 @@ public class ManagedBeanReactivos implements Serializable {
         if(networkOutput1>.8){
             if(tv[0]==1 && tv[1]==1){
                 recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia inflamable.<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[0]==1 && tv[2]==1){
                 recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia Peligrosa<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             semaforo="/resources/semaforo/semaforom.png";
         }
@@ -139,11 +138,11 @@ public class ManagedBeanReactivos implements Serializable {
         if(networkOutput2>.8){
             if(tv[0]==1 && tv[1]==1 && tv[2]==1){
                 recomendaciones="Práctica con riesgo Alto: Sustancia Corrosiva, Sustancia inflamable y Sustancia peligrosa.<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             if(tv[1]==1 && tv[2]==1){
                 recomendaciones="Práctica con riesgo Alto: Sustancia inflamable y Sustancia Peligrosa. Residuo:<br/>Colocar en compartimientos separados o bodega aparte.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121&fecha=09/10/2015\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773&fecha=09/12/2008\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
             }
             
             semaforo="/resources/semaforo/semaforoa.png";

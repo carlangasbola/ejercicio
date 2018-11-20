@@ -106,13 +106,23 @@
                 </div>
             </div>
             
-                
+                <p>1.- Para la creación de usuarios descarge nuestra plantilla <a href="file:///C:/Users/C%C3%A9sar/Desktop/boceto.pdf">aquí</a>.</p>
             
             <div class="row mt-3">
                 <div class="col">
                     <form method="POST" jsf:id="form2">
-                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.printPDF()}" style="float:left">Ver PDF</button>
+                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.ImprimePDF()}" style="float:left">Generar PDF</button>
                     </form>
+                </div>
+            </div>
+                
+            <div class="row mt-3">
+                <div class="col">
+                    <h:form>
+                        <p:commandButton class="anteriorsiguiente successansig form-control mt-2 col-sm-2" id="LinkDescarga" value="Descargar" ajax="false" actionListener="#{managedBeanPractica.preparaDescarga(managedBeanPractica.direccion)}">
+                            <p:fileDownload value="#{managedBeanPractica.descarga}" />
+                        </p:commandButton>
+                    </h:form>
                 </div>
             </div>
         </div>
@@ -129,7 +139,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-
+        
     </body>
 </html>
 

@@ -5,35 +5,26 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head jsf:id="head">
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
-        <!-- get the required files from 3rd party sources -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
-
         <title>Creación de prácticas</title>
-       <link href="../misestilos/estiloC.css" rel='stylesheet' type='text/css'></link>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
     </head>
     <body jsf:id="body">
 
         <!-- Barra de navegación -->
         <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />  
-        
-        <!-- Desarrollo de la práctica -->
-        <h5 class="text-center my-4">III Desarrollo de la práctica</h5>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form3">
+        <form  method="POST" jsf:id="formPractica3">
+            <!-- Desarrollo de la práctica -->
+            <h5 class="text-center my-4">III Desarrollo de la práctica</h5>
+            <div class="container border-secondary rounded p-4">
+                <div class="row">
+                    <div class="col">
+
                         <!-- Desarrollo experimental -->
                         <div class="row">
                             <div class="col-12 col-md">
                                 <div class="form-group ">
-                                    <label for="Desarrollo experimental">> Desarrollo experimental</label>
-                                    <p:textEditor id="Desarrolloexp" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.desarrolloexperimental}">
+                                    <label for="Desarrollo experimental"> > Desarrollo experimental</label>
+                                    <p:textEditor id="Desarrolloexp" height="250" widgetVar="descriptionWidget5" value="#{managedBeanPractica.practica.desarrolloexperimental}">
                                         <f:facet name="toolbar">
                                             <span class="ql-formats">
                                                 <select class="ql-font" />
@@ -76,8 +67,8 @@
                         <div class="row">
                             <div class="col-12 col-md">
                                 <div class="form-group ">
-                                    <label for="Registro de datos">> Registro de datos</label>
-                                    <p:textEditor id="Registrodedatos" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.registrodedatos}">
+                                    <label for="Registrodedatos">> Registro de datos</label>
+                                    <p:textEditor id="Registrodedatos" height="250" widgetVar="descriptionWidget4" value="#{managedBeanPractica.practica.registrodedatos}">
                                         <f:facet name="toolbar">
                                             <span class="ql-formats">
                                                 <select class="ql-font" />
@@ -121,7 +112,7 @@
                             <div class="col-12 col-md">
                                 <div class="form-group ">
                                     <label for="Resultados">> Resultados </label>
-                                    <p:textEditor id="resultados" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.resultados}">
+                                    <p:textEditor id="resultados" height="250" widgetVar="descriptionWidget3" value="#{managedBeanPractica.practica.resultados}">
                                         <f:facet name="toolbar">
                                             <span class="ql-formats">
                                                 <select class="ql-font" />
@@ -165,7 +156,7 @@
                             <div class="col-12 col-md">
                                 <div class="form-group ">
                                     <label for="Analisis de resultados">> Análisis de resultados</label>
-                                    <p:textEditor id="analisisr" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.analisisderesultados}">
+                                    <p:textEditor id="analisisr" height="250" widgetVar="descriptionWidget2" value="#{managedBeanPractica.practica.analisisderesultados}">
                                         <f:facet name="toolbar">
                                             <span class="ql-formats">
                                                 <select class="ql-font" />
@@ -204,16 +195,15 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
         
-        <h5 class="text-center my-4">IV Información adicional</h5>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form2">
+
+            <h5 class="text-center my-4">IV Información adicional</h5>
+       
+                <div class="row">
+                    <div class="col">
+                        <!--  <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form2"> -->
                         <div class="row">
                             <!-- Referencias -->
                             <div class="col">
@@ -235,7 +225,7 @@
                             <div class="col-12 col-md">
                                 <div class="form-group ">
                                     <label for="anexos">> Anexos</label>
-                                    <p:textEditor id="anexos" height="250" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.anexos}" >
+                                    <p:textEditor id="anexos" height="250" widgetVar="descriptionWidget1" value="#{managedBeanPractica.practica.anexos}" >
                                         <f:facet name="toolbar">
                                             <span class="ql-formats">
                                                 <select class="ql-font" />
@@ -281,13 +271,13 @@
                                 <f:actionListener binding="#{managedBeanPractica.copia()}" />    
                             </i>Ir a la página siguiente
                         </button>
-                    </form>
+
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 

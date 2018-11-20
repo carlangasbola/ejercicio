@@ -1,38 +1,37 @@
 package paquete.sgr.beans;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class Practica {
+
+public class Practicas {
     //Primera parte creacionPractica1.xhtml
-    private String semestre;
-    private int numeropractica ;
-    private String titulopractica;
+    public String semestre;
+    public int numeropractica ;
+    public String titulopractica;
     public List<String> autor;
-    private String editor;
+    public String editor;
     public String introduccion;
-    private String objetivos;
-    private String actividadesprevias;
+    public String objetivos;
+    public String actividadesprevias;
     //Segunta parte creacionPractica2.xhtml
     public List<Material> listamaterial;
     public List<Equipo> listaequipo;
     public List<Reactivos> listareactivos;
-    private String competencias;
+    public String competencias;
     //Tercera parte creacionPractica3.xhtml
-    private String desarrolloexperimental;
-    private String registrodedatos;
-    private String resultados;
-    private String analisisderesultados;
-    private String referencias;
-    private String nomenclatura;
-    private String anexos;
+    public String desarrolloexperimental;
+    public String registrodedatos;
+    public String resultados;
+    public String analisisderesultados;
+    public String referencias;
+    public String nomenclatura;
+    public String anexos;
     //Cuarta parte parte creacionPractica3.xhtml
-    private String protocolosdeactuacion;
-    private String recomendaciones;
-    private String semaforo;
+    public String protocolosdeactuacion;
+    public String recomendaciones;
+    public String semaforo;
 
-    public Practica(){
+    public Practicas(){
 
     }
     
@@ -67,31 +66,33 @@ public class Practica {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.semestre);
-        hash = 47 * hash + this.numeropractica;
-        hash = 47 * hash + Objects.hashCode(this.titulopractica);
-        hash = 47 * hash + Objects.hashCode(this.autor);
-        hash = 47 * hash + Objects.hashCode(this.editor);
-        hash = 47 * hash + Objects.hashCode(this.introduccion);
-        hash = 47 * hash + Objects.hashCode(this.objetivos);
-        hash = 47 * hash + Objects.hashCode(this.actividadesprevias);
-        hash = 47 * hash + Objects.hashCode(this.listamaterial);
-        hash = 47 * hash + Objects.hashCode(this.listaequipo);
-        hash = 47 * hash + Objects.hashCode(this.listareactivos);
-        hash = 47 * hash + Objects.hashCode(this.competencias);
-        hash = 47 * hash + Objects.hashCode(this.desarrolloexperimental);
-        hash = 47 * hash + Objects.hashCode(this.registrodedatos);
-        hash = 47 * hash + Objects.hashCode(this.resultados);
-        hash = 47 * hash + Objects.hashCode(this.analisisderesultados);
-        hash = 47 * hash + Objects.hashCode(this.referencias);
-        hash = 47 * hash + Objects.hashCode(this.nomenclatura);
-        hash = 47 * hash + Objects.hashCode(this.anexos);
-        hash = 47 * hash + Objects.hashCode(this.protocolosdeactuacion);
-        hash = 47 * hash + Objects.hashCode(this.recomendaciones);
-        hash = 47 * hash + Objects.hashCode(this.semaforo);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.semestre);
+        hash = 97 * hash + this.numeropractica;
+        hash = 97 * hash + Objects.hashCode(this.titulopractica);
+        hash = 97 * hash + Objects.hashCode(this.autor);
+        hash = 97 * hash + Objects.hashCode(this.editor);
+        hash = 97 * hash + Objects.hashCode(this.introduccion);
+        hash = 97 * hash + Objects.hashCode(this.objetivos);
+        hash = 97 * hash + Objects.hashCode(this.actividadesprevias);
+        hash = 97 * hash + Objects.hashCode(this.listamaterial);
+        hash = 97 * hash + Objects.hashCode(this.listaequipo);
+        hash = 97 * hash + Objects.hashCode(this.listareactivos);
+        hash = 97 * hash + Objects.hashCode(this.competencias);
+        hash = 97 * hash + Objects.hashCode(this.desarrolloexperimental);
+        hash = 97 * hash + Objects.hashCode(this.registrodedatos);
+        hash = 97 * hash + Objects.hashCode(this.resultados);
+        hash = 97 * hash + Objects.hashCode(this.analisisderesultados);
+        hash = 97 * hash + Objects.hashCode(this.referencias);
+        hash = 97 * hash + Objects.hashCode(this.nomenclatura);
+        hash = 97 * hash + Objects.hashCode(this.anexos);
+        hash = 97 * hash + Objects.hashCode(this.protocolosdeactuacion);
+        hash = 97 * hash + Objects.hashCode(this.recomendaciones);
+        hash = 97 * hash + Objects.hashCode(this.semaforo);
         return hash;
     }
+
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -104,7 +105,7 @@ public class Practica {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Practica other = (Practica) obj;
+        final Practicas other = (Practicas) obj;
         if (this.numeropractica != other.numeropractica) {
             return false;
         }
@@ -173,6 +174,8 @@ public class Practica {
         }
         return true;
     }
+
+    
 
     public String getSemestre() {
         return semestre;
