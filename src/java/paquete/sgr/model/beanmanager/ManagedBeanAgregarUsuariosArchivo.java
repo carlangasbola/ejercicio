@@ -18,10 +18,13 @@ import javax.faces.context.FacesContext;
 import paquete.sgr.entity.pojos.DatosUsuario;
 import paquete.sgr.entity.pojos.Roles;
 import paquete.sgr.entity.pojos.Usuarios;
+import paquete.sgr.entity.pojos.ListaGrupo;
+import paquete.sgr.entity.pojos.UnidadGrupo;
 import org.hibernate.Session;
+import paquete.sgr.beans.ConsultasHQL;
 import paquete.sgr.model.beanmanager.ManagedBeanUpload;
 import paquete.sgr.beans.UtilPath;
-
+import paquete.sgr.model.beanmanager.dropdownview.DropdownViewGrupoUnidades;
 /**
  *
  * @author Jorge
@@ -47,6 +50,8 @@ public class ManagedBeanAgregarUsuariosArchivo {
     private String password;
     private String numeroSeguro;
     private String identificador;
+    private int grupo = Integer.parseInt(DropdownViewGrupoUnidades.id_Grupo);
+    private int unidad_aprendizaje = Integer.parseInt(DropdownViewGrupoUnidades.id_UnidadAprendizaje);
     private int tipousuario = 3;
     private int rol =3;
     private int idDatos =3;
@@ -74,6 +79,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     for(int columna =1; columna<numColumnas;columna++){
                         dato=hoja.getCell(columna,fila).getContents();
                         System.out.print(dato+" ");
+                        System.out.print(unidad_aprendizaje+" uaua ");
                         //Intruccion switch que evalua la variable contador
                         switch(contador){
                             case 1:
@@ -113,19 +119,23 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     }
                     
                     hibernateSession.beginTransaction();
+                    ListaGrupo listgroup = new ListaGrupo();
                     Usuarios user = new Usuarios();
                     DatosUsuario datauser = new DatosUsuario();
                     Roles roles = new Roles();
-
+                    ConsultasHQL consulta = new ConsultasHQL();
+                    UnidadGrupo unidadgrupo = new UnidadGrupo();
+                    
+                    consulta.obtenerIdunidadGrupo();
                     // Obetener el rol
                     roles.setIdRol(rol);
-                    //El login sera con el correo y la password dada
+                    //El login y el password sera con el identificador
                     user.setLogin(identificador);
                     user.setPasssword(identificador);
                     user.setRoles(roles);
                     //Guardamos el usuario en la base de datos
                     hibernateSession.save(user);
-
+                    
                     //Llenamos la tabala de datos de usuario
                     datauser.setNombre(nombre);
                     datauser.setApellidoPaterno(paterno);
@@ -138,6 +148,8 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     datauser.setUsuarios(user);
                     //Guardamos los datos del usuario
                     hibernateSession.save(datauser);
+                    
+                    
                     hibernateSession.getTransaction().commit();
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Agregado con éxito"));
                 }

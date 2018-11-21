@@ -26,8 +26,8 @@ import paquete.sgr.model.beanmanager.Mensajes;
 public class DropdownViewGrupoUnidades implements Serializable {
 
     private Map<String, Map<String, String>> data = new HashMap<String, Map<String, String>>();
-    private String id_Grupo;
-    private String id_UnidadAprendizaje;
+    public static String id_Grupo;
+    public static String id_UnidadAprendizaje;
     private Map<String, String> grupos;
     private Map<String, String> unidades_aprendizaje;
 
@@ -92,7 +92,7 @@ public class DropdownViewGrupoUnidades implements Serializable {
             msj.MensajeError();
         }
     }
-
+    
     public Map<String, Map<String, String>> getData() {
         return data;
     }

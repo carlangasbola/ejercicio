@@ -36,7 +36,7 @@ public class ManagedBeanReactivos implements Serializable {
     private double networkOutput;
     private double networkOutput1;
     private double networkOutput2;
-    private int[] tv={0,0,0}; 
+    private int[] tv={0,0,0,0,0,0,0,0,0}; 
     static String recomendaciones;
     static String protocolos;
     private String prueba;
@@ -100,7 +100,7 @@ public class ManagedBeanReactivos implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     public void CalcularRiesgo(){
-        c.variables(tv[0],tv[1],tv[2]);
+        c.variables(tv[0],tv[1],tv[2],tv[3],tv[4],tv[5],tv[6],tv[7],tv[8]);
         c.RedNeuronal();
         networkOutput=c.networkOutput[0];
         networkOutput1=c.networkOutput[1];

@@ -11,6 +11,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import paquete.sgr.entity.pojos.UnidadGrupo;
 
 public class ConsultasHQL {
 
@@ -150,6 +151,14 @@ public class ConsultasHQL {
         if(sessionMap.containsKey(identificador)){
             sessionMap.remove(identificador);
         }
+    }
+    
+    public int obtenerIdunidadGrupo(){
+    Session s = obtenerSession();
+    UnidadGrupo unidadgrupo = (UnidadGrupo) s.createQuery("SELECT u FROM UnidadGrupo u where idUnidadAprendizaje=4");
+    int id = unidadgrupo.getIdUnidadGrupo();
+    System.out.println("id " + id);
+    return id;
     }
 
     /**
