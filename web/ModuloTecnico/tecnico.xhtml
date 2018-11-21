@@ -46,9 +46,23 @@
                             <h5>Módulo de sustancias</h5>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><i class="far fas fas fa-flask fa-3x"></i></h5>
+                            <h5 class="card-title"><i class="fas fa-atom fa-3x"></i></h5>
                             <p class="card-text">Gestión de sustancias químicas</p>
-                            <button class="btn btn-sm cardPracticas" jsf:outcome="moduloDePracticas">Ingresar
+                            <button class="btn btn-sm cardPracticas" jsf:outcome="administracionReactivos">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardUsuarios">
+                            <h5>Módulo de equipo</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-toolbox fa-3x"></i></h5>
+                            <p class="card-text">Gestión de equipo de laboratorio.</p>
+                            <button class="btn btn-sm cardUsuarios" jsf:outcome="administracionEquipo">Ingresar
                                 a este módulo</button>
                         </div>
                     </div>
@@ -70,20 +84,6 @@
 
                 <div class="col-12 col-md">
                     <div class="card text-center rounded" style="width: 15rem;">
-                        <div class="card-header cardUsuarios">
-                            <h5>Módulo de usuarios</h5>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-users fa-3x"></i></h5>
-                            <p class="card-text">Creación y modificación de usuarios en el sistema.</p>
-                            <button class="btn btn-sm cardUsuarios" jsf:outcome="modUsuarios">Ingresar
-                                a este módulo</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md">
-                    <div class="card text-center rounded" style="width: 15rem;">
                         <div class="card-header cardGrupos">
                             <h5>Módulo de residuos</h5>
                         </div>
@@ -95,7 +95,70 @@
                         </div>
                     </div>
                 </div>
+            </div><br/><br/><br/>
+            
+            <!-- Inicio segundo bloque -->
+            
+            <div class="row">
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardSustacias">
+                            <h5>Módulo de Material</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="far fas fa-flask fa-3x"></i></h5>
+                            <p class="card-text">Gestión de material de laboratorio</p>
+                            <button class="btn btn-sm cardSustacias" jsf:outcome="administracionMaterial">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardUsuarios">
+                            <h5>Módulo de equipo</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-toolbox fa-3x"></i></h5>
+                            <p class="card-text">Gestión de equipo de laboratorio.</p>
+                            <button class="btn btn-sm cardUsuarios" jsf:outcome="administracionEquipo">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardEventos">
+                            <h5>Módulo de eventos</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="far fa-calendar-alt fa-3x"></i></h5>
+                            <p class="card-text">Creación y modificación de eventos.</p>
+                            <button class="btn btn-sm cardEventos" jsf:outcome="modEventos">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md">
+                    <div class="card text-center rounded" style="width: 15rem;">
+                        <div class="card-header cardGrupos">
+                            <h5>Módulo de residuos</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="far fa-times-circle fa-3x"></i></h5>
+                            <p class="card-text">Gestión de residuuos químicos</p>
+                            <button class="btn btn-sm cardGrupos" jsf:outcome="modResiduos">Ingresar
+                                a este módulo</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+            
+            <!-- Fin segundo bloque -->
 
             <div class="row mt-4">
                 <div class="col">

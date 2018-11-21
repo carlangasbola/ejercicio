@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head jsf:id="head">
+        <title>Sesión de laboratorio</title>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" />
+    </head>
+
+    <body jsf:id="body">
+
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center h2 my-4">Creación de sesión de laboratorio</h1>
+                    <p class="lead text-center">Llena los datos a continuación y da click en crear</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div class="card">
+                        <h5 class="card-header ">Sesión de laboratorio</h5>
+                        <div class="card-body">
+                            <h5 class="card-title"> Datos </h5>
+                            <h:form>
+                                <p:growl id="growl" showDetail="true" sticky="false" />
+
+                                <div class="form-group row">
+                                    <h:outputLabel styleClass="col-sm-2 col-form-label" for="restricted" value="Fecha de sesión " />
+                                    <div class="col-sm-10">
+                                        <p:calendar id="restricted" value="#{dropdownViewGrupoUnidades.sesionLaboratorio.fechaSesison}" pattern="MM/dd/yyyy HH:mm:ss"  />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="docaux">Docente auxiliar <span class="text-danger">Opcional</span></label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" jsf:value="#{dropdownViewGrupoUnidades.sesionLaboratorio.docenteAuxiliar}" placeholder="Escribe el nombre del docente " id="docaux" type="text" />
+                                    </div>
+                                </div>
+
+                                <h5 class="card-subtitle mb-2 text-muted my-4">Grupo y unidad de aprendizaje</h5>
+                                <p class="text-muted"> Solo aparecen los grupos que tienen unidades de aprendizaje </p>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="Grupo">Grupo </label>
+                                    <div class="col-sm-8">
+                                        <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
+                                            <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
+                                            <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
+                                            <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
+                                        </p:selectOneMenu>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="ua">Unidad de Aprendizaje </label>
+                                    <div class="col-sm-8">
+
+                                        <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
+                                            <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
+                                            <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
+                                        </p:selectOneMenu>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <button class="btn colorverde text-white" type="submit" jsf:action="#{dropdownViewGrupoUnidades.crearSesionLaboratorio()}" >
+                                        <i class="fas fa-plus"></i>
+                                        Crear sesión de laboratorio
+                                    </button>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
