@@ -9,7 +9,7 @@ import org.neuroph.core.NeuralNetwork;
 public class ConexionNeurona {
         
         //Cargar red neuronal
-        NeuralNetwork neuralNetwork = NeuralNetwork.createFromFile("C:\\semaforo.nnet");
+        NeuralNetwork neuralNetwork = NeuralNetwork.createFromFile("C:\\RedSustancias.nnet");
         public int ent1;
         public int ent2;
         public int ent3;
