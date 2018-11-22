@@ -75,6 +75,19 @@ public class ConsultasHQL {
         vaciarListPair();
         return query.list();
     }
+    
+       public List crearSelectidUnidadGrupo(String consulta) {
+        Session s = obtenerSession();
+        Query query = s.createQuery(consulta);
+        //Si no se le manda datos no hara nada
+        if (!listPair.isEmpty()) {
+            for (Pair<String, Object> par : listPair) {
+                creaParametro(query, par);
+            }
+        }
+        vaciarListPair();
+        return query.list();
+    }
 
     /**
      *
@@ -153,13 +166,6 @@ public class ConsultasHQL {
         }
     }
     
-    public int obtenerIdunidadGrupo(){
-    Session s = obtenerSession();
-    UnidadGrupo unidadgrupo = (UnidadGrupo) s.createQuery("SELECT u FROM UnidadGrupo u where idUnidadAprendizaje=4");
-    int id = unidadgrupo.getIdUnidadGrupo();
-    System.out.println("id " + id);
-    return id;
-    }
 
     /**
      * *****************************

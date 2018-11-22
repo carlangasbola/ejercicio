@@ -6,6 +6,7 @@
 package paquete.sgr.model.beanmanager;
 
 import java.io.File;
+import java.util.List;
 import jxl.Sheet;
 import jxl.Workbook;
 import paquete.sgr.entity.util.HibernateUtil;
@@ -50,8 +51,8 @@ public class ManagedBeanAgregarUsuariosArchivo {
     private String password;
     private String numeroSeguro;
     private String identificador;
-    private int grupo = Integer.parseInt(DropdownViewGrupoUnidades.id_Grupo);
-    private int unidad_aprendizaje = Integer.parseInt(DropdownViewGrupoUnidades.id_UnidadAprendizaje);
+    private String grupo = DropdownViewGrupoUnidades.id_Grupo;
+    private String unidad_aprendizaje =DropdownViewGrupoUnidades.id_UnidadAprendizaje;
     private int tipousuario = 3;
     private int rol =3;
     private int idDatos =3;
@@ -78,8 +79,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
                 for(int fila=1;fila<numFilas;fila++){
                     for(int columna =1; columna<numColumnas;columna++){
                         dato=hoja.getCell(columna,fila).getContents();
-                        System.out.print(dato+" ");
-                        System.out.print(unidad_aprendizaje+" uaua ");
+                        //System.out.print(dato+" ");
                         //Intruccion switch que evalua la variable contador
                         switch(contador){
                             case 1:
@@ -126,7 +126,9 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     ConsultasHQL consulta = new ConsultasHQL();
                     UnidadGrupo unidadgrupo = new UnidadGrupo();
                     
-                    consulta.obtenerIdunidadGrupo();
+                    List<UnidadGrupo> ug = consulta.crearSelectidUnidadGrupo("FROM UnidadGrupo WHERE unidadAprendizaje = " + unidad_aprendizaje +" AND grupo = " + grupo) ;
+                    int idug = ug.get(0).getIdUnidadGrupo();
+                    //System.out.println("idunidadgrupo" + idug);
                     // Obetener el rol
                     roles.setIdRol(rol);
                     //El login y el password sera con el identificador
@@ -143,12 +145,15 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     //datauser.setTelefono(telefono);
                     //datauser.setCorreo(correo);
                     //datauser.setNumeroSeguro(numeroSeguro);
-                    datauser.setNumeroSeguro(identificador);
+                    datauser.setIdentificador(identificador);
                     // Hacemos la relacion de los datos de usuario con la tabla usuario
                     datauser.setUsuarios(user);
                     //Guardamos los datos del usuario
                     hibernateSession.save(datauser);
                     
+                    listgroup.setUsuarios(user);
+                    listgroup.setUnidadGrupo(ug.get(0));
+                    hibernateSession.save(listgroup);
                     
                     hibernateSession.getTransaction().commit();
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Agregado con éxito"));

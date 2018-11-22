@@ -10,14 +10,14 @@ public class ListaGrupo  implements java.io.Serializable {
 
 
      private Integer idListaGrupo;
-     private String equipo;
-     private String unidadGrupo;
+     private Equipo equipo;
+     private UnidadGrupo unidadGrupo;
      private Usuarios usuarios;
 
     public ListaGrupo() {
     }
 
-    public ListaGrupo(String equipo, String unidadGrupo, Usuarios usuarios) {
+    public ListaGrupo(Equipo equipo, UnidadGrupo unidadGrupo, Usuarios usuarios) {
        this.equipo = equipo;
        this.unidadGrupo = unidadGrupo;
        this.usuarios = usuarios;
@@ -30,18 +30,18 @@ public class ListaGrupo  implements java.io.Serializable {
     public void setIdListaGrupo(Integer idListaGrupo) {
         this.idListaGrupo = idListaGrupo;
     }
-    public String getEquipo() {
+    public Equipo getEquipo() {
         return this.equipo;
     }
     
-    public void setEquipo(String equipo) {
+    public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-    public String getUnidadGrupo() {
+    public UnidadGrupo getUnidadGrupo() {
         return this.unidadGrupo;
     }
     
-    public void setUnidadGrupo(String unidadGrupo) {
+    public void setUnidadGrupo(UnidadGrupo unidadGrupo) {
         this.unidadGrupo = unidadGrupo;
     }
     public Usuarios getUsuarios() {
