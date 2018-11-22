@@ -12,19 +12,29 @@
         <!-- Barra de navegación -->
         <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
 
-        <div class="container">
+        <div class="container mt-4">
             <div class="row">
                 <div class="col">
-                    <h2> Creación de eventos </h2>
+                    <h2 class="text-center"> Visualización de eventos </h2>
+                    <p class="lead mt-2">En esta pantalla se muestra cada uno de los eventos que han sido registrados, para crear una nueva sesión
+                    de laboratorio de clic en el botón de arriba, para crear otro tipo de evento como revisión de práctica de clic
+                    en otro tipo de evento.</p>
+                    <p> Eventos actualmente cargados en el sistema</p>
+                    <p> Creación un nuevo evento: </p>
+                    <h:form>
+                        <h:button  class="btn colorrojo" value="Sesión de laboratorio" outcome="sesion_laboratorio" ></h:button >
+                        <span>    </span>
+                        <h:button class="btn colorrojo" value="Otro tipo de evento" outcome="otrotipoevento" ></h:button>
+                    </h:form>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col">
                     <h:form>
                         <p:growl id="messages" showDetail="true" />
 
                         <h:panelGrid columnClasses="value">
-                            <h3 style="margin-top: 0">Editable Schedule</h3>
+                            <h3 style="margin-top: 0">Calendario de actividades</h3>
                             <p:schedule id="schedule" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
 
                                 <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
