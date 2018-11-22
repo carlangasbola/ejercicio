@@ -186,16 +186,15 @@ public class ManagedBeanUsuarios implements Serializable {
         DatosUsuario du = new DatosUsuario();
         ConsultasHQL consulta = new ConsultasHQL();
 
-        Session hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Session hibernateSession = consulta.obtenerSession();
         Transaction tx = hibernateSession.beginTransaction();
         int userId = getIdUsuarioSession();
         consulta.crearListPair("userId", userId);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
-
-        u = (Usuarios) hibernateSession.load(Usuarios.class, userId);
+        
+         u = (Usuarios) hibernateSession.load(Usuarios.class, getIdUsuarioSession());
 
         if (password.equals(u.getPasssword())) {
-
             try {
 
                 // Si no tiene datos de usuario
@@ -214,7 +213,7 @@ public class ManagedBeanUsuarios implements Serializable {
 
                 } else {
                     du.setIdUsuarios(u.getIdUsuarios());
-
+                    du.setUsuarios(u);
                     du.setIdentificador(identificador);
                     du.setNombre(nombre);
                     du.setApellidoPaterno(paterno);
@@ -233,7 +232,7 @@ public class ManagedBeanUsuarios implements Serializable {
             } catch (Exception e) {
                 tx.rollback();
                 m.setTitulo("Fatal!");
-                m.setMensaje("Ah ocurrido algo inesperado");
+                m.setMensaje("Ha ocurrido un error, inténtelo más tarde");
                 m.MensajeFaltal();
                 System.out.println("Exepcion : " + e);
             }
@@ -280,8 +279,8 @@ public class ManagedBeanUsuarios implements Serializable {
             m.MensajeInfo();
         } catch (Exception e) {
             hibernateSession.getTransaction().rollback();
-            m.setTitulo("Fatal");
-            m.setMensaje("Algo salio mal :v");
+            m.setTitulo("Error");
+            m.setMensaje("No se completo la operación, intentelo más tarde");
             m.MensajeFaltal();
             System.out.println("Exepcion : " + e);
         }

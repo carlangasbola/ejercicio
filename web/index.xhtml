@@ -40,7 +40,7 @@
                                     <label for="pass">Contraseña </label>
                                     <input id="pass" class="form-control" type="password" placeholder="contraseña" requiered="true" jsf:value="#{managedBeanLogin.pass}"/>
                                 </div>
-                                <a href="#" class="alert-link">¿Has perdido tu contraseña? Da click aquí </a>
+                                <a href="recuperarContra.xhtml" class="alert-link">¿Has perdido tu contraseña? Da click aquí </a>
                                 <div class="w-100"></div>
                                 <button type="submit" class="btn colortitulo text-white btn-block mt-2 " jsf:action="#{managedBeanLogin.validarUsuario()}"> Ingresar</button>
                             </form>
@@ -50,9 +50,17 @@
                 </div>
                 <div class="col-12 col-md">
                     <h4 class="mb-3">Descripción del sistema</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum beatae tempore adipisci aperiam consequatur esse enim, harum odit et. Itaque odio omnis, blanditiis eius, exercitationem molestias voluptatibus eum in corporis.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum dolores, sunt deserunt enim impedit rerum quasi quia et nesciunt laudantium, perspiciatis incidunt ex modi optio non totam doloremque quo vero.</p>
+                    <p> Prototipo de sistema web que gestiona riesgos e incidencias en laboratorios de biotecnología a nivel licenciatura en UPIBI.</p>
+                    <p> Este sistema cuenta con algunas de las siguientes característics  </p>
+                    <ul>
+                        <li><strong>Gestión de inventarios:</strong> registro para el control y seguimiento de las sustancias químicas. </li>
+                        <li><strong>Gestión de prácticas:</strong> identifica riesgos,directorio de emergencias,  protocolos de actuación preventivo y de contingencias</li>
+                        <li><strong>Gestión del riesgo:</strong> establece los protocolos de prevención, atención y mantenimiento por medio de una matriz de riesgo para el equipo académico.</li>
+
+                    </ul>
+
                     <img src="https://estudiareninternet.com/wp-content/uploads/2016/07/ipn.png" alt="" height="100" class=""></img>
+                    <img src="imagenes/upibi.png" alt="" height="100" width="140" class=""></img>
                 </div>
             </div>
         </div>
