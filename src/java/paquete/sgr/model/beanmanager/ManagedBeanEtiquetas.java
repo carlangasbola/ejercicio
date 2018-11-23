@@ -16,6 +16,7 @@ public class ManagedBeanEtiquetas {
     private String metaTagsLinkTagsIndex;
     private String metaTagsLinkTags;
     private String numeroNotificaciones;
+    private String navegacionAdministrador;
     
     public ManagedBeanEtiquetas() {
         // Establecemos el numero de notificaciones
@@ -37,7 +38,107 @@ public class ManagedBeanEtiquetas {
          */
         // Codigo minificado para, poder leerlo bien busque un desminifier y pege la etiqueta
         headerIndex = "<header> <nav class='navbar navbar-expand-lg navbar-custom mb-4'> <a class='navbar-brand' href='#'>IPN</a> <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button> <div class='collapse navbar-collapse justify-content-end' id='navbarSupportedContent'> <ul class='navbar-nav '> <li class='nav-item '> <a class='nav-link active' href='#'>Tutorial de uso del sistema<span class='sr-only'>(current)</span></a> </li><li class='nav-item'> <a class='nav-link' href='#'>Directorio Teléfonico</a> </li><li class='nav-item'> <a class='nav-link disabled' href='#'>Buzón de sugerencias</a> </li></ul> </div></nav> </header>";
-        headerTodasPaginas = "<header> <nav class='navbar navbar-expand-lg navbar-custom '> <a class='navbar-brand' href='#'>Inicio</a> <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button> <div class='collapse navbar-collapse justify-content-end' id='navbarSupportedContent'> <ul class='navbar-nav '> <li class='nav-item active'> <a class='nav-link' href='#'> <i class='fas fa-home'></i> Inicio </a> </li><li class='nav-item'> <a class='nav-link' href='#'> <i class='fas fa-comment-alt'></i> Notificaciones <span class='badge badge-primary '>" +  numeroNotificaciones + "</span> </a> </li><li class='nav-item'> <a class='nav-link' href='#'> <i class='fas fa-phone'></i> Directorio Teléfonico </a> </li><li class='nav-item'> <a class='nav-link disabled' href='#'> <i class='fas fa-envelope-square'></i> Buzón de sugerencias </a> </li><li> <form jsf:id='formlogout1'> <button class='btn btn-sm colorverde rounded' type='submit' jsf:action='#{managedBeanLogin.logout()}' ><i class='fas fa-sign-out-alt'></i> Cerrar sesión</button> </form> </li></ul> </div></nav></header> ";
+        headerTodasPaginas = "<header> <nav class='navbar navbar-expand-lg navbar-custom '> <a class='navbar-brand' href='Administrador/administrador.xhtml'>Inicio</a> <button class='btn btn-link btn-sm text-white order-1 order-sm-0' id='sidebarToggle' href='#'> <i class='fas fa-bars'></i> </button> <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button> <div class='collapse navbar-collapse justify-content-end' id='navbarSupportedContent'> <ul class='navbar-nav '> <li class='nav-item active'> <a class='nav-link' href='#'> <i class='fas fa-home'></i> Inicio </a> </li><li class='nav-item'> <a class='nav-link' href='#'> <i class='fas fa-comment-alt'></i> Notificaciones <span class='badge badge-primary '>" +  numeroNotificaciones + "</span> </a> </li><li class='nav-item'> <a class='nav-link' href='Administrador/telefonos.xhtml'> <i class='fas fa-phone'></i> Directorio Teléfonico </a> </li><li class='nav-item'> <a class='nav-link disabled' href='Administrador/buzon.xhtml'> <i class='fas fa-envelope-square'></i> Buzón de sugerencias </a> </li><li> <form jsf:id='formlogout1'> <button class='btn btn-sm colorverde rounded' type='submit' jsf:action='#{managedBeanLogin.logout()}' ><i class='fas fa-sign-out-alt'></i> Cerrar sesión</button> </form> </li></ul> </div></nav></header> ";
+        
+        // Naveación 
+        navegacionAdministrador = "<ul class='sidebar navbar-nav'>\n" +
+"                <li class='nav-item'>\n" +
+"                    <a class='nav-link' href='Administrador/administrador.xhtml'>\n" +
+"                        <i class='fas fa-fw fa-tachometer-alt'></i>\n" +
+"                        <span>Página principal</span>\n" +
+"                    </a>\n" +
+"                </li>\n" +
+"                <li class='nav-item dropdown'>\n" +
+"                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
+"                       aria-expanded='false'>\n" +
+"                        <i class='fas fa-users'></i>\n" +
+"                        <span class='mr-2'>Módulo de usuarios</span>\n" +
+"                        <i class='fas fa-caret-down '></i>\n" +
+"                    </a>\n" +
+"                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>\n" +
+"                        <h6 class='dropdown-header'>Selecciona una opción:</h6>\n" +
+"                        <a class='dropdown-item' href='Administrador/ registrarUsuarios.xhtml'>Registrar Usuarios</a>\n" +
+"                        <a class='dropdown-item' href='Administrador/ administracionUsuarios.xhtml'>Ver todos Usuarios</a>\n" +
+"                    </div>\n" +
+"                </li>\n" +
+"\n" +
+"                <li class='nav-item dropdown'>\n" +
+"                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
+"                       aria-expanded='false'>\n" +
+"                        <i class='far fa-file-alt'></i>\n" +
+"                        <span class='mr-2'>Módulo de prácticas</span>\n" +
+"                        <i class='fas fa-caret-down '></i>\n" +
+"                    </a>\n" +
+"                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>\n" +
+"                        <h6 class='dropdown-header'>Selecciona una opción:</h6>\n" +
+"                        <a class='dropdown-item' href='Administrador/moduloPractica.xhtml'>Crear práctica</a>\n" +
+"                        <a class='dropdown-item' href='#'>Ver todas las prácticas</a>\n" +
+"                        <a class='dropdown-item' href='#'>Asignar prácticas</a>\n" +
+"                    </div>\n" +
+"                </li>\n" +
+"\n" +
+"                <li class='nav-item dropdown'>\n" +
+"                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
+"                       aria-expanded='false'>\n" +
+"                        <i class='fas fa-chalkboard-teacher'></i>\n" +
+"                        <span class='mr-2'>Módulo de grupos y unidad de aprendizaje</span>\n" +
+"                        <i class='fas fa-caret-down '></i>\n" +
+"                    </a>\n" +
+"                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>\n" +
+"                        <h6 class='dropdown-header'>Selecciona una opción:</h6>\n" +
+"                        <a class='dropdown-item' href='modGrupos.xhtml'>Crear y ver grupos</a>\n" +
+"                        <a class='dropdown-item' href='unidadAprendizaje.xhtml'>Crear unidad de aprendizaje</a>\n" +
+"                        <a class='dropdown-item' href='modGrupoUnidadesAprendizaje.xhtml'>Asignar unidades de aprendizaje</a>\n" +
+"                    </div>\n" +
+"                </li>\n" +
+"\n" +
+"\n" +
+"                <li class='nav-item dropdown'>\n" +
+"                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
+"                       aria-expanded='false'>\n" +
+"                        <i class='fas fa-prescription-bottle'></i>\n" +
+"                        <span class='mr-2'>Módulo de insumos</span>\n" +
+"                        <i class='fas fa-caret-down '></i>\n" +
+"                    </a>\n" +
+"                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>\n" +
+"                        <h6 class='dropdown-header'>Selecciona una opción:</h6>\n" +
+"                        <a class='dropdown-item' href='#'>Administración de materiales</a>\n" +
+"                        <a class='dropdown-item' href='#'>Administración de reactivos</a>\n" +
+"                        <a class='dropdown-item' href='#'>Administración de equipo</a>\n" +
+"                        <h6 class='dropdown-header'>Prestamo de material:</h6>\n" +
+"                        <a class='dropdown-item' href='404.html'>Prestar Material</a>\n" +
+"                    </div>\n" +
+"                </li>\n" +
+"\n" +
+"                <li class='nav-item dropdown'>\n" +
+"                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
+"                       aria-expanded='false'>\n" +
+"                        <i class='fas fa-trash-alt'></i>\n" +
+"                        <span class='mr-2'>Módulo de residuos</span>\n" +
+"                        <i class='fas fa-caret-down '></i>\n" +
+"                    </a>\n" +
+"                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>\n" +
+"                        <h6 class='dropdown-header'>Selecciona una opción:</h6>\n" +
+"                        <a class='dropdown-item' href='404.html'>Administración</a>\n" +
+"                        <a class='dropdown-item' href='#'> Generar informes</a>\n" +
+"                    </div>\n" +
+"                </li>\n" +
+"\n" +
+"                <li class='nav-item dropdown'>\n" +
+"                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
+"                       aria-expanded='false'>\n" +
+"                        <i class='fas fa-exclamation-triangle'></i>\n" +
+"                        <span class='mr-2'>Módulo de incidencias</span>\n" +
+"                        <i class='fas fa-caret-down '></i>\n" +
+"                    </a>\n" +
+"                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>\n" +
+"                        <h6 class='dropdown-header'>Selecciona una opción:</h6>\n" +
+"                        <a class='dropdown-item' href='#'>Registro de incidencias </a>\n" +
+"                        <a class='dropdown-item' href='#'> Seguimiento </a>\n" +
+"                    </div>\n" +
+"                </li>\n" +
+"            </ul>";
+        
     }
 
     // Getter Y Setters
@@ -80,5 +181,14 @@ public class ManagedBeanEtiquetas {
     public void setMetaTagsLinkTagsIndex(String metaTagsLinkTagsIndex) {
         this.metaTagsLinkTagsIndex = metaTagsLinkTagsIndex;
     }
+    
+    public String getNavegacionAdministrador() {
+        return navegacionAdministrador;
+    }
+
+    public void setNavegacionAdministrador(String navegacionAdministrador) {
+        this.navegacionAdministrador = navegacionAdministrador;
+    }
+    
 
 }

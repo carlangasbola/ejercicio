@@ -73,7 +73,7 @@ public class ManagedBeanUsuarios implements Serializable {
         List<DatosUsuario> du = consulta.crearSelectQuery("FROM DatosUsuario WHERE usuarios.idUsuarios = :idUsuario");
 
         nombrecompleto = du.get(0).getNombre() + " " + du.get(0).getApellidoPaterno() + " " + du.get(0).getApellidoMaterno();
-        return "creacionPractica1";
+        return "Administrador/creacionPractica1";
     }
 
     public String obtenerUsuarios() {
@@ -132,7 +132,8 @@ public class ManagedBeanUsuarios implements Serializable {
 
     public void deleteUsuario(int id) {
         Mensajes msj = new Mensajes();
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        ConsultasHQL cmd = new ConsultasHQL();
+        hibernateSession = cmd.obtenerSession();
         try {
             hibernateSession.beginTransaction();
             Usuarios user = new Usuarios();

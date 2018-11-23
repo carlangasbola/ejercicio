@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <head jsf:id='head'>
+        <title>Sistema de gestión de riesgos</title>
+        <!-- Page level plugin CSS-->
+        <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+        <!-- Custom styles for this template-->
+        <link href="../css/sb-admin.css" rel="stylesheet" />
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" />
+
+    </head>
+
+    <body id="page-top">
+
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
+
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <h:outputText value="#{Etiquetas.navegacionAdministrador}" escape="false" />
+            <div id="content-wrapper">
+                <div class="container-fluid">
+
+                    <!-- Breadcrumbs-->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="administrador.xhtml">Inicio</a>
+                        </li>
+                        <li class="breadcrumb-item active">Directorio Teléfonico</li>
+                    </ol>
+                    <!-- END -->
+
+                    <!-- Page Content -->
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="text-center mt-4">Números de emergencia</h4>
+                            <p class="lead text-center"> Estos son los números a los cuales puedes llamar en caso de que 
+                                se presente algún incidente en los laboratorios.</p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Dependencia</th>
+                                        <th scope="col">Teléfono</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Departamento de Protección Civil de la Secretaría General</th>
+                                        <td>54908</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Unidad Interna de Protección Civil de la Secretaría de Administración</th>
+                                        <td>51128 y 51330</td>
+                                    </tr>                           
+                                    <tr>
+                                        <th scope="row">Servicio Médico de la Secretaría de Administración</th>
+                                        <td>51100</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Servicio Médico y Ambulancia Institucional Zacatenco</th>
+                                        <td>54781, 54682, 54680 y 54736</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-9">
+                            <p> <strong>Nota :</strong>  Al solicitar el servicio de ambulancia institucional, debe tener una referencia general de lo sucedido con la persona afectada: </p>
+                            <ul>
+                                <li>Saber si la persona se encuentra consciente o inconsciente.</li>
+                                <li>Saber si presenta algún tipo de sangrado.</li>
+                                <li>Especificar los síntomas y molestias en particular a efectos de proporcionar una mejor atención.</li>
+                            </ul>
+                            <p> <strong>Directorio externo</strong> </p>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <table class="table table-striped ">
+                                    <thead class="colorrojo text-white">
+                                        <tr>
+                                            <th scope="col">SERVICIO DE EMERGENCIA</th>
+                                            <th scope="col">TELÉFONO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Atención Ciudadana</th>
+                                            <td>072</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Radio Patrullas</th>
+                                            <td>060, 066</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Bomberos</th>
+                                            <td>068</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cruz Roja</th>
+                                            <td>065 y 55-57-57-59 al 60</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fugas y Faltas de Agua</th>
+                                            <td>56-54-32-10</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fugas de Gas</th>
+                                            <td>53-53-27-63 y 53-53-28-23</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Protección Civil D.F.</th>
+                                            <td>56-83-22-22</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Emergencias</th>
+                                            <td>080</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Emergencia Transporte de Químicos</th>
+                                            <td>52-30-51-00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-striped ">
+                                    <thead class="colorrojo text-white">
+                                        <tr>
+                                            <th scope="col">DEPENDENCIA DEL ESTADO DE MÉXICO</th>
+                                            <th scope="col">TELÉFONO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Cruz Roja Ecatepec</th>
+                                            <td>57-70-35-48 y 57-87-15-40</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cruz Roja Naucalpan</th>
+                                            <td>55-60-69-88</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cruz Roja Tlalnepantla</th>
+                                            <td>55-65-10-39 y 55-65-05-21</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Bomberos Naucalpan</th>
+                                            <td>53-73-11-22</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Bomberos Tlalnepantla</th>
+                                            <td>55-65-36-38 y 55-65-05-21</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Servitel (Servicios a la Ciudadanía)</th>
+                                            <td>01-800-591-6000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+
+                <!-- Sticky Footer -->
+                <footer class="sticky-footer mt-3">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>
+                                <p class="lead">Sistema de gestión de riesgos</p>
+                            </span>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../js/sb-admin.min.js"></script>
+    </body>
+
+</html>

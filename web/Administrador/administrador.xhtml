@@ -6,6 +6,7 @@
 
     <head jsf:id='head'>
         <title>Sistema de gestión de riesgos</title>
+
         <!-- Page level plugin CSS-->
         <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
         <!-- Custom styles for this template-->
@@ -22,7 +23,9 @@
         <div id="wrapper">
             <!-- Sidebar -->
              <h:outputText value="#{Etiquetas.navegacionAdministrador}" escape="false" />
+
             <div id="content-wrapper">
+
                 <div class="container-fluid">
 
                     <!-- Breadcrumbs-->
@@ -44,17 +47,17 @@
                             <f:param name="IdUsuario" value="0" />
                         </h:commandButton>
                     </h:form>    
-                    <a jsf:outcome="actualizarcontra" class="mx-2">Cambiar contraseña</a>
+                    <a href="ModificacionDatos.xhtml" class="mx-2">Cambiar contraseña</a>
                 </div>
                 <!-- /.container-fluid -->
 
                 
                 <!-- Sticky Footer -->
-                <footer class="sticky-footer mt-4">
+                <footer class="sticky-footer">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
                             <span>
-                                 <p class="lead">Sistema de gestión de riesgos</p>
+                                <p class="lead">Sistema de gestión de riesgos</p>
                             </span>
                         </div>
                     </div>
@@ -77,6 +80,7 @@
         <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Custom scripts for all pages-->
         <script src="../js/sb-admin.min.js"></script>
+
     </body>
 
 </html>
