@@ -2,17 +2,17 @@
 package paquete.sgr.beans;
 
 
-public class Reactivos {
+public class Reactivo {
     
     private String nombre;
     private double cantidad;
 
-    public Reactivos(String nombre, double cantidad) {
+    public Reactivo(String nombre, double cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
     
-    public Reactivos(){
+    public Reactivo(){
         
     }
     
@@ -31,6 +31,6 @@ public class Reactivos {
     public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
+
     
-    
-}
+} 

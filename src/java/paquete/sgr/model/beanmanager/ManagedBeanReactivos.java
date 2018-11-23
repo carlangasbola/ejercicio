@@ -11,10 +11,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import paquete.sgr.beans.ConexionNeurona;
-import paquete.sgr.beans.Reactivos;
+import paquete.sgr.beans.Reactivo;
+import paquete.sgr.entity.pojos.Reactivos;
 import net.sf.jasperreports.engine.JRException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import paquete.sgr.beans.ConsultasHQL;
+import paquete.sgr.entity.pojos.UnidadGrupo;
 import paquete.sgr.entity.util.HibernateUtil;
 
 
@@ -24,7 +27,7 @@ public class ManagedBeanReactivos implements Serializable {
     
     // Declaracion de variables
     
-    static List<Reactivos> lista;
+    static List<Reactivo> lista;
     private List<String> list;
     private String auxnombre;
     private double auxcantidad;
@@ -50,7 +53,7 @@ public class ManagedBeanReactivos implements Serializable {
     
     //Agrega los reactivos a la lista que mustra la vista
     public void add(String nombre, double cantidad) {
-        Reactivos agrega = new Reactivos(nombre, cantidad);
+        Reactivo agrega = new Reactivo(nombre, cantidad);
         lista.add(agrega);
         
         if("Ácido clorhídrico".equals(prueba)){
@@ -108,70 +111,212 @@ public class ManagedBeanReactivos implements Serializable {
         
         //Salidas
         if(networkOutput>.8){
-            if(tv[0]==1){
-                recomendaciones="Práctica con riesgo minimo: Sustancia Corrosiva.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            
+            String rs[] = {"","","","","","","","",""};
+            for(Reactivo item:lista){
+                
+         
+            ConsultasHQL consulta = new ConsultasHQL();
+            List<Reactivos> re = consulta.crearSelectidUnidadGrupo("FROM Reactivos WHERE nombre = " + item.getNombre()) ;
+            String rea = re.get(0).getTipo();
+            
+            if("Explosivo".equals(rea)){
+                rs[0]=rea;
             }
-            if(tv[1]==1){
-                recomendaciones="Práctica con riesgo minimo: Sustancia Inflamable.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            if("Inflamable".equals(rea)){
+                rs[1]=rea;
             }
-            if(tv[2]==1){
-                recomendaciones="Práctica con riesgo minimo: Sustancia Peligrosa.<br/>Residuo: Se puede almacenar juntos.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            if("Gas a presión".equals(rea)){
+                rs[2]=rea;
             }
+            if("Sustancia comburente".equals(rea)){
+                rs[3]=rea;
+            }
+            if("Sustancia perjudicial para la salud".equals(rea)){
+                rs[4]=rea;
+            }
+            if("Sustancia corrosiva".equals(rea)){
+                rs[5]=rea;
+            }
+            if("Sustancia nosiva".equals(rea)){
+                rs[6]=rea;
+            }
+            if("Sustancia tóxica".equals(rea)){
+                rs[7]=rea;
+            }
+            if("Sustancia peligrosas para el medio ambiente".equals(rea)){
+                rs[8]=rea;
+            }
+
+            
+            }
+            
+            recomendaciones="Práctica con riesgo minimo: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Se puede almacenar juntos.";
+            protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //if(tv[0]==1){
+                //recomendaciones="Práctica con riesgo minimo: Sustancia Corrosiva.<br/>Residuo: Se puede almacenar juntos.";
+                //protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //}
+            //if(tv[1]==1){
+                //recomendaciones="Práctica con riesgo minimo: Sustancia Inflamable.<br/>Residuo: Se puede almacenar juntos.";
+                //protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //}
+            //if(tv[2]==1){
+                //recomendaciones="Práctica con riesgo minimo: Sustancia Peligrosa.<br/>Residuo: Se puede almacenar juntos.";
+                //protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+           //}
             semaforo="/resources/semaforo/semaforob.png";
         }
         
-        if(networkOutput1>.8){
-            if(tv[0]==1 && tv[1]==1){
-                recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia inflamable.<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+        else{
+            if(networkOutput1>.8){
+                
+                String rs[] = {"","","","","","","","",""};
+            for(Reactivo item:lista){
+                
+         
+            ConsultasHQL consulta = new ConsultasHQL();
+            List<Reactivos> re = consulta.crearSelectidUnidadGrupo("FROM Reactivos WHERE nombre = " + item.getNombre()) ;
+            String rea = re.get(0).getTipo();
+            
+            if("Explosivo".equals(rea)){
+                rs[0]=rea;
             }
-            if(tv[0]==1 && tv[2]==1){
-                recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia Peligrosa<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            if("Inflamable".equals(rea)){
+                rs[1]=rea;
             }
+            if("Gas a presión".equals(rea)){
+                rs[2]=rea;
+            }
+            if("Sustancia comburente".equals(rea)){
+                rs[3]=rea;
+            }
+            if("Sustancia perjudicial para la salud".equals(rea)){
+                rs[4]=rea;
+            }
+            if("Sustancia corrosiva".equals(rea)){
+                rs[5]=rea;
+            }
+            if("Sustancia nosiva".equals(rea)){
+                rs[6]=rea;
+            }
+            if("Sustancia tóxica".equals(rea)){
+                rs[7]=rea;
+            }
+            if("Sustancia peligrosas para el medio ambiente".equals(rea)){
+                rs[8]=rea;
+            }
+
+            
+            }
+            
+            recomendaciones="Práctica con riesgo medio: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
+            protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //if(tv[0]==1 && tv[1]==1){
+                //recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia inflamable.<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
+                //protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //}
+            //if(tv[0]==1 && tv[2]==1){
+                //recomendaciones="Práctica con riesgo medio: Sustancia Corrosiva y Sustancia Peligrosa<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
+                //protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //}
             semaforo="/resources/semaforo/semaforom.png";
         }
         
         if(networkOutput2>.8){
-            if(tv[0]==1 && tv[1]==1 && tv[2]==1){
-                recomendaciones="Práctica con riesgo Alto: Sustancia Corrosiva, Sustancia inflamable y Sustancia peligrosa.<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            
+            String rs[] = {"","","","","","","","",""};
+            for(Reactivo item:lista){
+                
+         
+            ConsultasHQL consulta = new ConsultasHQL();
+            List<Reactivos> re = consulta.crearSelectidUnidadGrupo("FROM Reactivos WHERE nombre = " + item.getNombre()) ;
+            String rea = re.get(0).getTipo();
+            
+            if("Explosivo".equals(rea)){
+                rs[0]=rea;
             }
-            if(tv[1]==1 && tv[2]==1){
-                recomendaciones="Práctica con riesgo Alto: Sustancia inflamable y Sustancia Peligrosa. Residuo:<br/>Colocar en compartimientos separados o bodega aparte.";
-                protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            if("Inflamable".equals(rea)){
+                rs[1]=rea;
+            }
+            if("Gas a presión".equals(rea)){
+                rs[2]=rea;
+            }
+            if("Sustancia comburente".equals(rea)){
+                rs[3]=rea;
+            }
+            if("Sustancia perjudicial para la salud".equals(rea)){
+                rs[4]=rea;
+            }
+            if("Sustancia corrosiva".equals(rea)){
+                rs[5]=rea;
+            }
+            if("Sustancia nosiva".equals(rea)){
+                rs[6]=rea;
+            }
+            if("Sustancia tóxica".equals(rea)){
+                rs[7]=rea;
+            }
+            if("Sustancia peligrosas para el medio ambiente".equals(rea)){
+                rs[8]=rea;
+            }
+
+            
             }
             
+            recomendaciones="Práctica con riesgo Alto: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
+            protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //if(tv[0]==1 && tv[1]==1 && tv[2]==1){
+                //recomendaciones="Práctica con riesgo Alto: Sustancia Corrosiva, Sustancia inflamable y Sustancia peligrosa.<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
+                //protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //}
+            //if(tv[1]==1 && tv[2]==1){
+                //recomendaciones="Práctica con riesgo Alto: Sustancia inflamable y Sustancia Peligrosa. Residuo:<br/>Colocar en compartimientos separados o bodega aparte.";
+                //protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5411121\"><br/>NOM-018-STPS-2015</a> <br/> <a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\">NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            //}
+            
             semaforo="/resources/semaforo/semaforoa.png";
+        }
+            
         }
     }
     
     public void Seleccionar (){
         
-        for(Reactivos item:lista){
+        for(Reactivo item:lista){
             
-            System.out.println(item.getNombre());
+            ConsultasHQL consulta = new ConsultasHQL();
+            Reactivos reactivos = new Reactivos();
+            List<Reactivos> re = consulta.crearSelectidUnidadGrupo("FROM Reactivos WHERE nombre = " + item.getNombre()) ;
+            String rea = re.get(0).getTipo();
+            System.out.println("reactivo: "+ item.getNombre() + " " +  rea);
         
-            if("Ácido clorhídrico".equals(item.getNombre())){
+            if("Explosivo".equals(rea)){
                 tv[0]=1;
             }
-            if("Hidróxido de sodio".equals(item.getNombre())){
-                tv[0]=1;
+            if("Inflamable".equals(rea)){
+                tv[1]=1;
             }
-            if("Glicerina".equals(item.getNombre())){
+            if("Gas a presión".equals(rea)){
                 tv[2]=1;
             }
-            if("Metanol".equals(item.getNombre())){
-                tv[1]=1;
+            if("Sustancia comburente".equals(rea)){
+                tv[3]=1;
             }
-            if("Etanol".equals(item.getNombre())){
-                tv[1]=1;
+            if("Sustancia perjudicial para la salud".equals(rea)){
+                tv[4]=1;
             }
-            if("Acetona".equals(item.getNombre())){
-                tv[1]=1;
+            if("Sustancia corrosiva".equals(rea)){
+                tv[5]=1;
+            }
+            if("Sustancia nosiva".equals(rea)){
+                tv[6]=1;
+            }
+            if("Sustancia tóxica".equals(rea)){
+                tv[7]=1;
+            }
+            if("Sustancia peligrosas para el medio ambiente".equals(rea)){
+                tv[8]=1;
             }
 
         }
@@ -179,11 +324,11 @@ public class ManagedBeanReactivos implements Serializable {
     }
     
     // Getters y Setters
-    public List<Reactivos> getLista() {
+    public List<Reactivo> getLista() {
         return lista;
     }
 
-    public void setLista(List<Reactivos> lista) {
+    public void setLista(List<Reactivo> lista) {
         this.lista = lista;
     }
     

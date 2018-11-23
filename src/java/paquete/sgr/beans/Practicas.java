@@ -16,7 +16,7 @@ public class Practicas {
     //Segunta parte creacionPractica2.xhtml
     public List<Material> listamaterial;
     public List<Equipo> listaequipo;
-    public List<Reactivos> listareactivos;
+    public List<Reactivo> listareactivos;
     public String competencias;
     //Tercera parte creacionPractica3.xhtml
     public String desarrolloexperimental;
@@ -49,7 +49,7 @@ public class Practicas {
             System.out.println("Cantidad: " + item.getCantidad() + " Material: " + item.getNombre());
         for(Equipo item:getListaequipo())
             System.out.println("Cantidad: " + item.getCantidad() + " Equipo: " + item.getNombre());
-        for(Reactivos item:getListareactivos())
+        for(Reactivo item:getListareactivos())
             System.out.println("Cantidad: " + item.getCantidad() + " Reactivo: " + item.getNombre());
         System.out.println("Competencias: " + getCompetencias());
         System.out.println("Desarrollo experimental: " + getDesarrolloexperimental());
@@ -257,11 +257,11 @@ public class Practicas {
         this.listaequipo = listaequipo;
     }
 
-    public List<Reactivos> getListareactivos() {
+    public List<Reactivo> getListareactivos() {
         return listareactivos;
     }
 
-    public void setListareactivos(List<Reactivos> listareactivos) {
+    public void setListareactivos(List<Reactivo> listareactivos) {
         this.listareactivos = listareactivos;
     }
 
