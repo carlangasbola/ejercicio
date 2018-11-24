@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/11/2018 11:11:10 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 24/11/2018 01:05:42 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.ReporteIncidencia" table="reporte_incidencia" catalog="dbsgr" optimistic-lock="version">
         <id name="idReporte" type="java.lang.Integer">
@@ -14,8 +14,8 @@
         <property name="nombre" type="string">
             <column name="Nombre" length="45" not-null="true" />
         </property>
-        <property name="documento" type="binary">
-            <column name="Documento" not-null="true" />
+        <property name="observaciones" type="string">
+            <column name="Observaciones" length="100" not-null="true" />
         </property>
         <property name="fecha" type="timestamp">
             <column name="Fecha" length="19" not-null="true" />

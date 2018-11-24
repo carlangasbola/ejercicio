@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 16/11/2018 11:10:37 PM by Hibernate Tools 4.3.1
+// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,7 +15,7 @@ public class ReporteIncidencia  implements java.io.Serializable {
      private Integer idReporte;
      private SesionDeLaboratorio sesionDeLaboratorio;
      private String nombre;
-     private byte[] documento;
+     private String observaciones;
      private Date fecha;
      private String estado;
      private Date actualizacion;
@@ -25,18 +25,18 @@ public class ReporteIncidencia  implements java.io.Serializable {
     }
 
 	
-    public ReporteIncidencia(SesionDeLaboratorio sesionDeLaboratorio, String nombre, byte[] documento, Date fecha, String estado, Date actualizacion) {
+    public ReporteIncidencia(SesionDeLaboratorio sesionDeLaboratorio, String nombre, String observaciones, Date fecha, String estado, Date actualizacion) {
         this.sesionDeLaboratorio = sesionDeLaboratorio;
         this.nombre = nombre;
-        this.documento = documento;
+        this.observaciones = observaciones;
         this.fecha = fecha;
         this.estado = estado;
         this.actualizacion = actualizacion;
     }
-    public ReporteIncidencia(SesionDeLaboratorio sesionDeLaboratorio, String nombre, byte[] documento, Date fecha, String estado, Date actualizacion, Set historialEmergencias) {
+    public ReporteIncidencia(SesionDeLaboratorio sesionDeLaboratorio, String nombre, String observaciones, Date fecha, String estado, Date actualizacion, Set historialEmergencias) {
        this.sesionDeLaboratorio = sesionDeLaboratorio;
        this.nombre = nombre;
-       this.documento = documento;
+       this.observaciones = observaciones;
        this.fecha = fecha;
        this.estado = estado;
        this.actualizacion = actualizacion;
@@ -64,12 +64,12 @@ public class ReporteIncidencia  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public byte[] getDocumento() {
-        return this.documento;
+    public String getObservaciones() {
+        return this.observaciones;
     }
     
-    public void setDocumento(byte[] documento) {
-        this.documento = documento;
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
     public Date getFecha() {
         return this.fecha;

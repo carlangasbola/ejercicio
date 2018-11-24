@@ -51,8 +51,8 @@ public class ManagedBeanEtiquetas {
 "                <li class='nav-item dropdown'>\n" +
 "                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
 "                       aria-expanded='false'>\n" +
-"                        <i class='fas fa-users'></i>\n" +
-"                        <span class='mr-2'>Módulo de usuarios</span>\n" +
+"                        <i class='fas fa-users text-primary'></i>\n" +
+"                        <span class='mr-2 '>Módulo de usuarios</span>\n" +
 "                        <i class='fas fa-caret-down '></i>\n" +
 "                    </a>\n" +
 "                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>\n" +
@@ -65,7 +65,7 @@ public class ManagedBeanEtiquetas {
 "                <li class='nav-item dropdown'>\n" +
 "                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
 "                       aria-expanded='false'>\n" +
-"                        <i class='far fa-file-alt'></i>\n" +
+"                        <i class='far fa-file-alt text-danger'></i>\n" +
 "                        <span class='mr-2'>Módulo de prácticas</span>\n" +
 "                        <i class='fas fa-caret-down '></i>\n" +
 "                    </a>\n" +
@@ -80,7 +80,7 @@ public class ManagedBeanEtiquetas {
 "                <li class='nav-item dropdown'>\n" +
 "                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'\n" +
 "                       aria-expanded='false'>\n" +
-"                        <i class='fas fa-chalkboard-teacher'></i>\n" +
+"                        <i class='fas fa-chalkboard-teacher text-warning'></i>\n" +
 "                        <span class='mr-2'>Módulo de grupos y unidad de aprendizaje</span>\n" +
 "                        <i class='fas fa-caret-down '></i>\n" +
 "                    </a>\n" +

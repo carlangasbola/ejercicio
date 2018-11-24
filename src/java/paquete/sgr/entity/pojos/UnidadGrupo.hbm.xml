@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/11/2018 11:11:10 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 24/11/2018 01:05:42 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.UnidadGrupo" table="unidad_grupo" catalog="dbsgr" optimistic-lock="version">
         <id name="idUnidadGrupo" type="java.lang.Integer">
@@ -20,6 +20,12 @@
         <many-to-one name="usuariosByUsuariosIdUsuarios" class="paquete.sgr.entity.pojos.Usuarios" fetch="select">
             <column name="Usuarios_idUsuarios" not-null="true" />
         </many-to-one>
+        <set name="equipos" table="equipo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUnidad_Grupo" not-null="true" />
+            </key>
+            <one-to-many class="paquete.sgr.entity.pojos.Equipo" />
+        </set>
         <set name="listaGrupos" table="lista_grupo" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idUnidad_Grupo" not-null="true" />

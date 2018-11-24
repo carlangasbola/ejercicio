@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 16/11/2018 11:10:37 PM by Hibernate Tools 4.3.1
+// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class UnidadGrupo  implements java.io.Serializable {
      private UnidadAprendizaje unidadAprendizaje;
      private Usuarios usuariosByIdUsuariosDocente;
      private Usuarios usuariosByUsuariosIdUsuarios;
+     private Set equipos = new HashSet(0);
      private Set listaGrupos = new HashSet(0);
      private Set eventoses = new HashSet(0);
 
@@ -29,11 +30,12 @@ public class UnidadGrupo  implements java.io.Serializable {
         this.usuariosByIdUsuariosDocente = usuariosByIdUsuariosDocente;
         this.usuariosByUsuariosIdUsuarios = usuariosByUsuariosIdUsuarios;
     }
-    public UnidadGrupo(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuariosByIdUsuariosDocente, Usuarios usuariosByUsuariosIdUsuarios, Set listaGrupos, Set eventoses) {
+    public UnidadGrupo(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuariosByIdUsuariosDocente, Usuarios usuariosByUsuariosIdUsuarios, Set equipos, Set listaGrupos, Set eventoses) {
        this.grupo = grupo;
        this.unidadAprendizaje = unidadAprendizaje;
        this.usuariosByIdUsuariosDocente = usuariosByIdUsuariosDocente;
        this.usuariosByUsuariosIdUsuarios = usuariosByUsuariosIdUsuarios;
+       this.equipos = equipos;
        this.listaGrupos = listaGrupos;
        this.eventoses = eventoses;
     }
@@ -72,6 +74,13 @@ public class UnidadGrupo  implements java.io.Serializable {
     
     public void setUsuariosByUsuariosIdUsuarios(Usuarios usuariosByUsuariosIdUsuarios) {
         this.usuariosByUsuariosIdUsuarios = usuariosByUsuariosIdUsuarios;
+    }
+    public Set getEquipos() {
+        return this.equipos;
+    }
+    
+    public void setEquipos(Set equipos) {
+        this.equipos = equipos;
     }
     public Set getListaGrupos() {
         return this.listaGrupos;

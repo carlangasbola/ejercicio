@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/11/2018 11:11:10 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 24/11/2018 01:05:42 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.Equipo" table="equipo" catalog="dbsgr" optimistic-lock="version">
         <id name="idEquipo" type="java.lang.Integer">
             <column name="idEquipo" />
             <generator class="identity" />
         </id>
+        <many-to-one name="unidadGrupo" class="paquete.sgr.entity.pojos.UnidadGrupo" fetch="select">
+            <column name="idUnidad_Grupo" not-null="true" />
+        </many-to-one>
         <property name="nombre" type="string">
             <column name="Nombre" length="45" not-null="true" />
         </property>
