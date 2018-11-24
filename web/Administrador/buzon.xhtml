@@ -1,96 +1,39 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://java.sun.com/jsf/core"
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <head jsf:id='head'>
-        <title>Sistema de gestión de riesgos</title>
-        <!-- Page level plugin CSS-->
-        <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
-        <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet" />
-        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" />
+    <h:body>
 
-    </head>
+        <ui:composition template = "common.xhtml">	         
+            <ui:define name = "content">
 
-    <body id="page-top">
-        
-        <!-- Etiqueta para mostrar un mensaje -->
-        <h:form>
-            <p:growl id="growl" showDetail="true" sticky="false" />
-        </h:form>
-        
-        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
-        
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <h:outputText value="#{Etiquetas.navegacionAdministrador}" escape="false" />
-            <div id="content-wrapper">
-                <div class="container-fluid">
-
-                    <!-- Breadcrumbs-->
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="administrador.xhtml">Inicio</a>
-                        </li>
-                        <li class="breadcrumb-item active">Buzón de sugerencias</li>
-                    </ol>
-                    <!-- END -->
-
-                    <!-- Page Content -->
-                    <div class="row justify-content-center">
-                        <div class="col-7">
-                            <h4 class="text-center mt-4">Buzón de sugerencias</h4>
-                            <p>El sistema comenzó planeado como un prototipo de sistema web que 
-                                sea capaz de gestionar riesgos en los laboratorios de biotecnología en UPIBI,
-                                es por eso que nos gustaría leer su opinión para continuar con la mejora continua de
-                                este sistema.</p>
-
-                            <h:form>
-                                <div class="form-group">
-                                    <h:outputLabel styleClass="lead" for="area" value="Comentarios"></h:outputLabel>
-                                    <h:inputTextarea value="#{managedBeanCorreo.mensaje}" class="form-control" required="true"  id="area" cols="25" rows="7" >
-                                    </h:inputTextarea>
-                                </div>
-                                <h:commandButton action="#{managedBeanCorreo.enviarMensaje()}" class="btn colorazul" value="Enviar comentario"></h:commandButton>
-                            </h:form>
-
-                        </div>
+                <!-- Etiqueta para mostrar un mensaje -->
+                <h:form>
+                    <p:growl id="growl" showDetail="true" sticky="false" />
+                </h:form>
+                <div class="row justify-content-center">
+                    <div class="col-7">
+                        <h4 class="text-center mt-4">Buzón de sugerencias</h4>
+                        <p>El sistema comenzó planeado como un prototipo de sistema web que 
+                            sea capaz de gestionar riesgos en los laboratorios de biotecnología en UPIBI,
+                            es por eso que nos gustaría leer su opinión para continuar con la mejora continua de
+                            este sistema.</p>
+                        <h:form>
+                            <div class="form-group">
+                                <h:outputLabel styleClass="lead" for="area" value="Comentarios"></h:outputLabel>
+                                <h:inputTextarea value="#{managedBeanCorreo.mensaje}" class="form-control" required="true"  id="area" cols="25" rows="7" >
+                                </h:inputTextarea>
+                            </div>
+                            <h:commandButton action="#{managedBeanCorreo.enviarMensaje()}" class="btn colorazul" value="Enviar comentario"></h:commandButton>
+                        </h:form>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
-
-
-                <!-- Sticky Footer -->
-                <footer class="sticky-footer mt-3">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>
-                                <p class="lead">Sistema de gestión de riesgos</p>
-                            </span>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-            <!-- /.content-wrapper -->
-
-        </div>
-        <!-- /#wrapper -->
-
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="../vendor/jquery/jquery.min.js"></script>
-        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="../js/sb-admin.min.js"></script>
-    </body>
-
+            </ui:define> 			
+        </ui:composition> 
+    </h:body>
 </html>

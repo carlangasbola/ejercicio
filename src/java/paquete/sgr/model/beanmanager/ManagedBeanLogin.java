@@ -53,7 +53,7 @@ public class ManagedBeanLogin {
 
                 /* Numero 1 identifica administradores */
                 case 1:
-                    pagina = "Administrador/administrador";
+                    pagina = "Administrador/inicioAdministrador";
                     break;
                 /* Numero 2 identifica docentes */
                 case 2:

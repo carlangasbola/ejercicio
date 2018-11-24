@@ -2,37 +2,72 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
+        <Node id="Administrador/creacionPractica1.xhtml" x="900" y="1200" zoom="true"/>
+        <Node id="ModuloTecnico/tecnico.xhtml" x="650" y="1200" zoom="true"/>
+        <Node id="ModuloTecnico/administracionReactivos.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="Administrador/buzon.xhtml" x="1900" y="600" zoom="true"/>
         <Node id="ModuloAdministrador/creacionPractica2.xhtml" x="150" y="450" zoom="true"/>
-        <Node id="ModuloDocente/ModificacionDatos.xhtml" x="400" y="150" zoom="true"/>
         <Node id="ModuloAdministrador/modIncidencias.xhtml" x="150" y="900" zoom="true"/>
-        <Node id="template/ComponentesCreados.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="ModuloTecnico/modEventos.xhtml" x="150" y="1500" zoom="true"/>
+        <Node id="Administrador/telefonos.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="Administrador/inicioAdministrador.xhtml" x="1900" y="300" zoom="true"/>
         <Node id="ModuloAdministrador/prueba.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="ModuloDocente/actualizarcontra.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="ModuloAdministrador/calificacionPractica.xhtml" x="650" y="1350" zoom="true"/>
         <Node id="ModuloAdministrador/unidadAprendizaje.xhtml" x="650" y="150" zoom="true"/>
         <Node id="ModuloAdministrador/actualizarcontra.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="ModuloAdministrador/moduloDePracticas.xhtml" x="1900" y="150" zoom="true"/>
-        <Node id="ModuloAdministrador/administrador.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="Administrador/ModificacionDatos.xhtml" x="1400" y="600" zoom="true"/>
         <Node id="ModuloAdministrador/modUsuarios.xhtml" x="400" y="750" zoom="true"/>
-        <Node id="ModuloAdministrador/modGrupoUnidadesAprendizaje.xhtml" x="650" y="450" zoom="true"/>
         <Node id="ModuloAlumno/actualizarcontra.xhtml" x="150" y="150" zoom="true"/>
         <Node id="ModuloAdministrador/modGrupos.xhtml" x="900" y="600" zoom="true"/>
-        <Node id="ModuloAdministrador/creacionPractica3.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="Administrador/common.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="ModuloAlumno/administrador.xhtml" x="900" y="1050" zoom="true"/>
+        <Node id="Administrador/footer.xhtml" x="400" y="1500" zoom="true"/>
         <Node id="Pruebas.xhtml" x="1150" y="450" zoom="true"/>
-        <Node id="ModuloAdministrador/creacionPractica1.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="sugerencias.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="ModuloAdministrador/otrotipoevento.xhtml" x="1150" y="1050" zoom="true"/>
         <Node id="index.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="Administrador/actualizarcontra.xhtml" x="2150" y="300" zoom="true"/>
         <Node id="ModuloAdministrador/administracionUsuarios.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="Administrador/contents.xhtml" x="900" y="750" zoom="true"/>
         <Node id="ModuloAdministrador/administracionEquipo.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="ModuloAdministrador/administracionMaterial.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="Administrador/creacionPractica4.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="Administrador/registrarUsuarios.xhtml" x="2150" y="150" zoom="true"/>
         <Node id="ModuloAlumno/ModificacionDatos.xhtml" x="1650" y="150" zoom="true"/>
-        <Node id="ModuloAdministrador/creacionPractica4.xhtml" x="1650" y="300" zoom="true"/>
         <Node id="ModuloAdministrador/administracionReactivos.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="Administrador/administrador.xhtml" x="1150" y="900" zoom="true"/>
         <Node id="ModuloAdministrador/GruposAlumnos.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="ModuloAdministrador/modEventos.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="Administrador/page1.xhtml" x="1150" y="750" zoom="true"/>
         <Node id="ModuloAdministrador/ModificacionDatos.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="ModuloTecnico/administracionMaterial.xhtml" x="1650" y="600" zoom="true"/>
         <Node id="ModuloAdministrador/sesion_laboratorio.xhtml" x="1400" y="300" zoom="true"/>
-        <Node id="ModuloDocente/docente.xhtml" x="1400" y="150" zoom="true"/>
-        <Node id="template/boceto.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="Administrador/header.xhtml" x="2150" y="450" zoom="true"/>
+        <Node id="recuperarContra.xhtml" x="1400" y="900" zoom="true"/>
+        <Node id="ModuloTecnico/sesion_laboratorio.xhtml" x="400" y="1050" zoom="true"/>
         <Node id="ModuloAlumno/alumno.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="template/ComponentesCreados.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="ModuloDocente/ModificacionDatos.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="ModuloDocente/actualizarcontra.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="Administrador/moduloPractica.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="ModuloAdministrador/administrador.xhtml" x="293" y="502" zoom="true"/>
+        <Node id="ModuloAdministrador/modGrupoUnidadesAprendizaje.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="Administrador/creacionPractica3.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="ModuloAdministrador/creacionPractica3.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="Administrador/page2.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="ModuloTecnico/modResiduos.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="Administrador/barralateral.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="ModuloAdministrador/creacionPractica1.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="ModuloAlumno/404.xhtml" x="150" y="1650" zoom="true"/>
+        <Node id="ModuloAdministrador/administracionMaterial.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="ModuloTecnico/administracionEquipo.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="ModuloAdministrador/numerosEmergencias.xhtml" x="2650" y="150" zoom="true"/>
+        <Node id="ModuloAdministrador/creacionPractica4.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="Administrador/navegacion.xhtml" x="1650" y="750" zoom="true"/>
+        <Node id="ModuloAdministrador/modEventos.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="ModuloDocente/docente.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="Administrador/administracionUsuarios.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="Administrador/creacionPractica2.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="template/boceto.xhtml" x="1400" y="450" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
