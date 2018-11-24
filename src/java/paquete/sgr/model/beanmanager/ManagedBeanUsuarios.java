@@ -127,7 +127,7 @@ public class ManagedBeanUsuarios implements Serializable {
             numeroSeguro = datos.getNumeroSeguro();
             identificador = datos.getIdentificador();
         }
-        return "ModificacionDatos";
+        return "modificacionDatos";
     }
 
     public void deleteUsuario(int id) {

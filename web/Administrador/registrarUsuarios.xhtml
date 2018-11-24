@@ -1,212 +1,142 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
-    
-    <head jsf:id='head'>
-        <title>Sistema de gestión de riesgos</title>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-        <!-- Page level plugin CSS-->
-        <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
-        <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet" />
-        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" />
+    <h:body>
 
-    </head>
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Registrar usuarios</li>
+                </ol>
 
-    <body id="page-top">
+                <!-- Page Content -->
 
-        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
-
-
-
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <h:outputText value="#{Etiquetas.navegacionAdministrador}" escape="false" />
-
-            <div id="content-wrapper">
-                <div class="container-fluid ml-2">
-                    <!-- Breadcrumbs-->
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="administrador.xhtml">Inicio</a>
-                        </li>
-                        <li class="breadcrumb-item active">Registro de usuarios</li>
-                    </ol>
-
-                    <!-- Page Content -->
-                   <div class="row ">
-                <div class="col mt-4">
-                    <h1 class="colorpantone text-center">Módulo de administración usuarios</h1>
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Módulo de administración usuarios</h4>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mt-5">
+                <div class="row mt-3">
+                    <div class="col-8">
+                        <h4>Creación de múltiples usuarios</h4>
+                        <div class="w-100"></div>
+                        <p class="colorpantone">Siga las instrucciones que se muestran a continuación</p>
+                        <p>1.- Para la creación de usuarios descarge nuestra plantilla <a href="/ejercicio/faces/FormatoExcel/FormatoExcel.xls">aquí</a>.</p>
+                        <p>2.- Llene los datos que se presentan en el archivo que acaba de descargar.</p>
+                        <p>3.- A continuación haga click en buscar archivo, seleccione la plantilla con la 
+                            información que ya ha ingresado y haga click en subir</p>
+                        <p>4.- Dar clic en el boton "Agregar Alumnos".</p>
+                        <div class="w-100"></div>
+                        <!-- Crear el codigo de programación -->
 
-                <div class="col-12 col-md-7">
+                    </div>
 
-                    <h4>Creación de múltiples usuarios</h4>
-                    <div class="w-100" ></div>
-                    <p class="colorpantone">Siga las instrucciones que se muestran a continuación</p>
-                    <p>1.- Para la creación de usuarios descarge nuestra plantilla <a href="/ejercicio/faces/FormatoExcel/FormatoExcel.xls">aquí</a>.</p>
-                    <p>2.- Llene los datos que se presentan en el archivo que acaba de descargar.</p>
-                    <p>3.- A continuación haga click en buscar archivo, seleccione la plantilla con la 
-                        información que ya ha ingresado y haga click en subir</p>
-                    <p>4.- Dar clic en el boton "Agregar Alumnos".</p>
-                    <div class="w-100" ></div>
-                    <!-- Crear el codigo de programación -->
-                    <h:form id="formActualizarFoto">
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label" for="Grupo">Grupo </label>
-                            <div class="col-sm-9">
-                                <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
-                                    <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
-                                    <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
-                                    <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
-                                </p:selectOneMenu>
-
+                    <div class="col">
+                        <h4> Creación de un único usuario </h4>
+                        <p> Apriete el botón y llene los datos que a continuación le aparecen, 
+                            seleccione el rol y de click en crear </p>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalusuario">Crear nuevo usuario</button>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label" for="ua">Unidad de Aprendizaje </label>
-                            <div class="col-sm-9">
+                </div>
 
-                                <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
-                                    <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
-                                    <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
-                                </p:selectOneMenu>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <p>El contenido aqui de primefaces no se reenderiza adecuadamente</p>
+                    </div>
+                </div>
 
+
+                <!-- MODALES -->
+                <!-- Modal Usuario -->
+                <div class="modal fade" id="modalusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Creación de un nuevo usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+
+                            <div class="card p-1">
+                                <div class="card-body">
+                                    <form jsf:id="formagregardocente">
+                                        <div class="form-group row">
+                                            <label for="name">Nombre</label>
+                                            <input type="text" jsf:value="#{managedBeanQuerys.nombre}" class="form-control form-control-sm" id="name" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="apaterno">Apellido paterno</label>
+                                            <input type="text" jsf:value="#{managedBeanQuerys.paterno}" class="form-control form-control-sm" id="apaterno" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="amaterno">Apellido materno</label>
+                                            <input type="text" jsf:value="#{managedBeanQuerys.materno}" class="form-control form-control-sm" id="amaterno" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="tel">Teléfono</label>
+                                            <input type="tel" jsf:value="#{managedBeanQuerys.telefono}" class="form-control form-control-sm" id="tel" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email">Correo</label>
+                                            <input type="email" jsf:value="#{managedBeanQuerys.correo}" class="form-control form-control-sm" id="email" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="numseg">Número de seguro</label>
+                                            <input type="number" jsf:value="#{managedBeanQuerys.numeroSeguro}" class="form-control form-control-sm" id="numseg" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="pass">Contraseña</label>
+                                            <input type="pass" jsf:value="#{managedBeanQuerys.password}" class="form-control form-control-sm" id="numseg" required="true"/>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            Selecciona el rol del usuario
+                                            <select  class="custom-select" required="required" jsf:value="#{managedBeanQuerys.rol}" size="0">
+                                                <f:selectItem itemValue="1" itemLabel="Administrador"/>
+                                                <f:selectItem itemValue="2" itemLabel="Docente"/>
+                                                <f:selectItem itemValue="3" itemLabel="Tecnico"/>
+                                            </select>
+                                        </div> 
+
+                                        <button  type="submit" jsf:action="#{managedBeanQuerys.crearUsuario()}" class="btn btn-success">Crear nuevo usuario</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
-
-                        <div class="w-100" ></div>
-                        Seleccionar archivo:<p:fileUpload fileUploadListener="#{managedBeanUpload.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                                                          update="messages" sizeLimit="1000000" fileLimit="10" allowTypes="/(\.|\/)(xls)$/" oncomplete="PF('dlgActualizarFoto').hide()" fileLimitMessage="El maximo de imagenes es 1"  invalidFileMessage="Se debe seleccionar un archivo xls"
-                                                          cancelLabel="Cancelar" uploadLabel="Subir Archivo" label="Buscar Archivo"/>
-
-                        <p:growl id="messages" showDetail="true" />
-                        <br/><br/>
-                        <button  type="submit" jsf:action="#{managedBeanAgregarUsuariosArchivo.LeerArchivosExcel()}" class="btn btn-success">Agregar Alumnos</button>
-                    </h:form>
-                </div>
-
-                <div class="col-12 col-md">
-
-                    <h4> Creación de un único usuario </h4>
-                    <p> Apriete el botón y llene los datos que a continuación le aparecen, 
-                        seleccione el rol y de click en crear </p>
-                    <div class="row">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#modalusuario">Crear nuevo usuario</button>
-                        </div>
                     </div>
                 </div>
-            </div>
-                </div>
-                <!-- /.container-fluid -->
                 
-                
-                <!-- Sticky Footer -->
-                <footer class="sticky-footer mt-3">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>
-                                 <p class="lead">Sistema de gestión de riesgos</p>
-                            </span>
-                        </div>
-                    </div>
-                </footer>
 
-            </div>
-            <!-- /.content-wrapper -->
-
-        </div>
-        <!-- /#wrapper -->
-        
-        <!-- MODALES -->
-        <!-- Modal Usuario -->
-        <div class="modal fade" id="modalusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title " id="exampleModalLabel">Creación de un nuevo usuario</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-
-                    <div class="card p-1">
-                        <div class="card-body">
-                            <form jsf:id="formagregardocente">
-                                <div class="form-group row">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" jsf:value="#{managedBeanQuerys.nombre}" class="form-control form-control-sm" id="name" required="true"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="apaterno">Apellido paterno</label>
-                                    <input type="text" jsf:value="#{managedBeanQuerys.paterno}" class="form-control form-control-sm" id="apaterno" required="true"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="amaterno">Apellido materno</label>
-                                    <input type="text" jsf:value="#{managedBeanQuerys.materno}" class="form-control form-control-sm" id="amaterno" required="true"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="tel">Teléfono</label>
-                                    <input type="tel" jsf:value="#{managedBeanQuerys.telefono}" class="form-control form-control-sm" id="tel" required="true"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="email">Correo</label>
-                                    <input type="email" jsf:value="#{managedBeanQuerys.correo}" class="form-control form-control-sm" id="email" required="true"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="numseg">Número de seguro</label>
-                                    <input type="number" jsf:value="#{managedBeanQuerys.numeroSeguro}" class="form-control form-control-sm" id="numseg" required="true"/>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="pass">Contraseña</label>
-                                    <input type="pass" jsf:value="#{managedBeanQuerys.password}" class="form-control form-control-sm" id="numseg" required="true"/>
-                                </div>
-
-                                <div class="form-group row">
-                                    Selecciona el rol del usuario
-                                    <select  class="custom-select" required="required" jsf:value="#{managedBeanQuerys.rol}" size="0">
-                                        <f:selectItem itemValue="1" itemLabel="Administrador"/>
-                                        <f:selectItem itemValue="2" itemLabel="Docente"/>
-                                        <f:selectItem itemValue="3" itemLabel="Tecnico"/>
-                                        <f:selectItem itemValue="4" itemLabel="Alumno"/>
-                                    </select>
-                                </div> 
-
-                                <button  type="submit" jsf:action="#{managedBeanQuerys.crearUsuario()}" class="btn btn-success">Crear nuevo usuario</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-    
-        
-          <!-- Bootstrap core JavaScript-->
-        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="../js/sb-admin.min.js"></script>
-
-    </body>
-
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
 </html>
+
+
+
+
+

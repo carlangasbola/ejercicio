@@ -1,135 +1,98 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui" >
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-    <head jsf:id='head'>
-        <title>Sistema de gestión de riesgos</title>
-        <!-- Page level plugin CSS-->
-        <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
-        <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet" />
-        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" />
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:body>
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <h:form>
+                    <p:messages id="messages" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                </h:form>
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Administración de usuarios</li>
+                </ol>
+                <!-- Page content -->
+                <!-- Page Content -->
+                <div class="row">
 
-    </head>
+                    <div class="col">
+                        <h4 class="text-center my-3">Usuarios registrados en el sistema</h4>
+                        <h:form>
+                            <p:dataTable
+                                id="dataTableDatosUsuarios"
+                                var="du" 
+                                value="#{TableUsuarios.datosUsuarios}" 
+                                rows="10"
+                                paginator="true"
+                                widgetVar="duTable" 
+                                emptyMessage="Sin resultados" 
+                                filteredValue="#{TableUsuarios.datosUsuariosFiltrados}"
+                                >
 
-    <body id="page-top">
-        
-                
-        <h:form>
-            <p:messages id="messages" showDetail="true" closable="true">
-                <p:autoUpdate />
-            </p:messages>
-        </h:form>
-        
-        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
-
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <h:outputText value="#{Etiquetas.navegacionAdministrador}" escape="false" />
-            <div id="content-wrapper">
-                <div class="container-fluid">
-
-                    <!-- Breadcrumbs-->
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="administrador.xhtml">Inicio</a>
-                        </li>
-                        <li class="breadcrumb-item active">Administración de usuarios</li>
-                    </ol>
-                    <!-- END -->
-
-                    <!-- Page Content -->
-                    <div class="row">
-
-                        <div class="col">
-                            <h4 class="text-center my-3">Usuarios registrados en el sistema</h4>
-                            <h:form>
-                                <p:dataTable
-                                    id="dataTableDatosUsuarios"
-                                    var="du" 
-                                    value="#{TableUsuarios.datosUsuarios}" 
-                                    rows="10"
-                                    paginator="true"
-                                    widgetVar="duTable" 
-                                    emptyMessage="Sin resultados" 
-                                    filteredValue="#{TableUsuarios.datosUsuariosFiltrados}"
-                                    >
-
-                                    <f:facet name="header">
-                                        <p:outputPanel>
-                                            <h:outputText value="Buscar por cualquier campo: " />
-                                            <p:inputText id="globalFilter" onkeyup="PF('duTable').filter()" style="width:200px" placeholder="Escribe la búsqueda"/>
-                                        </p:outputPanel>
-                                    </f:facet>
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Buscar por cualquier campo: " />
+                                        <p:inputText id="globalFilter" onkeyup="PF('duTable').filter()" style="width:200px" placeholder="Escribe la búsqueda"/>
+                                    </p:outputPanel>
+                                </f:facet>
 
 
-                                    <p:column sortBy="#{du.usuarios.roles.nombreRol}" filterBy="#{du.usuarios.roles.nombreRol}" filterStyle="display:none" headerText="Rol"  >
-                                        <h:outputText value="#{du.usuarios.roles.nombreRol}" />
-                                    </p:column>
+                                <p:column sortBy="#{du.usuarios.roles.nombreRol}" filterBy="#{du.usuarios.roles.nombreRol}" filterStyle="display:none" headerText="Rol"  >
+                                    <h:outputText value="#{du.usuarios.roles.nombreRol}" />
+                                </p:column>
 
-                                    <p:column filterBy="#{du.nombre}" filterStyle="display:none" headerText="Nombre"  >
-                                        <h:outputText value="#{du.nombre}" />
-                                    </p:column>
+                                <p:column filterBy="#{du.nombre}" filterStyle="display:none" headerText="Nombre"  >
+                                    <h:outputText value="#{du.nombre}" />
+                                </p:column>
 
-                                    <p:column filterBy="#{du.apellidoPaterno}" filterStyle="display:none" headerText="Apellido Paterno"  >
-                                        <h:outputText value="#{du.apellidoPaterno}" />
-                                    </p:column>
+                                <p:column filterBy="#{du.apellidoPaterno}" filterStyle="display:none" headerText="Apellido Paterno"  >
+                                    <h:outputText value="#{du.apellidoPaterno}" />
+                                </p:column>
 
-                                    <p:column filterBy="#{du.apellidoMaterno}" filterStyle="display:none" headerText="Apellido Materno"  >
-                                        <h:outputText value="#{du.apellidoMaterno}" />
-                                    </p:column>
+                                <p:column filterBy="#{du.apellidoMaterno}" filterStyle="display:none" headerText="Apellido Materno"  >
+                                    <h:outputText value="#{du.apellidoMaterno}" />
+                                </p:column>
 
-                                    <p:column filterBy="#{du.telefono}" filterStyle="display:none" headerText="Teléfono"  >
-                                        <h:outputText value="#{du.telefono}" />
-                                    </p:column>
+                                <p:column filterBy="#{du.telefono}" filterStyle="display:none" headerText="Teléfono"  >
+                                    <h:outputText value="#{du.telefono}" />
+                                </p:column>
 
-                                    <p:column filterBy="#{du.correo}" filterStyle="display:none" headerText="Nombre"  >
-                                        <h:outputText value="#{du.correo}" />
-                                    </p:column>
+                                <p:column filterBy="#{du.correo}" filterStyle="display:none" headerText="Nombre"  >
+                                    <h:outputText value="#{du.correo}" />
+                                </p:column>
 
-                                    <p:column filterBy="#{du.identificador}" filterStyle="display:none" headerText="Identificador"  >
-                                        <h:outputText value="#{du.identificador}" />
-                                    </p:column>
+                                <p:column filterBy="#{du.identificador}" filterStyle="display:none" headerText="Identificador"  >
+                                    <h:outputText value="#{du.identificador}" />
+                                </p:column>
 
-                                    <p:column  headerText="Modificar"  style="width:95px;">
-                                        <p:commandButton icon="pi pi-eye" style="width:50px;" action="#{managedBeanQuerys.obtenerDatosUsuario()}" ajax="false">
-                                            <f:param name="IdUsuario" value="#{du.usuarios.idUsuarios}" />
-                                        </p:commandButton>
-                                    </p:column>
+                                <p:column  headerText="Modificar"  style="width:95px;">
+                                    <p:commandButton icon="pi pi-eye" style="width:50px;" action="#{managedBeanQuerys.obtenerDatosUsuario()}" ajax="false">
+                                        <f:param name="IdUsuario" value="#{du.usuarios.idUsuarios}" />
+                                    </p:commandButton>
+                                </p:column>
 
-                                    <p:column headerText="Eliminar" style="width:95px;" >
-                                        <p:commandButton action="#{managedBeanQuerys.deleteUsuario( du.usuarios.idUsuarios )}" ajax="false" icon="pi pi-trash" style="width:50px;" >
-                                        </p:commandButton>
-                                    </p:column>
-                                </p:dataTable>
-                            </h:form>
-                        </div>
+                                <p:column headerText="Eliminar" style="width:95px;" >
+                                    <p:commandButton action="#{managedBeanQuerys.deleteUsuario( du.usuarios.idUsuarios )}" ajax="false" icon="pi pi-trash" style="width:50px;" >
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
                     </div>
-
-
                 </div>
-                <!-- /.container-fluid -->
-                <!-- Sticky Footer -->
-            </div>
-            <!-- /.content-wrapper -->
-
-        </div>
-        <!-- /#wrapper -->
-
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="../js/sb-admin.min.js"></script>
-    </body>
-
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
 </html>
