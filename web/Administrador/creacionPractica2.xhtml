@@ -1,201 +1,150 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
-    <head jsf:id='head'>
-        <title>Sistema de gestión de riesgos</title>
-        <!-- Page level plugin CSS-->
-        <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
-        <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet" />
-        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" />
-
+    <head jsf:id="head">
+        <title>Creación de prácticas</title>
+        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
     </head>
+    <body jsf:id="body">
 
-    <body id="page-top">
+        <!-- Barra de navegación -->
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />        
 
-        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
+        <!-- Selección de materiales -->
+        <h5 class="text-center my-4">II Seleccion de material, equipo y reactivos</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form"> 
+                        <!-- Selección de reactivos -->
+                        <label for="reac">> Selección de reactivos</label>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-12 col-md-5">Cantidad</th>
+                                    <th scope="col" class="col-12 col-md-5">Nombre del reactivo</th>
+                                    <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="r" value="#{managedBeanReactivos.lista}">
+                                    <tr>
+                                        <td>#{r.cantidad}</td>
+                                        <td>#{r.nombre}</td>
+                                        <td>
+                                            <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanReactivos.eliminar(status.index)}">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <tr>
+                                    <td>
+                                        <input id="cantidadreactivo" type="number" required="true" class="form-control" jsf:value="#{managedBeanReactivos.auxcantidad}"></input>
+                                    </td>
+                                    <td>
+                                        <select  class="custom-select" required="required" jsf:value="#{managedBeanReactivos.auxnombre}" size="0">
+                                            <f:selectItems value="#{managedBeanAdminReactivos.NombresReactivos()}" var="hola" />
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanReactivos.add(managedBeanReactivos.auxnombre, managedBeanReactivos.auxcantidad)}">Agregar</button></td>
+                                </tr>
+                            </tbody>
+                        </table><br/><hr/><br/>
+                        
+                        <!-- Selección de material -->
+                        
+                        <label for="mate">> Selección de material</label>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-12 col-md-5">Cantidad</th>
+                                    <th scope="col" class="col-12 col-md-5">Nombre del material</th>
+                                    <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="m" value="#{managedBeanMaterial.list}">
+                                    <tr>
+                                        <td>#{m.cantidad}</td>
+                                        <td>#{m.nombre}</td>
+                                        <td>
+                                            <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanMaterial.eliminar(status.index)}">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <tr>
+                                    <td>
+                                        <input id="cantidadmaterial" type="number" required="true" class="form-control" jsf:value="#{managedBeanMaterial.auxcantidad}"></input>
+                                    </td>
+                                    <td>
+                                        <select  class="custom-select" required="required" jsf:value="#{managedBeanMaterial.auxnombre}" size="0">
+                                            <f:selectItems value="#{managedBeanAdminMateriales.NombresMateriales()}" var="hola" />
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanMaterial.add(managedBeanMaterial.auxnombre, managedBeanMaterial.auxcantidad)}">Agregar</button></td>
+                                </tr>
+                            </tbody>
+                        </table><br/><hr/><br/>
 
-
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <h:outputText value="#{Etiquetas.navegacionAdministrador}" escape="false" />
-            <div id="content-wrapper">
-                <div class="container-fluid">
-
-                    <!-- Breadcrumbs-->
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="administrador.xhtml">Inicio</a>
-                        </li>
-                        <li class="breadcrumb-item active">Inicio</li>
-                    </ol>
-                    <!-- END -->
-
-                    <!-- Page Content -->
-
-                    <!-- Selección de materiales -->
-                    <h5 class="text-center my-4">II Seleccion de material, equipo y reactivos</h5>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form"> 
-                                    <!-- Selección de reactivos -->
-                                    <label for="reac">> Selección de reactivos</label>
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="col-12 col-md-5">Cantidad</th>
-                                                <th scope="col" class="col-12 col-md-5">Nombre del reactivo</th>
-                                                <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <ui:repeat var="r" value="#{managedBeanReactivos.lista}">
-                                                <tr>
-                                                    <td>#{r.cantidad}</td>
-                                                    <td>#{r.nombre}</td>
-                                                    <td>
-                                                        <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanReactivos.eliminar(status.index)}">Eliminar</button>
-                                                    </td>
-                                                </tr>
-                                            </ui:repeat>
-                                            <tr>
-                                                <td>
-                                                    <input id="cantidadreactivo" type="number" required="true" class="form-control" jsf:value="#{managedBeanReactivos.auxcantidad}"></input>
-                                                </td>
-                                                <td>
-                                                    <select  class="custom-select" required="required" jsf:value="#{managedBeanReactivos.auxnombre}" size="0">
-                                                        <f:selectItems value="#{managedBeanAdminReactivos.NombresReactivos()}" var="hola" />
-                                                    </select>
-                                                </td>
-                                                <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanReactivos.add(managedBeanReactivos.auxnombre, managedBeanReactivos.auxcantidad)}">Agregar</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table><br/><hr/><br/>
-
-                                    <!-- Selección de material -->
-
-                                    <label for="mate">> Selección de material</label>
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="col-12 col-md-5">Cantidad</th>
-                                                <th scope="col" class="col-12 col-md-5">Nombre del material</th>
-                                                <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <ui:repeat var="m" value="#{managedBeanMaterial.list}">
-                                                <tr>
-                                                    <td>#{m.cantidad}</td>
-                                                    <td>#{m.nombre}</td>
-                                                    <td>
-                                                        <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanMaterial.eliminar(status.index)}">Eliminar</button>
-                                                    </td>
-                                                </tr>
-                                            </ui:repeat>
-                                            <tr>
-                                                <td>
-                                                    <input id="cantidadmaterial" type="number" required="true" class="form-control" jsf:value="#{managedBeanMaterial.auxcantidad}"></input>
-                                                </td>
-                                                <td>
-                                                    <select  class="custom-select" required="required" jsf:value="#{managedBeanMaterial.auxnombre}" size="0">
-                                                        <f:selectItems value="#{managedBeanAdminMateriales.NombresMateriales()}" var="hola" />
-                                                    </select>
-                                                </td>
-                                                <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanMaterial.add(managedBeanMaterial.auxnombre, managedBeanMaterial.auxcantidad)}">Agregar</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table><br/><hr/><br/>
-
-
-                                    <!-- Selección de equipo -->
-
-                                    <label for="equi">> Selección de equipo</label>
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="col-12 col-md-5">Cantidad</th>
-                                                <th scope="col" class="col-12 col-md-5">Nombre del equipo</th>
-                                                <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <ui:repeat var="e" value="#{managedBeanEquipo.lista}">
-                                                <tr>
-                                                    <td>#{e.cantidad}</td>
-                                                    <td>#{e.nombre}</td>
-                                                    <td>
-                                                        <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanEquipo.eliminar(status.index)}">Eliminar</button>
-                                                    </td>
-                                                </tr>
-                                            </ui:repeat>
-                                            <tr>
-                                                <td>
-                                                    <input id="cantidadequipo" type="number" required="true" class="form-control" jsf:value="#{managedBeanEquipo.auxcantidad}"></input>
-                                                </td>
-                                                <td>
-                                                    <select  class="custom-select" required="required" jsf:value="#{managedBeanEquipo.auxnombre}" size="0">
-                                                        <f:selectItems value="#{managedBeanAdminEquipo.NombresEquipo()}" var="hola" />
-                                                    </select>
-                                                </td>
-                                                <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanEquipo.add(managedBeanEquipo.auxnombre, managedBeanEquipo.auxcantidad)}">Agregar</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table><br/><hr/><br/>
-
-
-                                    <!-- Botones anterior/siguiente -->
-                                    <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('1')}" style="float:left"><i class="fas fa-chevron-circle-left mr-2"></i>Anterior</button>
-                                    <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('3')}" style="float:right">
-                                        <i class="fas fa-chevron-circle-right mr-2"></i>Siguiente 
-                                        <f:actionListener binding="#{managedBeanReactivos.Seleccionar()}" /> 
-                                    </button>
-                                </form>
-
-                                <div>
-                                    <br/><br/><br/><br/>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        <!-- Selección de equipo -->
+                        
+                        <label for="equi">> Selección de equipo</label>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-12 col-md-5">Cantidad</th>
+                                    <th scope="col" class="col-12 col-md-5">Nombre del equipo</th>
+                                    <th scope="col" class="col-12 col-md-2">Eliminar/Agregar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="e" value="#{managedBeanEquipo.lista}">
+                                    <tr>
+                                        <td>#{e.cantidad}</td>
+                                        <td>#{e.nombre}</td>
+                                        <td>
+                                            <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanEquipo.eliminar(status.index)}">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <tr>
+                                    <td>
+                                        <input id="cantidadequipo" type="number" required="true" class="form-control" jsf:value="#{managedBeanEquipo.auxcantidad}"></input>
+                                    </td>
+                                    <td>
+                                        <select  class="custom-select" required="required" jsf:value="#{managedBeanEquipo.auxnombre}" size="0">
+                                            <f:selectItems value="#{managedBeanAdminEquipo.NombresEquipo()}" var="hola" />
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="bts successverde form-control" jsf:action="#{managedBeanEquipo.add(managedBeanEquipo.auxnombre, managedBeanEquipo.auxcantidad)}">Agregar</button></td>
+                                </tr>
+                            </tbody>
+                        </table><br/><hr/><br/>
+                        
+                        
+                        <!-- Botones anterior/siguiente -->
+                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('1')}" style="float:left"><i class="fas fa-chevron-circle-left mr-2"></i>Anterior</button>
+                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('3')}" style="float:right">
+                                <i class="fas fa-chevron-circle-right mr-2"></i>Siguiente 
+                                <f:actionListener binding="#{managedBeanReactivos.Seleccionar()}" /> 
+                        </button>
+                    </form>
+                    
+                    <div>
+                        <br/><br/><br/><br/>
                     </div>
-
                 </div>
-                <!-- /.container-fluid -->
-
-
-                <!-- Sticky Footer -->
-                <footer class="sticky-footer mt-4">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>
-                                <p class="lead">Sistema de gestión de riesgos</p>
-                            </span>
-                        </div>
-                    </div>
-                </footer>
             </div>
-            <!-- /.content-wrapper -->
-
         </div>
-        <!-- /#wrapper -->
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="../vendor/jquery/jquery.min.js"></script>
-        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="../js/sb-admin.min.js"></script>
     </body>
-
 </html>
