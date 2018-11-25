@@ -88,7 +88,7 @@ public class ManagedBeanUsuarios implements Serializable {
 
     public List obtenerUsuarios(int id) {
         ConsultasHQL consulta = new ConsultasHQL();
-        hibernateSession = consulta.getHibernateSession();
+        hibernateSession = consulta.obtenerSession();
         Query query = hibernateSession.createSQLQuery("CALL SelectDatosRol(:id)")
                 .addEntity(DatosUsuario.class)
                 .setParameter("id", id);

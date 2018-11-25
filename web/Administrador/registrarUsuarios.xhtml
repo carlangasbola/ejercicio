@@ -14,6 +14,11 @@
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
         <ui:composition template = "common.xhtml">		
             <ui:define name = "content">
+                <h:form>
+                    <p:messages id="messages" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                </h:form>
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -129,8 +134,8 @@
                         </div>
                     </div>
                 </div>
-                
-
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script src="../vendor/jquery/jquery.min.js"></script> 
             </ui:define> 
         </ui:composition>       
     </h:body>
