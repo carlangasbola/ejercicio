@@ -25,6 +25,7 @@ import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
 import paquete.sgr.model.beanmanager.ManagedBeanUpload;
 import paquete.sgr.beans.UtilPath;
+import paquete.sgr.entity.pojos.Equipo;
 import paquete.sgr.model.beanmanager.dropdownview.DropdownViewGrupoUnidades;
 /**
  *
@@ -41,6 +42,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
     }
     
     private Session hibernateSession;
+    private Session hibernateSessionAux;
     
     //Parametros para la creación de un usuario    
     private String nombre;
@@ -51,12 +53,15 @@ public class ManagedBeanAgregarUsuariosArchivo {
     private String password;
     private String numeroSeguro;
     private String identificador;
+    private String equipo[]= {"","","","","","","","","",""};//new String[10];
+    private String num_Equipo;
     private String grupo = DropdownViewGrupoUnidades.id_Grupo;
     private String unidad_aprendizaje =DropdownViewGrupoUnidades.id_UnidadAprendizaje;
     private int tipousuario = 3;
     private int rol =3;
     private int idDatos =3;
     private String filename = ManagedBeanUpload.fileName;
+    private Equipo equipor;
     
     public void LeerArchivosExcel(){
         
@@ -65,13 +70,17 @@ public class ManagedBeanAgregarUsuariosArchivo {
         System.out.println(filename);
         String archivoDestino = realPath + File.separator + "web" + File.separator + "ExcelUpload" + File.separator + filename;
         int contador=1;
+        
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        
         try{
             Workbook archivoExcel=Workbook.getWorkbook(new File(archivoDestino));
             
             //Recorre cada hoja
             for(int hojas=0;hojas<archivoExcel.getNumberOfSheets();hojas++){
                 Sheet hoja=archivoExcel.getSheet(hojas);
+                int x=0;
+                int ideq=0;
                 int numColumnas=hoja.getColumns();
                 int numFilas=hoja.getRows();
                 String dato;
@@ -79,7 +88,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
                 for(int fila=1;fila<numFilas;fila++){
                     for(int columna =1; columna<numColumnas;columna++){
                         dato=hoja.getCell(columna,fila).getContents();
-                        //System.out.print(dato+" ");
+                        System.out.print(dato+" ");
                         //Intruccion switch que evalua la variable contador
                         switch(contador){
                             case 1:
@@ -96,12 +105,12 @@ public class ManagedBeanAgregarUsuariosArchivo {
                                 break;
                             case 4:
                                 materno = dato;
+                                contador++;
+                                break;
+                           case 5:
+                                num_Equipo = dato;
                                 contador=1;
                                 break;
-                           // case 5:
-                                //correo = dato;
-                                //contador++;
-                                //break;
                             //case 6:
                                 //password = dato;
                                 //contador++;
@@ -122,9 +131,10 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     ListaGrupo listgroup = new ListaGrupo();
                     Usuarios user = new Usuarios();
                     DatosUsuario datauser = new DatosUsuario();
+                    Equipo eq = new Equipo();
                     Roles roles = new Roles();
                     ConsultasHQL consulta = new ConsultasHQL();
-                    UnidadGrupo unidadgrupo = new UnidadGrupo();
+
                     
                     List<UnidadGrupo> ug = consulta.crearSelectidUnidadGrupo("FROM UnidadGrupo WHERE unidadAprendizaje = " + unidad_aprendizaje +" AND grupo = " + grupo) ;
                     int idug = ug.get(0).getIdUnidadGrupo();
@@ -151,9 +161,42 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     //Guardamos los datos del usuario
                     hibernateSession.save(datauser);
                     
-                    listgroup.setUsuarios(user);
-                    listgroup.setUnidadGrupo(ug.get(0));
-                    hibernateSession.save(listgroup);
+
+                    
+                    int variableEquipo=0;
+                    for(int i=0; i<equipo.length;i++){
+                        if(equipo[i].equals(num_Equipo) ){
+                            variableEquipo=1;
+                        System.out.println("variable 1");
+                        }
+
+                    }
+                    
+                    if(variableEquipo==1){
+ 
+                        eq.setNombre(num_Equipo);
+                        eq.setUnidadGrupo(ug.get(0));
+                        hibernateSession.saveOrUpdate(eq);   
+                    
+                        List<Equipo> equipoor = consulta.crearSelectidUnidadGrupo("FROM Equipo WHERE nombre = " + num_Equipo ) ;
+                        listgroup.setEquipo(eq);
+                        listgroup.setUsuarios(user);
+                        listgroup.setUnidadGrupo(ug.get(0));
+                        hibernateSession.save(listgroup);
+                    }
+
+                    if(variableEquipo==0){
+                        equipo[x]=num_Equipo;
+                        x++;
+                        eq.setNombre(num_Equipo);
+                        eq.setUnidadGrupo(ug.get(0));
+                        hibernateSession.save(eq);
+                        equipor=eq;
+                        listgroup.setEquipo(eq);
+                        listgroup.setUsuarios(user);
+                        listgroup.setUnidadGrupo(ug.get(0));
+                        hibernateSession.save(listgroup);
+                    }
                     
                     hibernateSession.getTransaction().commit();
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Agregado con éxito"));
@@ -162,7 +205,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
         }catch (Exception e) {
             hibernateSession.getTransaction().rollback();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Algo salio mal :v"));
-            System.out.println("Exepcion : " + e);
+            System.out.println("ExepcionAlumno : " + e);
         }
     }
     
@@ -218,7 +261,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
     public void setHibernateSession(Session hibernateSession) {
         this.hibernateSession = hibernateSession;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
