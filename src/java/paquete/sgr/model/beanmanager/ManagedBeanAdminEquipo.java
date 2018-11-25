@@ -23,6 +23,7 @@ public class ManagedBeanAdminEquipo {
     private Session hibernateSession;
     private String nombreequipo;
     private String caracteristicasequipo;
+    private int cantidadequipo;
     private byte existenciaequipo;
     
     /* Obtener un solo equipo */
@@ -41,6 +42,7 @@ public class ManagedBeanAdminEquipo {
         //se asignan los nuevos valores
         equipo1.setNombre(nombreequipo);
         equipo1.setCaracteristicas(caracteristicasequipo);
+        equipo1.setCantidad(cantidadequipo);
         equipo1.setExistenciaInventario(existenciaequipo);
         //se hace el update
         hibernateSession.update(equipo1);
@@ -84,6 +86,7 @@ public class ManagedBeanAdminEquipo {
             
             equipo.setNombre(nombreequipo);
             equipo.setCaracteristicas(caracteristicasequipo);
+            equipo.setCantidad(cantidadequipo);
             equipo.setExistenciaInventario(existenciaequipo);
             //Guardamos el reactivo en la base de datos
             hibernateSession.save(equipo);
@@ -145,6 +148,14 @@ public class ManagedBeanAdminEquipo {
 
     public void setE(EquipoLaboratorio e) {
         this.e = e;
+    }
+
+    public int getCantidadequipo() {
+        return cantidadequipo;
+    }
+
+    public void setCantidadequipo(int cantidadequipo) {
+        this.cantidadequipo = cantidadequipo;
     }
     
 }

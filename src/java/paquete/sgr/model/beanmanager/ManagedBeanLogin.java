@@ -57,15 +57,14 @@ public class ManagedBeanLogin {
                     break;
                 /* Numero 2 identifica docentes */
                 case 2:
-                    //No creado aún
                     break;
-                /* Numero 3 identifica alumnos */
+                /* Numero 3 identifica a tecnicos */
                 case 3:
-                    //No creado aún
+                    pagina = "Tecnico/inicioTecnico";
                     break;
-                /* Numero 4 identifica a tecnicos */
+                /* Numero 4 identifica alumnos */
                 case 4:
-                     pagina = "ModuloAlumno/alumno";
+                    pagina = "ModuloAlumno/alumno";
                     break;
             }
             

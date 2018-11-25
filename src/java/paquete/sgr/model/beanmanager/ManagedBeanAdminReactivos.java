@@ -58,6 +58,17 @@ public class ManagedBeanAdminReactivos {
         List<Reactivos> reactivos = query.list();
         return reactivos;
     }
+    public int BuscaId(String nombre){
+        int id=0;
+        hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Query query = hibernateSession.createSQLQuery("select *from reactivos").addEntity(Reactivos.class);
+        List<Reactivos> reactivos = query.list();
+        listanombres = new ArrayList<>();
+        for(paquete.sgr.entity.pojos.Reactivos item:reactivos)
+            if(item.getNombre()==nombre)
+                id=item.getIdReactivo();
+        return id;
+    }
     
     public List<String> NombresReactivos() {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();

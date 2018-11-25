@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioTecnico.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Cambio de contraseña</li>
+                </ol>
+                
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Bienvenido Técnico</h4>
+                    </div>
+                </div>
+                
+                <p class="lead"> <strong class="text-capitalize"> #{nombreUsuario} </strong> </p>
+                <p> Selecciona alguna de las siguientes opciones para actualizar tu infomración, o del lado
+                    derecho haz clic en alguna de las siguientes opciones disponibles</p>
+                <h:form>
+                    <h:commandButton styleClass="btn btn-link" value="Modificar Información" action="#{managedBeanQuerys.obtenerDatosUsuario()}">
+                        <f:param name="IdUsuario" value="0" />
+                    </h:commandButton>
+                </h:form>    
+                <a href="modificacionDatos.xhtml" class="mx-2">Cambiar contraseña</a>
+                
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

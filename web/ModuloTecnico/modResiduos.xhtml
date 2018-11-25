@@ -6,7 +6,7 @@
     <head jsf:id="head">
         <title>Administración de residuos</title>
         <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
-        <script type="text/javascript" src="Chart.js"></script>
+        <script type="text/javascript" src="Js/Chart.js"></script>
     </head>
     <body jsf:id="body">
 
@@ -21,7 +21,7 @@
             </div>
         </div>
         
-        <div class="container mt-4">
+        <div class="container mt-4 panel panel-default">
             <div class="row text-center">
                 <div class="col">
                     <canvas id="GraficaBarras" style="max-width: 100%;"></canvas><br/><br/><hr/><br/><br/>
@@ -129,7 +129,7 @@
                     borderColor: [
                       'rgba(255,99,132,1)',
                       'rgba(54, 162, 235, 1)',
-                      'rgba(255, 71, 71, 0.2)',
+                      'rgba(255, 71, 71, 1)',
                       'rgba(75, 192, 192, 1)',
                       'rgba(153, 102, 255, 1)',
                       'rgba(255, 159, 64, 1)',

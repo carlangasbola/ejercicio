@@ -37,6 +37,8 @@ public class ManagedBeanGraficaCirculo {
         pieChartModel.set(25);
         pieChartModel.set(15);
         pieChartModel.setShowTooltip(true);
+        pieChartModel.setDonut(true);
+        pieChartModel.isAnimateAdvanced();
     }
     public void pieItemSelect(ItemSelectEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected", "Item Value: "

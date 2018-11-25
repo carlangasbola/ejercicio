@@ -25,7 +25,8 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <table class="table table-hover">
+                    <input type="search" class="light-table-filter form-control"  data-table="order-table" placeholder="Buscar"/>
+                    <table class="order-table table table table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Disponibilidad</th>
@@ -57,7 +58,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title " id="exampleModalLabel">Creación de un nuevo Reactivo</h5>
+                        <h5 class="modal-title " id="exampleModalLabel">Creación de reactivos</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
@@ -86,7 +87,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="cantidadr">Cantidad</label>
-                                    <input type="text" jsf:value="#{managedBeanAdminReactivos.cantidadreactivo}" class="form-control form-control-sm" id="cantidadr" required="true"/>
+                                    <input type="number" jsf:value="#{managedBeanAdminReactivos.cantidadreactivo}" class="form-control form-control-sm" id="cantidadr" required="true"/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="unidadr">Unidad de medida</label>
@@ -94,7 +95,7 @@
                                         <f:selectItem itemValue="Gramos" itemLabel="Gramos"/>
                                         <f:selectItem itemValue="Kilogramos" itemLabel="Kilogramos"/>
                                         <f:selectItem itemValue="Mililitros" itemLabel="Mililitros"/>
-                                        <f:selectItem itemValue="Litros" itemLabel="Perra"/>
+                                        <f:selectItem itemValue="Litros" itemLabel="Litros"/>
                                     </select>
                                 </div>
                                 <div class="form-group row">
@@ -116,6 +117,7 @@
         </div>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script  src="Js/index.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
