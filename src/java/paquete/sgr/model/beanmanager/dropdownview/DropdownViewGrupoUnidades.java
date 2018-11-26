@@ -1,11 +1,11 @@
 package paquete.sgr.model.beanmanager.dropdownview;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -14,9 +14,11 @@ import javax.faces.context.FacesContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
+import paquete.sgr.entity.pojos.Eventos;
 import paquete.sgr.entity.pojos.Grupo;
 import paquete.sgr.entity.pojos.SesionDeLaboratorio;
 import paquete.sgr.entity.pojos.UnidadAprendizaje;
+import paquete.sgr.entity.pojos.UnidadGrupo;
 import paquete.sgr.entity.pojos.Usuarios;
 import paquete.sgr.model.beanmanager.ManagedBeanSesionLaboratorio;
 import paquete.sgr.model.beanmanager.Mensajes;
@@ -30,6 +32,13 @@ public class DropdownViewGrupoUnidades implements Serializable {
     public static String id_UnidadAprendizaje;
     private Map<String, String> grupos;
     private Map<String, String> unidades_aprendizaje;
+    
+   // Datos de evento
+    private String tipo;
+    private String nombre;
+    private String descripcion;
+    private Date fecha;
+    private int idUnidadGrupo;
 
     @ManagedProperty(value = "#{SesionLaboratorio}")
     private ManagedBeanSesionLaboratorio sesionLaboratorio;
@@ -64,6 +73,44 @@ public class DropdownViewGrupoUnidades implements Serializable {
             data.put(g.getIdGrupo().toString(), map);
         }
 
+    }
+    
+    public void crearEvento(){
+        Mensajes msj = new Mensajes();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.getHibernateSession();
+        Eventos e = new Eventos();
+        
+        // Este se pone manualmente
+        Grupo g = (Grupo) s.load(Grupo.class, 1);
+        UnidadGrupo ug = (UnidadGrupo) s.load(UnidadGrupo.class,idUnidadGrupo );
+        
+        e.setTipo(tipo);
+        e.setNombre(nombre);
+        e.setFecha(sesionLaboratorio.getFechaSesison());
+        e.setDescripcion(descripcion);
+        e.setGrupo(g);
+        e.setUnidadGrupo(ug);
+
+        //sl.setFecha(sesionLaboratorio.getFechaSesison());
+        //sl.setUnidadAprendizaje(ua);
+        //sl.setDocenteAuxiliar(sesionLaboratorio.getDocenteAuxiliar());
+        //sl.setGrupo(g);
+
+        if (consulta.insertarObjeto(e)) {
+            msj.setTitulo("Exíto");
+            msj.setMensaje("Evento creado exitosamente");
+            msj.MensajeInfo();
+        } else {
+            msj.setTitulo("Error");
+            msj.setMensaje("Ocurrio un error al procesar la solicitud");
+            msj.MensajeError();
+        }
+    }
+    
+    public List<UnidadGrupo> obtenerUnidadGrupo(){
+        ConsultasHQL consulta  = new ConsultasHQL();
+        return consulta.crearSelectQuery("FROM UnidadGrupo");
     }
     
     public void crearSesionLaboratorio() {
@@ -147,5 +194,46 @@ public class DropdownViewGrupoUnidades implements Serializable {
         }
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+     public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
+    
+    public int getIdUnidadGrupo() {
+        return idUnidadGrupo;
+    }
+
+    public void setIdUnidadGrupo(int idUnidadGrupo) {
+        this.idUnidadGrupo = idUnidadGrupo;
     }
 }

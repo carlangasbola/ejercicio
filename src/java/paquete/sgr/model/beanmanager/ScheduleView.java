@@ -19,6 +19,7 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 import paquete.sgr.beans.ConsultasHQL;
+import paquete.sgr.entity.pojos.Eventos;
 import paquete.sgr.entity.pojos.SesionDeLaboratorio;
 
 @ManagedBean
@@ -44,6 +45,21 @@ public class ScheduleView implements Serializable {
                                                      "Docente Auxiliar: " + sl.getDocenteAuxiliar(),
                                     sl.getFecha(),
                                     sl.getFecha()
+                            ));
+        }
+        
+        consulta = new ConsultasHQL();
+        List<Eventos> evs = consulta.crearSelectQuery("FROM Eventos");
+        
+        for (Eventos e : evs) {
+            eventModel
+                    .addEvent(
+                            new DefaultScheduleEvent("Entrega de práctica :" + "\n" +
+                                                     "Titulo :" + e.getNombre() +"\n"+
+                                                     "Grupo " + e.getUnidadGrupo().getGrupo().getNombre() + "\n" +
+                                                      e.getUnidadGrupo().getUnidadAprendizaje().getNombre(),
+                                    e.getFecha(),
+                                    e.getFecha()
                             ));
         }
 

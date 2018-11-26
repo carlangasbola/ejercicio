@@ -28,9 +28,9 @@
                                 <a class='nav-link disabled' href='buzon.xhtml'> <i class='fas fa-envelope-square'></i> Buzón de sugerencias </a>
                             </li>
                             <li>
-                                <form jsf:id='formlogout1'>
-                                    <button class='btn btn-sm colorverde rounded' type='submit' jsf:action='#{managedBeanLogin.logout()}'><i class='fas fa-sign-out-alt'></i> Cerrar sesión</button>
-                                </form>
+                                <h:form>
+                                    <h:commandButton class='btn btn-sm colorverde rounded' action='#{managedBeanLogin.logout()}' value="Cerrar sesión"> </h:commandButton>
+                                </h:form>
                             </li>
                         </ul>
                     </div>

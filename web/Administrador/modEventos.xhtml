@@ -29,8 +29,7 @@
                 <div class="row">
                     <div class="col">           
                         <p class="lead mt-2">En esta pantalla se muestra cada uno de los eventos que han sido registrados, para crear una nueva sesión
-                            de laboratorio de clic en el botón de arriba, para crear otro tipo de evento como revisión de práctica de clic
-                            en otro tipo de evento.</p>
+                            de laboratorio de clic en barra de navegación lateral.</p>
                         <p> Eventos actualmente cargados en el sistema</p>                      
                     </div>
                 </div>
@@ -49,8 +48,6 @@
                                     <p:ajax event="eventResize" listener="#{scheduleView.onEventResize}" update="messages" />
 
                                 </p:schedule>
-
-
                             </h:panelGrid>
 
                             <p:dialog widgetVar="eventDialog" header="Detalles del evento" showEffect="clip" hideEffect="clip">
@@ -63,9 +60,6 @@
 
                                     <p:outputLabel for="to" value="To:" />
                                     <p:calendar id="to" value="#{scheduleView.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
-
-                                    <p:outputLabel for="allDay" value="All Day:" />
-                                    <h:selectBooleanCheckbox id="allDay" value="#{scheduleView.event.allDay}" />
 
                                     <p:commandButton type="reset" value="Reset" />
                                     <p:commandButton id="addButton" value="Save" actionListener="#{scheduleView.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />

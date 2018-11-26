@@ -1,0 +1,110 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active"> Administración de Material </li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center"> <i class="fas fa-archive"></i>  Administración de Material</h4>
+                        <button type="submit" class=" btn  my-3" data-toggle="modal" data-target="#modalmaterial">Agregar material</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <input type="search" class="light-table-filter form-control"  data-table="order-table" placeholder="Buscar"/>
+                        <table class="order-table table table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Disponibilidad</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Características</th>
+                                    <th scope="col">Existencia</th>
+                                    <th scope="col">Modificar/eliminar</th>
+                                </tr>
+                            </thead>
+                            <h:form>
+                                <ui:repeat var="m" value="#{managedBeanAdminMateriales.getMaterial()}" >
+                                    <tr>
+                                        <td>#{managedBeanAdminMateriales.validarExistencia(m.existenciaInventario)}</td>
+                                        <td>#{m.nombre}</td>
+                                        <td>#{m.caracteristicas}</td>
+                                        <td>#{m.cantidad} #{r.medida}</td>
+                                        <td>
+                                            <a jsf:action="#{managedBeanAdminMateriales.eliminarMaterial(m.idMaterial)}">Eliminar material</a>                        
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </h:form>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal Usuario -->
+                <div class="modal fade" id="modalmaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Creación de materiales</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+
+                            <div class="card p-1">
+                                <div class="card-body">
+                                    <form jsf:id="formagregarmaterial">
+                                        <div class="form-group row">
+                                            <label for="nombrem">Nombre</label>
+                                            <input type="text" jsf:value="#{managedBeanAdminMateriales.nombrematerial}" class="form-control form-control-sm" id="nombrem" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="nombrem">Características</label>
+                                            <input type="text" jsf:value="#{managedBeanAdminMateriales.caracteristicasmaterial}" class="form-control form-control-sm" id="caracteristicasm" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="cantidadm">Cantidad</label>
+                                            <input type="number" jsf:value="#{managedBeanAdminMateriales.cantidadmaterial}" class="form-control form-control-sm" id="cantidadm" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="existenciam">Disponibilidad</label>
+                                            <select  class="custom-select" required="required" jsf:value="#{managedBeanAdminMateriales.existenciamaterial}" size="0">
+                                                <f:selectItem itemValue="1" itemLabel="Si"/>
+                                                <f:selectItem itemValue="0" itemLabel="No"/>
+                                            </select>
+                                        </div>
+                                        <button  type="submit" jsf:action="#{managedBeanAdminMateriales.crearMaterial()}" class="btn btn-success">Crear nuevo material</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script  src="Js/index.js"></script>
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

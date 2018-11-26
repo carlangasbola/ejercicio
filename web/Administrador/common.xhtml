@@ -4,7 +4,8 @@
 
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
-      xmlns:ui = "http://java.sun.com/jsf/facelets"> 
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
 
     <h:head>
         <meta charset='utf-8' />
@@ -19,6 +20,11 @@
     </h:head>
 
     <h:body> 
+        
+        <!-- Con este codigo prevenimos que no se pueda entrar al sistema con la url -->
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{managedBeanLogin.permission()}"/>
+        </f:metadata>
         <!-- Brra de navegación -->
         <ui:insert name = "header" >
             <ui:include src = "navegacion.xhtml" />

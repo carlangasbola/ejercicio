@@ -1,0 +1,112 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active"> Administración de Equipo</li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center"> <i class="fas fa-filter"></i> Administración de equipo </h4>
+                        <button type="submit" class=" btn  my-3" data-toggle="modal" data-target="#modalreactivo">Agregar equipo</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <input type="search" class="light-table-filter form-control"  data-table="order-table" placeholder="Buscar"/>
+                        <table class="order-table table table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Disponibilidad</th>
+                                    <th>Nombre</th>
+                                    <th>Características</th>
+                                    <th>Cantidad</th>
+                                    <th>Modificar/eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <h:form>
+                                    <ui:repeat var="e" value="#{managedBeanAdminEquipo.getEquipoLaboratorio()}" >
+                                        <tr>
+                                            <td>#{managedBeanAdminEquipo.validarExistencia(e.existenciaInventario)}</td>
+                                            <td>#{e.nombre}</td>
+                                            <td>#{e.caracteristicas}</td>
+                                            <td>#{e.cantidad}</td>
+                                            <td>
+                                                <a jsf:action="#{managedBeanAdminEquipo.eliminarEquipo(e.idEquipoLaboratorio)}">Eliminar equipo</a>                        
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </h:form>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal Equipo -->
+                <div class="modal fade" id="modalreactivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Creación de equipo de laboratorio</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+
+                            <div class="card p-1">
+                                <div class="card-body">
+                                    <form jsf:id="formagregarequipo">
+                                        <div class="form-group row">
+                                            <label for="nombree">Nombre</label>
+                                            <input type="text" jsf:value="#{managedBeanAdminEquipo.nombreequipo}" class="form-control form-control-sm" id="nombree" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="cantidade">Características</label>
+                                            <input type="text" jsf:value="#{managedBeanAdminEquipo.caracteristicasequipo}" class="form-control form-control-sm" id="cantidade" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="cantidade">Cantidad</label>
+                                            <input type="number" jsf:value="#{managedBeanAdminEquipo.cantidadequipo}" class="form-control form-control-sm" id="cantidade" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="existenciae">Disponibilidad</label>
+                                            <select  class="custom-select" required="required" jsf:value="#{managedBeanAdminEquipo.existenciaequipo}" size="0">
+                                                <f:selectItem itemValue="1" itemLabel="Si"/>
+                                                <f:selectItem itemValue="0" itemLabel="No"/>
+                                            </select>
+                                        </div>
+                                        <button  type="submit" jsf:action="#{managedBeanAdminEquipo.crearEquipo()}" class="btn btn-success">Crear nuevo equipo</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script  src="Js/index.js"></script>
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

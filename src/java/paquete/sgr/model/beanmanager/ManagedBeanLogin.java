@@ -53,7 +53,7 @@ public class ManagedBeanLogin {
 
                 /* Numero 1 identifica administradores */
                 case 1:
-                    pagina = "Administrador/inicioAdministrador";
+                    pagina = "Administrador/inicioAdministrador?faces-redirect=true";
                     break;
                 /* Numero 2 identifica docentes */
                 case 2:
@@ -77,8 +77,9 @@ public class ManagedBeanLogin {
     }
     
     public String logout() {
+        session = true;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "../index.xhtml?faces-redirect=true";
+        return "/index.xhtml?faces-redirect=true";
     }
 
     //Permisos de acceso a la página

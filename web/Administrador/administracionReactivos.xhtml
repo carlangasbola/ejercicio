@@ -1,0 +1,127 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active"> Administración de Reactivos </li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center"> <i class="fas fa-prescription-bottle"></i> Administración de reactivos </h4>
+                        <button type="submit" class=" btn  my-3" data-toggle="modal" data-target="#modalreactivo">Agregar reactivo</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <input type="search" class="light-table-filter form-control"  data-table="order-table" placeholder="Buscar"/>
+                        <table class="order-table table table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Disponibilidad</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Existencia</th>
+                                    <th scope="col">Modificar/eliminar</th>
+                                </tr>
+                            </thead>
+                            <h:form>
+                                <ui:repeat var="r" value="#{managedBeanAdminReactivos.getReactivos()}" >
+                                    <tr>
+                                        <td>#{managedBeanAdminReactivos.validarExistencia(r.existenciaInventario)}</td>
+                                        <td>#{r.nombre}</td>
+                                        <td>#{r.tipo}</td>
+                                        <td>#{r.cantidad} #{r.medida}</td>
+                                        <td>
+                                            <a jsf:action="#{managedBeanAdminReactivos.eliminarReactivo(r.idReactivo)}">Eliminar reactivo</a>                        
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </h:form>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal Reactivo -->
+                <div class="modal fade" id="modalreactivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Creación de reactivos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+
+                            <div class="card p-1">
+                                <div class="card-body">
+                                    <form jsf:id="formagregarreactivo">
+                                        <div class="form-group row">
+                                            <label for="nombrer">Nombre</label>
+                                            <input type="text" jsf:value="#{managedBeanAdminReactivos.nombrereactivo}" class="form-control form-control-sm" id="nombrer" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="tipor">Tipo de reactivo</label>
+                                            <select  class="custom-select" required="required" jsf:value="#{managedBeanAdminReactivos.tiporeactivo}" size="0">
+                                                <f:selectItem itemValue="Explosivo" itemLabel="Explosivo"/>
+                                                <f:selectItem itemValue="Inflamable" itemLabel="Gase, liquido o sólido inflamable"/>
+                                                <f:selectItem itemValue="Gas a presión" itemLabel="Gas a presión"/>
+                                                <f:selectItem itemValue="Sustancia comburente" itemLabel="Sustancia comburente"/>
+                                                <f:selectItem itemValue="Sustancia perjudicial para la salud" itemLabel="Sustancia perjudicial para la salud"/>
+                                                <f:selectItem itemValue="Sustancia corrosiva" itemLabel="Sustancia corrosiva"/>
+                                                <f:selectItem itemValue="Sustancia nosiva" itemLabel="Sustancia nosiva"/>
+                                                <f:selectItem itemValue="Sustancia tóxica" itemLabel="Sustancia tóxica"/>
+                                                <f:selectItem itemValue="Sustancia peligrosas para el medio ambiente" itemLabel="Sustancia peligrosa para el medio ambiente"/>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="cantidadr">Cantidad</label>
+                                            <input type="number" jsf:value="#{managedBeanAdminReactivos.cantidadreactivo}" class="form-control form-control-sm" id="cantidadr" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="unidadr">Unidad de medida</label>
+                                            <select  class="custom-select" required="required" jsf:value="#{managedBeanAdminReactivos.medidareactivo}" size="0">
+                                                <f:selectItem itemValue="Kilogramos" itemLabel="Kilogramos"/>
+                                                <f:selectItem itemValue="Litros" itemLabel="Litros"/>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="existenciar">Dsiponibilidad</label>
+                                            <select  class="custom-select" required="required" jsf:value="#{managedBeanAdminReactivos.existenciareactivo}" size="0">
+                                                <f:selectItem itemValue="1" itemLabel="Si"/>
+                                                <f:selectItem itemValue="0" itemLabel="No"/>
+                                            </select>
+                                        </div>
+                                        <button  type="submit" jsf:action="#{managedBeanAdminReactivos.crearReactivo()}" class="btn btn-success">Crear nuevo reactivo</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script  src="Js/index.js"></script>
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

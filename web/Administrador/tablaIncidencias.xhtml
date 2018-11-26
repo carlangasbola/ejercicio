@@ -1,0 +1,89 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Incidencias creadas </li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Incididencias</h4>
+                        <p>La siguiente tabla muestra las incidencias que se han sucitado en las sesiones de laboratorio</p>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Título</th>
+                            <th scope="col">Fecha de creación</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">última actulización</th>
+                            <th scope="col">Ver</th>
+                            <th scope="col">Actualizar</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <h:form>
+                            <ui:repeat value="#{Incidencias.obtenerReportes()}" var="ri" varStatus="status">
+                                <tr>
+                                    <!-- Este es unicamente para el conteo no tiene nada que ver en la base -->
+                                    <th scope="row">#{status.index +1}</th>
+                                    <th scope="col">#{ri.nombre}</th>
+                                    <th scope="col">#{ri.fecha}</th>                   
+                                    <ui:fragment rendered="#{ri.estado == 'Abierto'}">
+                                        <td class="table-danger">#{ri.estado}</td>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{ri.estado == 'Cerrado'}">
+                                        <td class="table-success">#{ri.estado}</td>
+                                    </ui:fragment>
+                                    <th scope="col">
+                                        #{ri.actualizacion}
+                                    </th>
+                                    <th scope="col">
+                                        <button class="btn">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                        #{ri.idReporte}
+                                    </th>   
+                                    <th scope="col">
+                                        <button class="btn" jsf:action="#{Incidencias.obtenerReporte(ri.idReporte)}">
+                                        <i class="fas fa-pen"></i>
+                                        #{ri.idReporte}
+                                        </button>
+                                    </th>   
+                                    <th scope="col">
+                                        <button class="btn" jsf:action="#{Incidencias.eliminarReporte(ri.idReporte)}">
+                                            <i class="fas fa-trash-alt"></i>                      
+                                        </button>
+                                    </th>   
+                                </tr>
+                            </ui:repeat>
+                        </h:form>
+                    </tbody>
+                </table>
+
+
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

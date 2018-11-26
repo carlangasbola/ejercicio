@@ -41,22 +41,6 @@ public class ManagedBeanGrupos implements Serializable{
         ua = new ArrayList<>();
     }
 
-    /*
-    public void actualizarGrupo(int idgrupo) {
-        hibernateSession = HibernateUtil.getSessionFactory().openSession();
-        hibernateSession.beginTransaction();
-        Grupo grupoO = new Grupo();
-        //Se recupera el grupo es como un select *from grupo where idgrupo = idgrupo
-        grupoO.setIdGrupo(idgrupo);
-        //se asignan los nuevos valores
-        grupoO.setNombre(nombregrupo);
-        grupoO.setCupo(cupogrupo);
-        //se hace el update
-        hibernateSession.update(grupoO);
-        //Commit the transaction
-        hibernateSession.getTransaction().commit();
-    
-    }*/
     
     public List<Grupo> getGrupos() {
         ConsultasHQL consulta = new ConsultasHQL();

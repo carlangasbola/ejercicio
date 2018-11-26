@@ -10,7 +10,6 @@ import java.util.Set;
  */
 public class Grupo  implements java.io.Serializable {
 
-
      private Integer idGrupo;
      private String nombre;
      private int cupo;
@@ -20,7 +19,6 @@ public class Grupo  implements java.io.Serializable {
 
     public Grupo() {
     }
-
 	
     public Grupo(String nombre, int cupo) {
         this.nombre = nombre;

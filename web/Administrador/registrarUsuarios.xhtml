@@ -47,7 +47,41 @@
                         <p>4.- Dar clic en el boton "Agregar Alumnos".</p>
                         <div class="w-100"></div>
                         <!-- Crear el codigo de programación -->
+                        <h:form id="formActualizarFoto">
 
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="Grupo">Grupo </label>
+                                <div class="col-sm-9">
+                                    <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
+                                        <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
+                                        <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
+                                    </p:selectOneMenu>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="ua">Unidad de Aprendizaje </label>
+                                <div class="col-sm-9">
+
+                                    <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
+                                        <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
+                                    </p:selectOneMenu>
+
+                                </div>
+                            </div>
+
+                            <div class="w-100" ></div>
+                            Seleccionar archivo:<p:fileUpload fileUploadListener="#{managedBeanUpload.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                                                              sizeLimit="1000000" fileLimit="10" allowTypes="/(\.|\/)(xls)$/"  fileLimitMessage="El maximo de imagenes es 1"  invalidFileMessage="Se debe seleccionar un archivo xls"
+                                                              cancelLabel="Cancelar" uploadLabel="Subir Archivo" label="Buscar Archivo"/>
+
+
+                            <br/><br/>
+                            <button  type="submit" jsf:action="#{managedBeanAgregarUsuariosArchivo.LeerArchivosExcel()}" class="btn btn-success">Agregar Alumnos</button>
+                        </h:form>
                     </div>
 
                     <div class="col">
@@ -62,13 +96,6 @@
                     </div>
 
                 </div>
-
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <p>El contenido aqui de primefaces no se reenderiza adecuadamente</p>
-                    </div>
-                </div>
-
 
                 <!-- MODALES -->
                 <!-- Modal Usuario -->
@@ -135,7 +162,7 @@
                     </div>
                 </div>
                 <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
-                <script src="../vendor/jquery/jquery.min.js"></script> 
+
             </ui:define> 
         </ui:composition>       
     </h:body>

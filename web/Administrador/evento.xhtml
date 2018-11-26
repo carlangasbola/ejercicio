@@ -1,0 +1,105 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                </h:form>
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Creación de evento</li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Creación de evento</h4>
+                        <p class="lead"> Llena los datos a continuación para la creación de un evento.</p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="card">
+                            <h5 class="card-header ">Evento</h5>
+                            <div class="card-body">
+                                <h5 class="card-title"> Datos </h5>
+                                <h:form>
+
+
+                                    <!-- Recordar cambiar -->
+                                    <div class="form-group ">
+                                        Selecciona el tipo de evento
+                                        <select  class="custom-select" required="required" jsf:value="#{dropdownViewGrupoUnidades.tipo}" size="0">
+                                            <f:selectItem itemValue="Entrega de práctica" itemLabel="Entrega de práctica"/>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:outputLabel styleClass="col-sm-2 col-form-label" for="restricted" value="Fecha de sesión " />                              
+                                        <p:calendar id="restricted" value="#{dropdownViewGrupoUnidades.sesionLaboratorio.fechaSesison}" pattern="MM/dd/yyyy HH:mm:ss"  />
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="nameE">Nombre del evento</label>
+                                        <input type="nameE" jsf:value="#{dropdownViewGrupoUnidades.nombre}" class="form-control form-control-sm" id="numseg" required="true"/>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="desc">Descripción</label>
+                                        <textarea id="desc" class="form-control" cols="30" rows="10" jsf:value="#{dropdownViewGrupoUnidades.descripcion}"></textarea>
+                                    </div>
+
+                                    <h5 class="card-subtitle mb-2 text-muted my-4">Grupo y unidad de aprendizaje</h5>
+                                    <p class="text-muted"> Solo aparecen los grupos que tienen unidades de aprendizaje </p>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="Grupo">Grupo </label>
+                                        <div class="col-sm-8">
+
+                                            <!-- RECUERDA MANDAR EL ID MANUAL -->   
+                                            <h:selectOneMenu value="#{dropdownViewGrupoUnidades.idUnidadGrupo}" id="sesiones" styleClass="form-control">
+                                                <f:selectItems value="#{dropdownViewGrupoUnidades.obtenerUnidadGrupo()}" 
+                                                               var="ug" 
+                                                               itemValue="#{ug.idUnidadGrupo}" 
+                                                               itemLabel="#{ug.grupo.nombre} 
+                                                               #{ug.grupo.nombre} 
+                                                               #{ug.usuariosByIdUsuariosDocente.datosUsuario.nombre}
+                                                               #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.nombre}" />
+                                            </h:selectOneMenu>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <button class="btn colorverde text-white" type="submit" jsf:action="#{dropdownViewGrupoUnidades.crearEvento()}" >
+                                            <i class="fas fa-plus"></i>
+                                            Crear evento
+                                        </button>
+                                    </div>
+
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>
