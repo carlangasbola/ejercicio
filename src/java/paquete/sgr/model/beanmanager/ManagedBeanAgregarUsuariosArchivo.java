@@ -199,12 +199,13 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     }
                     
                     hibernateSession.getTransaction().commit();
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Agregado con éxito"));
+                    
                 }
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Agregados con éxito"));
             }
         }catch (Exception e) {
             hibernateSession.getTransaction().rollback();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Algo salio mal :v"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", "No se completo la acción, inténtelo más tarde"));
             System.out.println("ExepcionAlumno : " + e);
         }
     }
