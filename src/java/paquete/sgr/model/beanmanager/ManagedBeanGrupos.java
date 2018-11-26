@@ -1,7 +1,6 @@
 package paquete.sgr.model.beanmanager;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -38,7 +37,7 @@ public class ManagedBeanGrupos implements Serializable{
     private Grupo g;
 
     public ManagedBeanGrupos() {
-        ua = new ArrayList<>();
+      
     }
 
     
@@ -104,8 +103,8 @@ public class ManagedBeanGrupos implements Serializable{
     public void eliminarUnidadA(int idunidad) {
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.getHibernateSession();
-        UnidadAprendizaje ua = (UnidadAprendizaje) s.load(UnidadAprendizaje.class, idunidad);
-        consulta.eliminarObjeto(ua);
+        UnidadAprendizaje unidadA = (UnidadAprendizaje) s.load(UnidadAprendizaje.class, idunidad);
+        consulta.eliminarObjeto(unidadA);
     }
 
     public void crearGrupo() {
@@ -126,7 +125,7 @@ public class ManagedBeanGrupos implements Serializable{
     public void informacionGrupo(int id) {
         UnidadGrupo ug = new UnidadGrupo();
         ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.getHibernateSession();
+        Session s = consulta.obtenerSession();
         g = (Grupo) s.load(Grupo.class, id);
     }
 

@@ -33,7 +33,6 @@ public class ManagedBeanIncidencias {
 
     public String obtenerReporte(int id) {
         ConsultasHQL consulta = new ConsultasHQL();
-        sesion = new ArrayList<>();
         Session s = consulta.obtenerSession();
         ReporteIncidencia ri = new ReporteIncidencia();
         ri = (ReporteIncidencia) s.load(ReporteIncidencia.class, id);
