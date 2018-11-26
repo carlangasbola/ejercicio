@@ -1,144 +1,144 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <head jsf:id="head">
-        <title>Creación de prácticas</title>
-        <h:outputText value="#{Etiquetas.metaTagsLinkTags}" escape="false" /> 
-    </head>
-    <body jsf:id="body">
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-        <!-- Barra de navegación -->
-        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" /> 
-        
-        <!-- Formulario de datos -->
-        <div class="container">
-            <div class="row ">
-                <div class="col">
-                    <hgroup class="mb-4">
-                        <h2 class="text-center">Creación de prácticas de laboratorio</h2>
-                        <br/><h5 class="text-center">Unidad Profesional Interdisciplinaria de Biotecnología</h5>
-                        <h6 class="text-center">Laboratorio de biotecnología</h6>
-                        <h6 class="text-center"> Requisitos </h6>
-                        <h5 class="text-center my-4">I Requisitos</h5>
-                    </hgroup>
-                </div>
-            </div>
-            <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form"> 
-                <div class="row">
-                    <div class="col-12 col-md">
-                        <div class="form-group ">
-                            <label for="tituloprac">> Título de la práctica</label>
-                            <input id="tituloprac" type="text" class="form-control form-control-sm " jsf:value="#{managedBeanPractica.practica.titulopractica}"></input>
-                        </div>
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Práctica</li>
+                </ol>
+
+                <div class="row ">
+                    <div class="col">
+                        <hgroup class="mb-4">
+                            <h2 class="text-center">Creación de prácticas de laboratorio</h2>
+                            <br/><h5 class="text-center">Unidad Profesional Interdisciplinaria de Biotecnología</h5>
+                            <h6 class="text-center">Laboratorio de biotecnología</h6>
+                            <h6 class="text-center"> Requisitos </h6>
+                            <h5 class="text-center my-4">I Requisitos</h5>
+                        </hgroup>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-group col-sm-6">
-                        <label for="autor">> Autores</label>
-                        <div class="input-group">
-                            <input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{managedBeanPractica.auxiliar}"></input>
-                            <div class="input-group-append">
-                                <button type="submit" class="bts successverde form-control form-control-sm" jsf:action="#{managedBeanPractica.agregarautor(managedBeanPractica.auxiliar)}" ajax="false">Agregar</button>
+
+                <form class=" border border-secondary rounded p-4"  method="POST" jsf:id="form"> 
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <div class="form-group ">
+                                <label for="tituloprac">> Título de la práctica</label>
+                                <input id="tituloprac" type="text" class="form-control form-control-sm " jsf:value="#{managedBeanPractica.practica.titulopractica}"></input>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <ui:repeat var="item" varStatus="status" value="#{managedBeanPractica.lista}"><br/>
+                    <div class="row">
+                        <div class="input-group col-sm-6">
+                            <label for="autor">> Autores</label>
                             <div class="input-group">
-                                <input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{item}" readonly = "true"></input>
+                                <input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{managedBeanPractica.auxiliar}"></input>
                                 <div class="input-group-append">
-                                    <button type="submit" class="bts successrojo form-control form-control-sm" jsf:action="#{managedBeanPractica.eliminarautor(status.index)}" >Eliminar</button>
+                                    <button type="submit" class="bts successverde form-control form-control-sm" jsf:action="#{managedBeanPractica.agregarautor(managedBeanPractica.auxiliar)}" ajax="false">Agregar</button>
                                 </div>
                             </div>
-                        </ui:repeat>
-                    </div>
-                </div>
-                <br/>
-                <div class="row">                 
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="objetivo">> Objetivos</label>
-                            <textarea class="form-control" id="objetivo" rows="3" jsf:value="#{managedBeanPractica.practica.objetivos}"></textarea>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">    
-                        <div class="form-group ">
-                            <label for="activitypre">> Actividades Previas</label>
-                            <!-- Valor de JSF ID NO -->
-                            <textarea class="form-control" id="activitypre" rows="3" jsf:value="#{managedBeanPractica.practica.actividadesprevias}" ></textarea>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ui:repeat var="item" varStatus="status" value="#{managedBeanPractica.lista}"><br/>
+                                <div class="input-group">
+                                    <input id="otroautor" type="text" class="form-control form-control-sm" placeholder="Nombre del autor" jsf:value="#{item}" readonly = "true"></input>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="bts successrojo form-control form-control-sm" jsf:action="#{managedBeanPractica.eliminarautor(status.index)}" >Eliminar</button>
+                                    </div>
+                                </div>
+                            </ui:repeat>
                         </div>
-                    </div>    
-                </div>
+                    </div>
+                    <br/>
+                    <div class="row">                 
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="objetivo">> Objetivos</label>
+                                <textarea class="form-control" id="objetivo" rows="3" jsf:value="#{managedBeanPractica.practica.objetivos}"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">    
+                            <div class="form-group ">
+                                <label for="activitypre">> Actividades Previas</label>
+                                <!-- Valor de JSF ID NO -->
+                                <textarea class="form-control" id="activitypre" rows="3" jsf:value="#{managedBeanPractica.practica.actividadesprevias}" ></textarea>
+                            </div>
+                        </div>    
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <label for="competencias">> Competencias</label>
+                            <textarea class="form-control" id="activitypre" rows="3" jsf:value="#{managedBeanPractica.practica.competencias}"></textarea>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <div class="form-group ">
+                                <label for="introducción">> Introducción</label>
+                                <p:textEditor id="descriptionId" height="300" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.introduccion}">
+                                    <f:facet name="toolbar">
+                                        <span class="ql-formats">
+                                            <select class="ql-font" />
+                                            <select class="ql-size" />
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-bold" />
+                                            <button class="ql-italic" />
+                                            <button class="ql-underline" />
+                                            <button class="ql-strike" />
+                                        </span>
+                                        <span class="ql-formats">
+                                            <select class="ql-color" />
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-script" value="sub" />
+                                            <button class="ql-script" value="super" />
+                                        </span>                            
+                                        <span class="ql-formats">
+                                            <button class="ql-list" value="ordered" />
+                                            <button class="ql-list" value="bullet" />
+                                            <button class="ql-indent" value="-1" />
+                                            <button class="ql-indent" value="+1" />
+                                        </span>
+                                        <span class="ql-formats">
+                                            <select class="ql-align" />
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-image" />>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-clean" />
+                                        </span>
+                                    </f:facet>
+                                </p:textEditor>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botone siguiente -->
+                    <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('2')}" style="float:right"><i class="fas fa-chevron-circle-right mr-2"></i>Siguiente</button>
+                </form>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
                 
-                <div class="row">
-                    <div class="col-12 col-md">
-                        <label for="competencias">> Competencias</label>
-                        <textarea class="form-control" id="activitypre" rows="3" jsf:value="#{managedBeanPractica.practica.competencias}"></textarea>
-                    </div>
-                </div>
-                <br/>
-                <div class="row">
-                    <div class="col-12 col-md">
-                        <div class="form-group ">
-                            <label for="introducción">> Introducción</label>
-                            <p:textEditor id="descriptionId" height="300" widgetVar="descriptionWidget" value="#{managedBeanPractica.practica.introduccion}">
-                                <f:facet name="toolbar">
-                                    <span class="ql-formats">
-                                        <select class="ql-font" />
-                                        <select class="ql-size" />
-                                    </span>
-                                    <span class="ql-formats">
-                                        <button class="ql-bold" />
-                                        <button class="ql-italic" />
-                                        <button class="ql-underline" />
-                                        <button class="ql-strike" />
-                                    </span>
-                                    <span class="ql-formats">
-                                        <select class="ql-color" />
-                                    </span>
-                                    <span class="ql-formats">
-                                        <button class="ql-script" value="sub" />
-                                        <button class="ql-script" value="super" />
-                                    </span>                            
-                                    <span class="ql-formats">
-                                        <button class="ql-list" value="ordered" />
-                                        <button class="ql-list" value="bullet" />
-                                        <button class="ql-indent" value="-1" />
-                                        <button class="ql-indent" value="+1" />
-                                    </span>
-                                    <span class="ql-formats">
-                                        <select class="ql-align" />
-                                    </span>
-                                    <span class="ql-formats">
-                                        <button class="ql-image" />>
-                                    </span>
-                                    <span class="ql-formats">
-                                        <button class="ql-clean" />
-                                    </span>
-                                </f:facet>
-                            </p:textEditor>
-                        </div>
-                    </div>
-                </div>
-                <!-- Botone siguiente -->
-                <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanPractica.irA('2')}" style="float:right"><i class="fas fa-chevron-circle-right mr-2"></i>Siguiente</button>
-            </form>
-            <div>
-                <br/><br/><br/><br/>
-            </div>
-            
-        </div>
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-    </body>
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
 </html>
