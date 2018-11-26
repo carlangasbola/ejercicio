@@ -14,8 +14,8 @@ public class Practicas {
     public String objetivos;
     public String actividadesprevias;
     //Segunta parte creacionPractica2.xhtml
-    public List<Material> listamaterial;
-    public List<Equipo> listaequipo;
+    public List<Materiales> listamaterial;
+    public List<Equipos> listaequipo;
     public List<Reactivo> listareactivos;
     public String competencias;
     //Tercera parte creacionPractica3.xhtml
@@ -45,9 +45,9 @@ public class Practicas {
         System.out.println("Objetivos: " + getObjetivos());
         System.out.println("Actividades previas: " + getActividadesprevias());
         System.out.println("Introduccion: " + getIntroduccion());
-        for(Material item:getListamaterial())
+        for(Materiales item:getListamaterial())
             System.out.println("Cantidad: " + item.getCantidad() + " Material: " + item.getNombre());
-        for(Equipo item:getListaequipo())
+        for(Equipos item:getListaequipo())
             System.out.println("Cantidad: " + item.getCantidad() + " Equipo: " + item.getNombre());
         for(Reactivo item:getListareactivos())
             System.out.println("Cantidad: " + item.getCantidad() + " Reactivo: " + item.getNombre());
@@ -241,19 +241,19 @@ public class Practicas {
         this.introduccion = introduccion;
     }
 
-    public List<Material> getListamaterial() {
+    public List<Materiales> getListamaterial() {
         return listamaterial;
     }
 
-    public void setListamaterial(List<Material> listamaterial) {
+    public void setListamaterial(List<Materiales> listamaterial) {
         this.listamaterial = listamaterial;
     }
 
-    public List<Equipo> getListaequipo() {
+    public List<Equipos> getListaequipo() {
         return listaequipo;
     }
 
-    public void setListaequipo(List<Equipo> listaequipo) {
+    public void setListaequipo(List<Equipos> listaequipo) {
         this.listaequipo = listaequipo;
     }
 

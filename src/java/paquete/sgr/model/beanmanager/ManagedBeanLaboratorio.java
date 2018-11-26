@@ -88,12 +88,12 @@ public class ManagedBeanLaboratorio {
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
         Query query = hibernateSession.createSQLQuery("select *from sesion_de_laboratorio").addEntity(SesionDeLaboratorio.class);
         List<SesionDeLaboratorio> sesion = query.list();
-        for(paquete.sgr.entity.pojos.SesionDeLaboratorio item:sesion){
+        for(paquete.sgr.entity.pojos.SesionDeLaboratorio item:sesion)
             if(obtenfecha(item.getIdSesion())==1){
+                ManagedBeanVale.FechaSesion=item.getFecha();
                 return "modPrestamos.xhtml";
             }
-            
-        }
+        
         return direccion;
     }
 

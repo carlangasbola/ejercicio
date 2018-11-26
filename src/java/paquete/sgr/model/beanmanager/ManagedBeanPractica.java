@@ -50,14 +50,18 @@ public class ManagedBeanPractica implements Serializable {
     private DefaultStreamedContent descarga;
     
     //Se crea una practica
-    Practicas practica = new Practicas();
-    private List<String> lista = new ArrayList<>();
+    
+    static Practicas practica = new Practicas();
+    static int idUnidadAprendizaje;
+    static int idUsuario;
+    
+    static List<String> lista = new ArrayList<>();
     private String auxiliar;
     
     public String irA(String number){
         return "creacionPractica"+ number;
     }
-    public void limpialista(String autor){
+    static void limpialista(String autor){
         lista.clear();
         lista.add(autor);
     }
@@ -229,6 +233,14 @@ public class ManagedBeanPractica implements Serializable {
 
     public void setAuxiliar(String auxiliar) {
         this.auxiliar = auxiliar;
+    }
+
+    public int getIdUnidadAprendizaje() {
+        return idUnidadAprendizaje;
+    }
+
+    public void setIdUnidadAprendizaje(int idUnidadAprendizaje) {
+        this.idUnidadAprendizaje = idUnidadAprendizaje;
     }
     
 }

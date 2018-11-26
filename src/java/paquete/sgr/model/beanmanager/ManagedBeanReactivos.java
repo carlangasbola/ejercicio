@@ -1,17 +1,13 @@
 package paquete.sgr.model.beanmanager;
 
-import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import paquete.sgr.beans.ConexionNeurona;
 import paquete.sgr.beans.Reactivo;
 import paquete.sgr.entity.pojos.Reactivos;
-import net.sf.jasperreports.engine.JRException;
 import paquete.sgr.beans.ConsultasHQL;
 
 
@@ -93,9 +89,9 @@ public class ManagedBeanReactivos implements Serializable {
                 else if("Sustancia peligrosas para el medio ambiente".equals(rea))
                     rs[8]=rea;
             }
-            recomendaciones="Práctica con riesgo minimo: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Se puede almacenar juntos.";
-            protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
-            semaforo="/resources/semaforo/semaforob.png";
+            ManagedBeanPractica.practica.recomendaciones="Práctica con riesgo minimo: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Se puede almacenar juntos.";
+            ManagedBeanPractica.practica.protocolosdeactuacion="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            ManagedBeanPractica.practica.semaforo="/resources/semaforo/semaforob.png";
         }
         
         else{
@@ -124,9 +120,9 @@ public class ManagedBeanReactivos implements Serializable {
                 else if("Sustancia peligrosas para el medio ambiente".equals(rea))
                     rs[8]=rea;
             }
-            recomendaciones="Práctica con riesgo medio: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
-            protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
-            semaforo="/resources/semaforo/semaforom.png";
+            ManagedBeanPractica.practica.recomendaciones="Práctica con riesgo medio: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
+            ManagedBeanPractica.practica.protocolosdeactuacion="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
+            ManagedBeanPractica.practica.semaforo="/resources/semaforo/semaforom.png";
             }
         
             if(networkOutput2>.8){
@@ -155,9 +151,9 @@ public class ManagedBeanReactivos implements Serializable {
                     else if("Sustancia peligrosas para el medio ambiente".equals(rea))
                         rs[8]=rea;
                 }
-            recomendaciones="Práctica con riesgo Alto: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
-            protocolos="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";            
-            semaforo="/resources/semaforo/semaforoa.png";
+            ManagedBeanPractica.practica.recomendaciones="Práctica con riesgo Alto: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
+            ManagedBeanPractica.practica.protocolosdeactuacion="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";            
+            ManagedBeanPractica.practica.semaforo="/resources/semaforo/semaforoa.png";
             }
         }
     }
@@ -207,29 +203,6 @@ public class ManagedBeanReactivos implements Serializable {
     
     public void setList(List<String> list) {
         this.list = list;
-    }
-    public String getRecomendaciones() {
-        return recomendaciones;
-    }
-
-    public void setRecomendaciones(String recomendaciones) {
-        this.recomendaciones = recomendaciones;
-    }
-    
-    public String getProtocolos() {
-        return protocolos;
-    }
-
-    public void setProtocolos(String protocolos) {
-        this.protocolos = protocolos;
-    }
-
-    public String getSemaforo() {
-        return semaforo;
-    }
-
-    public void setSemaforo(String semaforo) {
-        this.semaforo = semaforo;
     }
 
     public String getAuxnombre() {

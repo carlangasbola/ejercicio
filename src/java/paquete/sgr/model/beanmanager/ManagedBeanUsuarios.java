@@ -63,6 +63,7 @@ public class ManagedBeanUsuarios implements Serializable {
     }
 
     static String nombrecompleto;
+    static int idusuario;
 
     public String ObtenerNombreUsuario() {
         ConsultasHQL consulta = new ConsultasHQL();
@@ -73,7 +74,10 @@ public class ManagedBeanUsuarios implements Serializable {
         List<DatosUsuario> du = consulta.crearSelectQuery("FROM DatosUsuario WHERE usuarios.idUsuarios = :idUsuario");
 
         nombrecompleto = du.get(0).getNombre() + " " + du.get(0).getApellidoPaterno() + " " + du.get(0).getApellidoMaterno();
-        return "Administrador/creacionPractica1";
+        idusuario=du.get(0).getIdUsuarios();
+        ManagedBeanPractica.limpialista(nombrecompleto);
+        
+        return "creacionPractica1";
     }
 
     public String obtenerUsuarios() {

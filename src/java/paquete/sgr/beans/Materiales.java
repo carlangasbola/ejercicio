@@ -1,11 +1,11 @@
 package paquete.sgr.beans;
 
-public class Material {
+public class Materiales {
 
-    public Material() {
+    public Materiales() {
     }
 
-    public Material(String nombre, int cantidad) {
+    public Materiales(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }

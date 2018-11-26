@@ -14,14 +14,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.engine.spi.SessionImplementor;
 import paquete.sgr.beans.ConsultasHQL;
-import paquete.sgr.beans.Equipo;
+import paquete.sgr.beans.Equipos;
 
 @Named(value = "managedBeanEquipo")
 @SessionScoped
 public class ManagedBeanEquipo implements Serializable {
     
     // Definicion de variables
-    static List<Equipo> lista;
+    static List<Equipos> lista;
     private String auxnombre;
     private int auxcantidad;
     /**
@@ -47,7 +47,7 @@ public class ManagedBeanEquipo implements Serializable {
     
     // Agregar un nuevo equipo
     public void add(String nombre, int cantidad) {
-        Equipo agrega = new Equipo(nombre, cantidad);
+        Equipos agrega = new Equipos(nombre, cantidad);
         lista.add(agrega);
     }
     
@@ -56,11 +56,11 @@ public class ManagedBeanEquipo implements Serializable {
     }
     
     // Getters y Setters
-    public List<Equipo> getLista() {
+    public List<Equipos> getLista() {
         return lista;
     }
 
-    public void setLista(List<Equipo> lista) {
+    public void setLista(List<Equipos> lista) {
         this.lista = lista;
     }
 

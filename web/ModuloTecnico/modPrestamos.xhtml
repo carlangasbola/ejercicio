@@ -12,19 +12,20 @@
     <body jsf:id="body">
 
         <!-- Barra de navegación -->
-        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />        
-        <div class="container mt-4">
-            <div class="row text-center">
-                <div class="col">
-                    <h2 class=" colorpantone" > Préstamo de material, equipo y reactivo </h2>
-                </div>
-            </div>
-        </div><br/>
+        <h:outputText value="#{Etiquetas.headerTodasPaginas}" escape="false" />
         <!-- Selección de materiales -->
         <div class="container">
             <div class="row">
                 <div class="col">
                     <form class="rounded p-4"  method="POST" jsf:id="form"> 
+                        
+                        
+                        <div class="row text-center mt-2">
+                            <div class="col">
+                                <h4 class="colorpantone text-center">Préstamo de material</h4>
+                                <h6 class="colorpantone text-center">Esta sesión comenzó: #{managedBeanVale.fechaSesion}</h6>
+                            </div>
+                        </div>
                         <!-- Selección de reactivos -->
                         <label for="reac">> Selección de reactivos</label>
                         <table class="table table-hover">
@@ -41,6 +42,7 @@
                                     <tr>
                                         <td>#{r.cantidad}</td>
                                         <td>#{r.nombre}</td>
+                                        <td>Unidad</td>
                                         <td>
                                             <button type="submit" class="bts successrojo form-control" jsf:action="#{managedBeanReactivos.eliminar(status.index)}">Eliminar</button>
                                         </td>
@@ -62,53 +64,6 @@
                                 </tr>
                             </tbody>
                         </table><br/><hr/><br/>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label" for="Grupo">Grupo </label>
-                            <div class="col-sm-9">
-                                <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
-                                    <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
-                                    <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
-                                    <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
-                                </p:selectOneMenu>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label" for="ua">Unidad de Aprendizaje </label>
-                            <div class="col-sm-9">
-
-                                <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
-                                    <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
-                                    <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
-                                </p:selectOneMenu>
-
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         
                         <!-- Selección de material -->
                         
@@ -180,7 +135,45 @@
                                 </tr>
                             </tbody>
                         </table><br/><hr/><br/>
+                        
+                        
+                        
+                        
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="Grupo">Grupo </label>
+                            <div class="col-sm-9">
+                                <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
+                                    <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
+                                    <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
+                                </p:selectOneMenu>
+
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="ua">Unidad de Aprendizaje </label>
+                            <div class="col-sm-9">
+
+                                <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
+                                    <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
+                                </p:selectOneMenu>
+
+                            </div>
+                        </div>
+                        
+                        
                     </form>
+                    
+                    
+                    <div class="row mt-3">
+                        <div class="col">
+                            <form method="POST" jsf:id="form4">
+                                <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanVale.printPDF()}" style="float:left">PDF</button>
+                            </form>
+                        </div>
+                    </div>
                     
                     <div>
                         <br/><br/><br/><br/>

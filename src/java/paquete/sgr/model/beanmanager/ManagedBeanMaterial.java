@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import org.hibernate.Session;
-import paquete.sgr.beans.Material;
+import paquete.sgr.beans.Materiales;
 import org.primefaces.event.FlowEvent;
 
 
@@ -18,7 +15,7 @@ import org.primefaces.event.FlowEvent;
 public class ManagedBeanMaterial implements Serializable {
 
    // Definicion de variables
-    static List<Material> list;
+    static List<Materiales> list;
     
     private String auxnombre;
     private int auxcantidad;
@@ -30,7 +27,7 @@ public class ManagedBeanMaterial implements Serializable {
     
     // Agregar un nuevo material
     public void add(String nombre, int cantidad) {
-        Material agrega = new Material(nombre, cantidad);
+        Materiales agrega = new Materiales(nombre, cantidad);
         list.add(agrega);
     }
     
@@ -49,14 +46,14 @@ public class ManagedBeanMaterial implements Serializable {
 
     //Getters y Setters
     
-    public static void setList(List<Material> list) {
+    public static void setList(List<Materiales> list) {
         ManagedBeanMaterial.list = list;
     }
 
-    public List<Material> getList() {
+    public List<Materiales> getList() {
         return list;
     }
-
+    
     public String getAuxnombre() {
         return auxnombre;
     }

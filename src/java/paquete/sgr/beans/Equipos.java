@@ -1,11 +1,11 @@
 package paquete.sgr.beans;
 
-public class Equipo {
+public class Equipos {
     
     private int cantidad;
     private String nombre;
 
-    public Equipo(String nombre, int cantidad) {
+    public Equipos(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
