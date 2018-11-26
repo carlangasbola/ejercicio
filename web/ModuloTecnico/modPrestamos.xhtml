@@ -136,41 +136,13 @@
                             </tbody>
                         </table><br/><hr/><br/>
                         
-                        
-                        
-                        
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label" for="Grupo">Grupo </label>
-                            <div class="col-sm-9">
-                                <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
-                                    <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
-                                    <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
-                                    <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
-                                </p:selectOneMenu>
-
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label" for="ua">Unidad de Aprendizaje </label>
-                            <div class="col-sm-9">
-
-                                <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
-                                    <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
-                                    <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
-                                </p:selectOneMenu>
-
-                            </div>
-                        </div>
-                        
-                        
                     </form>
                     
                     
                     <div class="row mt-3">
                         <div class="col">
                             <form method="POST" jsf:id="form4">
-                                <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanVale.printPDF()}" style="float:left">PDF</button>
+                                <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanVale.printPDF()}" style="float:left">Ver vale</button>
                             </form>
                         </div>
                     </div>
