@@ -1,0 +1,183 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <script type="text/javascript" src="Js/Chart.js"></script>
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Residuos químicos</li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Registro de residuos químicos</h4>
+                    </div>
+                </div>
+
+                <button type="submit" class=" btn  my-3" data-toggle="modal" data-target="#modalreactivo">Residuo</button>
+                <div class="row text-center">
+                    <div class="col">
+                        <canvas id="GraficaBarras" style="max-width: 100%;"></canvas><br/><br/><hr/><br/><br/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Tipo de reactivo</th>
+                                    <th scope="col">Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>Explosivos</td>
+                                <td>#{managedBeanResiduos.explosivos}</td>
+                            </tr>
+                            <tr>
+                                <td>Inflamables</td>
+                                <td>#{managedBeanResiduos.inflamables}</td>
+                            </tr>
+                            <tr>
+                                <td>Gases a presión</td>
+                                <td>#{managedBeanResiduos.gasesapresion}</td>
+                            </tr>
+                            <tr>
+                                <td>Comburentes</td>
+                                <td>#{managedBeanResiduos.comburentes}</td>
+                            </tr>
+                            <tr>
+                                <td>Perjudiciales para la salud</td>
+                                <td>#{managedBeanResiduos.sustanciasperjudiciales}</td>
+                            </tr>
+                            <tr>
+                                <td>Sustancias corrosivas</td>
+                                <td>#{managedBeanResiduos.corrosivas}</td>
+                            </tr>
+                            <tr>
+                                <td>Sustancias nosivas</td>
+                                <td>#{managedBeanResiduos.sustanciasnosivas}</td>
+                            </tr>
+                            <tr>
+                                <td>Sustancias tóxicas</td>
+                                <td>#{managedBeanResiduos.sustanciastoxicas}</td>
+                            </tr>
+                            <tr>
+                                <td>Peligrosas para el medio ambiente</td>
+                                <td>#{managedBeanResiduos.peligrosasmedioambiente}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal Agregar -->
+                <div class="modal fade" id="modalreactivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Creación de equipo de laboratorio</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+
+                            <div class="card p-1">
+                                <div class="card-body">
+                                    <form jsf:id="formagregarequipo">
+                                        <div class="form-group row">
+                                            <label for="cantidade">Cantidad</label>
+                                            <input type="number" jsf:value="#{managedBeanResiduos.aux}" class="form-control form-control-sm" id="cantidade" required="true"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="existenciae">Disponibilidad</label>
+                                            <select  class="custom-select" required="required" jsf:value="#{managedBeanResiduos.opcion}" size="0">
+                                                <f:selectItem itemValue="1" itemLabel="Explosivos"/>
+                                                <f:selectItem itemValue="2" itemLabel="Inflamables"/>
+                                                <f:selectItem itemValue="3" itemLabel="Gases a presion"/>
+                                                <f:selectItem itemValue="4" itemLabel="Comburentes"/>
+                                                <f:selectItem itemValue="5" itemLabel="Sustancias perjudiciales para la salud"/>
+                                                <f:selectItem itemValue="6" itemLabel="Sustancias corrosivas"/>
+                                                <f:selectItem itemValue="7" itemLabel="Sustancias nosivas"/>
+                                                <f:selectItem itemValue="8" itemLabel="Sustancias toxicas"/>
+                                                <f:selectItem itemValue="9" itemLabel="Sustancias peligrosas para el medio ambiente"/>
+                                            </select>
+                                        </div>
+                                        <button  type="submit" jsf:action="#{managedBeanResiduos.ingresa(managedBeanResiduos.aux, managedBeanResiduos.opcion)}" class="btn btn-success">Agregar residuo</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optional JavaScript -->
+                <script>
+                    var ctx = document.getElementById("GraficaBarras").getContext('2d');
+                    var GraficaBarras = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ["Explosivos", "Inflamables", "Gases a presion", "Sustancias comburentes", "Sustancias perjudiciales", "Sustancias corrosivas", "Sustancias nosivas", "Sustancias toxicas", "Sustancias peligrosas"],
+                            datasets: [{
+                                    label: 'Cantidad de residuos',
+                                    label: 'Cantidad de residuos',
+                                    data: [#{managedBeanResiduos.explosivos}, #{managedBeanResiduos.inflamables}, #{managedBeanResiduos.gasesapresion}, #{managedBeanResiduos.comburentes}, #{managedBeanResiduos.sustanciasperjudiciales}, #{managedBeanResiduos.corrosivas}, #{managedBeanResiduos.sustanciasnosivas}, #{managedBeanResiduos.sustanciastoxicas}, #{managedBeanResiduos.peligrosasmedioambiente}],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 71, 71, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)',
+                                        'rgba(162, 194, 58, 0.2)',
+                                        'rgba(255, 71, 71, 0.2)',
+                                        'rgba(71, 71, 255, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 71, 71, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)',
+                                        'rgba(162, 194, 58, 1)',
+                                        'rgba(255, 71, 71, 1)',
+                                        'rgba(71, 71, 255, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                            }
+                        }
+                    });
+                </script>
+
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

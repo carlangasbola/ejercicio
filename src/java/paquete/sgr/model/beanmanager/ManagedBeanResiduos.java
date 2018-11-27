@@ -19,6 +19,7 @@ import javax.inject.Named;
 
 public class ManagedBeanResiduos implements Serializable {
     static int aux;
+    static int opcion;
     static int explosivos=1000;
     static int inflamables=530;
     static int gasesapresion=683;
@@ -30,43 +31,28 @@ public class ManagedBeanResiduos implements Serializable {
     static int peligrosasmedioambiente=891;
     
     
-    public void sumaexplosivos(int entrada){
-        explosivos=explosivos+entrada;
+    
+    public void ingresa(int entrada, int opcion){
+        if(opcion==1)
+            explosivos=explosivos+entrada;
+        if(opcion==2)
+            inflamables=entrada+inflamables;
+        if(opcion==3)
+            gasesapresion=gasesapresion+entrada;
+        if(opcion==4)
+            comburentes=comburentes+entrada;
+        if(opcion==5)
+            sustanciasperjudiciales=sustanciasperjudiciales+entrada;
+        if(opcion==6)
+            corrosivas=corrosivas+entrada;
+        if(opcion==7)
+            sustanciasnosivas=sustanciasnosivas+entrada;
+        if(opcion==8)
+            sustanciastoxicas=sustanciastoxicas+entrada;
+        if(opcion==9)
+            peligrosasmedioambiente=peligrosasmedioambiente+entrada;
         
     }
-    
-    public void sumainflamables(int entrada){
-        inflamables=entrada+inflamables;
-    }
-    
-    public void sumagasesapresion(int entrada){
-        gasesapresion=gasesapresion+entrada;
-    }
-    
-    public void sumacomburentes(int entrada){
-        comburentes=comburentes+entrada;
-    }
-    
-    public void sumasustanciasperjudiciales(int entrada){
-        sustanciasperjudiciales=sustanciasperjudiciales+entrada;
-    }
-    
-    public void sumacorrosivas(int entrada){
-        corrosivas=corrosivas+entrada;
-    }
-    
-    public void sumasustanciasnosivas(int entrada){
-        sustanciasnosivas=sustanciasnosivas+entrada;
-    }
-    
-    public void sumapeligrosasmedioambiente(int entrada){
-        peligrosasmedioambiente=peligrosasmedioambiente+entrada;
-    }
-    
-    
-    
-    
-    
     
     
     public int getExplosivos() {
@@ -139,6 +125,22 @@ public class ManagedBeanResiduos implements Serializable {
 
     public void setPeligrosasmedioambiente(int peligrosasmedioambiente) {
         ManagedBeanResiduos.peligrosasmedioambiente = peligrosasmedioambiente;
+    }
+
+    public int getAux() {
+        return aux;
+    }
+
+    public void setAux(int aux) {
+        ManagedBeanResiduos.aux = aux;
+    }
+
+    public int getOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(int opcion) {
+        ManagedBeanResiduos.opcion = opcion;
     }
                     
     
