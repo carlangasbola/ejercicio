@@ -151,14 +151,14 @@ public class ManagedBeanPractica implements Serializable {
             salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>DESARROLLO EXPERIMENTAL</strong></span></left><br/><br/>" + practica.desarrolloexperimental;
             salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>REGISTRO DE DATOS</strong></span></left><br/><br/>" + practica.registrodedatos;
             salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>RESULTADOS</strong></span></left><br/><br/>" + practica.resultados;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANÁLISIS DE RESULTADOS</strong></span></left><br/><br/>" + practica.analisisderesultados;
+            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANÁLISIS DE RESULTADOS</strong></span></left><br/><br/>" + practica.analisisderesultados;
             //Información adicional
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>REFERENCIAS</strong></span></left><br/><br/>" + practica.referencias;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>NOMENCLATURA</strong></span></left><br/><br/>" + practica.nomenclatura;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANEXOS</strong></span></left><br/><br/>" + practica.anexos;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>PROTOCOLOS DE ACTUACIÓN</strong></span></left><br/><br/>" + ManagedBeanReactivos.protocolos;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>RECOMENDACIONES</strong></span></left><br/><br/>" + ManagedBeanReactivos.recomendaciones;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>SEMÁFORO</strong></span></left><br/><br/>" + ManagedBeanReactivos.semaforo;
+            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>REFERENCIAS</strong></span></left><br/><br/>" + practica.referencias;
+            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>NOMENCLATURA</strong></span></left><br/><br/>" + practica.nomenclatura;
+            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANEXOS</strong></span></left><br/><br/>" + practica.anexos;
+            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>PROTOCOLOS DE ACTUACIÓN</strong></span></left><br/><br/>" + ManagedBeanReactivos.protocolos;
+            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>RECOMENDACIONES</strong></span></left><br/><br/>" + ManagedBeanReactivos.recomendaciones;
+            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>SEMÁFORO</strong></span></left><br/><br/>" + ManagedBeanReactivos.semaforo;
             
         return salida;
     }

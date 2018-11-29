@@ -29,38 +29,7 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Título de la práctica</th>
-                                    <th scope="col">Autor</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Semaforo ( riesgo )</th>
-                                    <th scope="col">Modificar</th>
-                                    <th scope="col">Eliminar</th>
-                                    <th scope="col">Asignar a grupo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <h:form>
-                                    <ui:repeat var="p" value="#{managedBeanAdminPracticas.getPracticas()}" >
-                                        <tr>
-                                            <td>#{p.datosPractica.nombre}</td>
-                                            <td>#{p.usuarios.datosUsuario.nombre} #{p.usuarios.datosUsuario.apellidoPaterno} #{p.usuarios.datosUsuario.apellidoMaterno}</td>
-                                            <td>#{p.creacion}</td>
-                                            <td>Semáforo</td>
-                                            <td>Modificar</td>
-                                            <td><a jsf:action="#{managedBeanAdminPracticas.eliminarPractica(p.idPractica)}">Eliminar práctica</a></td>
-                                            <td>Asignar a grupo</td>
-                                        </tr>
-                                    </ui:repeat>
-                                </h:form>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                
 
                 <!-- PRUEBA -->
 
