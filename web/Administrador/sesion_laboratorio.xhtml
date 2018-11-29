@@ -13,6 +13,9 @@
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
         <ui:composition template = "common.xhtml">		
             <ui:define name = "content">
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                </h:form>
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -20,14 +23,14 @@
                     </li>
                     <li class="breadcrumb-item active">Crear sesión de laboratorio</li>
                 </ol>
-                
+
                 <div class="row text-center mt-2">
                     <div class="col">
                         <h4 class="colorpantone text-center">Crear sesión</h4>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="row justify-content-center">
                     <div class="col-8">
                         <div class="card">
@@ -35,7 +38,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"> Datos </h5>
                                 <h:form>
-                                   
+
 
                                     <div class="form-group row">
                                         <h:outputLabel styleClass="col-sm-2 col-form-label" for="restricted" value="Fecha de sesión " />
@@ -90,10 +93,10 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
-                
+
             </ui:define> 
         </ui:composition>       
     </h:body>

@@ -1,0 +1,59 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                </h:form>
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Modificar Grupo</li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Modificar Grupo</h4>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                Modificación
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"> Llena los datos a continuación, el cupo del grupo unicamente se puede ampliar </h5>
+                                <h:form>
+                                    <label for="nombre"> Nombre </label>
+                                    <h:inputText id="nombre" value="#{managedBeanGrupos.nombregrupo}"  styleClass="form-control" ></h:inputText>
+                                    <br/>
+                                    <label for="cupo"> Cupo </label>
+                                    <input id="cupo" type="number" jsf:value="#{managedBeanGrupos.cupogrupo}" class="form-control"  min="#{managedBeanGrupos.g.cupo}" max="40" ></input>
+                                    <br/>
+                                    <h:commandButton class="btn bg-colorazul text-white" action="#{managedBeanGrupos.actualizarGrupo()}" value="Actualizar infomración"> </h:commandButton>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

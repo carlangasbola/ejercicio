@@ -53,7 +53,7 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
         consulta.eliminarObjeto(ua);
     }
 
-    public void getUnidadesTematicas(int id) {
+    public void obtenertUnidadesTematicas(int id) {
         ConsultasHQL consulta = new ConsultasHQL();
         consulta.crearListPair("id", id);
         lista = consulta.crearSelectStoreProcesure("CALL SelectUnidadesTematicas(:id)");

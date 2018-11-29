@@ -80,7 +80,7 @@
                                         <tr>
                                             <td>#{ua.nombre}</td>
                                             <td>
-                                                <p:commandButton style="background-color: #00661d;color: white;border:none" value="ver"  update=":detalleunidad" action="#{managedBeanUnidadesAprendizaje.getUnidadesTematicas(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eye"  oncomplete="PF('dlg2').show()" />
+                                                <p:commandButton style="background-color: #00661d;color: white;border:none" value="ver"  update=":detalleunidad" action="#{managedBeanUnidadesAprendizaje.obtenertUnidadesTematicas(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eye" oncomplete="PF('dlg2').show()" />
                                             </td> 
                                             <td>
                                                 <p:commandButton style="background-color: #830D18; color: white; border: none" value="Eliminar"  action="#{managedBeanUnidadesAprendizaje.eliminarUnidadAprendizaje(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eraser" ajax="false" />
@@ -97,13 +97,15 @@
                 </div>
 
                 <!-- Modal para ver los detalles de las unidades de aprendizaje  -->
-                <p:dialog header="Unidades temáticas" id="detalleunidad" widgetVar="dlg2" modal="true" height="100">
-                    <ui:repeat var="ua" value="#{managedBeanUnidadesAprendizaje.lista}" varStatus="status">
-                        #{(status.index)+1}.-  #{ua}
-                        <br />                
-                    </ui:repeat>
-                </p:dialog>
-                
+             
+                    <p:dialog header="Unidades temáticas" id="detalleunidad" widgetVar="dlg2" modal="true" height="100">
+                        <ui:repeat value="#{managedBeanUnidadesAprendizaje.lista}" var="ua" varStatus="status">
+                            #{(status.index)+1}.-  #{ua}
+                            <br />                
+                        </ui:repeat>
+                    </p:dialog>
+         
+
                 <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
             </ui:define> 
         </ui:composition>       

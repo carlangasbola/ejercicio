@@ -18,7 +18,7 @@ import paquete.sgr.entity.pojos.UnidadGrupo;
  */
 @Named(value = "managedBeanGrupos")
 @RequestScoped
-public class ManagedBeanGrupos implements Serializable{
+public class ManagedBeanGrupos implements Serializable {
 
     private String nombregrupo;
     private int cupogrupo;
@@ -37,10 +37,8 @@ public class ManagedBeanGrupos implements Serializable{
     private Grupo g;
 
     public ManagedBeanGrupos() {
-      
     }
 
-    
     public List<Grupo> getGrupos() {
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.obtenerSession();
@@ -80,7 +78,7 @@ public class ManagedBeanGrupos implements Serializable{
     public List<Usuarios> getDocentes() {
         /*AQUI DEBERIAMOS OBTENER EL NOMBRE DEL USUARIO DE LA TABLA DATOS DE USUARIOS
         PERO LO MANEJO ASI POR AHORA PARA FINES PRACTICOS*/
-        /*
+ /*
             Definir idrol
             1.- Administrador
             2.- Docente
@@ -120,6 +118,34 @@ public class ManagedBeanGrupos implements Serializable{
             msj.setMensaje("No se inserto el grupo, probablemente el nombre ya existe");
             msj.MensajePrecaucion();
         }
+    }
+
+    public String redirecionarModificacionGrupo(int IdG) {
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.obtenerSession();
+        consulta.removerDatosSesion("GrupoId");
+        consulta.guardarDatosSession("GrupoId", IdG);
+        informacionGrupo(IdG);
+        return "modificarGrupo";
+    }
+
+    public void actualizarGrupo() {
+        Mensajes msj = new Mensajes();
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.obtenerSession();
+        Grupo g = new Grupo();
+        int idGrupo = (int) consulta.obtenerDatosSesion("GrupoId");
+        g = (Grupo) s.get(Grupo.class, idGrupo);
+        
+        g.setNombre( nombregrupo );
+        g.setCupo( cupogrupo );
+        
+        consulta.actualizarObjeto(g);
+        
+        msj.setTitulo("Correcto");
+        msj.setMensaje("Operación realizada");
+        msj.MensajeInfo();
+       
     }
 
     public void informacionGrupo(int id) {

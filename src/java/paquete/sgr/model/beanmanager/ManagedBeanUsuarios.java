@@ -197,7 +197,7 @@ public class ManagedBeanUsuarios implements Serializable {
         consulta.crearListPair("userId", userId);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
         
-         u = (Usuarios) hibernateSession.load(Usuarios.class, getIdUsuarioSession());
+         u = (Usuarios) hibernateSession.get(Usuarios.class, getIdUsuarioSession());
 
         if (password.equals(u.getPasssword())) {
             try {
@@ -285,7 +285,7 @@ public class ManagedBeanUsuarios implements Serializable {
         } catch (Exception e) {
             hibernateSession.getTransaction().rollback();
             m.setTitulo("Error");
-            m.setMensaje("No se completo la operación, intentelo más tarde");
+            m.setMensaje("No se completo la operación, inténtelo más tarde");
             m.MensajeFaltal();
             System.out.println("Exepcion : " + e);
         }

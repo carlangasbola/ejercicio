@@ -11,7 +11,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import paquete.sgr.entity.pojos.UnidadGrupo;
 
 public class ConsultasHQL {
 
@@ -169,7 +168,8 @@ public class ConsultasHQL {
 
     /**
      * *****************************
-     * Getters y Setters Del Codigo ******************************* @return
+     * Getters y Setters Del Codigo 
+     ******************************* @return
      */
     public ArrayList<Pair<String, Object>> getListPair() {
         return listPair;

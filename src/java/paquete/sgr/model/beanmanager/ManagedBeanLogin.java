@@ -57,14 +57,15 @@ public class ManagedBeanLogin {
                     break;
                 /* Numero 2 identifica docentes */
                 case 2:
+                     pagina = "Docente/inicioDocente?faces-redirect=true";
                     break;
                 /* Numero 3 identifica a tecnicos */
                 case 3:
-                    pagina = "Tecnico/inicioTecnico";
+                    pagina = "Tecnico/inicioTecnico?faces-redirect=true";
                     break;
                 /* Numero 4 identifica alumnos */
                 case 4:
-                    pagina = "ModuloAlumno/alumno";
+                    pagina = "Alumno/inicioAlumno?faces-redirect=true";
                     break;
             }
             
