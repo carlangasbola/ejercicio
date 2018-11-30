@@ -4,8 +4,7 @@
 
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
-      xmlns:ui = "http://java.sun.com/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
     <h:body>
 
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
@@ -16,23 +15,22 @@
                     <li class="breadcrumb-item">
                         <a href="inicioAdministrador.xhtml">Inicio</a>
                     </li>
-                    <li class="breadcrumb-item active">Módulo de prácticas</li>
+                    <li class="breadcrumb-item active">Entrega de práctica</li>
                 </ol>
 
                 <div class="row text-center mt-2">
                     <div class="col">
-                        <h4 class="colorpantone text-center">Bienvenido al módulo de creación de practicas</h4>
-                        <p class="lead">Estas son las practicas que han sido creadas o en su caso puedes crear una dando clic a continuación</p>
-                        <h:form>
-                            <h:commandButton styleClass="btn colorboton my-3" type="submit" action="#{managedBeanUsuarios.ObtenerNombreUsuario()}" value="Crear nueva práctica"></h:commandButton>
-                        </h:form>
+                        <h4 class="colorpantone text-center">Entrega de práctica</h4>
                     </div>
                 </div>
-
                 
-
-                <!-- PRUEBA -->
-
+                <div class="row">
+                    <div class="col">
+                        <p class="lead">Prácticas que tienes que entregar</p>
+                    </div>
+                </div>
+                
+                <p>Eventos</p>
 
                 <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
                 <script src="../vendor/jquery/jquery.min.js"></script> 

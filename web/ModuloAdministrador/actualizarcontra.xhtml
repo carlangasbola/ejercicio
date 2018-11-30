@@ -70,19 +70,19 @@
                     <form jsf:id="formcontra">
                         <div class="form-group row">
                             <label for="actual">Contraseña actual :</label>
-                            <input id="actual" class="form-control" type="password"  jsf:value="#{managedBeanQuerys.password}" required="true" />
+                            <input id="actual" class="form-control" type="password"  jsf:value="#{managedBeanUsuarios.password}" required="true" />
                         </div>
                         <div class="form-group row">
                             <label for="nueva">Nueva contraseña :</label>
-                            <input id="nueva" class="form-control" type="password" minlength="8" maxlength="32" jsf:value="#{managedBeanQuerys.passnew}" required="true" />
+                            <input id="nueva" class="form-control" type="password" minlength="8" maxlength="32" jsf:value="#{managedBeanUsuarios.passnew}" required="true" />
                         </div>
                         <div class="form-group row">
                             <label for="actualagain">Escriba su contraseña nuevamente :</label>
-                            <input id="actualagain" class="form-control" type="password" minlength="8" jsf:value="#{managedBeanQuerys.passnew2}" maxlength="32"
+                            <input id="actualagain" class="form-control" type="password" minlength="8" jsf:value="#{managedBeanUsuarios.passnew2}" maxlength="32"
                                    required="true" />
                         </div>
                         <div class="form-group row">
-                            <button class="btn colorrojo" type="submit" jsf:action="#{managedBeanQuerys.actualizarContrasena()}"> Cambiar contraseña </button>
+                            <button class="btn colorrojo" type="submit" jsf:action="#{managedBeanUsuarios.actualizarContrasena()}"> Cambiar contraseña </button>
                         </div>
                     </form>
                 </div>

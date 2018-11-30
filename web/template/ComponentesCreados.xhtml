@@ -18,7 +18,7 @@
         <h:outputLabel for="Docente" value="Selecciona el docente" />
         <h:selectOneMenu id="Docente" value="#{managedBeanUnidadesAprendizaje.idDocente}" styleClass="form-control" >
             <!-- Le mando el 2 por que indica los docentes -->
-            <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+            <f:selectItems value="#{managedBeanUsuarios.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
         </h:selectOneMenu>
         <br />
 

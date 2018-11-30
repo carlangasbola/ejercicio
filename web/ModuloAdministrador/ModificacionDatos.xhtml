@@ -48,44 +48,44 @@
                     <div class="col-12 col-md">
                         <div class="form-group  ">
                             <label for="name">Nombre</label>
-                            <input type="text" jsf:value="#{managedBeanQuerys.nombre}" class="form-control form-control-sm" id="name" required="true"/>
+                            <input type="text" jsf:value="#{managedBeanUsuarios.nombre}" class="form-control form-control-sm" id="name" required="true"/>
                         </div>
 
 
                         <div class="form-group ">
                             <label for="apaterno">Apellido paterno</label>
-                            <input type="text" jsf:value="#{managedBeanQuerys.paterno}" class="form-control form-control-sm" id="apaterno" required="true"/>
+                            <input type="text" jsf:value="#{managedBeanUsuarios.paterno}" class="form-control form-control-sm" id="apaterno" required="true"/>
                         </div>
                         <div class="form-group ">
                             <label for="amaterno">Apellido materno</label>
-                            <input type="text" jsf:value="#{managedBeanQuerys.materno}" class="form-control form-control-sm" id="amaterno" required="true"/>
+                            <input type="text" jsf:value="#{managedBeanUsuarios.materno}" class="form-control form-control-sm" id="amaterno" required="true"/>
                         </div>
                     </div>
                     <div class="col-12 col-md">  
                         <div class="form-group ">
                             <label for="tel">Teléfono</label>
-                            <input type="tel" jsf:value="#{managedBeanQuerys.telefono}" class="form-control form-control-sm" id="tel" required="true"/>
+                            <input type="tel" jsf:value="#{managedBeanUsuarios.telefono}" class="form-control form-control-sm" id="tel" required="true"/>
                         </div>
                         <div class="form-group ">
                             <label for="email">Correo</label>
-                            <input type="email" jsf:value="#{managedBeanQuerys.correo}" class="form-control form-control-sm" id="email" required="true"/>
+                            <input type="email" jsf:value="#{managedBeanUsuarios.correo}" class="form-control form-control-sm" id="email" required="true"/>
                         </div>
                         <div class="form-group ">
                             <label for="unico">Mátricula o número de boleta</label>
-                            <input type="text" jsf:value="#{managedBeanQuerys.identificador}" class="form-control form-control-sm" id="unico" required="true"/>
+                            <input type="text" jsf:value="#{managedBeanUsuarios.identificador}" class="form-control form-control-sm" id="unico" required="true"/>
                         </div>
                     </div>
                     <div class="col-12 col-md">
                         <div class="form-group ">
                             <label for="numseg">Número de seguro</label>
-                            <input type="number" jsf:value="#{managedBeanQuerys.numeroSeguro}" class="form-control form-control-sm" id="numseg" required="true"/>
+                            <input type="number" jsf:value="#{managedBeanUsuarios.numeroSeguro}" class="form-control form-control-sm" id="numseg" required="true"/>
                         </div>
                         <div class="form-group ">
                             <label for="pass">Contraseña ( Para confirmar cambios )</label>
-                            <input type="password" jsf:value="#{managedBeanQuerys.password}" class="form-control form-control-sm" id="pass" required="true"/>
+                            <input type="password" jsf:value="#{managedBeanUsuarios.password}" class="form-control form-control-sm" id="pass" required="true"/>
                         </div>
 
-                        <button  type="submit" jsf:action="#{managedBeanQuerys.actualizaUsuario()}" class="btn btn-success">Actualizar datos</button>
+                        <button  type="submit" jsf:action="#{managedBeanUsuarios.actualizaUsuario()}" class="btn btn-success">Actualizar datos</button>
                     </div> 
                 </div>
 

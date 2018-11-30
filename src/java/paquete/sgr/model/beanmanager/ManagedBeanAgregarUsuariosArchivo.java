@@ -162,7 +162,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     hibernateSession.save(datauser);
                     
 
-                    
+                    /*
                     int variableEquipo=0;
                     for(int i=0; i<equipo.length;i++){
                         if(equipo[i].equals(num_Equipo) ){
@@ -196,7 +196,7 @@ public class ManagedBeanAgregarUsuariosArchivo {
                         listgroup.setUsuarios(user);
                         listgroup.setUnidadGrupo(ug.get(0));
                         hibernateSession.save(listgroup);
-                    }
+                    }*/
                     
                     hibernateSession.getTransaction().commit();
                     

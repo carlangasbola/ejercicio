@@ -93,14 +93,14 @@
                         <h:outputLabel for="Docente" value="Selecciona el Docente" />
                         <h:selectOneMenu id="Docente" value="#{datatableCheckBoxUnidadAprendizaje.idDocente}" styleClass="form-control" >
                             <!-- Le mando el 2 por que indica los docentes -->
-                            <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                            <f:selectItems value="#{managedBeanUsuarios.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
                         </h:selectOneMenu>
 
                         <br/>
                         <h:outputLabel for="tecnico" value="Selecciona el Tecnico" />
                         <h:selectOneMenu id="tecnico" value="#{datatableCheckBoxUnidadAprendizaje.idtecnico}" styleClass="form-control" >
                             <!-- Le mando el 3 por que indica los tecnicos -->
-                            <f:selectItems value="#{managedBeanQuerys.obtenerUsuarios(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                            <f:selectItems value="#{managedBeanUsuarios.obtenerUsuarios(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
                         </h:selectOneMenu>       
 
                         <p:commandButton class="btn colorverde" value="Aceptar" action="#{datatableCheckBoxUnidadAprendizaje.crearUnidadGrupo()}" ajax="false" >  </p:commandButton>

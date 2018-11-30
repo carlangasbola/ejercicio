@@ -28,6 +28,8 @@ public class ManagedBeanIncidencias {
     private String estado;
     private int idReporte;
 
+    private ReporteIncidencia reporte;
+
     public ManagedBeanIncidencias() {
     }
 
@@ -36,16 +38,32 @@ public class ManagedBeanIncidencias {
         Session s = consulta.obtenerSession();
         ReporteIncidencia ri = new ReporteIncidencia();
         ri = (ReporteIncidencia) s.load(ReporteIncidencia.class, id);
+
+        nombre = ri.getNombre();
+        observaciones = ri.getObservaciones();
+
+        consulta.removerDatosSesion("reporteId");
+        consulta.guardarDatosSession("reporteId", id);
+        return "actualizarReporteIncidencia";
+    }
+
+    public String verReporte(int id) {
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.obtenerSession();
+        ReporteIncidencia ri = new ReporteIncidencia();
+        ri = (ReporteIncidencia) s.load(ReporteIncidencia.class, id);
+        
+        reporte = ri;
         
         nombre = ri.getNombre();
         observaciones = ri.getObservaciones();
-        
+        ri.getSesionDeLaboratorio().getFecha();
+        ri.getSesionDeLaboratorio().getUnidadAprendizaje().getNombre();
+
         consulta.removerDatosSesion("reporteId");
-        consulta.guardarDatosSession("reporteId", id);        
-        return "actualizarReporteIncidencia";
+        consulta.guardarDatosSession("reporteId", id);
+        return "verIncidencia";
     }
-    
-   
 
     public List<ReporteIncidencia> obtenerReportes() {
         ConsultasHQL consulta = new ConsultasHQL();
@@ -70,19 +88,19 @@ public class ManagedBeanIncidencias {
         sesion = q.list();
         return sesion;
     }
-    
-    public void actualizarReporte(){
+
+    public void actualizarReporte() {
         Mensajes msj = new Mensajes();
         ConsultasHQL consulta = new ConsultasHQL();
         SesionDeLaboratorio sl = new SesionDeLaboratorio();
         Date now = new Date();
         Session s = consulta.obtenerSession();
         ReporteIncidencia ri = new ReporteIncidencia();
-        
+
         int id = (int) consulta.obtenerDatosSesion("reporteId");
         ri = (ReporteIncidencia) s.load(ReporteIncidencia.class, id);
         sl = (SesionDeLaboratorio) s.load(SesionDeLaboratorio.class, idSesionLab);
-        
+
         try {
             s.beginTransaction();
             ri.setIdReporte(id);
@@ -177,8 +195,7 @@ public class ManagedBeanIncidencias {
     public void setReporteIncidencia(List<ReporteIncidencia> reporteIncidencia) {
         this.reporteIncidencia = reporteIncidencia;
     }
-    
-    
+
     public String getEstado() {
         return estado;
     }
@@ -186,7 +203,7 @@ public class ManagedBeanIncidencias {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     public int getIdReporte() {
         return idReporte;
     }
@@ -195,5 +212,12 @@ public class ManagedBeanIncidencias {
         this.idReporte = idReporte;
     }
 
-  
+    public ReporteIncidencia getReporte() {
+        return reporte;
+    }
+
+    public void setReporte(ReporteIncidencia reporte) {
+        this.reporte = reporte;
+    }
+
 }

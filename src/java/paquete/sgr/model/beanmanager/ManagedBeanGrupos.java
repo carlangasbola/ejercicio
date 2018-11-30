@@ -42,7 +42,7 @@ public class ManagedBeanGrupos implements Serializable {
     public List<Grupo> getGrupos() {
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.obtenerSession();
-        Query query = s.createSQLQuery("CALL SelectGrupos()").addEntity(Grupo.class);
+        Query query = s.createQuery("FROM Grupo");
         List<Grupo> grupos = query.list();
         return grupos;
     }
@@ -78,7 +78,7 @@ public class ManagedBeanGrupos implements Serializable {
     public List<Usuarios> getDocentes() {
         /*AQUI DEBERIAMOS OBTENER EL NOMBRE DEL USUARIO DE LA TABLA DATOS DE USUARIOS
         PERO LO MANEJO ASI POR AHORA PARA FINES PRACTICOS*/
- /*
+        /*
             Definir idrol
             1.- Administrador
             2.- Docente

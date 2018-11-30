@@ -30,7 +30,7 @@
                     <h1>Bienvenido Técnico</h1>
                     <h3 class="my-4"> <strong class="text-capitalize"> #{managedBeanLogin.user } </strong> </h3>
                     <h:form>
-                        <h:commandButton styleClass="btn btn-link" value="Modificar Información" action="#{managedBeanQuerys.obtenerDatosUsuario()}">
+                        <h:commandButton styleClass="btn btn-link" value="Modificar Información" action="#{managedBeanUsuarios.obtenerDatosUsuario()}">
                             <f:param name="id" value="#{UserId}" />
                         </h:commandButton>
                     </h:form>            

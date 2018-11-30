@@ -97,13 +97,13 @@
                             </p:column>
 
                             <p:column  headerText="Modificar"  style="width:95px;">
-                                <p:commandButton icon="pi pi-eye" style="width:50px;" action="#{managedBeanQuerys.obtenerDatosUsuario()}" ajax="false">
+                                <p:commandButton icon="pi pi-eye" style="width:50px;" action="#{managedBeanUsuarios.obtenerDatosUsuario()}" ajax="false">
                                     <f:param name="IdUsuario" value="#{du.usuarios.idUsuarios}" />
                                 </p:commandButton>
                             </p:column>
 
                             <p:column headerText="Eliminar" style="width:95px;" >
-                                <p:commandButton action="#{managedBeanQuerys.deleteUsuario( du.usuarios.idUsuarios )}" ajax="false" icon="pi pi-trash" style="width:50px;" >
+                                <p:commandButton action="#{managedBeanUsuarios.deleteUsuario( du.usuarios.idUsuarios )}" ajax="false" icon="pi pi-trash" style="width:50px;" >
                                 </p:commandButton>
                             </p:column>
 

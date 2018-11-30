@@ -48,8 +48,9 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
 
     public void eliminarUnidadAprendizaje(int id) {
         ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.obtenerSession();
         UnidadAprendizaje ua = new UnidadAprendizaje();
-        ua.setIdUnidadAprendizaje(id);
+        ua =  (UnidadAprendizaje)s.get(UnidadAprendizaje.class, id);
         consulta.eliminarObjeto(ua);
     }
 

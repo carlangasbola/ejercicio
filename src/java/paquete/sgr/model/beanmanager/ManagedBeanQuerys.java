@@ -1,13 +1,9 @@
 package paquete.sgr.model.beanmanager;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import paquete.sgr.entity.util.HibernateUtil;
 import java.util.List;
 import java.util.Map;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -23,15 +19,14 @@ import paquete.sgr.beans.ConsultasHQL;
  *
  * @author iron1
  */
-@Named(value = "managedBeanQuerys")
-@SessionScoped
-public class ManagedBeanUsuarios implements Serializable {
+@Named(value = "managedBeanUsuarios")
+@RequestScoped
+public class ManagedBeanQuerys {
 
     /**
      * Creates a new instance of ManagedBeanQuerys
      */
-    public ManagedBeanUsuarios() {
-        datosUsuarios = new ArrayList<>();
+    public ManagedBeanQuerys() {
     }
 
     private Session hibernateSession;
@@ -74,9 +69,9 @@ public class ManagedBeanUsuarios implements Serializable {
         List<DatosUsuario> du = consulta.crearSelectQuery("FROM DatosUsuario WHERE usuarios.idUsuarios = :idUsuario");
 
         nombrecompleto = du.get(0).getNombre() + " " + du.get(0).getApellidoPaterno() + " " + du.get(0).getApellidoMaterno();
-        idusuario=du.get(0).getIdUsuarios();
+        idusuario = du.get(0).getIdUsuarios();
         ManagedBeanPractica.limpialista(nombrecompleto);
-        
+
         return "creacionPractica1";
     }
 
@@ -158,6 +153,7 @@ public class ManagedBeanUsuarios implements Serializable {
     public void actualizarContrasena() {
         ConsultasHQL consulta = new ConsultasHQL();
         Mensajes msj = new Mensajes();
+        String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 
         // Obtenemos el id del usuario 
         int idUsuario = (int) consulta.obtenerDatosSesion("UserId");
@@ -166,6 +162,16 @@ public class ManagedBeanUsuarios implements Serializable {
         // Primero verificamos si la contraseña que ingreso es la misma que tiene registrada
         if (u.get(0).getPasssword().equals(password)) {
             if (passnew.equals(passnew2)) {
+                
+                // Si no es igual a la expresion regular nos manda error
+                // No esta testeado
+                if (!passnew.matches(pattern)) {
+                    msj.setTitulo("Mensaje del sistema");
+                    msj.setMensaje("La nueva contraseña no contiene la estructura definida");
+                    msj.MensajePrecaucion();
+                    return;
+                }
+
                 Usuarios user = (Usuarios) u.get(0);
                 user.setPasssword(passnew);
                 consulta.actualizarObjeto(user);
@@ -191,13 +197,13 @@ public class ManagedBeanUsuarios implements Serializable {
         DatosUsuario du = new DatosUsuario();
         ConsultasHQL consulta = new ConsultasHQL();
 
-        Session hibernateSession = consulta.obtenerSession();
-        Transaction tx = hibernateSession.beginTransaction();
-        int userId = getIdUsuarioSession();
-        consulta.crearListPair("userId", userId);
+        Session s  = consulta.obtenerSession();
+        Transaction tx = s.beginTransaction();
+        int idUsuario = getIdUsuarioSession();
+        consulta.crearListPair("userId", idUsuario);
         List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
-        
-         u = (Usuarios) hibernateSession.get(Usuarios.class, getIdUsuarioSession());
+
+        u = (Usuarios) s.get(Usuarios.class, idUsuario);
 
         if (password.equals(u.getPasssword())) {
             try {
@@ -213,12 +219,11 @@ public class ManagedBeanUsuarios implements Serializable {
                     du.setTelefono(telefono);
                     du.setCorreo(correo);
                     du.setNumeroSeguro(numeroSeguro);
-                    hibernateSession.save(du);
+                    s.save(du);
                     tx.commit();
 
                 } else {
-                    du.setIdUsuarios(u.getIdUsuarios());
-                    du.setUsuarios(u);
+                    du.setIdUsuarios(idUsuario);                   
                     du.setIdentificador(identificador);
                     du.setNombre(nombre);
                     du.setApellidoPaterno(paterno);
@@ -226,7 +231,7 @@ public class ManagedBeanUsuarios implements Serializable {
                     du.setTelefono(telefono);
                     du.setCorreo(correo);
                     du.setNumeroSeguro(numeroSeguro);
-                    hibernateSession.update(du);
+                    s.update(du);
                     tx.commit();
                 }
 
@@ -236,13 +241,13 @@ public class ManagedBeanUsuarios implements Serializable {
 
             } catch (Exception e) {
                 tx.rollback();
-                m.setTitulo("Fatal!");
+                m.setTitulo("Mensaje del sistema");
                 m.setMensaje("Ha ocurrido un error, inténtelo más tarde");
                 m.MensajeFaltal();
                 System.out.println("Exepcion : " + e);
             }
         } else {
-            m.setTitulo("Error");
+            m.setTitulo("Mensaje del sistema");
             m.setMensaje("La contraseña no es correcta");
             m.MensajePrecaucion();
         }
