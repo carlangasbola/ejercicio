@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
+// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,6 +17,7 @@ public class Material  implements java.io.Serializable {
      private byte existenciaInventario;
      private String caracteristicas;
      private Set materialUtilizados = new HashSet(0);
+     private Set datosVales = new HashSet(0);
      private Set deudas = new HashSet(0);
 
     public Material() {
@@ -29,12 +30,13 @@ public class Material  implements java.io.Serializable {
         this.existenciaInventario = existenciaInventario;
         this.caracteristicas = caracteristicas;
     }
-    public Material(String nombre, int cantidad, byte existenciaInventario, String caracteristicas, Set materialUtilizados, Set deudas) {
+    public Material(String nombre, int cantidad, byte existenciaInventario, String caracteristicas, Set materialUtilizados, Set datosVales, Set deudas) {
        this.nombre = nombre;
        this.cantidad = cantidad;
        this.existenciaInventario = existenciaInventario;
        this.caracteristicas = caracteristicas;
        this.materialUtilizados = materialUtilizados;
+       this.datosVales = datosVales;
        this.deudas = deudas;
     }
    
@@ -79,6 +81,13 @@ public class Material  implements java.io.Serializable {
     
     public void setMaterialUtilizados(Set materialUtilizados) {
         this.materialUtilizados = materialUtilizados;
+    }
+    public Set getDatosVales() {
+        return this.datosVales;
+    }
+    
+    public void setDatosVales(Set datosVales) {
+        this.datosVales = datosVales;
     }
     public Set getDeudas() {
         return this.deudas;

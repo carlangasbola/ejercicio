@@ -58,7 +58,7 @@ public class ManagedBeanIncidencias {
         nombre = ri.getNombre();
         observaciones = ri.getObservaciones();
         ri.getSesionDeLaboratorio().getFecha();
-        ri.getSesionDeLaboratorio().getUnidadAprendizaje().getNombre();
+        //ri.getSesionDeLaboratorio().getUnidadAprendizaje().getNombre();
 
         consulta.removerDatosSesion("reporteId");
         consulta.guardarDatosSession("reporteId", id);

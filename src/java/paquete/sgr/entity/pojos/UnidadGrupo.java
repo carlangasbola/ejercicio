@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
+// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,6 +18,7 @@ public class UnidadGrupo  implements java.io.Serializable {
      private Usuarios usuariosByUsuariosIdUsuarios;
      private Set equipos = new HashSet(0);
      private Set listaGrupos = new HashSet(0);
+     private Set sesionDeLaboratorios = new HashSet(0);
      private Set eventoses = new HashSet(0);
 
     public UnidadGrupo() {
@@ -30,13 +31,14 @@ public class UnidadGrupo  implements java.io.Serializable {
         this.usuariosByIdUsuariosDocente = usuariosByIdUsuariosDocente;
         this.usuariosByUsuariosIdUsuarios = usuariosByUsuariosIdUsuarios;
     }
-    public UnidadGrupo(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuariosByIdUsuariosDocente, Usuarios usuariosByUsuariosIdUsuarios, Set equipos, Set listaGrupos, Set eventoses) {
+    public UnidadGrupo(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Usuarios usuariosByIdUsuariosDocente, Usuarios usuariosByUsuariosIdUsuarios, Set equipos, Set listaGrupos, Set sesionDeLaboratorios, Set eventoses) {
        this.grupo = grupo;
        this.unidadAprendizaje = unidadAprendizaje;
        this.usuariosByIdUsuariosDocente = usuariosByIdUsuariosDocente;
        this.usuariosByUsuariosIdUsuarios = usuariosByUsuariosIdUsuarios;
        this.equipos = equipos;
        this.listaGrupos = listaGrupos;
+       this.sesionDeLaboratorios = sesionDeLaboratorios;
        this.eventoses = eventoses;
     }
    
@@ -88,6 +90,13 @@ public class UnidadGrupo  implements java.io.Serializable {
     
     public void setListaGrupos(Set listaGrupos) {
         this.listaGrupos = listaGrupos;
+    }
+    public Set getSesionDeLaboratorios() {
+        return this.sesionDeLaboratorios;
+    }
+    
+    public void setSesionDeLaboratorios(Set sesionDeLaboratorios) {
+        this.sesionDeLaboratorios = sesionDeLaboratorios;
     }
     public Set getEventoses() {
         return this.eventoses;

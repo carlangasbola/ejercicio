@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
+// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,6 @@ public class UnidadAprendizaje  implements java.io.Serializable {
 
      private Integer idUnidadAprendizaje;
      private String nombre;
-     private Set sesionDeLaboratorios = new HashSet(0);
      private Set unidadTematicas = new HashSet(0);
      private Set unidadGrupos = new HashSet(0);
 
@@ -24,9 +23,8 @@ public class UnidadAprendizaje  implements java.io.Serializable {
     public UnidadAprendizaje(String nombre) {
         this.nombre = nombre;
     }
-    public UnidadAprendizaje(String nombre, Set sesionDeLaboratorios, Set unidadTematicas, Set unidadGrupos) {
+    public UnidadAprendizaje(String nombre, Set unidadTematicas, Set unidadGrupos) {
        this.nombre = nombre;
-       this.sesionDeLaboratorios = sesionDeLaboratorios;
        this.unidadTematicas = unidadTematicas;
        this.unidadGrupos = unidadGrupos;
     }
@@ -44,13 +42,6 @@ public class UnidadAprendizaje  implements java.io.Serializable {
     
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-    public Set getSesionDeLaboratorios() {
-        return this.sesionDeLaboratorios;
-    }
-    
-    public void setSesionDeLaboratorios(Set sesionDeLaboratorios) {
-        this.sesionDeLaboratorios = sesionDeLaboratorios;
     }
     public Set getUnidadTematicas() {
         return this.unidadTematicas;

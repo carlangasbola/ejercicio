@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
+// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,8 +13,7 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
 
 
      private Integer idSesion;
-     private Grupo grupo;
-     private UnidadAprendizaje unidadAprendizaje;
+     private UnidadGrupo unidadGrupo;
      private Date fecha;
      private String docenteAuxiliar;
      private Set residuoses = new HashSet(0);
@@ -28,15 +27,13 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
     }
 
 	
-    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Date fecha, String docenteAuxiliar) {
-        this.grupo = grupo;
-        this.unidadAprendizaje = unidadAprendizaje;
+    public SesionDeLaboratorio(UnidadGrupo unidadGrupo, Date fecha, String docenteAuxiliar) {
+        this.unidadGrupo = unidadGrupo;
         this.fecha = fecha;
         this.docenteAuxiliar = docenteAuxiliar;
     }
-    public SesionDeLaboratorio(Grupo grupo, UnidadAprendizaje unidadAprendizaje, Date fecha, String docenteAuxiliar, Set residuoses, Set reporteIncidencias, Set notificacionesSesions, Set vales, Set historialEquipos, Set reactivoUtilizados) {
-       this.grupo = grupo;
-       this.unidadAprendizaje = unidadAprendizaje;
+    public SesionDeLaboratorio(UnidadGrupo unidadGrupo, Date fecha, String docenteAuxiliar, Set residuoses, Set reporteIncidencias, Set notificacionesSesions, Set vales, Set historialEquipos, Set reactivoUtilizados) {
+       this.unidadGrupo = unidadGrupo;
        this.fecha = fecha;
        this.docenteAuxiliar = docenteAuxiliar;
        this.residuoses = residuoses;
@@ -54,19 +51,12 @@ public class SesionDeLaboratorio  implements java.io.Serializable {
     public void setIdSesion(Integer idSesion) {
         this.idSesion = idSesion;
     }
-    public Grupo getGrupo() {
-        return this.grupo;
+    public UnidadGrupo getUnidadGrupo() {
+        return this.unidadGrupo;
     }
     
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
-    public UnidadAprendizaje getUnidadAprendizaje() {
-        return this.unidadAprendizaje;
-    }
-    
-    public void setUnidadAprendizaje(UnidadAprendizaje unidadAprendizaje) {
-        this.unidadAprendizaje = unidadAprendizaje;
+    public void setUnidadGrupo(UnidadGrupo unidadGrupo) {
+        this.unidadGrupo = unidadGrupo;
     }
     public Date getFecha() {
         return this.fecha;

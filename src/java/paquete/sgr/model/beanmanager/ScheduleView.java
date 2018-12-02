@@ -40,8 +40,8 @@ public class ScheduleView implements Serializable {
         for (SesionDeLaboratorio sl : sls) {
             eventModel
                     .addEvent(
-                            new DefaultScheduleEvent("Grupo : " + sl.getGrupo().getNombre() + "\n" +
-                                                     "Unidad Aprendizaje: " + sl.getUnidadAprendizaje().getNombre() + "\n"+
+                            new DefaultScheduleEvent("Grupo : " + //sl.getGrupo().getNombre() + "\n" +
+                                                     "Unidad Aprendizaje: " + //sl.getUnidadAprendizaje().getNombre() + "\n"+
                                                      "Docente Auxiliar: " + sl.getDocenteAuxiliar(),
                                     sl.getFecha(),
                                     sl.getFecha()

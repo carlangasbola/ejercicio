@@ -21,12 +21,12 @@ import paquete.sgr.beans.ConsultasHQL;
  */
 @Named(value = "managedBeanUsuarios")
 @RequestScoped
-public class ManagedBeanQuerys {
+public class ManagedBeanUsuarios {
 
     /**
      * Creates a new instance of ManagedBeanQuerys
      */
-    public ManagedBeanQuerys() {
+    public ManagedBeanUsuarios() {
     }
 
     private Session hibernateSession;

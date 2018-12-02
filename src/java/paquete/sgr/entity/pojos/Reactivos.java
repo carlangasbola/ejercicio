@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
+// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,6 +18,7 @@ public class Reactivos  implements java.io.Serializable {
      private byte existenciaInventario;
      private String medida;
      private Set reactivosUtilizadoPracticas = new HashSet(0);
+     private Set datosVales = new HashSet(0);
      private Set reactivoUtilizados = new HashSet(0);
 
     public Reactivos() {
@@ -31,13 +32,14 @@ public class Reactivos  implements java.io.Serializable {
         this.existenciaInventario = existenciaInventario;
         this.medida = medida;
     }
-    public Reactivos(String nombre, String tipo, double cantidad, byte existenciaInventario, String medida, Set reactivosUtilizadoPracticas, Set reactivoUtilizados) {
+    public Reactivos(String nombre, String tipo, double cantidad, byte existenciaInventario, String medida, Set reactivosUtilizadoPracticas, Set datosVales, Set reactivoUtilizados) {
        this.nombre = nombre;
        this.tipo = tipo;
        this.cantidad = cantidad;
        this.existenciaInventario = existenciaInventario;
        this.medida = medida;
        this.reactivosUtilizadoPracticas = reactivosUtilizadoPracticas;
+       this.datosVales = datosVales;
        this.reactivoUtilizados = reactivoUtilizados;
     }
    
@@ -89,6 +91,13 @@ public class Reactivos  implements java.io.Serializable {
     
     public void setReactivosUtilizadoPracticas(Set reactivosUtilizadoPracticas) {
         this.reactivosUtilizadoPracticas = reactivosUtilizadoPracticas;
+    }
+    public Set getDatosVales() {
+        return this.datosVales;
+    }
+    
+    public void setDatosVales(Set datosVales) {
+        this.datosVales = datosVales;
     }
     public Set getReactivoUtilizados() {
         return this.reactivoUtilizados;

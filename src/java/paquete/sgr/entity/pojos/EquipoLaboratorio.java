@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 24/11/2018 01:04:58 PM by Hibernate Tools 4.3.1
+// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class EquipoLaboratorio  implements java.io.Serializable {
      private String caracteristicas;
      private byte existenciaInventario;
      private int cantidad;
+     private Set datosVales = new HashSet(0);
      private Set equipoUtilizados = new HashSet(0);
      private Set historialEquipos = new HashSet(0);
 
@@ -29,11 +30,12 @@ public class EquipoLaboratorio  implements java.io.Serializable {
         this.existenciaInventario = existenciaInventario;
         this.cantidad = cantidad;
     }
-    public EquipoLaboratorio(String nombre, String caracteristicas, byte existenciaInventario, int cantidad, Set equipoUtilizados, Set historialEquipos) {
+    public EquipoLaboratorio(String nombre, String caracteristicas, byte existenciaInventario, int cantidad, Set datosVales, Set equipoUtilizados, Set historialEquipos) {
        this.nombre = nombre;
        this.caracteristicas = caracteristicas;
        this.existenciaInventario = existenciaInventario;
        this.cantidad = cantidad;
+       this.datosVales = datosVales;
        this.equipoUtilizados = equipoUtilizados;
        this.historialEquipos = historialEquipos;
     }
@@ -72,6 +74,13 @@ public class EquipoLaboratorio  implements java.io.Serializable {
     
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+    public Set getDatosVales() {
+        return this.datosVales;
+    }
+    
+    public void setDatosVales(Set datosVales) {
+        this.datosVales = datosVales;
     }
     public Set getEquipoUtilizados() {
         return this.equipoUtilizados;

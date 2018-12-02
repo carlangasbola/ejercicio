@@ -89,7 +89,7 @@ public class DropdownViewGrupoUnidades implements Serializable {
         e.setNombre(nombre);
         e.setFecha(sesionLaboratorio.getFechaSesison());
         e.setDescripcion(descripcion);
-        e.setGrupo(g);
+       // e.setGrupo(g);
         e.setUnidadGrupo(ug);
 
         //sl.setFecha(sesionLaboratorio.getFechaSesison());
@@ -125,9 +125,9 @@ public class DropdownViewGrupoUnidades implements Serializable {
         Usuarios u = (Usuarios) s.load(Usuarios.class, sesionLaboratorio.getIdTecnico());
 
         sl.setFecha(sesionLaboratorio.getFechaSesison());
-        sl.setUnidadAprendizaje(ua);
+   //     sl.setUnidadAprendizaje(ua);
         sl.setDocenteAuxiliar(sesionLaboratorio.getDocenteAuxiliar());
-        sl.setGrupo(g);
+   //     sl.setGrupo(g);
 
         if (consulta.insertarObjeto(sl)) {
             msj.setTitulo("Exíto");

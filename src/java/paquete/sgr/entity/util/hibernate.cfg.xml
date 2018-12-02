@@ -49,6 +49,7 @@ Contributor(s):
     <mapping resource="paquete/sgr/entity/pojos/ReactivoUtilizado.hbm.xml"/>
     <mapping resource="paquete/sgr/entity/pojos/Grupo.hbm.xml"/>
     <mapping resource="paquete/sgr/entity/pojos/Equipo.hbm.xml"/>
+    <mapping resource="paquete/sgr/entity/pojos/DatosVale.hbm.xml"/>
     <mapping resource="paquete/sgr/entity/pojos/DatosUsuario.hbm.xml"/>
     <mapping resource="paquete/sgr/entity/pojos/Eventos.hbm.xml"/>
     <mapping resource="paquete/sgr/entity/pojos/UnidadGrupo.hbm.xml"/>
