@@ -73,6 +73,9 @@ public class ManagedBeanAgregarUsuariosArchivo {
         int contador=1;
         
         hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        UnidadGrupo ug = new UnidadGrupo();
+        
+        ug = (UnidadGrupo) hibernateSession.get(UnidadGrupo.class, idUnidadGrupo);
         
         try{
             Workbook archivoExcel=Workbook.getWorkbook(new File(archivoDestino));
@@ -106,12 +109,12 @@ public class ManagedBeanAgregarUsuariosArchivo {
                                 break;
                             case 4:
                                 materno = dato;
-                                contador++;
-                                break;
-                           case 5:
-                                num_Equipo = dato;
                                 contador=1;
                                 break;
+                           //case 5:
+                                //num_Equipo = dato;
+                                //contador=1;
+                                //break;
                             //case 6:
                                 //password = dato;
                                 //contador++;
@@ -162,7 +165,10 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     //Guardamos los datos del usuario
                     hibernateSession.save(datauser);
                     
-
+                    
+                    listgroup.setUsuarios(user);
+                    listgroup.setUnidadGrupo(ug);
+                    hibernateSession.save(listgroup);
                     /*
                     int variableEquipo=0;
                     for(int i=0; i<equipo.length;i++){
