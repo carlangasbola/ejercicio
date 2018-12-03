@@ -57,14 +57,15 @@ public class ManagedBeanAgregarUsuariosArchivo {
     private String num_Equipo;
     private String grupo = DropdownViewGrupoUnidades.id_Grupo;
     private String unidad_aprendizaje =DropdownViewGrupoUnidades.id_UnidadAprendizaje;
-    private int tipousuario = 3;
-    private int rol =3;
-    private int idDatos =3;
+    private int tipousuario = 4;
+    private int rol = 4;
+    private int idDatos = 4;
     private String filename = ManagedBeanUpload.fileName;
     private Equipo equipor;
+    private int idUnidadGrupo;
     
     public void LeerArchivosExcel(){
-        
+        int i = idUnidadGrupo;
         ExternalContext ec=FacesContext.getCurrentInstance().getExternalContext();
         String realPath = UtilPath.getUrlDefinida(ec.getRealPath("/"));
         System.out.println(filename);
@@ -136,8 +137,8 @@ public class ManagedBeanAgregarUsuariosArchivo {
                     ConsultasHQL consulta = new ConsultasHQL();
 
                     
-                    List<UnidadGrupo> ug = consulta.crearSelectidUnidadGrupo("FROM UnidadGrupo WHERE unidadAprendizaje = " + unidad_aprendizaje +" AND grupo = " + grupo) ;
-                    int idug = ug.get(0).getIdUnidadGrupo();
+                    //List<UnidadGrupo> ug = consulta.crearSelectidUnidadGrupo("FROM UnidadGrupo WHERE unidadAprendizaje = " + unidad_aprendizaje +" AND grupo = " + grupo) ;
+                    int idug = idUnidadGrupo;
                     //System.out.println("idunidadgrupo" + idug);
                     // Obetener el rol
                     roles.setIdRol(rol);
@@ -205,7 +206,11 @@ public class ManagedBeanAgregarUsuariosArchivo {
             }
         }catch (Exception e) {
             hibernateSession.getTransaction().rollback();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", "No se completo la acción, inténtelo más tarde"));
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, 
+                            new FacesMessage(FacesMessage.SEVERITY_FATAL, 
+                                    "Mensaje del sistema", 
+                                    "No se completo la acción, inténtelo más tarde,Probablemente se intento insertar un usuario que ya existe "));
             System.out.println("ExepcionAlumno : " + e);
         }
     }
@@ -350,6 +355,14 @@ public class ManagedBeanAgregarUsuariosArchivo {
 
     public void setIdDatos_usuario(int idDatos_usuario) {
         this.idDatos = idDatos_usuario;
+    }
+    
+    public int getIdUnidadGrupo() {
+        return idUnidadGrupo;
+    }
+
+    public void setIdUnidadGrupo(int idUnidadGrupo) {
+        this.idUnidadGrupo = idUnidadGrupo;
     }
 
 }

@@ -10,6 +10,7 @@ import paquete.sgr.entity.pojos.UnidadAprendizaje;
 import paquete.sgr.entity.pojos.UnidadTematica;
 import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
+
 /**
  *
  * @author iron1
@@ -23,11 +24,10 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     private int idDocente;
     private List lista;
     private String unidadA;
+    private List<UnidadAprendizaje> ListaUnidadAprendizaje;
 
     public ManagedBeanUnidadesAprendizaje() {
         unidadTematica = new ArrayList<>();
-        // Esto garantiza que minimo exista una unidad tematica
-        enlargeList();
     }
 
     public void enlargeList() {
@@ -42,7 +42,7 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
         } else {
             msj.setTitulo("Error");
             msj.setMensaje("No existen valores para eliminar");
-            msj.MensajeInfo();
+            msj.MensajePrecaucion();
         }
     }
 
@@ -50,7 +50,7 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.obtenerSession();
         UnidadAprendizaje ua = new UnidadAprendizaje();
-        ua =  (UnidadAprendizaje)s.get(UnidadAprendizaje.class, id);
+        ua = (UnidadAprendizaje) s.get(UnidadAprendizaje.class, id);
         consulta.eliminarObjeto(ua);
     }
 
@@ -58,11 +58,6 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
         ConsultasHQL consulta = new ConsultasHQL();
         consulta.crearListPair("id", id);
         lista = consulta.crearSelectStoreProcesure("CALL SelectUnidadesTematicas(:id)");
-    }
-
-    public List<UnidadAprendizaje> unidadesAprendizaje() {
-        ConsultasHQL consulta = new ConsultasHQL();
-        return consulta.crearSelectQuery("FROM UnidadAprendizaje");
     }
 
     public void crearUnidad() {
@@ -131,12 +126,22 @@ public class ManagedBeanUnidadesAprendizaje implements Serializable {
     public void setIdDocente(int idDocente) {
         this.idDocente = idDocente;
     }
-    
-     public List getLista() {
+
+    public List getLista() {
         return lista;
     }
 
     public void setLista(List lista) {
         this.lista = lista;
+    }
+
+    public List<UnidadAprendizaje> getListaUnidadAprendizaje() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        ListaUnidadAprendizaje = consulta.crearSelectQuery("FROM UnidadAprendizaje");
+        return ListaUnidadAprendizaje;
+    }
+
+    public void setListaUnidadAprendizaje(List<UnidadAprendizaje> ListaUnidadAprendizaje) {
+        this.ListaUnidadAprendizaje = ListaUnidadAprendizaje;
     }
 }

@@ -18,7 +18,7 @@ import paquete.sgr.entity.pojos.UnidadGrupo;
  */
 @Named(value = "managedBeanGrupos")
 @RequestScoped
-public class ManagedBeanGrupos implements Serializable {
+public class ManagedBeanGrupos {
 
     private String nombregrupo;
     private int cupogrupo;
@@ -35,17 +35,12 @@ public class ManagedBeanGrupos implements Serializable {
     private List<UnidadAprendizaje> ua;
     /* Obtener un solo grupo */
     private Grupo g;
+    private List<Grupo> ListaGrupos;
+    private List<UnidadGrupo> ListaUnidadGrupo;
 
     public ManagedBeanGrupos() {
     }
 
-    public List<Grupo> getGrupos() {
-        ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.obtenerSession();
-        Query query = s.createQuery("FROM Grupo");
-        List<Grupo> grupos = query.list();
-        return grupos;
-    }
 
     public String redirecionarGruposAlumnos(int IdG) {
         ConsultasHQL consulta = new ConsultasHQL();
@@ -122,7 +117,6 @@ public class ManagedBeanGrupos implements Serializable {
 
     public String redirecionarModificacionGrupo(int IdG) {
         ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.obtenerSession();
         consulta.removerDatosSesion("GrupoId");
         consulta.guardarDatosSession("GrupoId", IdG);
         informacionGrupo(IdG);
@@ -149,10 +143,11 @@ public class ManagedBeanGrupos implements Serializable {
     }
 
     public void informacionGrupo(int id) {
-        UnidadGrupo ug = new UnidadGrupo();
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.obtenerSession();
         g = (Grupo) s.load(Grupo.class, id);
+        nombregrupo = g.getNombre();
+        cupogrupo = g.getCupo();
     }
 
     /*Getters y setters*/
@@ -226,6 +221,28 @@ public class ManagedBeanGrupos implements Serializable {
 
     public void setG(Grupo g) {
         this.g = g;
+    }
+    
+    
+    public List<Grupo> getListaGrupos() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        ListaGrupos = consulta.crearSelectQuery("FROM Grupo");
+        return ListaGrupos;
+    }
+
+    public void setListaGrupos(List<Grupo> ListaGrupos) {
+        this.ListaGrupos = ListaGrupos;
+    }
+    
+    
+    public List<UnidadGrupo> getListaUnidadGrupo() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        ListaUnidadGrupo = consulta.crearSelectQuery("FROM UnidadGrupo");
+        return ListaUnidadGrupo;
+    }
+
+    public void setListaUnidadGrupo(List<UnidadGrupo> ListaUnidadGrupo) {
+        this.ListaUnidadGrupo = ListaUnidadGrupo;
     }
 
 }

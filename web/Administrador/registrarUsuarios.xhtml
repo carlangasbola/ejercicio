@@ -14,10 +14,8 @@
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
         <ui:composition template = "common.xhtml">		
             <ui:define name = "content">
-                <h:form>
-                    <p:messages id="messages" showDetail="true" closable="true">
-                        <p:autoUpdate />
-                    </p:messages>
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
                 </h:form>
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
@@ -50,34 +48,17 @@
                         <h:form id="formActualizarFoto">
 
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label" for="Grupo">Grupo </label>
-                                <div class="col-sm-9">
-                                    <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
-                                        <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
-                                        <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
-                                        <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
-                                    </p:selectOneMenu>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label" for="ua">Unidad de Aprendizaje </label>
-                                <div class="col-sm-9">
-
-                                    <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
-                                        <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
-                                        <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
-                                    </p:selectOneMenu>
-
-                                </div>
+                                <h:outputLabel for="ug" value="Selecciona la unidad Grupo" />
+                                <h:selectOneMenu id="ug" value="#{managedBeanAgregarUsuariosArchivo.idUnidadGrupo}" styleClass="form-control" >
+                                    <!-- Le mando el 2 por que indica los docentes -->
+                                    <f:selectItems value="#{managedBeanGrupos.listaUnidadGrupo}" var="ug" itemValue="#{ug.idUnidadGrupo}" itemLabel="#{ug.grupo.nombre} #{ug.unidadAprendizaje.nombre} #{ug.usuariosByIdUsuariosDocente.datosUsuario.nombre}" />
+                                </h:selectOneMenu>
                             </div>
 
                             <div class="w-100" ></div>
                             Seleccionar archivo:<p:fileUpload fileUploadListener="#{managedBeanUpload.handleFileUpload}" mode="advanced" dragDropSupport="false"
                                                               sizeLimit="1000000" fileLimit="10" allowTypes="/(\.|\/)(xls)$/"  fileLimitMessage="El maximo de imagenes es 1"  invalidFileMessage="Se debe seleccionar un archivo xls"
                                                               cancelLabel="Cancelar" uploadLabel="Subir Archivo" label="Buscar Archivo"/>
-
 
                             <br/><br/>
                             <button  type="submit" jsf:action="#{managedBeanAgregarUsuariosArchivo.LeerArchivosExcel()}" class="btn btn-success">Agregar Alumnos</button>
@@ -149,6 +130,9 @@
                                                 <f:selectItem itemValue="3" itemLabel="Tecnico"/>
                                             </select>
                                         </div> 
+
+
+
 
                                         <button  type="submit" jsf:action="#{managedBeanUsuarios.crearUsuario()}" class="btn btn-success">Crear nuevo usuario</button>
                                     </form>

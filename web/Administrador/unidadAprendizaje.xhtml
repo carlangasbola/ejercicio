@@ -13,6 +13,9 @@
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
         <ui:composition template = "common.xhtml">		
             <ui:define name = "content">
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                </h:form>
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -64,7 +67,7 @@
 
                     <div class="col-4">
                         <p><strong>Unidades de aprendizaje creadas</strong></p>
-                        <p><em>Da click para ver los detalles de la unidad seleccionada</em></p>
+                        <p><em>Da clic para ver los detalles de la unidad seleccionada</em></p>
                         <table class="table table-sm">
                             <thead>
                                 <tr>
@@ -76,11 +79,11 @@
                             </thead>
                             <tbody>
                                 <h:form>
-                                    <ui:repeat  value="#{managedBeanUnidadesAprendizaje.unidadesAprendizaje()}" var="ua">                       
+                                    <ui:repeat  value="#{managedBeanUnidadesAprendizaje.listaUnidadAprendizaje}" var="ua">                       
                                         <tr>
                                             <td>#{ua.nombre}</td>
                                             <td>
-                                                <p:commandButton style="background-color: #00661d;color: white;border:none" value="ver"  update=":detalleunidad" action="#{managedBeanUnidadesAprendizaje.obtenertUnidadesTematicas(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eye" oncomplete="PF('dlg2').show()" />
+                                                <p:commandButton style="background-color: #00661d;color: white;border:none" value="ver"  update=":detalleunidad" action="#{managedBeanUnidadesAprendizaje.obtenertUnidadesTematicas(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eye" oncomplete="PF('dlg2').show()"/>
                                             </td> 
                                             <td>
                                                 <p:commandButton style="background-color: #830D18; color: white; border: none" value="Eliminar"  action="#{managedBeanUnidadesAprendizaje.eliminarUnidadAprendizaje(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eraser" ajax="false" />
@@ -97,14 +100,14 @@
                 </div>
 
                 <!-- Modal para ver los detalles de las unidades de aprendizaje  -->
-             
-                    <p:dialog header="Unidades temáticas" id="detalleunidad" widgetVar="dlg2" modal="true" height="100">
-                        <ui:repeat value="#{managedBeanUnidadesAprendizaje.lista}" var="ua" varStatus="status">
-                            #{(status.index)+1}.-  #{ua}
-                            <br />                
-                        </ui:repeat>
-                    </p:dialog>
-         
+
+                <p:dialog header="Unidades temáticas" id="detalleunidad" widgetVar="dlg2" modal="true" height="100">
+                    <ui:repeat value="#{managedBeanUnidadesAprendizaje.lista}" var="ua" varStatus="status">
+                        #{(status.index)+1}.-  #{ua}
+                        <br />                
+                    </ui:repeat>
+                </p:dialog>
+
 
                 <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
             </ui:define> 

@@ -85,12 +85,15 @@ public class ManagedBeanUsuarios {
         return "administracionUsuarios?faces-redirect=true";
     }
 
-    public List obtenerUsuarios(int id) {
+    public List<DatosUsuario> obtenerUsuariosRol(int id) {
         ConsultasHQL consulta = new ConsultasHQL();
-        hibernateSession = consulta.obtenerSession();
-        Query query = hibernateSession.createSQLQuery("CALL SelectDatosRol(:id)")
-                .addEntity(DatosUsuario.class)
-                .setParameter("id", id);
+        Session s = consulta.obtenerSession();
+       
+        Query query = s.createQuery("FROM DatosUsuario WHERE usuarios.roles.idRol = :rol_Id")
+                .setParameter("rol_Id", id);
+        //Query query = s.createSQLQuery("CALL SelectDatosRol(:id)")
+        //        .addEntity(DatosUsuario.class)
+        //        .setParameter("id", id);
         return query.list();
     }
 
@@ -440,5 +443,5 @@ public class ManagedBeanUsuarios {
     public void setDatosUsuariosFiltrados(List<DatosUsuario> datosUsuariosFiltrados) {
         this.datosUsuariosFiltrados = datosUsuariosFiltrados;
     }
-
+    
 }

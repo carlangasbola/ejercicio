@@ -29,6 +29,8 @@
                         <h4 class="colorpantone text-center">Unidades de aprendizaje asignadas que tiene este grupo </h4>
                         <p> Nombre del grupo : #{managedBeanGrupos.g.nombre}</p>
                         <p> Cupo de alumnos  : #{managedBeanGrupos.g.cupo}</p>
+                        <p> Docente  : #{managedBeanGrupos.g.unidadGrupos}</p>
+                        <p> Técnico  : #{managedBeanGrupos.g.unidadGrupos}</p>
                     </div>
                 </div>
 
@@ -82,7 +84,7 @@
                             <h:panelGroup>  
                                 <div class="col">
                                     <h6>2.- Crear una nueva unidad de aprendizaje </h6>
-                                    <p> Da clic en el boton que aparece debajo </p>
+                                    <p> Da clic en el botón que aparece debajo si no existen unidades de aprendizaje disponibles. </p>
                                     <button class="btn colorverde" jsf:outcome="unidadAprendizaje"> <i class="fas fa-plus"></i> Ir a creación de unidad de aprendizaje </button>
                                     <br/><br/><br/>
                                 </div>
@@ -96,17 +98,26 @@
                             <h:outputLabel for="Docente" value="Selecciona el Docente" />
                             <h:selectOneMenu id="Docente" value="#{datatableCheckBoxUnidadAprendizaje.idDocente}" styleClass="form-control" >
                                 <!-- Le mando el 2 por que indica los docentes -->
-                                <f:selectItems value="#{managedBeanUsuarios.obtenerUsuarios(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                                <f:selectItems value="#{managedBeanUsuarios.obtenerUsuariosRol(2)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
                             </h:selectOneMenu>
-
+                            
+                            <h:panelGrid rendered="#{empty managedBeanUsuarios.obtenerUsuariosRol(2)}"  >
+                                <p> <strong class="text-danger">No hay docentes dados de alta en el sistema</strong> </p>
+                            </h:panelGrid>
+                            
                             <br/>
-                            <h:outputLabel for="tecnico" value="Selecciona el Tecnico" />
+                            <h:outputLabel for="tecnico" value="Selecciona el Técnico" />
                             <h:selectOneMenu id="tecnico" value="#{datatableCheckBoxUnidadAprendizaje.idtecnico}" styleClass="form-control" >
                                 <!-- Le mando el 3 por que indica los tecnicos -->
-                                <f:selectItems value="#{managedBeanUsuarios.obtenerUsuarios(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
-                            </h:selectOneMenu>       
-
-                            <p:commandButton class="btn colorverde" value="Aceptar" action="#{datatableCheckBoxUnidadAprendizaje.crearUnidadGrupo()}" ajax="false" >  </p:commandButton>
+                                <f:selectItems value="#{managedBeanUsuarios.obtenerUsuariosRol(3)}" var="d" itemValue="#{d.getUsuarios().getIdUsuarios()}" itemLabel="#{d.nombre} #{d.apellidoPaterno} #{d.apellidoMaterno}" />
+                            </h:selectOneMenu>  
+                            
+                            <h:panelGrid rendered="#{empty managedBeanUsuarios.obtenerUsuariosRol(3)}"  >
+                                <p> <strong class="text-danger">No hay técnicos dados de alta en el sistema</strong> </p>
+                            </h:panelGrid>
+                            
+                            <br />
+                            <h:commandButton class="btn colorverde" value="Aceptar" action="#{datatableCheckBoxUnidadAprendizaje.crearUnidadGrupo()}" >  </h:commandButton>
 
                         </p:dialog>
                     </h:form>

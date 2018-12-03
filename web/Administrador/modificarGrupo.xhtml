@@ -39,7 +39,7 @@
                                 <h5 class="card-title"> Llena los datos a continuación, el cupo del grupo unicamente se puede ampliar </h5>
                                 <h:form>
                                     <label for="nombre"> Nombre </label>
-                                    <h:inputText id="nombre" value="#{managedBeanGrupos.nombregrupo}"  styleClass="form-control" ></h:inputText>
+                                    <h:inputText id="nombre" value="#{managedBeanGrupos.nombregrupo}" required="true"  styleClass="form-control" ></h:inputText>
                                     <br/>
                                     <label for="cupo"> Cupo </label>
                                     <input id="cupo" type="number" jsf:value="#{managedBeanGrupos.cupogrupo}" class="form-control"  min="#{managedBeanGrupos.g.cupo}" max="40" ></input>

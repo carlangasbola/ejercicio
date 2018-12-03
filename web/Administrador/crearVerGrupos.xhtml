@@ -6,7 +6,8 @@
       xmlns:h = "http://java.sun.com/jsf/html"
       xmlns:ui = "http://java.sun.com/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      >
     <h:body>
 
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
@@ -28,7 +29,7 @@
                         <h4 class="colorpantone text-center">Módulo de administración de Grupos</h4>
                         <p class="lead">Bienvenido al módulo de creación de grupos, da clic en crear y completa los
                             datos que se te piden.</p>
-                        <p >Una vez creado el grupo, da click en su nombre para añadir o visuzalizar
+                        <p >Una vez creado el grupo, da clic en su nombre para añadir o visuzalizar
                             las unidades de aprendizaje que tiene asignadas.</p>
                     </div>
                 </div>
@@ -54,16 +55,18 @@
                                     <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
+
                             <h:form>
-                                <ui:repeat var="g" value="#{ managedBeanGrupos.getGrupos() }" >
+                                <ui:repeat var="g"  value="#{managedBeanGrupos.listaGrupos}"  >
                                     <tr>
-                                        <td> <h:commandLink  value="#{g.nombre}" action="#{managedBeanGrupos.redirecionarGrupoUnidadesAprendizaje(g.idGrupo)}" /> </td>
-                                        <td>#{g.cupo}</td>
-                                        <!-- Agregar el metodo eliminar grupo -->
+                                        <td> 
+                                            <h:commandLink  value="#{g.nombre}" action="#{managedBeanGrupos.redirecionarGrupoUnidadesAprendizaje(g.idGrupo)}" /> 
+                                        </td>
                                         <td>
-                                            <a>
-                                                <h:commandButton styleClass="btn bg-info text-white" value="Modificar Grupo" action="#{managedBeanGrupos.redirecionarModificacionGrupo(g.idGrupo)}" > </h:commandButton>
-                                            </a>
+                                            #{g.cupo}
+                                        </td>
+                                        <td>
+                                            <h:commandButton styleClass="btn btn-link" value="Modificar Grupo" action="#{managedBeanGrupos.redirecionarModificacionGrupo(g.idGrupo)}" ></h:commandButton>
                                         </td>
                                         <td>
                                             <a jsf:action="#{managedBeanGrupos.eliminarGrupo(g.idGrupo)}"> Eliminar grupo </a>                        
@@ -104,7 +107,7 @@
                 </div>
 
                 <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
-              
+
             </ui:define> 
         </ui:composition>       
     </h:body>
