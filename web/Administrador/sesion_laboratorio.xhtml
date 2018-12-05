@@ -54,32 +54,24 @@
                                         </div>
                                     </div>
 
-                                    <h5 class="card-subtitle mb-2 text-muted my-4">Grupo y unidad de aprendizaje</h5>
-                                    <p class="text-muted"> Solo aparecen los grupos que tienen unidades de aprendizaje </p>
+                                    <h5 class="card-subtitle mb-2 text-muted my-4">Unidad Grupo</h5>
+                                    <p class="text-muted"> Grupo, Unidad de aprendizaje, Docente y técnico </p>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label" for="Grupo">Grupo </label>
-                                        <div class="col-sm-8">
-                                            <p:selectOneMenu id="country" value="#{dropdownViewGrupoUnidades.id_Grupo}" style="width: 300px">
-                                                <p:ajax listener="#{dropdownViewGrupoUnidades.onCountryChange}" update="city" />
-                                                <f:selectItem itemLabel="Selecciona el grupo" itemValue="" noSelectionOption="true" />
-                                                <f:selectItems value="#{dropdownViewGrupoUnidades.grupos}" />
-                                            </p:selectOneMenu>
-
-                                        </div>
+                                        <h:outputLabel for="ug" value="Selecciona la unidad Grupo" />
+                                        <h:selectOneMenu id="ug" value="#{dropdownViewGrupoUnidades.idUnidadGrupo}" styleClass="form-control" >
+                                            <!-- Le mando el 2 por que indica los docentes -->
+                                            <f:selectItems value="#{managedBeanGrupos.listaUnidadGrupo}" 
+                                                           var="ug" 
+                                                           itemValue="#{ug.idUnidadGrupo}" 
+                                                           itemLabel="#{ug.grupo.nombre} 
+                                                           #{ug.unidadAprendizaje.nombre} 
+                                                           #{ug.usuariosByIdUsuariosDocente.datosUsuario.nombre} #{ug.usuariosByIdUsuariosDocente.datosUsuario.apellidoPaterno} #{ug.usuariosByIdUsuariosDocente.datosUsuario.apellidoMaterno}
+                                                           #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.nombre} #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.apellidoPaterno} #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.apellidoMaterno}
+                                                           " />
+                                        </h:selectOneMenu>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label" for="ua">Unidad de Aprendizaje </label>
-                                        <div class="col-sm-8">
-
-                                            <p:selectOneMenu id="city" value="#{dropdownViewGrupoUnidades.id_UnidadAprendizaje}" style="width: 300px" >
-                                                <f:selectItem itemLabel="Selecciona la unidad de aprendizaje" itemValue="" noSelectionOption="true" />
-                                                <f:selectItems value="#{dropdownViewGrupoUnidades.unidades_aprendizaje}" />
-                                            </p:selectOneMenu>
-
-                                        </div>
-                                    </div>
 
                                     <div class="form-group ">
                                         <button class="btn colorverde text-white" type="submit" jsf:action="#{dropdownViewGrupoUnidades.crearSesionLaboratorio()}" >

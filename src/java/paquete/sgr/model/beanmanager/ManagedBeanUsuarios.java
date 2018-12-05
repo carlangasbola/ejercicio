@@ -156,7 +156,7 @@ public class ManagedBeanUsuarios {
     public void actualizarContrasena() {
         ConsultasHQL consulta = new ConsultasHQL();
         Mensajes msj = new Mensajes();
-        String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+        //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 
         // Obtenemos el id del usuario 
         int idUsuario = (int) consulta.obtenerDatosSesion("UserId");
@@ -168,12 +168,12 @@ public class ManagedBeanUsuarios {
                 
                 // Si no es igual a la expresion regular nos manda error
                 // No esta testeado
-                if (!passnew.matches(pattern)) {
-                    msj.setTitulo("Mensaje del sistema");
-                    msj.setMensaje("La nueva contraseña no contiene la estructura definida");
-                    msj.MensajePrecaucion();
-                    return;
-                }
+          //      if (!passnew.matches(pattern)) {
+          //          msj.setTitulo("Mensaje del sistema");
+          //          msj.setMensaje("La nueva contraseña no contiene la estructura definida");
+          //          msj.MensajePrecaucion();
+          //          return;
+                
 
                 Usuarios user = (Usuarios) u.get(0);
                 user.setPasssword(passnew);
@@ -203,16 +203,16 @@ public class ManagedBeanUsuarios {
         Session s  = consulta.obtenerSession();
         Transaction tx = s.beginTransaction();
         int idUsuario = getIdUsuarioSession();
-        consulta.crearListPair("userId", idUsuario);
-        List<DatosUsuario> dulist = consulta.crearSelectQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId ");
-
+       
         u = (Usuarios) s.get(Usuarios.class, idUsuario);
-
+        Query q = s.createQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId")
+                   .setParameter("userId", idUsuario);
+        
         if (password.equals(u.getPasssword())) {
             try {
 
                 // Si no tiene datos de usuario
-                if (dulist.isEmpty()) {
+                if ( q.list().isEmpty() ) {
                     // Obtenemos la referencia a datos de usuario
                     du.setUsuarios(u);
                     du.setIdentificador(identificador);

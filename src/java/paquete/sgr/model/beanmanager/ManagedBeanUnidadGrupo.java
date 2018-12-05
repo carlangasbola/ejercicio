@@ -3,13 +3,14 @@ package paquete.sgr.model.beanmanager;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
 import paquete.sgr.beans.ConsultasHQL;
 import paquete.sgr.entity.pojos.ListaGrupo;
 import paquete.sgr.entity.pojos.UnidadGrupo;
 
 @Named(value = "managedBeanUnidadGrupo")
-@Dependent
+@RequestScoped
 public class ManagedBeanUnidadGrupo {
 
     private int idDocente;

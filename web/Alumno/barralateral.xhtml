@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     
     <h:body class="sidebar-toggled">
         <ui:composition> 
@@ -27,19 +28,6 @@
                     </div>
                 </li>
 
-                <li class='nav-item dropdown'>
-                    <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'
-                       aria-expanded='false'>
-                        <i class='fas fa-chalkboard-teacher'></i>
-                        <span class='mr-2'>Módulo de grupos y unidad de aprendizaje</span>
-                        <i class='fas fa-caret-down '></i>
-                    </a>
-                    <div class='dropdown-menu' aria-labelledby='pagesDropdown'>
-                        <h6 class='dropdown-header'>Selecciona una opción:</h6>
-                        <a class='dropdown-item' href='crearVerGrupos.xhtml'>Crear y ver grupos</a>
-                        <a class='dropdown-item' href='unidadAprendizaje.xhtml'>Crear unidad de aprendizaje</a>
-                    </div>
-                </li>
                 
                 <li class='nav-item dropdown'>
                     <a class='nav-link ' href='#' id='pagesDropdown' role='button' data-toggle='dropdown'
@@ -50,9 +38,10 @@
                     </a>
                     <div class='dropdown-menu' aria-labelledby='pagesDropdown'>
                         <h6 class='dropdown-header'>Selecciona una opción:</h6>
-                        <a class='dropdown-item' href='sesion_laboratorio.xhtml'>Crear evento sesión de laboratorio</a>
-                        <a class='dropdown-item' href='evento.xhtml'>Crear evento entrega de práctica</a>
-                        <a class='dropdown-item' href='modEventos.xhtml'>Ver calendario de eventos</a>
+                        <h:form>
+                            <button class="dropdown-item btn btn-link" jsf:action="#{scheduleView.obtenerEventosAlumno()}" >Visualizar eventos</button>
+                        
+                        </h:form>
                     </div>
                 </li>
 

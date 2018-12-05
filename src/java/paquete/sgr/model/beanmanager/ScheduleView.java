@@ -20,6 +20,7 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 import paquete.sgr.beans.ConsultasHQL;
 import paquete.sgr.entity.pojos.Eventos;
+import paquete.sgr.entity.pojos.ListaGrupo;
 import paquete.sgr.entity.pojos.SesionDeLaboratorio;
 
 @ManagedBean
@@ -64,6 +65,52 @@ public class ScheduleView implements Serializable {
         }
 
     }
+    
+    public String obtenerEventosAlumno(){
+       
+        int idUnidadGrupo;     
+        List<ListaGrupo> listaGrupo;
+        ConsultasHQL consulta = new ConsultasHQL();
+        int idAlumno = (int) consulta.obtenerDatosSesion("UserId");
+        consulta.crearListPair("idAlumno", idAlumno);
+        listaGrupo = consulta.crearSelectQuery("FROM ListaGrupo where usuarios.idUsuarios = :idAlumno");
+        // Obtenemos el id de Unidad Grupo (Este codigo solo busca 1 deberia buscar n)
+        idUnidadGrupo = listaGrupo.get(0).getUnidadGrupo().getIdUnidadGrupo();
+        
+        // Aqui empieza lo de los eventos
+        eventModel = new DefaultScheduleModel();
+
+        consulta.crearListPair("idUnidadA", idUnidadGrupo);
+        List<SesionDeLaboratorio> sls = consulta.crearSelectQuery("FROM SesionDeLaboratorio WHERE unidadGrupo.idUnidadGrupo = :idUnidadA");
+
+        for (SesionDeLaboratorio sl : sls) {
+            eventModel
+                    .addEvent(
+                            new DefaultScheduleEvent("Grupo : " + //sl.getGrupo().getNombre() + "\n" +
+                                                     "Unidad Aprendizaje: " + //sl.getUnidadAprendizaje().getNombre() + "\n"+
+                                                     "Docente Auxiliar: " + sl.getDocenteAuxiliar(),
+                                    sl.getFecha(),
+                                    sl.getFecha()
+                            ));
+        }
+        
+        consulta.crearListPair("idUnidadA", idUnidadGrupo);
+        List<Eventos> evs = consulta.crearSelectQuery("FROM Eventos WHERE unidadGrupo.idUnidadGrupo = :idUnidadA");
+        
+        for (Eventos e : evs) {
+            eventModel
+                    .addEvent(
+                            new DefaultScheduleEvent("Entrega de práctica :" + "\n" +
+                                                     "Titulo :" + e.getNombre() +"\n"+
+                                                     "Grupo " + e.getUnidadGrupo().getGrupo().getNombre() + "\n" +
+                                                      e.getUnidadGrupo().getUnidadAprendizaje().getNombre(),
+                                    e.getFecha(),
+                                    e.getFecha()
+                            ));
+        }
+        return "modEventos";
+    }
+    
 
     public Date getInitialDate() {
         Calendar calendar = Calendar.getInstance();

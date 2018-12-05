@@ -189,6 +189,10 @@ public class ManagedBeanIncidencias {
     }
 
     public List<ReporteIncidencia> getReporteIncidencia() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.obtenerSession();
+        Query q = s.createQuery("FROM ReporteIncidencia");
+        reporteIncidencia = q.list();
         return reporteIncidencia;
     }
 

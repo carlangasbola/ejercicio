@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                         <h:form>
-                            <ui:repeat value="#{Incidencias.obtenerReportes()}" var="ri" varStatus="status">
+                            <ui:repeat value="#{Incidencias.reporteIncidencia}" var="ri" varStatus="status">
                                 <tr>
                                     <!-- Este es unicamente para el conteo no tiene nada que ver en la base -->
                                     <th scope="row">#{status.index +1}</th>

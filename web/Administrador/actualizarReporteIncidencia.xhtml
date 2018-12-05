@@ -50,7 +50,9 @@
                                             <f:selectItems value="#{Incidencias.obtenerSesiones()}" 
                                                            var="i" 
                                                            itemValue="#{i.idSesion}" 
-                                                           itemLabel="#{i.fecha} #{i.grupo.nombre} #{i.unidadAprendizaje.nombre}" />
+                                                           itemLabel="#{i.fecha} 
+                                                                      #{i.unidadGrupo.grupo.nombre} 
+                                                                      #{i.unidadGrupo.unidadAprendizaje.nombre}" />
                                         </h:selectOneMenu>
                                     </div>
 

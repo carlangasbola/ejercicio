@@ -19,7 +19,6 @@ import paquete.sgr.entity.pojos.Grupo;
 import paquete.sgr.entity.pojos.SesionDeLaboratorio;
 import paquete.sgr.entity.pojos.UnidadAprendizaje;
 import paquete.sgr.entity.pojos.UnidadGrupo;
-import paquete.sgr.entity.pojos.Usuarios;
 import paquete.sgr.model.beanmanager.ManagedBeanSesionLaboratorio;
 import paquete.sgr.model.beanmanager.Mensajes;
 
@@ -52,7 +51,6 @@ public class DropdownViewGrupoUnidades implements Serializable {
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.obtenerSession();
         Map<String, String> map;
-        Grupo grupo = new Grupo();
         Query query = s.createSQLQuery("CALL SelectGrupoUnidadAprendizaje()").addEntity(Grupo.class);
         List<Grupo> group = query.list();
 
@@ -89,13 +87,7 @@ public class DropdownViewGrupoUnidades implements Serializable {
         e.setNombre(nombre);
         e.setFecha(sesionLaboratorio.getFechaSesison());
         e.setDescripcion(descripcion);
-       // e.setGrupo(g);
         e.setUnidadGrupo(ug);
-
-        //sl.setFecha(sesionLaboratorio.getFechaSesison());
-        //sl.setUnidadAprendizaje(ua);
-        //sl.setDocenteAuxiliar(sesionLaboratorio.getDocenteAuxiliar());
-        //sl.setGrupo(g);
 
         if (consulta.insertarObjeto(e)) {
             msj.setTitulo("Exíto");
@@ -117,17 +109,15 @@ public class DropdownViewGrupoUnidades implements Serializable {
         
         Mensajes msj = new Mensajes();
         ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.getHibernateSession();
+        Session s = consulta.obtenerSession();
+        UnidadGrupo ug = new UnidadGrupo();
         SesionDeLaboratorio sl = new SesionDeLaboratorio();
-
-        UnidadAprendizaje ua = (UnidadAprendizaje) s.load(UnidadAprendizaje.class, Integer.parseInt( id_UnidadAprendizaje ));
-        Grupo g = (Grupo) s.load(Grupo.class, Integer.parseInt(id_Grupo ));
-        Usuarios u = (Usuarios) s.load(Usuarios.class, sesionLaboratorio.getIdTecnico());
-
+        
+        ug = (UnidadGrupo) s.get(UnidadGrupo.class, idUnidadGrupo);
+        
         sl.setFecha(sesionLaboratorio.getFechaSesison());
-   //     sl.setUnidadAprendizaje(ua);
         sl.setDocenteAuxiliar(sesionLaboratorio.getDocenteAuxiliar());
-   //     sl.setGrupo(g);
+        sl.setUnidadGrupo(ug);
 
         if (consulta.insertarObjeto(sl)) {
             msj.setTitulo("Exíto");

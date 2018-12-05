@@ -1,0 +1,87 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                </h:form>
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Modificación de información</li>
+                </ol>
+                <!-- END -->
+
+                <!-- Page Content -->
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="text-center my-3">Modificación de información</h2>
+                        <h5 class="text-center my-3">Llena o actualiza los datos se presentan a continuación, no dejes campos en blanco.
+                            Al finalizar se te solicitará la contraseña de confirmación</h5>
+                    </div>
+                </div>
+
+                <form jsf:id="formactualizardatos">
+                    <div class="row  p-2 ">
+                        <div class="col-12 col-md">
+                            <div class="form-group  ">
+                                <label for="name">Nombre</label>
+                                <input type="text" jsf:value="#{managedBeanUsuarios.nombre}" class="form-control form-control-sm" id="name" required="true"/>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label for="apaterno">Apellido paterno</label>
+                                <input type="text" jsf:value="#{managedBeanUsuarios.paterno}" class="form-control form-control-sm" id="apaterno" required="true"/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="amaterno">Apellido materno</label>
+                                <input type="text" jsf:value="#{managedBeanUsuarios.materno}" class="form-control form-control-sm" id="amaterno" required="true"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md">  
+                            <div class="form-group ">
+                                <label for="tel">Teléfono</label>
+                                <input type="tel" jsf:value="#{managedBeanUsuarios.telefono}" class="form-control form-control-sm" id="tel" required="true"/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="email">Correo</label>
+                                <input type="email" jsf:value="#{managedBeanUsuarios.correo}" class="form-control form-control-sm" id="email" required="true"/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="unico">Mátricula o número de boleta</label>
+                                <input type="text" jsf:value="#{managedBeanUsuarios.identificador}" class="form-control form-control-sm" id="unico" required="true"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md">
+                            <div class="form-group ">
+                                <label for="numseg">Número de seguro</label>
+                                <input type="number" jsf:value="#{managedBeanUsuarios.numeroSeguro}" class="form-control form-control-sm" id="numseg" required="true"/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="pass">Contraseña ( Para confirmar cambios )</label>
+                                <input type="password" jsf:value="#{managedBeanUsuarios.password}" class="form-control form-control-sm" id="pass" required="true"/>
+                            </div>
+
+                            <button  type="submit" jsf:action="#{managedBeanUsuarios.actualizaUsuario()}" class="btn btn-success">Actualizar datos</button>
+                        </div> 
+                    </div>
+                </form>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>
