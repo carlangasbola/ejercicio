@@ -76,9 +76,14 @@
                                                                var="ug" 
                                                                itemValue="#{ug.idUnidadGrupo}" 
                                                                itemLabel="#{ug.grupo.nombre} 
-                                                               #{ug.grupo.nombre} 
-                                                               #{ug.usuariosByIdUsuariosDocente.datosUsuario.nombre}
-                                                               #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.nombre}" />
+                                                               #{ug.unidadAprendizaje.nombre} 
+                                                               #{ug.usuariosByIdUsuariosDocente.datosUsuario.nombre} 
+                                                               #{ug.usuariosByIdUsuariosDocente.datosUsuario.apellidoMaterno}
+                                                               #{ug.usuariosByIdUsuariosDocente.datosUsuario.apellidoPaterno}
+                                                               #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.nombre}
+                                                               #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.apellidoMaterno}
+                                                               #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.apellidoPaterno}
+                                                               " />
                                             </h:selectOneMenu>
 
                                         </div>

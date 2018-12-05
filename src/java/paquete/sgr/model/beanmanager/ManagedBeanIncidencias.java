@@ -1,10 +1,14 @@
 package paquete.sgr.model.beanmanager;
 
+import java.io.Serializable;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.flow.FlowScoped;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
@@ -17,7 +21,7 @@ import paquete.sgr.entity.pojos.SesionDeLaboratorio;
  */
 @Named(value = "Incidencias")
 @RequestScoped
-public class ManagedBeanIncidencias {
+public class ManagedBeanIncidencias  {
 
     private List<SesionDeLaboratorio> sesion;
     private List<ReporteIncidencia> reporteIncidencia;
@@ -31,6 +35,19 @@ public class ManagedBeanIncidencias {
     private ReporteIncidencia reporte;
 
     public ManagedBeanIncidencias() {
+    }
+
+    @PostConstruct
+    public void init() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        Session s = consulta.obtenerSession();
+        Query q = s.createQuery("FROM ReporteIncidencia");
+        reporteIncidencia = q.list();
+        
+        // Sesiones de laboratorio
+        q = s.createQuery("FROM SesionDeLaboratorio");
+        sesion = q.list();
+        
     }
 
     public String obtenerReporte(int id) {
@@ -52,9 +69,9 @@ public class ManagedBeanIncidencias {
         Session s = consulta.obtenerSession();
         ReporteIncidencia ri = new ReporteIncidencia();
         ri = (ReporteIncidencia) s.load(ReporteIncidencia.class, id);
-        
+
         reporte = ri;
-        
+
         nombre = ri.getNombre();
         observaciones = ri.getObservaciones();
         ri.getSesionDeLaboratorio().getFecha();
@@ -75,14 +92,14 @@ public class ManagedBeanIncidencias {
 
     public void eliminarReporte(int id) {
         ConsultasHQL consulta = new ConsultasHQL();
+        ReporteIncidencia ri = new ReporteIncidencia();
         Session s = consulta.obtenerSession();
-        Query q = s.createQuery("DELETE ReporteIncidencia WHERE idReporte = :idrepor").setParameter("idrepor", id);
-        q.executeUpdate();
+        ri = (ReporteIncidencia) s.get(ReporteIncidencia.class, id);
+        consulta.eliminarObjeto(id);
     }
 
     public List<SesionDeLaboratorio> obtenerSesiones() {
         ConsultasHQL consulta = new ConsultasHQL();
-        sesion = new ArrayList<>();
         Session s = consulta.obtenerSession();
         Query q = s.createQuery("FROM SesionDeLaboratorio");
         sesion = q.list();
@@ -189,10 +206,6 @@ public class ManagedBeanIncidencias {
     }
 
     public List<ReporteIncidencia> getReporteIncidencia() {
-        ConsultasHQL consulta = new ConsultasHQL();
-        Session s = consulta.obtenerSession();
-        Query q = s.createQuery("FROM ReporteIncidencia");
-        reporteIncidencia = q.list();
         return reporteIncidencia;
     }
 

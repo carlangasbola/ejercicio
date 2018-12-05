@@ -49,7 +49,7 @@ public class ScheduleView implements Serializable {
                             ));
         }
         
-        consulta = new ConsultasHQL();
+        
         List<Eventos> evs = consulta.crearSelectQuery("FROM Eventos");
         
         for (Eventos e : evs) {
