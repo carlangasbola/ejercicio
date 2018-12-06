@@ -126,15 +126,14 @@
                 </div>
             </div>
             
-            <h:selectOneMenu id="uni" value="#{managedBeanPractica.idUnidadAprendizaje}" styleClass="form-control" >
-                <!-- Le mando el 2 por que indica los docentes -->
+            <h:selectOneMenu id="uni" value="#{managedBeanAdminPracticas.idUnidadTematica}" styleClass="form-control" >
                 <f:selectItems value="#{managedBeanAdminPracticas.unidadesT}" var="u" itemValue="#{u.idUnidadTematica}" itemLabel="#{u.nombre}" />
             </h:selectOneMenu>
             
             <div class="row mt-3">
                 <div class="col">
                     <form method="POST" jsf:id="form4">
-                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanAdminPracticas.crearPractica(managedBeanPractica.idUnidadAprendizaje)}" style="float:left">GUARDAR</button>
+                        <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanAdminPracticas.crearPractica()}" style="float:left">GUARDAR</button>
                     </form>
                 </div>
             </div>

@@ -34,35 +34,6 @@ public class Practicas {
     public Practicas(){
 
     }
-    
-    public void imprime(){
-        System.out.println("Semestre: " + getSemestre());
-        System.out.println("Numero de practica: " + getNumeropractica());
-        System.out.println("titulo de practica: " + getTitulopractica());
-        for (int i=0;i<autor.size();i++)
-			System.out.println(autor.get(i));
-        System.out.println("Editor: " + getEditor());
-        System.out.println("Objetivos: " + getObjetivos());
-        System.out.println("Actividades previas: " + getActividadesprevias());
-        System.out.println("Introduccion: " + getIntroduccion());
-        for(Materiales item:getListamaterial())
-            System.out.println("Cantidad: " + item.getCantidad() + " Material: " + item.getNombre());
-        for(Equipos item:getListaequipo())
-            System.out.println("Cantidad: " + item.getCantidad() + " Equipo: " + item.getNombre());
-        for(Reactivo item:getListareactivos())
-            System.out.println("Cantidad: " + item.getCantidad() + " Reactivo: " + item.getNombre());
-        System.out.println("Competencias: " + getCompetencias());
-        System.out.println("Desarrollo experimental: " + getDesarrolloexperimental());
-        System.out.println("Registro de datos: " + getRegistrodedatos());
-        System.out.println("Resultados: " + getResultados());
-        System.out.println("Analisis de resultados: " + getAnalisisderesultados());
-        System.out.println("Referencias: " + getReferencias());
-        System.out.println("Nomenclatura: " + getNomenclatura());
-        System.out.println("Anexos: " + getAnexos());
-        System.out.println("Protocolos de actuacion: " + getProtocolosdeactuacion());
-        System.out.println("Recomendaciones: " + getRecomendaciones());
-        System.out.println("Semaforo: " + getSemaforo());
-    }
 
     @Override
     public int hashCode() {
@@ -91,9 +62,7 @@ public class Practicas {
         hash = 97 * hash + Objects.hashCode(this.semaforo);
         return hash;
     }
-
     
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -174,9 +143,7 @@ public class Practicas {
         }
         return true;
     }
-
     
-
     public String getSemestre() {
         return semestre;
     }

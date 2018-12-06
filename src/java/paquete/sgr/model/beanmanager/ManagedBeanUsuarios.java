@@ -447,5 +447,5 @@ public class ManagedBeanUsuarios {
     public void setDatosUsuariosFiltrados(List<DatosUsuario> datosUsuariosFiltrados) {
         this.datosUsuariosFiltrados = datosUsuariosFiltrados;
     }
-
+    
 }

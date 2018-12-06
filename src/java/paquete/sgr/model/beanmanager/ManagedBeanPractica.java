@@ -76,7 +76,6 @@ public class ManagedBeanPractica implements Serializable {
         practica.listamaterial=ManagedBeanMaterial.list;
         practica.listaequipo=ManagedBeanEquipo.lista;
         practica.listareactivos=ManagedBeanReactivos.lista;
-        practica.imprime();
     }
         
     public void printPDF() throws JRException, IOException, CloneNotSupportedException{
@@ -122,7 +121,6 @@ public class ManagedBeanPractica implements Serializable {
 		out.append(LeeArchivo("C:\\Practicas\\Creacion\\inicio.txt") + LlenaContenido() + LeeArchivo("C:\\Practicas\\Creacion\\fin.txt"));
 		out.flush();
 		out.close();
-	        
 	    } 
 	   catch (UnsupportedEncodingException e) 
 	   {
@@ -141,24 +139,24 @@ public class ManagedBeanPractica implements Serializable {
     public String LlenaContenido(){
             String salida;
             //Requisitos
-            salida= "<br/><center><span style=\"font-size:16px\"><strong>" + practica.titulopractica + "</strong></span></center><br/><br/>";
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>OBJETIVOS</strong></span></left><br/><br/>" + practica.objetivos;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ACTIVIDADES PREVIAS</strong></span></left><br/><br/>" + practica.actividadesprevias;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>INTRODUCCIÓN</strong></span></left><br/><br/>" + practica.introduccion;
+            salida="<br/><center><span style=\"font-size:16px\"><strong>" + practica.titulopractica + "</strong></span></center><br/><br/>";
+            salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>OBJETIVOS</strong></span></left><br/><br/>" + practica.objetivos;
+            salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ACTIVIDADES PREVIAS</strong></span></left><br/><br/>" + practica.actividadesprevias;
+            salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>INTRODUCCIÓN</strong></span></left><br/><br/>" + practica.introduccion;
             //Materiales y equipo
             
             //Desarrollo de la practica
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>DESARROLLO EXPERIMENTAL</strong></span></left><br/><br/>" + practica.desarrolloexperimental;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>REGISTRO DE DATOS</strong></span></left><br/><br/>" + practica.registrodedatos;
-            salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>RESULTADOS</strong></span></left><br/><br/>" + practica.resultados;
-            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANÁLISIS DE RESULTADOS</strong></span></left><br/><br/>" + practica.analisisderesultados;
+            salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>DESARROLLO EXPERIMENTAL</strong></span></left><br/><br/>" + practica.desarrolloexperimental;
+            salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>REGISTRO DE DATOS</strong></span></left><br/><br/>" + practica.registrodedatos;
+            salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>RESULTADOS</strong></span></left><br/><br/>" + practica.resultados;
+            salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANÁLISIS DE RESULTADOS</strong></span></left><br/><br/>" + practica.analisisderesultados;
             //Información adicional
-            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>REFERENCIAS</strong></span></left><br/><br/>" + practica.referencias;
-            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>NOMENCLATURA</strong></span></left><br/><br/>" + practica.nomenclatura;
-            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANEXOS</strong></span></left><br/><br/>" + practica.anexos;
-            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>PROTOCOLOS DE ACTUACIÓN</strong></span></left><br/><br/>" + ManagedBeanReactivos.protocolos;
-            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>RECOMENDACIONES</strong></span></left><br/><br/>" + ManagedBeanReactivos.recomendaciones;
-            //salida= salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>SEMÁFORO</strong></span></left><br/><br/>" + ManagedBeanReactivos.semaforo;
+            //salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>REFERENCIAS</strong></span></left><br/><br/>" + practica.referencias;
+            //salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>NOMENCLATURA</strong></span></left><br/><br/>" + practica.nomenclatura;
+            //salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>ANEXOS</strong></span></left><br/><br/>" + practica.anexos;
+            //salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>PROTOCOLOS DE ACTUACIÓN</strong></span></left><br/><br/>" + ManagedBeanReactivos.protocolos;
+            //salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>RECOMENDACIONES</strong></span></left><br/><br/>" + ManagedBeanReactivos.recomendaciones;
+            //salida=salida + "<br/><br/><left><span style=\"font-size:16px\"><strong>SEMÁFORO</strong></span></left><br/><br/>" + ManagedBeanReactivos.semaforo;
             
         return salida;
     }
@@ -186,6 +184,7 @@ public class ManagedBeanPractica implements Serializable {
     }
     
     public void preparaDescarga(String direccion) throws Exception {
+        ImprimePDF();
         direccion="C:\\Practicas\\Archivos\\" + practica.titulopractica + ".pdf";
         File archivo = new File(direccion);
         InputStream entrada = new FileInputStream(archivo);

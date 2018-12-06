@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                </h:form>
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Módulo de prácticas</li>
+                </ol>
+                <!-- END -->
+
+                <!-- Page Content -->
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Módulo de prácticas</h4><br/>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Grupo</th>
+                                    <th scope="col">Unidad de aprendizaje</th>
+                                    <th scope="col">Selección de práctica</th>
+                                    <th scope="col">Asignar práctica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <h:form>
+                                    <ui:repeat var="p" value="#{managedBeanAdminPracticas.unidad}" >
+                                        <tr>
+                                            <td>#{p.grupo.nombre}</td>
+                                            <td>#{p.unidadAprendizaje.nombre}</td>
+                                            <td><h:selectOneMenu id="uni" value="#{managedBeanAdminPracticas.idUnidadTematica}" styleClass="form-control" >
+                                                <f:selectItems value="#{managedBeanAdminPracticas.unidadesT}" var="u" itemValue="#{u.idUnidadTematica}" itemLabel="#{u.nombre}" />
+                                                </h:selectOneMenu></td>
+                                            <td>Asignar</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </h:form>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

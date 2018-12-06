@@ -4,11 +4,16 @@
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
       xmlns:ui = "http://java.sun.com/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
     <h:body>
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
         <ui:composition template = "common.xhtml">		
             <ui:define name = "content">
+
+                <h:form>  
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                </h:form>
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -16,12 +21,18 @@
                     </li>
                     <li class="breadcrumb-item active">Módulo de prácticas</li>
                 </ol>
+                <!-- END -->
+
+                <!-- Page Content -->
                 <div class="row text-center mt-2">
                     <div class="col">
-                        <h4 class="colorpantone text-center">Bienvenido al módulo de creación de practicas</h4>
-                        <p class="lead">Estas son las practicas que han sido creadas o en su caso puedes crear una dando clic a continuación</p>
+                        <h4 class="colorpantone text-center">Módulo de prácticas</h4><br/>
+                    </div>
+                </div>
+                <div class="row text-center mt-2">
+                    <div class="col">
                         <h:form>
-                            <button type="button" class=" btn  my-3" jsf:outcome="creacionPractica1" >Crear una nueva práctica</button>
+                            <h:commandButton styleClass="btn colorboton my-3" type="submit" action="#{managedBeanAdminPracticas.practicasDocente()}" value="Asignar práctica"></h:commandButton>
                         </h:form>
                     </div>
                 </div>
@@ -32,12 +43,10 @@
                                 <tr>
                                     <th scope="col">Datos</th>
                                     <th scope="col">Título de la práctica</th>
-                                    <th scope="col">Editor</th>
-                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Unidad de aprendizaje</th>
+                                    <th scope="col">Unidad temática</th>
                                     <th scope="col">Nivel de riesgo</th>
-                                    <th scope="col">Asignar a grupo</th>
-                                    <th scope="col">Modificar</th>
-                                    <th scope="col">Eliminar</th>
+                                    <th scope="col">Asignar práctica</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,12 +55,10 @@
                                         <tr>
                                             <td><a jsf:action="#{managedBeanAdminPracticas.asigna(p.idPractica)}">Ver</a></td>
                                             <td>#{p.datosPractica.nombre}</td>
-                                            <td>#{p.datosPractica.editor}</td>
-                                            <td>#{p.creacion}</td>
+                                            <td>#{p.unidadTematica.unidadAprendizaje.nombre}</td>
+                                            <td>#{p.unidadTematica.nombre}</td>
                                             <td>#{p.datosPractica.semaforo}</td>
-                                            <td>Asignar a grupo</td>
-                                            <td>Modificar</td>
-                                            <td><a jsf:action="#{managedBeanAdminPracticas.eliminarPractica(p.idPractica)}">Eliminar</a></td>
+                                            <td><a jsf:action="#{managedBeanAdminPracticas.asignaPractica(p.idPractica, managedBeanAdminPracticas.guardaIdUnidadAprendizaje(p.unidadTematica.unidadAprendizaje.idUnidadAprendizaje))}">Asignar</a></td>
                                         </tr>
                                     </ui:repeat>
                                 </h:form>
@@ -59,8 +66,11 @@
                         </table>
                     </div>
                 </div>
+                
+                
+
                 <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
-                <script src="../vendor/jquery/jquery.min.js"></script> 
+                
             </ui:define> 
         </ui:composition>       
     </h:body>

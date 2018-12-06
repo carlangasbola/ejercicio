@@ -1,0 +1,153 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
+    <h:body>
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Datos práctica</li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.nombre}</h4>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                            I Requisitos
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Autor</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.usuarios.datosUsuario.nombre} #{managedBeanAdminPracticas.practicaAuxiliar.usuarios.datosUsuario.apellidoPaterno} #{managedBeanAdminPracticas.practicaAuxiliar.usuarios.datosUsuario.apellidoMaterno}
+                            </li>
+                            <li class="list-group-item"><strong>Objetivos:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.objetivos}
+                            </li>
+                            <li class="list-group-item"><strong>Actividades previas:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.actividadesPrevias}
+                            </li>           
+                            <li class="list-group-item"><strong>Introducción:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.introducion}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+           
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                           II Materiales y Equipo
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Reactivos:</strong>
+                                <ui:repeat var="item1" value="#{managedBeanAdminPracticas.getReactivos(managedBeanAdminPracticas.practicaAuxiliar.idPractica)}" >
+                                    <br />
+                                    Cantidad:   #{item1.reactivos.cantidad}   Nombre:   #{item1.reactivos.nombre}
+                                </ui:repeat>
+                            </li>
+                            
+                            
+                            <li class="list-group-item"><strong>Material</strong>:
+                                <ui:repeat var="item2" value="#{managedBeanAdminPracticas.getMaterial(managedBeanAdminPracticas.practicaAuxiliar.idPractica)}" >
+                                    <br />
+                                    Cantidad:   #{item2.material.cantidad}   Nombre:   #{item2.material.nombre}
+                                </ui:repeat>
+                            </li>
+                            
+                            
+                            <li class="list-group-item"><strong>Equipo</strong>:
+                                <ui:repeat var="item3" value="#{managedBeanAdminPracticas.getEquipo(managedBeanAdminPracticas.practicaAuxiliar.idPractica)}" >
+                                    <br />
+                                    Cantidad:   #{item3.equipoLaboratorio.cantidad}   Nombre:   #{item3.equipoLaboratorio.nombre}
+                                </ui:repeat>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                           III Desarrollo de la práctica
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Desarrollo experimental:</strong>
+                                <br/><hr/>
+                                 <h:outputText value="#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.desarrollo}" escape="false" /> 
+                                
+                            </li>
+                            <li class="list-group-item"><strong>Registro de datos:</strong>
+                                <br/><hr/>
+                                <h:outputText value="#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.registroDatos}" escape="false" /> 
+                                
+                                
+                            </li>
+                            <li class="list-group-item"><strong>Resultados:</strong>
+                                <br/><hr/>
+                                <h:outputText value="#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.resultados}" escape="false" /> 
+                                
+                            </li>
+                            <li class="list-group-item"><strong>Análisis de resultados:</strong>
+                                <br/><hr/>
+                                <h:outputText value="#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.analisisResultados}" escape="false" /> 
+                                
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-header colortitulo text-white">
+                          IV  Información adicional
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Referencias:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.referencias}
+                            </li>
+                            <li class="list-group-item"><strong>Nomenclatura:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.nomeclantura}
+                            </li>
+                            <li class="list-group-item"><strong>Anexos:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.anexos}
+                            </li>
+                            <li class="list-group-item"><strong>Protocolos de actuación:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.protocolos}
+                            </li>
+                            <li class="list-group-item"><strong>Recomendaciones:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.recomendaciones}
+                            </li>
+                            <li class="list-group-item"><strong>Semáforo:</strong>
+                                <br/><hr/>#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.semaforo}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+            <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

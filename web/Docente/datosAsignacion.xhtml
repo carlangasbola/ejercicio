@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+
+                 
+                    <p:growl id="growl" showDetail="true" sticky="false"  />  
+                
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Datos de asignación</li>
+                </ol>
+                <!-- END -->
+                
+                <!-- Page Content -->
+                
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="card">
+                            <h5 class="card-header ">Datos de asignación</h5>
+                            <div class="card-body">
+                                <div class="row text-center mt-2">
+                                    <div class="col">
+                                        <h4 class="colorpantone text-center">#{managedBeanAdminPracticas.practicaAuxiliar.datosPractica.nombre}</h4>
+                                    </div>
+                                </div>
+                                <h:form>
+                                    <div class="form-group">
+                                        
+                                        
+                                        <h:selectOneMenu value="#{managedBeanAdminPracticas.idUnidadGrupo}" id="sesiones" styleClass="form-control">
+                                            <f:selectItems value="#{managedBeanAdminPracticas.unidadesDisponibles()}"
+                                                           var="i" 
+                                                           itemValue="#{i.idUnidadGrupo}" 
+                                                           itemLabel="#{i.grupo.nombre}  #{i.idUnidadGrupo}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        >Selecciona una fecha de inicio de entrega (El alumno tendrá 1 semana para subir el reporte)<br/><br/>
+                                        <p:calendar id="restricted" value="#{managedBeanAdminPracticas.fechaAsignacion}" pattern="MM/dd/yyyy HH:mm:ss"  />
+                                    </div>
+                                    <button type="submit" class="anteriorsiguiente successansig form-control mt-2 col-sm-2" jsf:action="#{managedBeanAdminPracticas.guardaFechaEntregaPractica()}" style="float:left">Guardar</button>
+                                        
+                                </h:form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

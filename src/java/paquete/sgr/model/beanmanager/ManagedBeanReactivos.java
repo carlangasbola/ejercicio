@@ -91,7 +91,7 @@ public class ManagedBeanReactivos implements Serializable {
             }
             ManagedBeanPractica.practica.recomendaciones="Práctica con riesgo minimo: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Se puede almacenar juntos.";
             ManagedBeanPractica.practica.protocolosdeactuacion="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
-            ManagedBeanPractica.practica.semaforo="/resources/semaforo/semaforob.png";
+            ManagedBeanPractica.practica.semaforo="Riesgo bajo";
         }
         
         else{
@@ -122,7 +122,7 @@ public class ManagedBeanReactivos implements Serializable {
             }
             ManagedBeanPractica.practica.recomendaciones="Práctica con riesgo medio: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en distintos compartimientos. Puede requeririse una separacion longitudinal o vertical constituida por un compartimiento intermedio completo.";
             ManagedBeanPractica.practica.protocolosdeactuacion="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";
-            ManagedBeanPractica.practica.semaforo="/resources/semaforo/semaforom.png";
+            ManagedBeanPractica.practica.semaforo="Riesgo medio";
             }
         
             if(networkOutput2>.8){
@@ -153,7 +153,7 @@ public class ManagedBeanReactivos implements Serializable {
                 }
             ManagedBeanPractica.practica.recomendaciones="Práctica con riesgo Alto: <br/> Sustancias:"+rs[0]+"-"+rs[1]+"-"+rs[2]+"-"+rs[3]+"-"+rs[4]+"-"+rs[5]+"-"+rs[6]+"-"+rs[7]+"-"+rs[8]+"<br/>Residuo: Colocar en compartimientos separados o bodega aparte.";
             ManagedBeanPractica.practica.protocolosdeactuacion="<a href=\"http://dof.gob.mx/nota_detalle.php?codigo=5072773\"><br/>NOM-017-STPS-2008</a> <br/> <a href=\"http://www.dof.gob.mx/nota_detalle_popup.php?codigo=5070081\">NOM- 026-STPS-2008</a>";            
-            ManagedBeanPractica.practica.semaforo="/resources/semaforo/semaforoa.png";
+            ManagedBeanPractica.practica.semaforo="Riesgo alto";
             }
         }
     }

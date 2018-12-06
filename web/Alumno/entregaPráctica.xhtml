@@ -4,7 +4,8 @@
 
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
-      xmlns:ui = "http://java.sun.com/jsf/facelets">
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:body>
 
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
@@ -29,6 +30,38 @@
                         <p class="lead">Prácticas que tienes que entregar</p>
                     </div>
                 </div>
+                
+                
+                
+                <div class="row">
+                    <div class="col">
+                        <input type="search" class="light-table-filter form-control"  data-table="order-table" placeholder="Buscar"/>
+                        <table class="order-table table table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Calificación</th>
+                                    <th scope="col">Observaciones</th>
+                                    <th scope="col">Subir reporte</th>
+                                </tr>
+                            </thead>
+                            <h:form>
+                                <ui:repeat var="r" value="#{managedBeanAdminPracticas.practicasPendientes()}" >
+                                    <tr>
+                                        <td>#{r.fecha}</td>
+                                        <td>#{r.calificacion}</td>
+                                        <td>#{r.observaciones}</td>
+                                        <td>
+                                            <a jsf:action="#{managedBeanAdminPracticas.redireccionaEntrega()}">Subir reporte</a>                        
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </h:form>
+                        </table>
+                    </div>
+                </div>
+                
+                
                 
                 <p>Eventos</p>
 
