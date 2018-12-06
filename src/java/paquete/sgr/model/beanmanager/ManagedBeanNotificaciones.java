@@ -18,11 +18,12 @@ import paquete.sgr.entity.pojos.SesionDeLaboratorio;
 @RequestScoped
 public class ManagedBeanNotificaciones {
     
-    List<NotificacionesSesion> listaSesiones;
+    List<NotificacionesSesion> listaNotificacionesSesiones;
     
     @PostConstruct
     public void init() {
-        
+         ConsultasHQL consulta = new ConsultasHQL();
+         listaNotificacionesSesiones = consulta.crearSelectQuery("FROM NotificacionesSesion");
     }
 
     public void notificacionSesionAlumno() {
@@ -56,12 +57,13 @@ public class ManagedBeanNotificaciones {
         
     }
     
-    public List<NotificacionesSesion> getListaSesiones() {
-        return listaSesiones;
+     public List<NotificacionesSesion> getListaNotificacionesSesiones() {
+        return listaNotificacionesSesiones;
     }
 
-    public void setListaSesiones(List<NotificacionesSesion> listaSesiones) {
-        this.listaSesiones = listaSesiones;
+    public void setListaNotificacionesSesiones(List<NotificacionesSesion> listaNotificacionesSesiones) {
+        this.listaNotificacionesSesiones = listaNotificacionesSesiones;
     }
+  
 
 }
