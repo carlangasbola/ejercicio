@@ -3,6 +3,7 @@ package paquete.sgr.model.beanmanager;
 import paquete.sgr.entity.util.HibernateUtil;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -27,6 +28,11 @@ public class ManagedBeanUsuarios {
      * Creates a new instance of ManagedBeanQuerys
      */
     public ManagedBeanUsuarios() {
+    }
+
+    @PostConstruct
+    public void init() {
+
     }
 
     private Session hibernateSession;
@@ -88,7 +94,7 @@ public class ManagedBeanUsuarios {
     public List<DatosUsuario> obtenerUsuariosRol(int id) {
         ConsultasHQL consulta = new ConsultasHQL();
         Session s = consulta.obtenerSession();
-       
+
         Query query = s.createQuery("FROM DatosUsuario WHERE usuarios.roles.idRol = :rol_Id")
                 .setParameter("rol_Id", id);
         //Query query = s.createSQLQuery("CALL SelectDatosRol(:id)")
@@ -165,16 +171,14 @@ public class ManagedBeanUsuarios {
         // Primero verificamos si la contraseña que ingreso es la misma que tiene registrada
         if (u.get(0).getPasssword().equals(password)) {
             if (passnew.equals(passnew2)) {
-                
+
                 // Si no es igual a la expresion regular nos manda error
                 // No esta testeado
-          //      if (!passnew.matches(pattern)) {
-          //          msj.setTitulo("Mensaje del sistema");
-          //          msj.setMensaje("La nueva contraseña no contiene la estructura definida");
-          //          msj.MensajePrecaucion();
-          //          return;
-                
-
+                //      if (!passnew.matches(pattern)) {
+                //          msj.setTitulo("Mensaje del sistema");
+                //          msj.setMensaje("La nueva contraseña no contiene la estructura definida");
+                //          msj.MensajePrecaucion();
+                //          return;
                 Usuarios user = (Usuarios) u.get(0);
                 user.setPasssword(passnew);
                 consulta.actualizarObjeto(user);
@@ -200,19 +204,19 @@ public class ManagedBeanUsuarios {
         DatosUsuario du = new DatosUsuario();
         ConsultasHQL consulta = new ConsultasHQL();
 
-        Session s  = consulta.obtenerSession();
+        Session s = consulta.obtenerSession();
         Transaction tx = s.beginTransaction();
         int idUsuario = getIdUsuarioSession();
-       
+
         u = (Usuarios) s.get(Usuarios.class, idUsuario);
         Query q = s.createQuery("FROM DatosUsuario where usuarios.idUsuarios = :userId")
-                   .setParameter("userId", idUsuario);
-        
+                .setParameter("userId", idUsuario);
+
         if (password.equals(u.getPasssword())) {
             try {
 
                 // Si no tiene datos de usuario
-                if ( q.list().isEmpty() ) {
+                if (q.list().isEmpty()) {
                     // Obtenemos la referencia a datos de usuario
                     du.setUsuarios(u);
                     du.setIdentificador(identificador);
@@ -226,7 +230,7 @@ public class ManagedBeanUsuarios {
                     tx.commit();
 
                 } else {
-                    du.setIdUsuarios(idUsuario);                   
+                    du.setIdUsuarios(idUsuario);
                     du.setIdentificador(identificador);
                     du.setNombre(nombre);
                     du.setApellidoPaterno(paterno);
@@ -443,5 +447,5 @@ public class ManagedBeanUsuarios {
     public void setDatosUsuariosFiltrados(List<DatosUsuario> datosUsuariosFiltrados) {
         this.datosUsuariosFiltrados = datosUsuariosFiltrados;
     }
-    
+
 }

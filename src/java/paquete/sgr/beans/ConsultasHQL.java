@@ -94,6 +94,7 @@ public class ConsultasHQL {
      */
     public void actualizarObjeto(Object o) {
         Session s = obtenerSession();
+        s.clear();
         Transaction tx = null;
         try {
             tx = s.beginTransaction();
@@ -109,6 +110,7 @@ public class ConsultasHQL {
 
     public boolean insertarObjeto(Object o) {
         Session s = obtenerSession();
+        s.clear();
         boolean result = false;
         Transaction tx = null;
         try {
@@ -127,6 +129,7 @@ public class ConsultasHQL {
 
     public void eliminarObjeto(Object o) {
         Session s = obtenerSession();
+        s.clear();
         Transaction tx = null;
         try {
             tx = s.beginTransaction();

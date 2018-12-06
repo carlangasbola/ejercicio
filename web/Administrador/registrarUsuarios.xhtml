@@ -51,7 +51,14 @@
                                 <h:outputLabel for="ug" value="Selecciona la unidad Grupo" />
                                 <h:selectOneMenu id="ug" value="#{managedBeanAgregarUsuariosArchivo.idUnidadGrupo}" styleClass="form-control" >
                                     <!-- Le mando el 2 por que indica los docentes -->
-                                    <f:selectItems value="#{managedBeanGrupos.listaUnidadGrupo}" var="ug" itemValue="#{ug.idUnidadGrupo}" itemLabel="#{ug.grupo.nombre} #{ug.unidadAprendizaje.nombre} #{ug.usuariosByIdUsuariosDocente.datosUsuario.nombre}" />
+                                    <f:selectItems value="#{managedBeanGrupos.listaUnidadGrupo}" 
+                                                   var="ug" 
+                                                   itemValue="#{ug.idUnidadGrupo}" 
+                                                   itemLabel="#{ug.grupo.nombre} 
+                                                   #{ug.unidadAprendizaje.nombre} 
+                                                   #{ug.usuariosByIdUsuariosDocente.datosUsuario.nombre} #{ug.usuariosByIdUsuariosDocente.datosUsuario.apellidoPaterno} #{ug.usuariosByIdUsuariosDocente.datosUsuario.apellidoMaterno}
+                                                   #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.nombre} #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.apellidoPaterno} #{ug.usuariosByUsuariosIdUsuarios.datosUsuario.apellidoMaterno}        
+                                                   " />
                                 </h:selectOneMenu>
                             </div>
 

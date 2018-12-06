@@ -1,6 +1,7 @@
 package paquete.sgr.model.beanmanager;
 
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -15,18 +16,27 @@ public class ManagedBeanUnidadGrupo {
 
     private int idDocente;
     private int idTecnico;
-    
+
     private List<UnidadGrupo> ListaUnidadGrupo;
     private List<ListaGrupo> ListaGrupo;
 
     @ManagedProperty(value = "#{managedBeanGrupos}")
     private ManagedBeanGrupos grupos;
 
+    @PostConstruct
+    public void init() {
+        ConsultasHQL consulta = new ConsultasHQL();
+        ListaUnidadGrupo = consulta.crearSelectQuery("FROM UnidadGrupo");
+        
+        
+        
+    }
+
     // Constructor
     public ManagedBeanUnidadGrupo() {
     }
-    
-    public String redireccionarListaGrupo(int idUnidadGrupo){
+
+    public String redireccionarListaGrupo(int idUnidadGrupo) {
         ConsultasHQL consulta = new ConsultasHQL();
         consulta.crearListPair("id", idUnidadGrupo);
         ListaGrupo = consulta.crearSelectQuery("FROM ListaGrupo where unidadGrupo.idUnidadGrupo = :id");
@@ -65,17 +75,15 @@ public class ManagedBeanUnidadGrupo {
     public void setGrupos(ManagedBeanGrupos grupos) {
         this.grupos = grupos;
     }
-    
+
     public List<UnidadGrupo> getListaUnidadGrupo() {
-        ConsultasHQL consulta = new ConsultasHQL();
-        ListaUnidadGrupo = consulta.crearSelectQuery("FROM UnidadGrupo");
         return ListaUnidadGrupo;
     }
 
     public void setListaUnidadGrupo(List<UnidadGrupo> ListaUnidadGrupo) {
         this.ListaUnidadGrupo = ListaUnidadGrupo;
     }
-    
+
     public List<ListaGrupo> getListaGrupo() {
         return ListaGrupo;
     }

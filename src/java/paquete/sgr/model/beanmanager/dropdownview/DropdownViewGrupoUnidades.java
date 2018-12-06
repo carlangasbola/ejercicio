@@ -16,6 +16,7 @@ import org.hibernate.Session;
 import paquete.sgr.beans.ConsultasHQL;
 import paquete.sgr.entity.pojos.Eventos;
 import paquete.sgr.entity.pojos.Grupo;
+import paquete.sgr.entity.pojos.NotificacionesSesion;
 import paquete.sgr.entity.pojos.SesionDeLaboratorio;
 import paquete.sgr.entity.pojos.UnidadAprendizaje;
 import paquete.sgr.entity.pojos.UnidadGrupo;
@@ -112,6 +113,7 @@ public class DropdownViewGrupoUnidades implements Serializable {
         Session s = consulta.obtenerSession();
         UnidadGrupo ug = new UnidadGrupo();
         SesionDeLaboratorio sl = new SesionDeLaboratorio();
+        NotificacionesSesion ns = new NotificacionesSesion();
         
         ug = (UnidadGrupo) s.get(UnidadGrupo.class, idUnidadGrupo);
         
@@ -120,6 +122,17 @@ public class DropdownViewGrupoUnidades implements Serializable {
         sl.setUnidadGrupo(ug);
 
         if (consulta.insertarObjeto(sl)) {
+            
+            // Crea la notificación una vez creada la sesión
+            ns.setSesionDeLaboratorio(sl);
+            ns.setDescripcion("Sesión de laboratorio : " 
+                              + sl.getFecha() + " Grupo: "
+                              + sl.getUnidadGrupo().getGrupo().getNombre() + " Unidad Aprendizaje: " + " Docente: "
+                              + sl.getUnidadGrupo().getUsuariosByIdUsuariosDocente().getDatosUsuario().getNombre() + " "
+                              + sl.getUnidadGrupo().getUsuariosByIdUsuariosDocente().getDatosUsuario().getApellidoPaterno());
+            ns.setEstado( (byte) 1);
+            consulta.insertarObjeto(ns);
+            
             msj.setTitulo("Exíto");
             msj.setMensaje("Evento creado exitosamente");
             msj.MensajeInfo();
