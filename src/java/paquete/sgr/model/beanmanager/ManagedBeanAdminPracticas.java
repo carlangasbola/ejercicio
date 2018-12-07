@@ -102,7 +102,8 @@ public class ManagedBeanAdminPracticas {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Obtiene las unidades tematicas de las unidades de aprendizaje
     
-    public String redireccionaEntrega(){
+    public String redireccionaEntrega(int e){
+        ManagedBeanReportePractica.idReportePractica=e;
         
         return "subirReporte";
     }

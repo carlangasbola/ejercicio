@@ -33,6 +33,7 @@ import paquete.sgr.entity.pojos.ReportePractica;
 public class ManagedBeanReportePractica {
     
     private DefaultStreamedContent descarga;
+    static int idReportePractica;
     
     public ManagedBeanReportePractica() {
     }
@@ -91,6 +92,19 @@ public class ManagedBeanReportePractica {
         setDescarga(new DefaultStreamedContent(entrada, externalContext.getMimeType(archivo.getName()), archivo.getName()));
     }
     
+    public ReportePractica consultaUnicoArchivo(){
+        ConsultasHQL consulta = new ConsultasHQL();
+        List<ReportePractica> reportes;
+        consulta.crearListPair("IdAlumno", consulta.obtenerDatosSesion("UserId"));
+        consulta.crearListPair("idReporte", idReportePractica);
+        reportes = consulta.crearSelectQuery("FROM ReportePractica WHERE usuarios.idUsuarios = :IdAlumno and idReportePractica = :idReporte");
+        return  reportes.get(0);
+    }
+    
+    public String renombra(String nombre){
+        return nombre.replace("C:\\Practicas\\Archivos\\", "");
+    }
+    
     public List<ReportePractica> consultaArchivo(){
         ConsultasHQL consulta = new ConsultasHQL();
         List<ReportePractica> reportes;
@@ -120,5 +134,15 @@ public class ManagedBeanReportePractica {
     public void setDescarga(DefaultStreamedContent descarga) {
         this.descarga = descarga;
     }
+
+    public static int getIdReportePractica() {
+        return idReportePractica;
+    }
+
+    public static void setIdReportePractica(int idReportePractica) {
+        ManagedBeanReportePractica.idReportePractica = idReportePractica;
+    }
+    
+    
     
 }
