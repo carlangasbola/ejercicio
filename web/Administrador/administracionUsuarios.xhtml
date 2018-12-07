@@ -7,16 +7,12 @@
       xmlns:ui = "http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <h:body>
         <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
         <ui:composition template = "common.xhtml">		
             <ui:define name = "content">
-                <h:form>
-                    <p:messages id="messages" showDetail="true" closable="true">
-                        <p:autoUpdate />
-                    </p:messages>
-                </h:form>
+
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -30,66 +26,81 @@
 
                     <div class="col">
                         <h4 class="text-center my-3">Usuarios registrados en el sistema</h4>
-                        <h:form>
-                            <p:dataTable
-                                id="dataTableDatosUsuarios"
-                                var="du" 
-                                value="#{TableUsuarios.datosUsuarios}" 
-                                rows="10"
-                                paginator="true"
-                                widgetVar="duTable" 
-                                emptyMessage="Sin resultados" 
-                                filteredValue="#{TableUsuarios.datosUsuariosFiltrados}"
-                                >
 
-                                <f:facet name="header">
-                                    <p:outputPanel>
-                                        <h:outputText value="Buscar por cualquier campo: " />
-                                        <p:inputText id="globalFilter" onkeyup="PF('duTable').filter()" style="width:200px" placeholder="Escribe la búsqueda"/>
-                                    </p:outputPanel>
-                                </f:facet>
+                        <h:form styleClass="jsfcrud_list_form">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:outputText escape="false" value="#{bundle.ListDatosUsuarioEmpty}" rendered="#{datosUsuarioController.items.rowCount == 0}"/>
+                            <h:panelGroup rendered="#{datosUsuarioController.items.rowCount > 0}">
+                                <h:outputText value="#{datosUsuarioController.pagination.pageFirstItem + 1}..#{datosUsuarioController.pagination.pageLastItem + 1}/#{datosUsuarioController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink action="#{datosUsuarioController.previous}" value="#{bundle.Previous} #{datosUsuarioController.pagination.pageSize}" rendered="#{datosUsuarioController.pagination.hasPreviousPage}"/>&nbsp;
+                                <h:commandLink action="#{datosUsuarioController.next}" value="#{bundle.Next} #{datosUsuarioController.pagination.pageSize}" rendered="#{datosUsuarioController.pagination.hasNextPage}"/>&nbsp;
 
+                                <h:dataTable value="#{datosUsuarioController.items}" 
+                                             var="item"
+                                             styleClass="table"
+                                             headerClass="thead-dark"
+                                             >
 
-                                <p:column sortBy="#{du.usuarios.roles.nombreRol}" filterBy="#{du.usuarios.roles.nombreRol}" filterStyle="display:none" headerText="Rol"  >
-                                    <h:outputText value="#{du.usuarios.roles.nombreRol}" />
-                                </p:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDatosUsuarioTitle_identificador}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.identificador}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDatosUsuarioTitle_nombre}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nombre}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDatosUsuarioTitle_apellidoPaterno}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.apellidoPaterno}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDatosUsuarioTitle_apellidoMaterno}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.apellidoMaterno}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDatosUsuarioTitle_telefono}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.telefono}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDatosUsuarioTitle_correo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.correo}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDatosUsuarioTitle_numeroSeguro}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numeroSeguro}"/>
+                                    </h:column>
 
-                                <p:column filterBy="#{du.nombre}" filterStyle="display:none" headerText="Nombre"  >
-                                    <h:outputText value="#{du.nombre}" />
-                                </p:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="&nbsp;"/>
+                                        </f:facet>
 
-                                <p:column filterBy="#{du.apellidoPaterno}" filterStyle="display:none" headerText="Apellido Paterno"  >
-                                    <h:outputText value="#{du.apellidoPaterno}" />
-                                </p:column>
+                                        <h:outputText value="  "/>
+                                        <h:commandLink action="#{datosUsuarioController.prepareEdit}" value=" Editar "/>
+                                        <h:outputText value="  "/>
+                                        <h:commandLink action="#{datosUsuarioController.destroy}" value=" Eliminar "/>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:panelGroup>
 
-                                <p:column filterBy="#{du.apellidoMaterno}" filterStyle="display:none" headerText="Apellido Materno"  >
-                                    <h:outputText value="#{du.apellidoMaterno}" />
-                                </p:column>
-
-                                <p:column filterBy="#{du.telefono}" filterStyle="display:none" headerText="Teléfono"  >
-                                    <h:outputText value="#{du.telefono}" />
-                                </p:column>
-
-                                <p:column filterBy="#{du.correo}" filterStyle="display:none" headerText="Nombre"  >
-                                    <h:outputText value="#{du.correo}" />
-                                </p:column>
-
-                                <p:column filterBy="#{du.identificador}" filterStyle="display:none" headerText="Identificador"  >
-                                    <h:outputText value="#{du.identificador}" />
-                                </p:column>
-
-                                <p:column  headerText="Modificar"  style="width:95px;">
-                                    <p:commandButton icon="pi pi-eye" style="width:50px;" action="#{managedBeanUsuarios.obtenerDatosUsuario()}" ajax="false">
-                                        <f:param name="IdUsuario" value="#{du.usuarios.idUsuarios}" />
-                                    </p:commandButton>
-                                </p:column>
-
-                                <p:column headerText="Eliminar" style="width:95px;" >
-                                    <p:commandButton action="#{managedBeanUsuarios.deleteUsuario( du.usuarios.idUsuarios )}" ajax="false" icon="pi pi-trash" style="width:50px;" >
-                                    </p:commandButton>
-                                </p:column>
-                            </p:dataTable>
                         </h:form>
+
                     </div>
                 </div>
             </ui:define> 

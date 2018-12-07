@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+
+        <!-- Aquí va el contenido solo van ROWS y COLS no colocar containers -->
+        <ui:composition template = "common.xhtml">		
+            <ui:define name = "content">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="inicioAdministrador.xhtml">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Editar datos de usuario</li>
+                </ol>
+
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h4 class="colorpantone text-center">Editar Datos de usuario</h4>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-6">
+
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:form>
+
+                            <h:inputHidden id="idUsuarios" value="#{datosUsuarioController.selected.idUsuarios}" />
+                            <div class="form-group">
+                                <h:outputLabel value="#{bundle.EditDatosUsuarioLabel_identificador}" for="identificador" />
+                                <h:inputText styleClass="form-control" id="identificador" value="#{datosUsuarioController.selected.identificador}" title="#{bundle.EditDatosUsuarioTitle_identificador}" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <h:outputLabel value="#{bundle.EditDatosUsuarioLabel_nombre}" for="nombre" />
+                                <h:inputText styleClass="form-control" id="nombre" value="#{datosUsuarioController.selected.nombre}" title="#{bundle.EditDatosUsuarioTitle_nombre}" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="#{bundle.EditDatosUsuarioLabel_apellidoPaterno}" for="apellidoPaterno" />
+                                <h:inputText styleClass="form-control" id="apellidoPaterno" value="#{datosUsuarioController.selected.apellidoPaterno}" title="#{bundle.EditDatosUsuarioTitle_apellidoPaterno}" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="#{bundle.EditDatosUsuarioLabel_apellidoMaterno}" for="apellidoMaterno" />
+                                <h:inputText styleClass="form-control" id="apellidoMaterno" value="#{datosUsuarioController.selected.apellidoMaterno}" title="#{bundle.EditDatosUsuarioTitle_apellidoMaterno}" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="#{bundle.EditDatosUsuarioLabel_telefono}" for="telefono" />
+                                <h:inputText styleClass="form-control" id="telefono" value="#{datosUsuarioController.selected.telefono}" title="#{bundle.EditDatosUsuarioTitle_telefono}" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="#{bundle.EditDatosUsuarioLabel_correo}" for="correo" />
+                                <h:inputText styleClass="form-control" id="correo" value="#{datosUsuarioController.selected.correo}" title="#{bundle.EditDatosUsuarioTitle_correo}" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="#{bundle.EditDatosUsuarioLabel_numeroSeguro}" for="numeroSeguro" />
+                                <h:inputText styleClass="form-control" id="numeroSeguro" value="#{datosUsuarioController.selected.numeroSeguro}" title="#{bundle.EditDatosUsuarioTitle_numeroSeguro}" />
+                            </div>
+
+                            <h:selectOneMenu id="usuarios"  value="#{datosUsuarioController.selected.usuarios}" required="true" styleClass="d-none" >
+                                <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+
+
+                            <h:commandLink action="#{datosUsuarioController.update}" value="Guardar" class="btn btn-primary"/>
+                            <br />
+
+                        </h:form>
+
+                    </div>
+                </div>
+
+                <!-- Si vas a usar Jquery dejalo debajo de aqui si no borralo (Cuando usas primefaces) -->
+                <script src="../vendor/jquery/jquery.min.js"></script> 
+            </ui:define> 
+        </ui:composition>       
+    </h:body>
+</html>

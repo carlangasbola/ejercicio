@@ -2,6 +2,7 @@ package paquete.sgr.model.beanmanager;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import paquete.sgr.entity.pojos.Grupo;
@@ -39,6 +40,12 @@ public class ManagedBeanGrupos {
     private List<UnidadGrupo> ListaUnidadGrupo;
 
     public ManagedBeanGrupos() {
+    }
+    
+    @PostConstruct
+    void init(){
+        ConsultasHQL consulta = new ConsultasHQL();
+        ListaGrupos = consulta.crearSelectQuery("FROM Grupo");
     }
 
 
@@ -225,8 +232,6 @@ public class ManagedBeanGrupos {
     
     
     public List<Grupo> getListaGrupos() {
-        ConsultasHQL consulta = new ConsultasHQL();
-        ListaGrupos = consulta.crearSelectQuery("FROM Grupo");
         return ListaGrupos;
     }
 

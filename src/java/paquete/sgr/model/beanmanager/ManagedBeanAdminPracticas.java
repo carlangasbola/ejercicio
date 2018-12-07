@@ -237,8 +237,8 @@ public class ManagedBeanAdminPracticas {
         try {
             hibernateSession.beginTransaction();
             Practica practica1 = new Practica();
-            
-            Usuarios user = (Usuarios) hibernateSession.get(Usuarios.class,ManagedBeanUsuarios.idusuario);
+            int id = (int) cmd.obtenerDatosSesion("UserId");
+            Usuarios user = (Usuarios) hibernateSession.get(Usuarios.class, id );
             UnidadTematica unidad = (UnidadTematica)hibernateSession.get(UnidadTematica.class, idUnidadTematica);
             practica1.setCreacion(fecha);
             practica1.setUsuarios(user);

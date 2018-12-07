@@ -72,9 +72,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Ver</th>
                                     <th scope="col">Eliminar</th>
-                                    <th scope="col">Actualizar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,13 +81,7 @@
                                         <tr>
                                             <td>#{ua.nombre}</td>
                                             <td>
-                                                <p:commandButton style="background-color: #00661d;color: white;border:none" value="ver"  update=":detalleunidad" action="#{managedBeanUnidadesAprendizaje.obtenertUnidadesTematicas(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eye" oncomplete="PF('dlg2').show()"/>
-                                            </td> 
-                                            <td>
                                                 <p:commandButton style="background-color: #830D18; color: white; border: none" value="Eliminar"  action="#{managedBeanUnidadesAprendizaje.eliminarUnidadAprendizaje(ua.idUnidadAprendizaje)}" icon="fa fa-fw fa-eraser" ajax="false" />
-                                            </td> 
-                                            <td>
-                                                <p:commandButton style="background-color: #1A5179; color: white; border: none" value="Update"   icon="fa fa-fw fa-edit" ajax="false" disabled="true" />
                                             </td> 
                                         </tr>                      
                                     </ui:repeat>
