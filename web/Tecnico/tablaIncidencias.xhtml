@@ -47,9 +47,12 @@
                                     <th scope="row">#{status.index +1}</th>
                                     <th scope="col">#{ri.nombre}</th>
                                     <th scope="col">#{ri.fecha}</th>                   
-                                    
-                                        <th scope="col">#{ri.estado}</th>
-                                    
+                                    <ui:fragment rendered="#{ri.estado == 'Abierto'}">
+                                        <td class="table-danger">#{ri.estado}</td>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{ri.estado == 'Cerrado'}">
+                                        <td class="table-success">#{ri.estado}</td>
+                                    </ui:fragment>
                                     <th scope="col">
                                         #{ri.actualizacion}
                                     </th>

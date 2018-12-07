@@ -27,9 +27,6 @@ public class ManagedBeanUnidadGrupo {
     public void init() {
         ConsultasHQL consulta = new ConsultasHQL();
         ListaUnidadGrupo = consulta.crearSelectQuery("FROM UnidadGrupo");
-        
-        
-        
     }
 
     // Constructor
