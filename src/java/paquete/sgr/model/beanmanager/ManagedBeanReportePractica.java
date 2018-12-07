@@ -6,6 +6,7 @@
 package paquete.sgr.model.beanmanager;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,10 +31,9 @@ import paquete.sgr.entity.pojos.ReportePractica;
 @Named(value = "managedBeanReporte")
 @RequestScoped
 public class ManagedBeanReportePractica {
-
-    /**
-     * Creates a new instance of ManagedBeanAgregarUsuariosArchivo
-     */
+    
+    private DefaultStreamedContent descarga;
+    
     public ManagedBeanReportePractica() {
     }
     
@@ -70,6 +70,34 @@ public class ManagedBeanReportePractica {
         
     }
     
+    public String calificacion(double c){
+        if (c==0)
+            return "Sin calificar";
+        else       
+            return c + "";
+    } 
+    
+    public String observaciones(String o){
+        if ("".equals(o))
+            return "Sin observaciones";
+        else       
+            return o;
+    } 
+    
+    public void descarga(String d) throws Exception {
+        File archivo = new File(d);
+        InputStream entrada = new FileInputStream(archivo);
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        setDescarga(new DefaultStreamedContent(entrada, externalContext.getMimeType(archivo.getName()), archivo.getName()));
+    }
+    
+    public List<ReportePractica> consultaArchivo(){
+        ConsultasHQL consulta = new ConsultasHQL();
+        List<ReportePractica> reportes;
+        consulta.crearListPair("IdAlumno", consulta.obtenerDatosSesion("UserId"));
+        reportes = consulta.crearSelectQuery("FROM ReportePractica WHERE usuarios.idUsuarios = :IdAlumno");
+        return  reportes;
+    }
     
     public int getIdUsuarioSession() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -83,6 +111,14 @@ public class ManagedBeanReportePractica {
     
     public void setFile(UploadedFile file) {
         this.file = file;
+    }
+
+    public DefaultStreamedContent getDescarga() {
+        return descarga;
+    }
+
+    public void setDescarga(DefaultStreamedContent descarga) {
+        this.descarga = descarga;
     }
     
 }

@@ -31,7 +31,7 @@ public class ManagedBeanLogin {
         // Crear list pair crea parametros que se envian a la consulta sin espacios
         consulta.crearListPair("user", user.trim() );
         consulta.crearListPair("pass", pass );
-        List<Usuarios> u = consulta.crearSelectQuery("from Usuarios where login = :user and passsword = :pass");
+        List<Usuarios> u = consulta.crearSelectQuery("FROM Usuarios where login = :user and passsword = :pass");
 
         /* Si hay un usuario en la base de datos */
         if (!u.isEmpty()) {

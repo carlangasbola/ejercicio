@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/12/2018 09:49:13 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 7/12/2018 03:49:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.ReportePractica" table="reporte_practica" catalog="dbsgr" optimistic-lock="version">
         <id name="idReportePractica" type="java.lang.Integer">
@@ -12,19 +12,22 @@
             <column name="idUsuario_Alumno" not-null="true" />
         </many-to-one>
         <property name="documentoPractica" type="binary">
-            <column name="Documento_practica" not-null="true" />
+            <column name="Documento_practica" />
         </property>
         <property name="fecha" type="timestamp">
-            <column name="Fecha" length="19" not-null="true" />
+            <column name="Fecha" length="19" />
         </property>
-        <property name="calificacion" type="double">
-            <column name="calificacion" precision="22" scale="0" not-null="true" />
+        <property name="calificacion" type="java.lang.Double">
+            <column name="calificacion" precision="22" scale="0" />
         </property>
         <property name="observaciones" type="string">
             <column name="Observaciones" length="450" />
         </property>
         <property name="grupo" type="string">
-            <column name="Grupo" length="45" not-null="true" />
+            <column name="Grupo" length="45" />
+        </property>
+        <property name="practica" type="string">
+            <column name="Practica" length="100" />
         </property>
     </class>
 </hibernate-mapping>

@@ -32,12 +32,8 @@
                                 <tr>
                                     <th scope="col">Datos</th>
                                     <th scope="col">Título de la práctica</th>
-                                    <th scope="col">Editor</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Nivel de riesgo</th>
-                                    <th scope="col">Asignar a grupo</th>
-                                    <th scope="col">Modificar</th>
-                                    <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,13 +41,9 @@
                                     <ui:repeat var="p" value="#{managedBeanAdminPracticas.getPracticas()}" >
                                         <tr>
                                             <td><a jsf:action="#{managedBeanAdminPracticas.asigna(p.idPractica)}">Ver</a></td>
-                                            <td>#{p.datosPractica.nombre}</td>
                                             <td>#{p.datosPractica.editor}</td>
                                             <td>#{p.creacion}</td>
                                             <td>#{p.datosPractica.semaforo}</td>
-                                            <td>Asignar a grupo</td>
-                                            <td>Modificar</td>
-                                            <td><a jsf:action="#{managedBeanAdminPracticas.eliminarPractica(p.idPractica)}">Eliminar</a></td>
                                         </tr>
                                     </ui:repeat>
                                 </h:form>

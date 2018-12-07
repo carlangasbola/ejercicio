@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
+// Generated 7/12/2018 03:49:07 PM by Hibernate Tools 4.3.1
 
 
 
@@ -12,12 +12,17 @@ public class ReactivosUtilizadoPractica  implements java.io.Serializable {
      private Integer idReactivosUtilizado;
      private Practica practica;
      private Reactivos reactivos;
-     private int idDatos;
+     private Integer idDatos;
 
     public ReactivosUtilizadoPractica() {
     }
 
-    public ReactivosUtilizadoPractica(Practica practica, Reactivos reactivos, int idDatos) {
+	
+    public ReactivosUtilizadoPractica(Practica practica, Reactivos reactivos) {
+        this.practica = practica;
+        this.reactivos = reactivos;
+    }
+    public ReactivosUtilizadoPractica(Practica practica, Reactivos reactivos, Integer idDatos) {
        this.practica = practica;
        this.reactivos = reactivos;
        this.idDatos = idDatos;
@@ -44,11 +49,11 @@ public class ReactivosUtilizadoPractica  implements java.io.Serializable {
     public void setReactivos(Reactivos reactivos) {
         this.reactivos = reactivos;
     }
-    public int getIdDatos() {
+    public Integer getIdDatos() {
         return this.idDatos;
     }
     
-    public void setIdDatos(int idDatos) {
+    public void setIdDatos(Integer idDatos) {
         this.idDatos = idDatos;
     }
 

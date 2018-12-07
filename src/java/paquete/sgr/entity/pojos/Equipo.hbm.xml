@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/12/2018 09:49:13 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 7/12/2018 03:49:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.Equipo" table="equipo" catalog="dbsgr" optimistic-lock="version">
         <id name="idEquipo" type="java.lang.Integer">
@@ -28,7 +28,7 @@
         </set>
         <set name="listaGrupos" table="lista_grupo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idEquipo" not-null="true" />
+                <column name="idEquipo" />
             </key>
             <one-to-many class="paquete.sgr.entity.pojos.ListaGrupo" />
         </set>

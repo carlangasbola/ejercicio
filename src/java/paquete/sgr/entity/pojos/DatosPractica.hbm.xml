@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/12/2018 09:49:13 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 7/12/2018 03:49:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.DatosPractica" table="datos_practica" catalog="dbsgr" optimistic-lock="version">
         <id name="idPractica" type="int">
@@ -11,8 +11,8 @@
             </generator>
         </id>
         <one-to-one name="practica" class="paquete.sgr.entity.pojos.Practica" constrained="true"></one-to-one>
-        <property name="numeroPractica" type="int">
-            <column name="Numero_Practica" not-null="true" />
+        <property name="numeroPractica" type="java.lang.Integer">
+            <column name="Numero_Practica" />
         </property>
         <property name="nombre" type="string">
             <column name="Nombre" length="100" not-null="true" />
@@ -33,13 +33,13 @@
             <column name="Objetivos" length="16777215" not-null="true" />
         </property>
         <property name="semaforo" type="string">
-            <column name="Semaforo" length="16777215" not-null="true" />
+            <column name="Semaforo" length="16777215" />
         </property>
         <property name="recomendaciones" type="string">
-            <column name="Recomendaciones" length="16777215" not-null="true" />
+            <column name="Recomendaciones" length="16777215" />
         </property>
         <property name="protocolos" type="string">
-            <column name="Protocolos" length="16777215" not-null="true" />
+            <column name="Protocolos" length="16777215" />
         </property>
         <property name="desarrollo" type="string">
             <column name="Desarrollo" length="16777215" />

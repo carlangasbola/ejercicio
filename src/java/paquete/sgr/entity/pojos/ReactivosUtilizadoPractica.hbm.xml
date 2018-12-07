@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/12/2018 09:49:13 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 7/12/2018 03:49:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="paquete.sgr.entity.pojos.ReactivosUtilizadoPractica" table="reactivos_utilizado_practica" catalog="dbsgr" optimistic-lock="version">
         <id name="idReactivosUtilizado" type="java.lang.Integer">
@@ -14,8 +14,8 @@
         <many-to-one name="reactivos" class="paquete.sgr.entity.pojos.Reactivos" fetch="select">
             <column name="idReactivo" not-null="true" />
         </many-to-one>
-        <property name="idDatos" type="int">
-            <column name="idDatos" not-null="true" />
+        <property name="idDatos" type="java.lang.Integer">
+            <column name="idDatos" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
+// Generated 7/12/2018 03:49:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,28 +14,26 @@ public class ReportePractica  implements java.io.Serializable {
      private Usuarios usuarios;
      private byte[] documentoPractica;
      private Date fecha;
-     private double calificacion;
+     private Double calificacion;
      private String observaciones;
      private String grupo;
+     private String practica;
 
     public ReportePractica() {
     }
 
 	
-    public ReportePractica(Usuarios usuarios, byte[] documentoPractica, Date fecha, double calificacion, String grupo) {
+    public ReportePractica(Usuarios usuarios) {
         this.usuarios = usuarios;
-        this.documentoPractica = documentoPractica;
-        this.fecha = fecha;
-        this.calificacion = calificacion;
-        this.grupo = grupo;
     }
-    public ReportePractica(Usuarios usuarios, byte[] documentoPractica, Date fecha, double calificacion, String observaciones, String grupo) {
+    public ReportePractica(Usuarios usuarios, byte[] documentoPractica, Date fecha, Double calificacion, String observaciones, String grupo, String practica) {
        this.usuarios = usuarios;
        this.documentoPractica = documentoPractica;
        this.fecha = fecha;
        this.calificacion = calificacion;
        this.observaciones = observaciones;
        this.grupo = grupo;
+       this.practica = practica;
     }
    
     public Integer getIdReportePractica() {
@@ -66,11 +64,11 @@ public class ReportePractica  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    public double getCalificacion() {
+    public Double getCalificacion() {
         return this.calificacion;
     }
     
-    public void setCalificacion(double calificacion) {
+    public void setCalificacion(Double calificacion) {
         this.calificacion = calificacion;
     }
     public String getObservaciones() {
@@ -86,6 +84,13 @@ public class ReportePractica  implements java.io.Serializable {
     
     public void setGrupo(String grupo) {
         this.grupo = grupo;
+    }
+    public String getPractica() {
+        return this.practica;
+    }
+    
+    public void setPractica(String practica) {
+        this.practica = practica;
     }
 
 

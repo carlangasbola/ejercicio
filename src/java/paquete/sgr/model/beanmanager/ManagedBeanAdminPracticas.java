@@ -104,7 +104,6 @@ public class ManagedBeanAdminPracticas {
     
     public String redireccionaEntrega(){
         
-        
         return "subirReporte";
     }
     
@@ -138,6 +137,7 @@ public class ManagedBeanAdminPracticas {
             ReportePractica rp = new ReportePractica();
             u=(Usuarios) s.get(Usuarios.class, lgs.getUsuarios().getIdUsuarios());
             rp.setUsuarios(u);
+            rp.setPractica("C:\\Practicas\\Archivos\\" + practicaAuxiliar.getDatosPractica().getNombre() + ".pdf");
             rp.setFecha(fechaAsignacion);
             consulta.insertarObjeto(rp);
         }

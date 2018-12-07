@@ -1,5 +1,5 @@
 package paquete.sgr.entity.pojos;
-// Generated 1/12/2018 09:48:47 PM by Hibernate Tools 4.3.1
+// Generated 7/12/2018 03:49:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ public class DatosPractica  implements java.io.Serializable {
 
      private int idPractica;
      private Practica practica;
-     private int numeroPractica;
+     private Integer numeroPractica;
      private String nombre;
      private String editor;
      private Date actualizacion;
@@ -34,18 +34,14 @@ public class DatosPractica  implements java.io.Serializable {
     }
 
 	
-    public DatosPractica(Practica practica, int numeroPractica, String nombre, String introducion, String actividadesPrevias, String objetivos, String semaforo, String recomendaciones, String protocolos) {
+    public DatosPractica(Practica practica, String nombre, String introducion, String actividadesPrevias, String objetivos) {
         this.practica = practica;
-        this.numeroPractica = numeroPractica;
         this.nombre = nombre;
         this.introducion = introducion;
         this.actividadesPrevias = actividadesPrevias;
         this.objetivos = objetivos;
-        this.semaforo = semaforo;
-        this.recomendaciones = recomendaciones;
-        this.protocolos = protocolos;
     }
-    public DatosPractica(Practica practica, int numeroPractica, String nombre, String editor, Date actualizacion, String introducion, String actividadesPrevias, String objetivos, String semaforo, String recomendaciones, String protocolos, String desarrollo, String registroDatos, String resultados, String analisisResultados, String referencias, String nomeclantura, String anexos) {
+    public DatosPractica(Practica practica, Integer numeroPractica, String nombre, String editor, Date actualizacion, String introducion, String actividadesPrevias, String objetivos, String semaforo, String recomendaciones, String protocolos, String desarrollo, String registroDatos, String resultados, String analisisResultados, String referencias, String nomeclantura, String anexos) {
        this.practica = practica;
        this.numeroPractica = numeroPractica;
        this.nombre = nombre;
@@ -80,11 +76,11 @@ public class DatosPractica  implements java.io.Serializable {
     public void setPractica(Practica practica) {
         this.practica = practica;
     }
-    public int getNumeroPractica() {
+    public Integer getNumeroPractica() {
         return this.numeroPractica;
     }
     
-    public void setNumeroPractica(int numeroPractica) {
+    public void setNumeroPractica(Integer numeroPractica) {
         this.numeroPractica = numeroPractica;
     }
     public String getNombre() {
